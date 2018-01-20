@@ -1,0 +1,9 @@
+import {Routes} from '@angular/router';
+import {MtFatigeIndicatorConfigQueryComponent} from './mtFatigeIndicatorConfigQuery.component';
+
+export const mtFatigeIndicatorConfigQueryRouter: Routes = [
+  {
+    path: '',
+    component: MtFatigeIndicatorConfigQueryComponent
+  }
+];
