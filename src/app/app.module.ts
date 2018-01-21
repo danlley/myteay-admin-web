@@ -8,20 +8,29 @@ import {RouterModule} from '@angular/router';
 import {appRouter} from './app.router';
 import {TitleComponent} from './titles/title.component';
 import {BottomComponent} from './bottom/bottom.component';
+import {MtFatigeIndicatorConfigQueryComponent} from './customer/mtFatigeIndicatorConfigQuery/mtFatigeIndicatorConfigQuery.component';
+import {DefaultPageComponent} from './defaultPage/defaultPage.component';
+import {EventService} from './asyncService/asyncService.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TitleComponent,
+    MtFatigeIndicatorConfigQueryComponent,
+    DefaultPageComponent,
     BottomComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forChild(appRouter),
+    RouterModule.forRoot(appRouter),
     FormsModule,
     HttpModule
   ],
-  providers: [TitleComponent, BottomComponent],
+  providers: [BottomComponent,
+    TitleComponent,
+    EventService,
+    DefaultPageComponent,
+    MtFatigeIndicatorConfigQueryComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {

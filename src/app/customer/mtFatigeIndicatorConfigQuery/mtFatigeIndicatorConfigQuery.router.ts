@@ -3,7 +3,7 @@ import {MtFatigeIndicatorConfigQueryComponent} from './mtFatigeIndicatorConfigQu
 
 export const mtFatigeIndicatorConfigQueryRouter: Routes = [
   {
-    path: '',
+    path: 'customer/query',
     component: MtFatigeIndicatorConfigQueryComponent
   }
 ];
