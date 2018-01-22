@@ -10,7 +10,7 @@ import {TitleComponent} from './titles/title.component';
 import {BottomComponent} from './bottom/bottom.component';
 import {MtFatigeIndicatorConfigQueryComponent} from './customer/mtFatigeIndicatorConfigQuery/mtFatigeIndicatorConfigQuery.component';
 import {DefaultPageComponent} from './defaultPage/defaultPage.component';
-import {EventService} from './asyncService/asyncService.component';
+import {EventService} from './asyncService/asyncService.service';
 
 @NgModule({
   declarations: [

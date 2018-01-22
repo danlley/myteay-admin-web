@@ -1,12 +1,11 @@
 import {Routes} from '@angular/router';
 import {MtFatigeIndicatorConfigQueryComponent} from './customer/mtFatigeIndicatorConfigQuery/mtFatigeIndicatorConfigQuery.component';
 import {DefaultPageComponent} from './defaultPage/defaultPage.component';
-import {AppComponent} from './app.component';
 
 export const appRouter: Routes = [
   {
     path: '',
-    component: AppComponent,
+    component: DefaultPageComponent,
     children: [
       {
         path: '',

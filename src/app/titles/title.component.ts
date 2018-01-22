@@ -1,5 +1,5 @@
 import {Component, Injectable, Input, OnInit} from '@angular/core';
-import {EventService} from '../asyncService/asyncService.component';
+import {EventService} from '../asyncService/asyncService.service';
 
 @Component({
   selector: 'app-title-bar',
@@ -19,11 +19,11 @@ export class TitleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('Ò³Í·¼ÓÔØÍê±Ï!');
+    console.log('é¡µå¤´åŠ è½½å®Œæ¯•!');
   }
 
   public openUrl(topic): void {
-    console.log('¿ªÊ¼ÇëÇóÖ¸¶¨Ò³Ãæ topic=' + topic);
+    console.log('å¼€å§‹è¯·æ±‚æŒ‡å®šé¡µé¢ topic=' + topic);
     this.eventBus.publish(topic, this.title);
   }
 }

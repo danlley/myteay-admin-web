@@ -1,0 +1,9 @@
+.middle-div {
+  margin:0 auto;
+  background:linear-gradient(to bottom,#378091, rgb(187, 228, 250));
+  height:500px;
+  width: 94%;
+  border-radius:10px;
+  left: 0px;
+  color: white;
+}
