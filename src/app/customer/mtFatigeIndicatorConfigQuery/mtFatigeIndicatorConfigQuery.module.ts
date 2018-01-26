@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {mtFatigeIndicatorConfigQueryRouter} from './mtFatigeIndicatorConfigQuery.router';
+import {FatigeConfigService} from './service/fatigeConfig.service';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,7 @@ import {mtFatigeIndicatorConfigQueryRouter} from './mtFatigeIndicatorConfigQuery
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [FatigeConfigService],
   bootstrap: [MtFatigeIndicatorConfigQueryModule]
 })
 export class MtFatigeIndicatorConfigQueryModule {
