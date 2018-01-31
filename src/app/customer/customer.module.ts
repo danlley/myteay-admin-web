@@ -6,16 +6,16 @@ import {RouterModule} from '@angular/router';
 import {customerRouter} from './customer.router';
 
 @NgModule({
-  declarations: [
-    CustomerComponent
-  ],
-  imports: [
-    RouterModule.forChild(customerRouter),
-    FormsModule,
-    HttpModule
-  ],
-  providers: [],
-  bootstrap: [CustomerComponent]
+    declarations: [
+        CustomerComponent
+    ],
+    imports: [
+        RouterModule.forChild(customerRouter),
+        FormsModule,
+        HttpModule
+    ],
+    providers: [],
+    bootstrap: [CustomerComponent]
 })
 export class CustomerModule {
 }

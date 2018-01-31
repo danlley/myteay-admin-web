@@ -6,16 +6,16 @@ import {mtFatigeIndicatorConfigQueryRouter} from './mtFatigeIndicatorConfigQuery
 import {FatigeConfigService} from './service/fatigeConfig.service';
 
 @NgModule({
-  declarations: [
-    MtFatigeIndicatorConfigQueryModule
-  ],
-  imports: [
-    RouterModule.forChild(mtFatigeIndicatorConfigQueryRouter),
-    FormsModule,
-    HttpModule
-  ],
-  providers: [FatigeConfigService],
-  bootstrap: [MtFatigeIndicatorConfigQueryModule]
+    declarations: [
+        MtFatigeIndicatorConfigQueryModule
+    ],
+    imports: [
+        RouterModule.forChild(mtFatigeIndicatorConfigQueryRouter),
+        FormsModule,
+        HttpModule
+    ],
+    providers: [FatigeConfigService],
+    bootstrap: [MtFatigeIndicatorConfigQueryModule]
 })
 export class MtFatigeIndicatorConfigQueryModule {
 }

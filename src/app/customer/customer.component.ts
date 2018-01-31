@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-customer',
-  templateUrl: './customer.component.html',
-  styleUrls: ['./customer.component.css']
+    selector: 'app-customer',
+    templateUrl: './customer.component.html',
+    styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent {
-  title = 'customer!';
+    title = 'customer!';
 }

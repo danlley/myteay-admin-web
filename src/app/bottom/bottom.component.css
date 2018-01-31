@@ -1,13 +1,13 @@
 .bottom-fix {
-  margin:0 auto;
-  bottom:0;
-  background:linear-gradient(to bottom,#378091, #2f3e45);
-  height:100px;
-  width: 94%;
-  border-radius:10px;
-  position:fixed;
-  left: 50px;
-  color: white;
+    margin: 0 auto;
+    bottom: 0;
+    background: linear-gradient(to bottom, #378091, #2f3e45);
+    height: 100px;
+    width: 94%;
+    border-radius: 10px;
+    position: fixed;
+    left: 50px;
+    color: white;
 }
 
 
