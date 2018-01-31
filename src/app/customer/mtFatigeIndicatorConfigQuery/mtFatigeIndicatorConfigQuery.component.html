@@ -1,40 +1,40 @@
-<form action="" method="post" class="STYLE-NAME">
-    <h1>Contact Form
-        <span>Please fill all the texts in the fields.</span>
-    </h1>
-    <label>
-        <span>Your Name :</span>
-        <input id="name" type="text" name="name" placeholder="Your Full Name"/>
-    </label>
-    <label>
-        <span>Your Email :</span>
-        <input id="email" type="email" name="email" placeholder="Valid Email Address"/>
-    </label>
-    <label>
-        <span>Message :</span>
-        <textarea id="message" name="message" placeholder="Your Message to Us"></textarea>
-    </label>
-    <label>
-        <span>Subject :</span><select name="selection">
-        <option value="Job Inquiry">Job Inquiry</option>
-        <option value="General Question">General Question</option>
-    </select>
-    </label>
-    <label>
-        <span>&nbsp;</span>
-        <button type="button" class="button" (click)="load()">input</button>
-    </label>
-</form>
-<div style="height: 100px"></div>
+<div>
+    <form action="" method="post" class="STYLE-NAME">
+        <h1><span>ç–²åŠ³åº¦é…ç½®æŸ¥è¯¢</span></h1>
+        <ul>
+            <label style="width: 400px">
+                <span>ç–²åŠ³åº¦ç±»å‹ :</span>
+                <select name="selection">
+                    <option value="Job Inquiry">Job Inquiry</option>
+                    <option value="General Question">General Question</option>
+                </select>
+                <span>&nbsp;</span>
+            </label>
+            <label style="width: 400px">
+                <span>ç–²åŠ³åº¦å¼€å…³ :</span>
+                <select name="selection">
+                    <option value="Job Inquiry">Job Inquiry</option>
+                    <option value="General Question">General Question</option>
+                </select>
+                <span>&nbsp;</span>
+            </label>
+            <label>
+                <span>&nbsp;</span>
+                <button type="button" class="button" (click)="load()">input</button>
+            </label>
+        </ul>
+    </form>
+</div>
+<div style="height: 60px"></div>
 <div>
     <ul class="th">
-        <li>ĞòºÅ</li>
-        <li>Æ£ÀÍ¶ÈÀàĞÍ</li>
-        <li>×î´óÖµ</li>
-        <li>Æ£ÀÍ¶È¿ª¹Ø</li>
-        <li>´´½¨Ê±¼ä</li>
-        <li>×îºóĞŞ¸ÄÊ±¼ä</li>
-        <li>²Ù×÷</li>
+        <li>åºå·</li>
+        <li>ç–²åŠ³åº¦ç±»å‹</li>
+        <li>æœ€å¤§å€¼</li>
+        <li>ç–²åŠ³åº¦å¼€å…³</li>
+        <li>åˆ›å»ºæ—¶é—´</li>
+        <li>æœ€åä¿®æ”¹æ—¶é—´</li>
+        <li>æ“ä½œ</li>
     </ul>
     <div *ngFor="let config of data">
         <ul>
@@ -44,12 +44,7 @@
             <li>{{config.fatigeSwitchFlag}}</li>
             <li>{{config.gmtCreated}}</li>
             <li>{{config.gmtModified}}</li>
-            <li>
-                <button type="button" class="button">ĞŞ¸Ä</button>
-            </li>
-            <li>
-                <button type="button" class="button">É¾³ı</button>
-            </li>
+            <li><span>ä¿®æ”¹</span> <span>åˆ é™¤</span></li>
         </ul>
     </div>
 </div>
