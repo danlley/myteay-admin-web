@@ -8,18 +8,18 @@ import {FormsModule} from '@angular/forms';
 import {Subject} from 'rxjs/Subject';
 
 @NgModule({
-  declarations: [
-    TitleComponent,
-    Subject,
-    EventService
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule
-  ],
-  providers: [Observable, Subject, EventService],
-  bootstrap: [TitleComponent]
+    declarations: [
+        TitleComponent,
+        Subject,
+        EventService
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule
+    ],
+    providers: [Observable, Subject, EventService],
+    bootstrap: [TitleComponent]
 })
 export class TitleModule {
 }

@@ -7,17 +7,17 @@ import {DefaultPageComponent} from './defaultPage.component';
 import {defaultPageRouter} from './defaultPage.router';
 
 @NgModule({
-  declarations: [
-    DefaultPageComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forChild(defaultPageRouter),
-    FormsModule,
-    HttpModule
-  ],
-  providers: [],
-  bootstrap: [DefaultPageComponent]
+    declarations: [
+        DefaultPageComponent
+    ],
+    imports: [
+        BrowserModule,
+        RouterModule.forChild(defaultPageRouter),
+        FormsModule,
+        HttpModule
+    ],
+    providers: [],
+    bootstrap: [DefaultPageComponent]
 })
 export class DefaultPageModule {
 }

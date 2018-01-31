@@ -14,26 +14,26 @@ import {EventService} from './asyncService/asyncService.service';
 import {FatigeConfigService} from './customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    TitleComponent,
-    MtFatigeIndicatorConfigQueryComponent,
-    DefaultPageComponent,
-    BottomComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot(appRouter),
-    FormsModule,
-    HttpModule
-  ],
-  providers: [BottomComponent,
-    TitleComponent,
-    EventService,
-    FatigeConfigService,
-    DefaultPageComponent,
-    MtFatigeIndicatorConfigQueryComponent],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        TitleComponent,
+        MtFatigeIndicatorConfigQueryComponent,
+        DefaultPageComponent,
+        BottomComponent
+    ],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(appRouter),
+        FormsModule,
+        HttpModule
+    ],
+    providers: [BottomComponent,
+        TitleComponent,
+        EventService,
+        FatigeConfigService,
+        DefaultPageComponent,
+        MtFatigeIndicatorConfigQueryComponent],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

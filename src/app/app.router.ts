@@ -3,23 +3,23 @@ import {MtFatigeIndicatorConfigQueryComponent} from './customer/mtFatigeIndicato
 import {DefaultPageComponent} from './defaultPage/defaultPage.component';
 
 export const appRouter: Routes = [
-  {
-    path: '',
-    component: DefaultPageComponent,
-    children: [
-      {
+    {
         path: '',
-        redirectTo: 'default',
-        pathMatch: 'full'
-      },
-      {
-        path: 'customer/query',
-        component: MtFatigeIndicatorConfigQueryComponent
-      },
-      {
-        path: 'default',
-        component: DefaultPageComponent
-      }
-    ]
-  }
+        component: DefaultPageComponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'default',
+                pathMatch: 'full'
+            },
+            {
+                path: 'customer/query',
+                component: MtFatigeIndicatorConfigQueryComponent
+            },
+            {
+                path: 'default',
+                component: DefaultPageComponent
+            }
+        ]
+    }
 ];
