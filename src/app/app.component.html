@@ -1,8 +1,14 @@
-<app-title-bar></app-title-bar>
-<div style="height: 80px"></div>
 <div>
-    <router-outlet></router-outlet>
-</div>
-<div>
-    <app-bottom-bar></app-bottom-bar>
+    <div class="first">
+        <div style="width: 250px; float: left"><label>logo</label></div>
+        <div style="float: left"><app-title-bar></app-title-bar></div>
+    </div>
+    <div class="second"></div>
+    <div style="height: 80px; float: top;"></div>
+    <div class="title-top-background-banner" style="float: top; position: relative">
+        <router-outlet></router-outlet>
+    </div>
+    <div>
+        <app-bottom-bar></app-bottom-bar>
+    </div>
 </div>

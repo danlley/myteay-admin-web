@@ -20,11 +20,11 @@ ul a {
 }
 
 .nav > li:first-child a {
-    border-radius: 10px 0 0 10px;
+    /*border-radius: 10px 0 0 10px;*/
 }
 
 .nav > li:last-child a {
-    border-radius: 0 10px 10px 0;
+    /*border-radius: 0 10px 10px 0;*/
 }
 
 .drop-down {
