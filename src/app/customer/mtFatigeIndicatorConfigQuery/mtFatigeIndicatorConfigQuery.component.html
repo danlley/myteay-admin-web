@@ -3,60 +3,62 @@
         <div style="width: 250px"><label style="width: 250px">test</label></div>
     </div>
     <div class="title-content" >
-        <div style="align-items: left !important;">
-            <form action="" method="post">
-                <h1><span style="font-size: 30px">>>疲劳度配置查询</span></h1>
-                <hr/>
-                <ul>
-                    <label style="width: 400px">
-                        <span>疲劳度类型 :</span>
-                        <select name="selection">
-                            <option value="">------------------</option>
-                            <option value="CS_MOBILE">手机</option>
-                            <option value="CS_EMAIL">邮件</option>
-                            <option value="CS_NOTES">客户端消息</option>
-                        </select>
-                        <span>&nbsp;</span>
-                    </label>
-                    <label style="width: 400px">
-                        <span>疲劳度开关 :</span>
-                        <select name="selection">
-                            <option value="">------------------</option>
-                            <option value="CS_FATIGE_CLOSED">疲劳度控制已关闭</option>
-                            <option value="CS_CS_FATIGE_OPENED">疲劳度控制已开启</option>
-                        </select>
-                        <span>&nbsp;</span>
-                    </label>
-                    <label>
-                        <span>&nbsp;</span>
-                        <button type="button" class="button" (click)="load()">input</button>
-                    </label>
-                </ul>
-            </form>
-        </div>
-        <div style="height: 60px"></div>
         <div>
-            <ul class="th">
-                <li>序号</li>
-                <li>疲劳度类型</li>
-                <li>最大值</li>
-                <li>疲劳度开关</li>
-                <li>创建时间</li>
-                <li>最后修改时间</li>
-                <li>操作</li>
-            </ul>
-            <div *ngFor="let config of data">
-                <ul>
-                    <li>{{config.id}}</li>
-                    <li>{{config.businessType}}</li>
-                    <li>{{config.maxTimes}}</li>
-                    <li>{{config.fatigeSwitchFlag}}</li>
-                    <li>{{config.gmtCreated}}</li>
-                    <li>{{config.gmtModified}}</li>
-                    <li>
-                        <button (click)="showAlert()">修改</button>
-                        <span>删除</span></li>
+            <div style="align-items: left; left: 15px !important;">
+                <form action="" method="post">
+                    <h1><span style="font-size: 20px">>>疲劳度配置查询</span></h1>
+                    <hr/>
+                    <ul>
+                        <label style="width: 400px">
+                            <span>疲劳度类型 :</span>
+                            <select name="selection">
+                                <option value="">------------------</option>
+                                <option value="CS_MOBILE">手机</option>
+                                <option value="CS_EMAIL">邮件</option>
+                                <option value="CS_NOTES">客户端消息</option>
+                            </select>
+                        </label>
+                        <label style="width: 400px">
+                            <span>疲劳度开关 :</span>
+                            <select name="selection">
+                                <option value="">------------------</option>
+                                <option value="CS_FATIGE_CLOSED">疲劳度控制已关闭</option>
+                                <option value="CS_CS_FATIGE_OPENED">疲劳度控制已开启</option>
+                            </select>
+                        </label>
+                        <label>
+                            <button class="button" (click)="load()">查询</button>
+                        </label>
+                        <label>
+                            <button class="button" >添加疲劳度配置</button>
+                        </label>
+                    </ul>
+                </form>
+            </div>
+            <div style="height: 60px"></div>
+            <div>
+                <ul class="th">
+                    <li>序号</li>
+                    <li>疲劳度类型</li>
+                    <li>最大值</li>
+                    <li>疲劳度开关</li>
+                    <li>创建时间</li>
+                    <li>最后修改时间</li>
+                    <li>操作</li>
                 </ul>
+                <div *ngFor="let config of data">
+                    <ul>
+                        <li>{{config.id}}</li>
+                        <li>{{config.businessType}}</li>
+                        <li>{{config.maxTimes}}</li>
+                        <li>{{config.fatigeSwitchFlag}}</li>
+                        <li>{{config.gmtCreated}}</li>
+                        <li>{{config.gmtModified}}</li>
+                        <li>
+                            <button (click)="showAlert()">修改</button>
+                            <span>删除</span></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
