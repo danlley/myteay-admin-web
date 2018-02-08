@@ -5,21 +5,18 @@
     <div class="title-content" >
         <div>
             <div style="align-items: left; left: 15px !important;">
-                <form action="" method="post">
                     <h1><span style="font-size: 20px">>>疲劳度配置查询</span></h1>
                     <hr/>
                     <ul>
                         <label style="width: 400px">
                             <span>疲劳度类型 :</span>
-                            <select name="contactKey">
-                                <option value="">------------------</option>
+                            <select [(ngModel)]="contactKey">
                                 <option  *ngFor="let contactType of contactList" value="{{contactType.bizKey}}">{{contactType.value}}</option>
                             </select>
                         </label>
                         <label style="width: 400px">
                             <span>疲劳度开关 :</span>
-                            <select name="fatigeSwitchKey">
-                                <option value="">------------------</option>
+                            <select [(ngModel)]="fatigeSwitchKey">
                                 <option *ngFor="let fatigeSwitchType of fatigeSwitchList" value="{{fatigeSwitchType.bizKey}}">{{fatigeSwitchType.value}}</option>
                             </select>
                         </label>
@@ -30,7 +27,6 @@
                             <button class="button" >添加疲劳度配置</button>
                         </label>
                     </ul>
-                </form>
             </div>
             <div style="height: 60px"></div>
             <div>

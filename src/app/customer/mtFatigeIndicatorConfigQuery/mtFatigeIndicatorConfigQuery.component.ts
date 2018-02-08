@@ -12,6 +12,8 @@ export class MtFatigeIndicatorConfigQueryComponent implements OnInit {
     data: any[];
     contactList: any[];
     fatigeSwitchList: any[];
+    contactKey: string;
+    fatigeSwitchKey: string;
 
     constructor(ftConfitService: FatigeConfigService) {
         this.ftConfitService = ftConfitService;
@@ -24,6 +26,13 @@ export class MtFatigeIndicatorConfigQueryComponent implements OnInit {
     }
 
     load() {
+
+        console.log('================>', this.contactKey);
+        console.log('================>', this.fatigeSwitchKey);
+
+        if (this.contactKey === undefined && this.fatigeSwitchKey === undefined) {
+            console.log('+++++++++++++++++++++++++++++>');
+        }
         this.ftConfitService.getAllFatigeIndicatorConfig().subscribe(res => {
             this.data = this.filterResult(res.json());
             console.log('疲劳度查询结果：', this.data);
@@ -35,6 +44,7 @@ export class MtFatigeIndicatorConfigQueryComponent implements OnInit {
             this.fatigeSwitchList = this.filterResult(res.json());
         });
     }
+
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('MtContactTypeEnum').subscribe(res => {
             this.contactList = this.filterResult(res.json());
