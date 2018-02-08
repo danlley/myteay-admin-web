@@ -11,19 +11,16 @@
                     <ul>
                         <label style="width: 400px">
                             <span>疲劳度类型 :</span>
-                            <select name="selection">
+                            <select name="contactKey">
                                 <option value="">------------------</option>
-                                <option value="CS_MOBILE">手机</option>
-                                <option value="CS_EMAIL">邮件</option>
-                                <option value="CS_NOTES">客户端消息</option>
+                                <option  *ngFor="let contactType of contactList" value="{{contactType.bizKey}}">{{contactType.value}}</option>
                             </select>
                         </label>
                         <label style="width: 400px">
                             <span>疲劳度开关 :</span>
-                            <select name="selection">
+                            <select name="fatigeSwitchKey">
                                 <option value="">------------------</option>
-                                <option value="CS_FATIGE_CLOSED">疲劳度控制已关闭</option>
-                                <option value="CS_CS_FATIGE_OPENED">疲劳度控制已开启</option>
+                                <option *ngFor="let fatigeSwitchType of fatigeSwitchList" value="{{fatigeSwitchType.bizKey}}">{{fatigeSwitchType.value}}</option>
                             </select>
                         </label>
                         <label>

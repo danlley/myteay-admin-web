@@ -10,6 +10,8 @@ export class MtFatigeIndicatorConfigQueryComponent implements OnInit {
     title = '疲劳度控制配置查询!';
     ftConfitService: FatigeConfigService;
     data: any[];
+    contactList: any[];
+    fatigeSwitchList: any[];
 
     constructor(ftConfitService: FatigeConfigService) {
         this.ftConfitService = ftConfitService;
@@ -17,12 +19,25 @@ export class MtFatigeIndicatorConfigQueryComponent implements OnInit {
 
     ngOnInit(): void {
         console.log(this.title);
+        this.initContactList();
+        this.initFatigeSwitchFlagList();
     }
 
     load() {
         this.ftConfitService.getAllFatigeIndicatorConfig().subscribe(res => {
             this.data = this.filterResult(res.json());
             console.log('疲劳度查询结果：', this.data);
+        });
+    }
+
+    initFatigeSwitchFlagList() {
+        this.ftConfitService.getDataDictionaryByKey('MtFatigeConfigSwitchFlagEnum').subscribe(res => {
+            this.fatigeSwitchList = this.filterResult(res.json());
+        });
+    }
+    initContactList() {
+        this.ftConfitService.getDataDictionaryByKey('MtContactTypeEnum').subscribe(res => {
+            this.contactList = this.filterResult(res.json());
         });
     }
 
