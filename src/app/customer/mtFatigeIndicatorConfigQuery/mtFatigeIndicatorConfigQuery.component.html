@@ -30,6 +30,7 @@
             </div>
             <div style="height: 60px"></div>
             <div>
+                <span *ngIf="errorMessage" style="color: #721c24">{{errorMessage}}</span>
                 <ul class="th">
                     <li>序号</li>
                     <li>疲劳度类型</li>
@@ -52,6 +53,7 @@
                             <span>删除</span></li>
                     </ul>
                 </div>
+                <div *ngIf="data === null || data === undefined"><span>当前无数据</span></div>
             </div>
         </div>
     </div>

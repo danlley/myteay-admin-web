@@ -14,6 +14,7 @@ export class MtFatigeIndicatorConfigQueryComponent implements OnInit {
     fatigeSwitchList: any[];
     contactKey: string;
     fatigeSwitchKey: string;
+    errorMessage: string;
 
     constructor(ftConfitService: FatigeConfigService) {
         this.ftConfitService = ftConfitService;
@@ -36,6 +37,9 @@ export class MtFatigeIndicatorConfigQueryComponent implements OnInit {
         this.ftConfitService.getAllFatigeIndicatorConfig().subscribe(res => {
             this.data = this.filterResult(res.json());
             console.log('疲劳度查询结果：', this.data);
+            if (this.data === null) {
+                this.errorMessage = '未找到相关配置信息';
+            }
         });
     }
 
