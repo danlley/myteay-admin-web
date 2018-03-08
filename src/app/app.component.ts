@@ -13,12 +13,12 @@ export class AppComponent implements OnInit {
 
     constructor(private eventBus: EventService, private router: Router) {
 
-        // Æ£ÀÍ¶È¹ÜÀíÒ³ÃæÌø×ªÊÂ¼þ¼àÌý
+        // ç–²åŠ³åº¦ç®¡ç†é¡µé¢è·³è½¬äº‹ä»¶ç›‘å¬
         this.eventBus.registerySubject('fatige_indicator_config_query').subscribe(e => {
             this.router.navigateByUrl('customer/query');
         });
 
-        // ÏûÏ¢¹ÜÀíÒ³ÃæÌø×ªÊÂ¼þ¼àÌý
+        // æ¶ˆæ¯ç®¡ç†é¡µé¢è·³è½¬äº‹ä»¶ç›‘å¬
         this.eventBus.registerySubject('message_manager').subscribe(e => {
             this.router.navigateByUrl('message/query');
         });

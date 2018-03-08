@@ -44,10 +44,10 @@ export class MessageManagerComponent  implements OnInit {
     }
 
     filterResult(data): any {
-        console.log('¿ªÊ¼¹ıÂË´¦Àí½á¹û£º', data);
+        console.log('å¼€å§‹è¿‡æ»¤å¤„ç†ç»“æœï¼š', data);
 
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('·µ»Ø½á¹ûÊ§°Ü£º', data);
+        if ('æ“ä½œæˆåŠŸ' !== data.operateResult) {
+            console.log('è¿”å›ç»“æœå¤±è´¥ï¼š', data);
             return null;
         }
         return data.result;
