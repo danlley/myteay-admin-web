@@ -12,12 +12,14 @@ import {MtFatigeIndicatorConfigQueryComponent} from './customer/mtFatigeIndicato
 import {DefaultPageComponent} from './defaultPage/defaultPage.component';
 import {EventService} from './asyncService/asyncService.service';
 import {FatigeConfigService} from './customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
+import {MessageManagerComponent} from './message/mtMessageManager/messageManager.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         TitleComponent,
         MtFatigeIndicatorConfigQueryComponent,
+        MessageManagerComponent,
         DefaultPageComponent,
         BottomComponent
     ],
@@ -32,6 +34,7 @@ import {FatigeConfigService} from './customer/mtFatigeIndicatorConfigQuery/servi
         EventService,
         FatigeConfigService,
         DefaultPageComponent,
+        MessageManagerComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })
