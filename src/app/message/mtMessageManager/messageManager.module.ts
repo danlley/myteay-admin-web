@@ -4,6 +4,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule} from '@angular/router';
 import {MessageManagerComponent} from './messageManager.component';
 import {messageManagerRouter} from './messageManager.router';
+import {FatigeConfigService} from '../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,7 @@ import {messageManagerRouter} from './messageManager.router';
         FormsModule,
         HttpModule
     ],
-    providers: [],
+    providers: [FatigeConfigService],
     bootstrap: [MessageManagerComponent]
 })
 export class MessageManagerModule {

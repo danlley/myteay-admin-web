@@ -28,5 +28,10 @@ export class FatigeConfigService {
         return this._http.get(environment.DATA_DIC_URL + key, this.getHeaderOptions());
     }
 
+    getMessageDataDictionaryByKey(key): any {
+        console.log('²éÑ¯Êý¾Ý×Öµä', key);
+        return this._http.get(environment.MESSAGE_DATA_DIC_URL + key, this.getHeaderOptions());
+    }
+
 
 }

@@ -1,1 +1,67 @@
-test
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <div class="title-side-left" >
+        <div style="width: 250px"><label style="width: 250px">test</label></div>
+    </div>
+    <div class="title-content" >
+        <div>
+            <div style="align-items: left; left: 15px !important;">
+                <h1><span style="font-size: 20px">>>消息配置查询</span></h1>
+                <hr/>
+                <ul>
+                    <label style="width: 400px">
+                        <span>渠道类型 :</span>
+                        <select [(ngModel)]="channelType">
+                            <option *ngFor="let channelType of channelTypeList" value="{{channelType.bizKey}}">{{channelType.value}}</option>
+                        </select>
+                    </label>
+                    <label style="width: 400px">
+                        <span>模板开关 :</span>
+                        <select [(ngModel)]="templateFlag">
+                            <option *ngFor="let templateFlag of templateFlagList" value="{{templateFlag.bizKey}}">{{templateFlag.value}}</option>
+                        </select>
+                    </label>
+                    <label style="width: 400px">
+                        <span>模板类型 :</span>
+                        <select [(ngModel)]="templateType">
+                            <option *ngFor="let templateType of templateTypeList" value="{{templateType.bizKey}}">{{templateType.value}}</option>
+                        </select>
+                    </label>
+                    <label>
+                        <button class="button" (click)="load()">查询</button>
+                    </label>
+                    <label>
+                        <button class="button" >查询消息配置</button>
+                    </label>
+                </ul>
+            </div>
+            <div style="height: 60px"></div>
+            <div>
+                <span *ngIf="errorMessage" style="color: #721c24">{{errorMessage}}</span>
+                <ul class="th">
+                    <li>序号</li>
+                    <li>疲劳度类型</li>
+                    <li>最大值</li>
+                    <li>疲劳度开关</li>
+                    <li>创建时间</li>
+                    <li>最后修改时间</li>
+                    <li>操作</li>
+                </ul>
+                <div *ngFor="let config of data">
+                    <ul>
+                        <li>{{config.id}}</li>
+                        <li>{{config.businessType}}</li>
+                        <li>{{config.maxTimes}}</li>
+                        <li>{{config.fatigeSwitchFlag}}</li>
+                        <li>{{config.gmtCreated}}</li>
+                        <li>{{config.gmtModified}}</li>
+                        <li>
+                            <button (click)="showAlert()">修改</button>
+                            <span>删除</span></li>
+                    </ul>
+                </div>
+                <div *ngIf="data === null || data === undefined"><span>当前无数据</span></div>
+            </div>
+        </div>
+    </div>
+
+</div>
