@@ -1,0 +1,30 @@
+.title-side-left {
+    display: table-cell;
+    text-decoration: none;
+    width: 250px;
+    height: 100%;
+    position: relative;
+    text-align: center;
+    color: white;
+    background: linear-gradient(to bottom, #378091, #2f3e45);
+}
+
+.title-content {
+    display: table-cell;
+    text-decoration: none;
+    width: 100%;
+    color: white;
+    background: linear-gradient(to bottom, #2a8f91, #4ce9f9);
+}
+
+a {
+    display: block;
+    text-decoration: none;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    background: linear-gradient(to bottom, #378091, #2f3e45);
+    /*background-color: #2f3e45;*/
+}

@@ -22,6 +22,11 @@ export class AppComponent implements OnInit {
         this.eventBus.registerySubject('message_manager').subscribe(e => {
             this.router.navigateByUrl('message/query');
         });
+
+        // 添加消息模板配置页面跳转事件监听
+        this.eventBus.registerySubject('add_message_config').subscribe(e => {
+            this.router.navigateByUrl('message/add');
+        });
     }
 
     ngOnInit(): void {

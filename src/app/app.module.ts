@@ -13,6 +13,8 @@ import {DefaultPageComponent} from './defaultPage/defaultPage.component';
 import {EventService} from './asyncService/asyncService.service';
 import {FatigeConfigService} from './customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {MessageManagerComponent} from './message/mtMessageManager/messageManager.component';
+import {AddMessageConfigComponent} from './message/addMessageConfig/addMessageConfig.component';
+import {MessageSideLeftComponent} from './message/messageSideLeft/messageSideLeft.component';
 
 @NgModule({
     declarations: [
@@ -20,6 +22,8 @@ import {MessageManagerComponent} from './message/mtMessageManager/messageManager
         TitleComponent,
         MtFatigeIndicatorConfigQueryComponent,
         MessageManagerComponent,
+        AddMessageConfigComponent,
+        MessageSideLeftComponent,
         DefaultPageComponent,
         BottomComponent
     ],
@@ -35,6 +39,8 @@ import {MessageManagerComponent} from './message/mtMessageManager/messageManager
         FatigeConfigService,
         DefaultPageComponent,
         MessageManagerComponent,
+        AddMessageConfigComponent,
+        MessageSideLeftComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })
