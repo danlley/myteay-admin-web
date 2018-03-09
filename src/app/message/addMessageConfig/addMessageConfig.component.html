@@ -1,91 +1,84 @@
 <div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
     <app-message-side-left></app-message-side-left>
     <div class="title-content">
-        <div>
-            <div style="align-items: left; left: 15px !important;">
-                <h1><span style="font-size: 20px">>>添加消息模板配置</span></h1>
-                <hr/>
-                <div>
-                    <div class="table-content">
-                        <div style="width: 90%">
-                            <p class="contact-submit">
-                                <input type="submit" value="     添加消息模板     ">
-                            </p>
-                            <br>
-                        </div>
-                        <!-- 表单内容 -->
-                        <table align="center" width="80%">
-                            <tr>
-                                <td align="right">过期时长：</td>
-                                <td align="left" width="300px">
-                                    <p class="contact-input">
-                                        <input type="text" name="expireTime" placeholder="过期时长：数字（单位：秒）">
-                                    </p>
-                                </td>
-                                <td align="right">渠道类型：</td>
-                                <td align="left">
-                                    <p class="contact-input">
-                                        <label for="channelType" class="select">
-                                            <select name="channelType" id="channelType" [(ngModel)]="channelType">
-                                                <option value="" selected>渠道类型：</option>
-                                                <option *ngFor="let channelType of channelTypeList"
-                                                        value="{{channelType.bizKey}}">
-                                                    {{channelType.value}}
-                                                </option>
-                                            </select>
-                                        </label>
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">渠道开关：</td>
-                                <td align="left">
-                                    <p class="contact-input">
-                                        <label for="templateFlag" class="select">
-                                            <select name="templateFlag" id="templateFlag" [(ngModel)]="channelType">
-                                                <option value="" selected>渠道开关：</option>
-                                                <option *ngFor="let templateFlag of templateFlagList"
-                                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
-                                                </option>
-                                            </select>
-                                        </label>
-                                    </p>
-                                </td>
-                                <td align="right">模板类型：</td>
-                                <td align="left">
-                                    <p class="contact-input">
-                                        <label for="templateFlag" class="select">
-                                            <select name="templateFlag" id="templateFlag" [(ngModel)]="channelType">
-                                                <option value="" selected>模板类型：</option>
-                                                <option *ngFor="let templateType of templateTypeList"
-                                                        value="{{templateType.bizKey}}">{{templateType.value}}
-                                                </option>
-                                            </select>
-                                        </label>
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">驱动地址：</td>
-                                <td colspan="3">
-                                    <p class="contact-input">
-                                        <textarea rows="5" name="templateDriverUrl" placeholder="驱动地址"></textarea>
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td align="right">文本模板内容：</td>
-                                <td colspan="3">
-                                    <p class="contact-input">
-                                        <textarea rows="5" name="templateDriverUrl" placeholder="文本模板内容"></textarea>
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <div style="align-items: left; left: 15px !important;">
+            <h1><span style="font-size: 20px">>>添加消息模板配置</span></h1>
         </div>
+        <hr/>
+        <div style="width: 90%">
+            <p class="contact-submit">
+                <input type="submit" value="     添加消息模板     ">
+            </p>
+            <br>
+        </div>
+        <!-- 表单内容 -->
+        <table align="center" width="80%">
+            <tr>
+                <td align="right">过期时长：</td>
+                <td align="left" width="300px">
+                    <p class="contact-input">
+                        <input type="text" name="expireTime" placeholder="过期时长：数字（单位：秒）">
+                    </p>
+                </td>
+                <td align="right">渠道类型：</td>
+                <td align="left">
+                    <p class="contact-input">
+                        <label for="channelType" class="select">
+                            <select name="channelType" id="channelType" [(ngModel)]="channelType">
+                                <option value="" selected>渠道类型：</option>
+                                <option *ngFor="let channelType of channelTypeList"
+                                        value="{{channelType.bizKey}}">
+                                    {{channelType.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">渠道开关：</td>
+                <td align="left">
+                    <p class="contact-input">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" id="templateFlag" [(ngModel)]="channelType">
+                                <option value="" selected>渠道开关：</option>
+                                <option *ngFor="let templateFlag of templateFlagList"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+                <td align="right">模板类型：</td>
+                <td align="left">
+                    <p class="contact-input">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" id="templateFlag" [(ngModel)]="channelType">
+                                <option value="" selected>模板类型：</option>
+                                <option *ngFor="let templateType of templateTypeList"
+                                        value="{{templateType.bizKey}}">{{templateType.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">驱动地址：</td>
+                <td colspan="3">
+                    <p class="contact-input">
+                        <textarea rows="5" name="templateDriverUrl" placeholder="驱动地址"></textarea>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">文本模板内容：</td>
+                <td colspan="3">
+                    <p class="contact-input">
+                        <textarea rows="5" name="templateDriverUrl" placeholder="文本模板内容"></textarea>
+                    </p>
+                </td>
+            </tr>
+        </table>
     </div>
-
 </div>
