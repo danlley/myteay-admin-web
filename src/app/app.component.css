@@ -3,21 +3,36 @@
     float: left;
     color: white;
     font-size: 35px;
+    height: 50px;
     align-content: center;
     align-items: center;
 }
 
 .first{
-    width: 100%;height: 50px;top:80px;left:0px;
+    width: 100%;
+    height: 48px;
+    top:80px;
+    left:0px;
     position: relative;/*absolute*/
     text-align:right;
     /*background: linear-gradient(to bottom, #378091, #2f3e45);*/
     z-index:2;
+    /*border-radius: 10px;*/
+    margin: 0 auto;
+    left: 0px;
+}
 
+.title-top-background-banner{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: white;
+    background: linear-gradient(to bottom, #b2690d, #378091);
+    /*background-color: #2f3e45;*/
 }
 
 .second{
-    width: 100%;height: 150px;top:0px;
+    width: 100%;height: 154px;top:0px;
     position: absolute;
     background: linear-gradient(to bottom, #378091, #2f3e45);
 }

@@ -1,12 +1,12 @@
 .title-side-left {
     display: table-cell;
     text-decoration: none;
-    width: 250px;
-    height: 100%;
+    width: 290px;
+    height: 780px;
     position: relative;
     text-align: center;
     color: white;
-    background: linear-gradient(to bottom, #378091, #2f3e45);
+    background: linear-gradient(to bottom, #378091, #5fe5ff);
 }
 
 .title-content {
@@ -20,11 +20,20 @@
 a {
     display: block;
     text-decoration: none;
-    width: 200px;
+    width: 290px;
     height: 50px;
     text-align: center;
     line-height: 50px;
     color: white;
     background: linear-gradient(to bottom, #378091, #2f3e45);
-    /*background-color: #2f3e45;*/
+    border: #eaeeff;
+}
+
+a:hover {
+    transform:rotate(360deg);
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    background: #4ce9f9;
 }
