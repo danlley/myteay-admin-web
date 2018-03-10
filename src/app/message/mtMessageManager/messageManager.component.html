@@ -11,7 +11,6 @@
                             <p class="contact-input contact-absolute-width">
                                 <label for="channelType" class="select">
                                     <select name="channelType" id="channelType" [(ngModel)]="channelType">
-                                        <option value="" selected>渠道类型：</option>
                                         <option *ngFor="let channelType of channelTypeList"
                                                 value="{{channelType.bizKey}}">{{channelType.value}}
                                         </option>
@@ -24,7 +23,6 @@
                             <p class="contact-input contact-absolute-width">
                                 <label for="templateFlag" class="select">
                                     <select name="templateFlag" id="templateFlag" [(ngModel)]="templateFlag">
-                                        <option value="" selected>渠道类型：</option>
                                         <option *ngFor="let templateFlag of templateFlagList"
                                                 value="{{templateFlag.bizKey}}">{{templateFlag.value}}
                                         </option>
@@ -37,7 +35,6 @@
                             <p class="contact-input contact-absolute-width">
                                 <label for="templateType" class="select">
                                     <select name="templateType" id="templateType" [(ngModel)]="templateType">
-                                        <option value="" selected>渠道类型：</option>
                                         <option *ngFor="let templateType of templateTypeList"
                                                 value="{{templateType.bizKey}}">{{templateType.value}}
                                         </option>

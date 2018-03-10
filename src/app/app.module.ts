@@ -15,6 +15,7 @@ import {FatigeConfigService} from './customer/mtFatigeIndicatorConfigQuery/servi
 import {MessageManagerComponent} from './message/mtMessageManager/messageManager.component';
 import {AddMessageConfigComponent} from './message/addMessageConfig/addMessageConfig.component';
 import {MessageSideLeftComponent} from './message/messageSideLeft/messageSideLeft.component';
+import {CustomerSideLeftComponent} from './customer/customerSideLeft/customerSideLeft.component';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import {MessageSideLeftComponent} from './message/messageSideLeft/messageSideLef
         MessageManagerComponent,
         AddMessageConfigComponent,
         MessageSideLeftComponent,
+        CustomerSideLeftComponent,
         DefaultPageComponent,
         BottomComponent
     ],
@@ -40,6 +42,7 @@ import {MessageSideLeftComponent} from './message/messageSideLeft/messageSideLef
         DefaultPageComponent,
         MessageManagerComponent,
         AddMessageConfigComponent,
+        CustomerSideLeftComponent,
         MessageSideLeftComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
