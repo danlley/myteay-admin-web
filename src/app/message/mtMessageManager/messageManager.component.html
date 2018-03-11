@@ -3,7 +3,7 @@
     <div class="title-content">
         <div>
             <div style="align-items: center;">
-                <table width="100%" cellpadding="0" cellspacing="0">
+                <table width="100%" cellpadding="0" cellspacing="0" class="table-operation-style">
                     <th colspan="6" align="left" valign="middle">>>消息配置查询</th>
                     <tr>
                         <td width="5%"><span>渠道类型 :</span></td>
@@ -51,33 +51,7 @@
                     </p>
                 </div>
             </div>
-            <div style="height: 60px"></div>
-            <div>
-                <span *ngIf="errorMessage" style="color: #721c24">{{errorMessage}}</span>
-                <ul class="th">
-                    <li>序号</li>
-                    <li>疲劳度类型</li>
-                    <li>最大值</li>
-                    <li>疲劳度开关</li>
-                    <li>创建时间</li>
-                    <li>最后修改时间</li>
-                    <li>操作</li>
-                </ul>
-                <div *ngFor="let config of data">
-                    <ul>
-                        <li>{{config.id}}</li>
-                        <li>{{config.businessType}}</li>
-                        <li>{{config.maxTimes}}</li>
-                        <li>{{config.fatigeSwitchFlag}}</li>
-                        <li>{{config.gmtCreated}}</li>
-                        <li>{{config.gmtModified}}</li>
-                        <li>
-                            <button (click)="showAlert()">修改</button>
-                            <span>删除</span></li>
-                    </ul>
-                </div>
-                <div *ngIf="data === null || data === undefined"><span>当前无数据</span></div>
-            </div>
+            <app-table-no-paginator></app-table-no-paginator>
         </div>
     </div>
 

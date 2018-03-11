@@ -1,0 +1,22 @@
+<!-- 表单内容 -->
+<span>{{title}}</span>
+
+<table align="center" class="table-operation-style">
+    <th *ngFor="let tableColumn of tableElement.tableHeaders" >{{tableColumn}}</th>
+    <th>操作</th>
+    <tr class="table-no-paginator-tr-style" *ngFor="let tableContentElement of tableElement.tableContent">
+        <td align="center">{{tableContentElement[0]}}</td>
+        <td align="center">{{tableContentElement[1]}}</td>
+        <td align="center">{{tableContentElement[2]}}</td>
+        <td align="center">{{tableContentElement[3]}}</td>
+        <td align="center">{{tableContentElement[4]}}</td>
+        <td align="center">{{tableContentElement[5]}}</td>
+        <td align="center">{{tableContentElement[6]}}</td>
+        <td align="center">
+            <a href="#">详情</a>
+            <a href="#">修改</a>
+            <a href="#">删除</a>
+        </td>
+    </tr>
+    <th colspan="8"></th>
+</table>

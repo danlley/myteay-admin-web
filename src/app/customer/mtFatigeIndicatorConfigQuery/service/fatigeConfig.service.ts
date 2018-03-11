@@ -19,17 +19,14 @@ export class FatigeConfigService {
     }
 
     getAllFatigeIndicatorConfig(): any {
-        console.log('查询疲劳度配置信息请求');
         return this._http.get(environment.FATIGE_CONFIG_URL + '', this.getHeaderOptions());
     }
 
     getDataDictionaryByKey(key): any {
-        console.log('查询数据字典', key);
         return this._http.get(environment.DATA_DIC_URL + key, this.getHeaderOptions());
     }
 
     getMessageDataDictionaryByKey(key): any {
-        console.log('查询数据字典', key);
         return this._http.get(environment.MESSAGE_DATA_DIC_URL + key, this.getHeaderOptions());
     }
 

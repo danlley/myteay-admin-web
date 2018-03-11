@@ -43,13 +43,12 @@ export class MessageManagerComponent  implements OnInit {
         });
     }
 
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
+    filterResult(result): any {
 
-        if ('操作成功' !== data.operateResult) {
-            console.log('返回结果失败：', data);
+        if ('操作成功' !== result.operateResult) {
+            console.log('返回结果失败：', result);
             return null;
         }
-        return data.result;
+        return result.result;
     }
 }
