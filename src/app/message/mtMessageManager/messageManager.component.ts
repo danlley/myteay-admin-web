@@ -1,13 +1,15 @@
 import {Component, OnInit} from '@angular/core';
 import {FatigeConfigService} from '../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
+import {EventService} from '../../asyncService/asyncService.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-message-manager',
     templateUrl: './messageManager.component.html',
     styleUrls: ['./messageManager.component.css']
 })
-export class MessageManagerComponent  implements OnInit {
-    title = '------------------------------------messageManager!';
+export class MessageManagerComponent implements OnInit {
+    title = 'messageManager';
     ftConfitService: FatigeConfigService;
     data: any[];
     channelTypeList: any[];
@@ -18,8 +20,12 @@ export class MessageManagerComponent  implements OnInit {
         'tableContent': []
     };
 
-    constructor(ftConfitService: FatigeConfigService) {
+    constructor(ftConfitService: FatigeConfigService, private eventBus: EventService, private router: Router) {
         this.ftConfitService = ftConfitService;
+
+        this.eventBus.registerySubject('messageManager').subscribe(e => {
+            this.tableInnerOperation(e);
+        });
     }
 
     ngOnInit(): void {
@@ -31,6 +37,9 @@ export class MessageManagerComponent  implements OnInit {
         console.log('+++++++++++++++++++++++++++++==-->', this.tableElement);
     }
 
+    tableInnerOperation(data) {
+        console.log('开始执行表格内部动作', data);
+    }
 
     initList() {
         this.tableElement.tableContent = [
