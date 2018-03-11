@@ -51,21 +51,15 @@
     display: inline-block;
     vertical-align: top;
     padding: 0 14px;
-    height: 40px;
+    height: 45px;
     font-weight: bold;
     color: #0a6079;
     text-shadow: 0 1px rgba(95, 229, 255, 0.5);
-    background: #2a8f91;
+    background: linear-gradient(to bottom, #3bd4d6, #339b9d);
     border: 1px solid #378091;
     border-bottom-color: #367f8f;
-    border-radius: 15px;
+    border-radius: 5px;
     cursor: pointer;
-    background-image: -webkit-linear-gradient(top, #e6f2f7, #4ce9f9);
-    background-image: -moz-linear-gradient(top, #e6f2f7, #378091);
-    background-image: -o-linear-gradient(top, #378091, #d0e6ee);
-    background-image: linear-gradient(to bottom, #e6f2f7, #378091);
-    -webkit-box-shadow: inset 0 1px rgba(55, 128, 145, 0.79), 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 4px #5cb0bb;
-    box-shadow: inset 0 1px rgba(42, 143, 145, 0.2), 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 4px #2a8f91;
 }
 
 ::-moz-focus-inner {
@@ -198,8 +192,6 @@ input, textarea, select, label {
     text-shadow: 0 1px rgba(255, 255, 255, 0.3);
     background: #c9dfe9;
     border-color: #a3bed0 #b5ccda #b5ccda;
-    -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px rgba(255, 255, 255, 0.2), 0 0 0 4px #eef7f9;
-    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px rgba(255, 255, 255, 0.2), 0 0 0 4px #eef7f9;
 }
 
 /*# sourceMappingURL=bootstrap.min.css.map */
