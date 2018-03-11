@@ -1,22 +1,29 @@
 <!-- 表单内容 -->
-<label class="table-summary-top">>>表格记录条数：<span style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
-<table align="center" class="table-operation-style">
-    <th *ngFor="let tableColumn of tableElement.tableHeaders" >{{tableColumn}}</th>
-    <th>操作</th>
-    <tr class="table-no-paginator-tr-style" *ngFor="let tableContentElement of tableElement.tableContent">
-        <td align="center">{{tableContentElement[0]}}</td>
-        <td align="center">{{tableContentElement[1]}}</td>
-        <td align="center">{{tableContentElement[2]}}</td>
-        <td align="center">{{tableContentElement[3]}}</td>
-        <td align="center">{{tableContentElement[4]}}</td>
-        <td align="center">{{tableContentElement[5]}}</td>
-        <td align="center">{{tableContentElement[6]}}</td>
-        <td align="center">
-            <a (click)="tableNoPaginatorOperation(tableContentElement, 'VIEW_DETAIL')">详情</a>
-            <a (click)="tableNoPaginatorOperation(tableContentElement, 'MODIFY_DETAIL')">修改</a>
-            <a (click)="tableNoPaginatorOperation(tableContentElement, 'DELETE_DETAIL')">删除</a>
-        </td>
-    </tr>
-    <th colspan="8"></th>
-</table>
-<label class="table-summary-bottom">>>表格记录条数：<span style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
+<div *ngIf="tableElement.tableContent.length > 0">
+    <label class="table-summary-top">>>表格记录条数：<span
+            style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
+    <table align="center" class="table-operation-style">
+        <th *ngFor="let tableColumn of tableElement.tableHeaders">{{tableColumn}}</th>
+        <th>操作</th>
+        <tr class="table-no-paginator-tr-style" *ngFor="let tableContentElement of tableElement.tableContent">
+            <td align="center">{{tableContentElement[0]}}</td>
+            <td align="center">{{tableContentElement[1]}}</td>
+            <td align="center">{{tableContentElement[2]}}</td>
+            <td align="center">{{tableContentElement[3]}}</td>
+            <td align="center">{{tableContentElement[4]}}</td>
+            <td align="center">{{tableContentElement[5]}}</td>
+            <td align="center">{{tableContentElement[6]}}</td>
+            <td align="center">
+                <a (click)="tableNoPaginatorOperation(tableContentElement, 'VIEW_DETAIL')">详情</a>
+                <a (click)="tableNoPaginatorOperation(tableContentElement, 'MODIFY_DETAIL')">修改</a>
+                <a (click)="tableNoPaginatorOperation(tableContentElement, 'DELETE_DETAIL')">删除</a>
+            </td>
+        </tr>
+        <th colspan="8"></th>
+    </table>
+    <label class="table-summary-bottom">>>表格记录条数：<span
+            style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
+</div>
+<div *ngIf="tableElement.tableContent.length <= 0">
+    <label class="table-summary-top" style="color: #ffffff">>>当前没有记录！<<</label>
+</div>
