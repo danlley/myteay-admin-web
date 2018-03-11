@@ -1,6 +1,5 @@
 <!-- 表单内容 -->
-<span>{{title}}</span>
-
+<label class="table-summary-top">>>表格记录条数：<span style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
 <table align="center" class="table-operation-style">
     <th *ngFor="let tableColumn of tableElement.tableHeaders" >{{tableColumn}}</th>
     <th>操作</th>
@@ -20,3 +19,4 @@
     </tr>
     <th colspan="8"></th>
 </table>
+<label class="table-summary-bottom">>>表格记录条数：<span style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>

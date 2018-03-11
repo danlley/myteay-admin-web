@@ -4,6 +4,20 @@ th{
     vertical-align: middle;
 }
 
+.table-summary-top{
+    text-align: left;
+    float: left;
+    width: 100%;
+    color: #357e75;
+}
+
+.table-summary-bottom{
+    text-align: right;
+    float: right;
+    width: 100%;
+    color: #357e75;
+}
+
 .table-operation-style{
     background-color: rgba(168, 168, 168, 0.44);
     width: 100%;
