@@ -7,12 +7,16 @@ import {FatigeConfigService} from '../../customer/mtFatigeIndicatorConfigQuery/s
     styleUrls: ['./messageManager.component.css']
 })
 export class MessageManagerComponent  implements OnInit {
-    title = 'messageManager!';
+    title = '------------------------------------messageManager!';
     ftConfitService: FatigeConfigService;
     data: any[];
     channelTypeList: any[];
     templateFlagList: any[];
     templateTypeList: any[];
+    tableElement = {
+        'tableHeaders': [],
+        'tableContent': []
+    };
 
     constructor(ftConfitService: FatigeConfigService) {
         this.ftConfitService = ftConfitService;
@@ -23,6 +27,20 @@ export class MessageManagerComponent  implements OnInit {
         this.initMsTemplateFlagEnumList();
         this.initMsTemplateTypeEnumList();
         this.initMsChannelTypeEnumList();
+        this.initList();
+        console.log('+++++++++++++++++++++++++++++==-->', this.tableElement);
+    }
+
+
+    initList() {
+        this.tableElement.tableContent = [
+            ['1', '手机', '开通', '万能模板', '2342', '2018-03-11 17:37', '2018-03-11 17:37'],
+            ['2', '手机', '开通', '万能模板', '2342', '2018-03-11 17:37', '2018-03-11 17:37'],
+            ['3', '手机', '开通', '万能模板', '2342', '2018-03-11 17:37', '2018-03-11 17:37'],
+            ['4', '手机', '开通', '万能模板', '2342', '2018-03-11 17:37', '2018-03-11 17:37']
+        ];
+
+        this.tableElement.tableHeaders = ['流水号', '渠道类型', '模板状态', '模板类型', '过期时间', '创建时间', '最后修改时间'];
     }
 
     initMsChannelTypeEnumList() {
