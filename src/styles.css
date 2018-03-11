@@ -1,3 +1,52 @@
+/*********************************************************************
+ * 侧边栏菜单公共样式
+ *********************************************************************/
+
+/*********************************************************************
+ * 侧边栏菜单公共样式
+ *********************************************************************/
+.title-side-left {
+    display: table-cell;
+    text-decoration: none;
+    width: 290px;
+    height: 780px;
+    position: relative;
+    text-align: center;
+    color: white;
+    background: linear-gradient(to bottom, #378091, #5fe5ff);
+}
+
+.title-content {
+    display: table-cell;
+    text-decoration: none;
+    width: 100%;
+    color: white;
+    background: linear-gradient(to bottom, #2a8f91, #4ce9f9);
+}
+
+.a-style-slide {
+    display: block;
+    text-decoration: none;
+    width: 290px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    background: linear-gradient(to bottom, #378091, #2f3e45);
+}
+
+.a-style-slide:hover {
+    transform:rotate(360deg);
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    background: linear-gradient(to bottom, #3bd4d6, #339b9d);
+}
+
+/**********************************************************************
+ * 表单及按钮公共样式
+ *********************************************************************/
 .contact-submit > input {
     display: inline-block;
     vertical-align: top;
@@ -45,65 +94,12 @@ input, textarea, select, label {
     -webkit-transform: rotate(360deg);
 }
 
-
-th{
-    background: linear-gradient(to bottom, #a3bed0, #359188);
-    height: 40px;
-}
-
-tr{
-    background-color: #a3bed0;
-}
-
-.contact {
-    position: relative;
-    margin: 50px auto;
-    padding: 5px;
-    width: 32px;
-    background: #eef5f7;
-    border: 1px solid #cfd5da;
-    border-bottom-color: #ccd1d6;
-    border-radius: 3px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-}
-
-.contact-inner {
-    padding: 25px;
-    background: white;
-    border-radius: 40px;
-}
-
-.contact:before, .contact:after, .contact-inner:before, .contact-inner:after {
-    content: '';
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    margin-left: -6px;
-    width: 1px;
-    height: 1px;
-    border-width: 12px 14px 0;
-    border-top-style: solid;
-    -webkit-transform: rotate(360deg);
-}
-
-.contact:before {
-    margin-top: 1px;
-    border-top-color: #d8e1e6;
-}
-
-.contact-inner:before {
-    border-top-color: #ccd1d6;
-}
-
-.contact-inner:after {
-    margin-top: -1px;
-    border-top-color: #eef5f7;
-}
-
-.contact:after {
-    margin-top: -8px;
-    border-top-color: white;
+.title-content {
+    display: table-cell;
+    text-decoration: none;
+    width: 100%;
+    color: white;
+    background: linear-gradient(to bottom, #2a8f91, #4ce9f9);
 }
 
 .contact-input {
@@ -111,7 +107,7 @@ tr{
     margin-bottom: 20px;
     padding: 5px;
     background: #eef7f9;
-    border-radius: 2px;
+    border-radius: 8px;
 }
 
 .contact-absolute-width{
@@ -122,9 +118,9 @@ tr{
     width: 100%;
     height: 29px;
     padding: 0 9px;
-    color: #4d5a5e;
-    background: white;
-    border: 1px solid #cfdfe3;
+    color: #80989f;
+    background: rgba(70, 253, 255, 0.38);
+    border: 1px solid #3bd4d6;
     border-bottom-color: #d2e2e7;
     border-radius: 2px;
     -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px rgba(255, 255, 255, 0.2);
@@ -150,14 +146,10 @@ tr{
     display: block;
     position: relative;
     overflow: hidden;
-    background: white;
-    border: 1px solid #d2e2e7;
-    border-bottom-color: #c5d4d9;
+    background: rgba(70, 253, 255, 0.38);
+    border: 1px solid #3bd4d6;
+    border-bottom-color: #d2e2e7;
     border-radius: 2px;
-    background-image: -webkit-linear-gradient(top, #fcfdff, #f2f7f7);
-    background-image: -moz-linear-gradient(top, #fcfdff, #f2f7f7);
-    background-image: -o-linear-gradient(top, #fcfdff, #f2f7f7);
-    background-image: linear-gradient(to bottom, #fcfdff, #f2f7f7);
     -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 }
@@ -193,7 +185,7 @@ tr{
     -webkit-appearance: none;
 }
 .select > select:focus {
-    color: #4d5a5e;
+    color: #80989f;
     outline: 0;
 }
 

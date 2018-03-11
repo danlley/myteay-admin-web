@@ -19,6 +19,15 @@ ul a {
     /*background-color: #2f3e45;*/
 }
 
+ul a:hover {
+    transform:rotate(360deg);
+    -webkit-transform:rotate(360deg);
+    -moz-transform:rotate(360deg);
+    -o-transform:rotate(360deg);
+    -ms-transform:rotate(360deg);
+    background: linear-gradient(to bottom, #3bd4d6, #339b9d);
+}
+
 .nav > li:first-child a {
     /*border-radius: 10px 0 0 10px;*/
 }
