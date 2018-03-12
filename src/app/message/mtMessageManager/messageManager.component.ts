@@ -16,6 +16,7 @@ export class MessageManagerComponent implements OnInit {
     templateFlagList: any[];
     templateTypeList: any[];
     templateConfigList: any[];
+    queryData: any = new TemplateConfigQueryData();
     tableElement = {
         'tableHeaders': [],
         'tableContent': []
@@ -53,9 +54,12 @@ export class MessageManagerComponent implements OnInit {
         this.tableElement.tableHeaders = ['流水号', '渠道类型', '模板状态', '模板类型', '过期时间', '创建时间', '最后修改时间'];
     }
 
-    queryAllMessageConfigByParam(data) {
-        this.ftConfitService.queryAllMessageConfigByParam(data).subscribe(res => {
+    queryAllMessageConfigByParam() {
+        console.log('开始批量多条件查询消息配置列表-->', this.queryData);
+        this.ftConfitService.queryAllMessageConfigByParam(this.queryData).subscribe(res => {
             this.templateConfigList = this.filterResult(res.json());
+
+            console.log('templateConfigList--------->', this.templateConfigList);
         });
     }
 
@@ -85,4 +89,10 @@ export class MessageManagerComponent implements OnInit {
         }
         return result.result;
     }
+}
+
+export class TemplateConfigQueryData {
+    channelType: string;
+    templateFlag: string;
+    templateType: string;
 }
