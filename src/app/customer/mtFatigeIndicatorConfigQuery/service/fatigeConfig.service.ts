@@ -30,5 +30,9 @@ export class FatigeConfigService {
         return this._http.get(environment.MESSAGE_DATA_DIC_URL + key, this.getHeaderOptions());
     }
 
+    queryAllMessageConfigByParam(data): any {
+        return this._http.post(environment.MESSAGE_CONFIG_QUERY_ALL_URL, data, this.getHeaderOptions());
+    }
+
 
 }

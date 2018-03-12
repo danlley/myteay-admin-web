@@ -15,6 +15,7 @@ export class MessageManagerComponent implements OnInit {
     channelTypeList: any[];
     templateFlagList: any[];
     templateTypeList: any[];
+    templateConfigList: any[];
     tableElement = {
         'tableHeaders': [],
         'tableContent': []
@@ -50,6 +51,12 @@ export class MessageManagerComponent implements OnInit {
         ];
 
         this.tableElement.tableHeaders = ['流水号', '渠道类型', '模板状态', '模板类型', '过期时间', '创建时间', '最后修改时间'];
+    }
+
+    queryAllMessageConfigByParam(data) {
+        this.ftConfitService.queryAllMessageConfigByParam(data).subscribe(res => {
+            this.templateConfigList = this.filterResult(res.json());
+        });
     }
 
     initMsChannelTypeEnumList() {
