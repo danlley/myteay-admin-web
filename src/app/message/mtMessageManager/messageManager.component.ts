@@ -35,7 +35,6 @@ export class MessageManagerComponent implements OnInit {
         this.initMsTemplateFlagEnumList();
         this.initMsTemplateTypeEnumList();
         this.initMsChannelTypeEnumList();
-        this.initList();
         console.log('+++++++++++++++++++++++++++++==-->', this.tableElement);
     }
 
@@ -43,21 +42,15 @@ export class MessageManagerComponent implements OnInit {
         console.log('开始执行表格内部动作', data);
     }
 
-    initList() {
-        this.tableElement.tableContent = [
-            ['1', '手机', '开通', '万能模板', '2342', '2018-03-11 17:37', '2018-03-11 17:37'],
-            ['2', '手机', '开通', '万能模板', '2342', '2018-03-11 17:37', '2018-03-11 17:37'],
-            ['3', '手机', '开通', '万能模板', '2342', '2018-03-11 17:37', '2018-03-11 17:37'],
-            ['4', '手机', '开通', '万能模板', '2342', '2018-03-11 17:37', '2018-03-11 17:37']
-        ];
-
-        this.tableElement.tableHeaders = ['流水号', '渠道类型', '模板状态', '模板类型', '过期时间', '创建时间', '最后修改时间'];
-    }
-
     queryAllMessageConfigByParam() {
         console.log('开始批量多条件查询消息配置列表-->', this.queryData);
         this.ftConfitService.queryAllMessageConfigByParam(this.queryData).subscribe(res => {
             this.templateConfigList = this.filterResult(res.json());
+            this.tableElement.tableHeaders = ['流水号', '渠道类型', '模板状态', '模板类型', '过期时间', '创建时间', '最后修改时间'];
+            this.templateConfigList.forEach(e => {
+                this.tableElement.tableContent.push([e.id, e.channelType, e.templateFlag,
+                    e.templateType, e.expireTime, e.gmtCreated, e.gmtModified]);
+            });
 
             console.log('templateConfigList--------->', this.templateConfigList);
         });
