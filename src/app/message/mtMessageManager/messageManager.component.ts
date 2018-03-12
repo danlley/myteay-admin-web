@@ -44,6 +44,10 @@ export class MessageManagerComponent implements OnInit {
 
     queryAllMessageConfigByParam() {
         console.log('开始批量多条件查询消息配置列表-->', this.queryData);
+        this.tableElement = {
+            'tableHeaders': [],
+            'tableContent': []
+        };
         this.ftConfitService.queryAllMessageConfigByParam(this.queryData).subscribe(res => {
             this.templateConfigList = this.filterResult(res.json());
             this.tableElement.tableHeaders = ['流水号', '渠道类型', '模板状态', '模板类型', '过期时间', '创建时间', '最后修改时间'];
