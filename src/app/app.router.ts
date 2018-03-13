@@ -3,6 +3,8 @@ import {MtFatigeIndicatorConfigQueryComponent} from './customer/mtFatigeIndicato
 import {DefaultPageComponent} from './defaultPage/defaultPage.component';
 import {MessageManagerComponent} from './message/mtMessageManager/messageManager.component';
 import {AddMessageConfigComponent} from './message/addMessageConfig/addMessageConfig.component';
+import {ModifyMessageConfigModule} from './message/modifyMessageConfig/modifyMessageConfig.module';
+import {ModifyMessageConfigComponent} from './message/modifyMessageConfig/modifyMessageConfig.component';
 
 export const appRouter: Routes = [
     {
@@ -25,6 +27,10 @@ export const appRouter: Routes = [
             {
                 path: 'message/add',
                 component: AddMessageConfigComponent
+            },
+            {
+                path: 'message/modify',
+                component: ModifyMessageConfigComponent
             },
             {
                 path: 'default',

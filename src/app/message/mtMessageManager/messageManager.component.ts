@@ -28,8 +28,12 @@ export class MessageManagerComponent implements OnInit {
         this.eventBus.registerySubject('messageManager').subscribe(e => {
             this.tableInnerOperation(e);
         });
-    }
 
+        // 修改消息模板配置页面跳转事件监听
+        this.eventBus.registerySubject('MODIFY_DETAIL').subscribe(e => {
+            this.router.navigateByUrl('message/modify');
+        });
+    }
     ngOnInit(): void {
         console.log(this.title);
         this.initMsTemplateFlagEnumList();

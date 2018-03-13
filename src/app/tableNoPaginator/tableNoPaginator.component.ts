@@ -47,7 +47,7 @@ export class TableNoPaginatorComponent implements OnInit {
         const data = [];
         data.push(operation);
         data.push(data);
-        this.eventBus.publish(this.tableTitle, data);
+        this.eventBus.publish(operation, data);
     }
 
 }

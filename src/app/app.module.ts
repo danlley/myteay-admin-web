@@ -17,6 +17,7 @@ import {AddMessageConfigComponent} from './message/addMessageConfig/addMessageCo
 import {MessageSideLeftComponent} from './message/messageSideLeft/messageSideLeft.component';
 import {CustomerSideLeftComponent} from './customer/customerSideLeft/customerSideLeft.component';
 import {TableNoPaginatorComponent} from './tableNoPaginator/tableNoPaginator.component';
+import {ModifyMessageConfigComponent} from './message/modifyMessageConfig/modifyMessageConfig.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import {TableNoPaginatorComponent} from './tableNoPaginator/tableNoPaginator.com
         MtFatigeIndicatorConfigQueryComponent,
         MessageManagerComponent,
         AddMessageConfigComponent,
+        ModifyMessageConfigComponent,
         MessageSideLeftComponent,
         CustomerSideLeftComponent,
         TableNoPaginatorComponent,
@@ -44,6 +46,7 @@ import {TableNoPaginatorComponent} from './tableNoPaginator/tableNoPaginator.com
         DefaultPageComponent,
         MessageManagerComponent,
         AddMessageConfigComponent,
+        ModifyMessageConfigComponent,
         CustomerSideLeftComponent,
         TableNoPaginatorComponent,
         MessageSideLeftComponent,
