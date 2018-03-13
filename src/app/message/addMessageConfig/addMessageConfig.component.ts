@@ -13,6 +13,8 @@ export class AddMessageConfigComponent implements OnInit {
     channelTypeList: any[];
     templateFlagList: any[];
     templateTypeList: any[];
+    formData = new SubmitResultData();
+    requestMessageConfigData = new MsTemplateConfigModel();
 
     constructor(ftConfitService: FatigeConfigService) {
         this.ftConfitService = ftConfitService;
@@ -23,6 +25,21 @@ export class AddMessageConfigComponent implements OnInit {
         this.initMsTemplateFlagEnumList();
         this.initMsTemplateTypeEnumList();
         this.initMsChannelTypeEnumList();
+    }
+
+    addNewMessageConfig() {
+        this.requestMessageConfigData.channelType = this.formData.channelType;
+        this.requestMessageConfigData.expireTime = this.formData.expireTime;
+        this.requestMessageConfigData.templateDriverUrl = this.formData.templateDriverUrl;
+        this.requestMessageConfigData.templateFlag = this.formData.templateFlag;
+        this.requestMessageConfigData.templateType = this.formData.templateType;
+        this.requestMessageConfigData.msTxtTemplateConfigModel.content = this.formData.content;
+
+        this.requestMessageConfigData.operationType = 'MS_ADD';
+        console.log('----------------------------------->', this.formData);
+        this.ftConfitService.manageMessageConfigByParam(this.requestMessageConfigData).subscribe(res => {
+            console.log('=======================>', res.json());
+        });
     }
 
     initMsChannelTypeEnumList() {
@@ -44,13 +61,36 @@ export class AddMessageConfigComponent implements OnInit {
     }
 
     filterResult(data): any {
-        console.log('¿ªÊ¼¹ıÂË´¦Àí½á¹û£º', data);
+        console.log('å¼€å§‹è¿‡æ»¤å¤„ç†ç»“æœï¼š', data);
 
-        if ('²Ù×÷³É¹¦' !== data.operateResult) {
-            console.log('·µ»Ø½á¹ûÊ§°Ü£º', data);
+        if ('æ“ä½œæˆåŠŸ' !== data.operateResult) {
+            console.log('è¿”å›ç»“æœå¤±è´¥ï¼š', data);
             return null;
         }
         return data.result;
     }
 
+}
+
+export class MsTemplateConfigModel {
+    expireTime: number;
+    channelType: string;
+    templateFlag: string;
+    templateType: string;
+    templateDriverUrl: string;
+    operationType: string;
+    msTxtTemplateConfigModel = new MsTxtTemplateConfigModel();
+}
+
+export class MsTxtTemplateConfigModel {
+    content: string;
+}
+
+export class SubmitResultData {
+    expireTime: number;
+    channelType: string;
+    templateFlag: string;
+    templateType: string;
+    templateDriverUrl: string;
+    content: string;
 }
