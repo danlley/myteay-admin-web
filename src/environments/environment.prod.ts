@@ -9,7 +9,7 @@ export const environment = {
 
     // 凤凰系统
     DATA_DIC_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/dic/',
-    // SYSTEM_QUERY_CONFIG_URL: 'http://192.168.1.105:40009/myteay/api/phoenix/admin/manage/shop/manage',
+    SYSTEM_SHOP_MNG_CONFIG_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/shop/manage',
     SYSTEM_QUERY_CONFIG_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/shop/all',
 
 };

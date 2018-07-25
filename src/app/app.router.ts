@@ -7,6 +7,9 @@ import {ModifyMessageConfigModule} from './message/modifyMessageConfig/modifyMes
 import {ModifyMessageConfigComponent} from './message/modifyMessageConfig/modifyMessageConfig.component';
 import {SystemComponent} from './system/system.component';
 import {ShopComponent} from './system/shop/shop.component';
+import {AddShopComponent} from './system/shop/addShop/addShop.component';
+import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component';
+import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailShop.component';
 
 export const appRouter: Routes = [
     {
@@ -29,6 +32,18 @@ export const appRouter: Routes = [
             {
                 path: 'system/shop',
                 component: ShopComponent
+            },
+            {
+                path: 'system/shop/add',
+                component: AddShopComponent
+            },
+            {
+                path: 'system/shop/modify',
+                component: ModifyShopComponent
+            },
+            {
+                path: 'system/shop/view/single',
+                component: ViewDetailShopComponent
             },
             {
                 path: 'message/query',

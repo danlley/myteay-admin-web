@@ -23,6 +23,23 @@ export class AppComponent implements OnInit {
             this.router.navigateByUrl('system/shop');
         });
 
+        // 系统管理
+        this.eventBus.registerySubject('system_shop_add').subscribe(e => {
+            this.router.navigateByUrl('system/shop/add');
+        });
+
+        // 系统管理
+        this.eventBus.registerySubject('system_shop_modify').subscribe(e => {
+            console.log('------------->', e);
+            this.router.navigate(['system/shop/modify'], {queryParams: {id: e}});
+        });
+
+        // 系统管理
+        this.eventBus.registerySubject('system_shop_view_detail').subscribe(e => {
+            console.log('------------->', e);
+            this.router.navigate(['system/shop/view/single'], {queryParams: {id: e}});
+        });
+
         // 疲劳度管理页面跳转事件监听
         this.eventBus.registerySubject('system').subscribe(e => {
             this.router.navigateByUrl('system');

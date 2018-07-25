@@ -24,7 +24,10 @@ export class FatigeConfigService {
 
     getAllShopConfig(): any {
         return this._http.get(environment.SYSTEM_QUERY_CONFIG_URL + '', this.getHeaderOptions());
-        // return this._http.post(environment.MESSAGE_CONFIG_URL, data, this.getHeaderOptions());
+    }
+
+    manageShopConfig(data): any {
+        return this._http.post(environment.SYSTEM_SHOP_MNG_CONFIG_URL, data, this.getHeaderOptions());
     }
 
     getDataDictionaryByKey(key): any {

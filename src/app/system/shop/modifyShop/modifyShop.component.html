@@ -1,0 +1,94 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div>
+            <div style="align-items: center;">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <th colspan="6" align="left" valign="middle">>>修改店铺信息</th>
+                </table>
+            </div>
+        </div>
+        <div style="width: 90%; margin-top: 20px;">
+            <p class="contact-submit">
+                <input type="submit" value="     修改店铺信息     " (click)="modifyShopConfig()">
+            </p>
+            <br>
+        </div>
+        <!-- 表单内容 -->
+        <table align="center" width="80%"  cellpadding="0" cellspacing="0">
+            <th colspan="4">店铺序号：{{formData.shopId}}</th>
+            <tr>
+                <td align="right" width="10%">店铺名称：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="店铺名称" [(ngModel)]="formData.shopName">
+                    </p>
+                </td>
+                <td align="right" width="10%">外卖电话：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="外卖电话" [(ngModel)]="formData.shopTel">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">店铺地址：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="店铺地址" [(ngModel)]="formData.shopAddress">
+                    </p>
+                </td>
+                <td align="right" width="10%">支持人员：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="支持人员" [(ngModel)]="formData.waiterName">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">店主姓名：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="店主姓名" [(ngModel)]="formData.ownerName">
+                    </p>
+                </td>
+                <td align="right" width="10%">店主电话：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="店主电话" [(ngModel)]="formData.ownerPhone">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">店主身份证：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="店主身份证" [(ngModel)]="formData.ownerIdcard">
+                    </p>
+                </td>
+                <td align="right" width="10%">合同期限：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="合同期限：数字（单位：秒）" [(ngModel)]="formData.gmtExpired">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">店铺状态：</td>
+                <td align="left">
+                    <p class="contact-input contact-absolute-width">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" id="templateFlag" [(ngModel)]="formData.shopStatus">
+                                <option *ngFor="let templateFlag of shopStatusList"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+                <td align="right"></td>
+                <td align="left"></td>
+            </tr>
+        </table>
+    </div>
+</div>

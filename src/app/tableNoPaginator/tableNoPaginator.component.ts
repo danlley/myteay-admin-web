@@ -44,10 +44,7 @@ export class TableNoPaginatorComponent implements OnInit {
      */
     tableNoPaginatorOperation(currentTableElement, operation) {
         console.log('执行查询动作：  operation=' + operation, currentTableElement);
-        const data = [];
-        data.push(operation);
-        data.push(data);
-        this.eventBus.publish(operation, data);
+        this.eventBus.publish(operation, currentTableElement);
     }
 
 }

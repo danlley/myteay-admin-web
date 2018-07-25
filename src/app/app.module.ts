@@ -22,6 +22,9 @@ import {SystemComponent} from './system/system.component';
 import {SystemSideLeftComponent} from './system/systemSideLeft/systemSideLeft.component';
 import {ShopComponent} from './system/shop/shop.component';
 import {DatePipe} from '@angular/common';
+import {AddShopComponent} from './system/shop/addShop/addShop.component';
+import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component';
+import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailShop.component';
 
 @NgModule({
     declarations: [
@@ -38,6 +41,9 @@ import {DatePipe} from '@angular/common';
         DefaultPageComponent,
         SystemComponent,
         ShopComponent,
+        AddShopComponent,
+        ModifyShopComponent,
+        ViewDetailShopComponent,
         BottomComponent
     ],
     imports: [
@@ -61,6 +67,9 @@ import {DatePipe} from '@angular/common';
         SystemSideLeftComponent,
         SystemComponent,
         ShopComponent,
+        AddShopComponent,
+        ModifyShopComponent,
+        ViewDetailShopComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FatigeConfigService} from '../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {DatePipe} from '@angular/common';
+import {EventService} from '../../asyncService/asyncService.service';
 
 @Component({
     selector: 'app-shop',
@@ -16,25 +17,53 @@ export class ShopComponent implements OnInit {
 
     tableElement = {
         'tableHeaders': [],
+        'tableOp': [],
         'tableContent': []
     };
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe) {
+    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe, private eventBus: EventService) {
         this.ftConfitService = ftConfitService;
+
+        this.eventBus.registerySubject('single_shop_detail').subscribe(e => {
+            console.log('表格操作目标（详情）：', e[0]);
+            this.eventBus.publish('system_shop_view_detail', e[0]);
+        });
+
+        this.eventBus.registerySubject('single_shop_modify').subscribe(e => {
+            console.log('表格操作目标（修改）：', e[0]);
+            this.eventBus.publish('system_shop_modify', e[0]);
+        });
+
+        this.eventBus.registerySubject('single_shop_delete').subscribe(e => {
+            console.log('表格操作目标（删除）：', e[0]);
+            this.deleteSingleShop(e[0]);
+        });
     }
 
     ngOnInit(): void {
         console.log(this.title);
         this.initContactList();
+        this.initShopList();
     }
 
     load() {
         this.initShopList();
     }
 
+    deleteSingleShop(shopId: number) {
+        const deleteData = new PxShopConfigModel();
+        deleteData.shopId = shopId;
+        console.log('=======================>', deleteData);
+        this.ftConfitService.manageShopConfig(deleteData).subscribe(res => {
+            console.log('=======================>', res.json());
+            this.initShopList();
+        });
+    }
+
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
+            'tableOp': ['single_shop_detail', 'single_shop_modify', 'single_shop_delete'],
             'tableContent': []
         };
         this.ftConfitService.getAllShopConfig().subscribe(res => {
@@ -48,6 +77,10 @@ export class ShopComponent implements OnInit {
                     e.shopAddress, gmtExpired, gmtCreated]);
             });
         });
+    }
+
+    public gotoAddShop(): void {
+        this.eventBus.publish('system_shop_add', this.title);
     }
 
     private getShopSwitchShow(shopStatus: string): string {
@@ -80,4 +113,20 @@ export class ShopComponent implements OnInit {
         }
         return data.result;
     }
+}
+
+export class PxShopConfigModel {
+    shopId: number;
+    shopName: string;
+    shopAddress: string;
+    shopTel: string;
+    waiterName: string;
+    ownerName: string;
+    ownerPhone: string;
+    ownerIdcard: string;
+    shopStatus: string;
+    operationType = 'PX_DELETE';
+    gmtExpired: string;
+    gmtCreated: string;
+    gmtModified: string;
 }
