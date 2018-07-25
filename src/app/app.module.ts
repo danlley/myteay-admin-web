@@ -18,6 +18,10 @@ import {MessageSideLeftComponent} from './message/messageSideLeft/messageSideLef
 import {CustomerSideLeftComponent} from './customer/customerSideLeft/customerSideLeft.component';
 import {TableNoPaginatorComponent} from './tableNoPaginator/tableNoPaginator.component';
 import {ModifyMessageConfigComponent} from './message/modifyMessageConfig/modifyMessageConfig.component';
+import {SystemComponent} from './system/system.component';
+import {SystemSideLeftComponent} from './system/systemSideLeft/systemSideLeft.component';
+import {ShopComponent} from './system/shop/shop.component';
+import {DatePipe} from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -29,8 +33,11 @@ import {ModifyMessageConfigComponent} from './message/modifyMessageConfig/modify
         ModifyMessageConfigComponent,
         MessageSideLeftComponent,
         CustomerSideLeftComponent,
+        SystemSideLeftComponent,
         TableNoPaginatorComponent,
         DefaultPageComponent,
+        SystemComponent,
+        ShopComponent,
         BottomComponent
     ],
     imports: [
@@ -41,6 +48,7 @@ import {ModifyMessageConfigComponent} from './message/modifyMessageConfig/modify
     ],
     providers: [BottomComponent,
         TitleComponent,
+        DatePipe,
         EventService,
         FatigeConfigService,
         DefaultPageComponent,
@@ -50,6 +58,9 @@ import {ModifyMessageConfigComponent} from './message/modifyMessageConfig/modify
         CustomerSideLeftComponent,
         TableNoPaginatorComponent,
         MessageSideLeftComponent,
+        SystemSideLeftComponent,
+        SystemComponent,
+        ShopComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })

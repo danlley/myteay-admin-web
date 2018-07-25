@@ -1,0 +1,37 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div style="align-items: left; left: 15px !important;">
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 30px;">
+                <div style="width: 100%;">
+                    <div style="border-top-right-radius: 8px; background-color: #3bd4d6; border-bottom: #0a6079 1px solid; height: 35px; line-height: 35px; width: 15%; align-content: left;">
+                        >>店铺管理
+                    </div>
+                </div>
+                <div style="border: #3bd4d6 1px solid; width: 100%; background-color: #3bd4d6;">
+                    <div style="float: left; width: 270px; height: 80px; line-height: 80px;"><span style="margin-right: 0px;">店铺开关 :</span></div>
+                    <div>
+                        <p class="contact-input contact-absolute-width" style="margin-top: 25px;">
+                            <label for="contactKey" class="select" style="margin-left: 0px;">
+                                <select name="contactKey" id="contactKey" [(ngModel)]="contactKey">
+                                    <option *ngFor="let contactType of contactList" value="{{contactType.bizKey}}">
+                                        {{contactType.value}}
+                                    </option>
+                                </select>
+                            </label>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+                <p class="contact-submit">
+                    <input type="button" class="button" value="   查   询   " (click)="load()">
+                    <input type="button" class="button" value="添加店铺配置">
+                </p>
+            </div>
+        </div>
+        <div style="align-content: center; width: 95%; margin: auto; left: 0; right: 0;">
+            <app-table-no-paginator [tableElement]="tableElement" [tableTitle]="title"></app-table-no-paginator>
+        </div>
+    </div>
+</div>

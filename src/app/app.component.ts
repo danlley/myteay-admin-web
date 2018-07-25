@@ -18,6 +18,16 @@ export class AppComponent implements OnInit {
             this.router.navigateByUrl('customer/query');
         });
 
+        // 系统管理
+        this.eventBus.registerySubject('system_shop_manage').subscribe(e => {
+            this.router.navigateByUrl('system/shop');
+        });
+
+        // 疲劳度管理页面跳转事件监听
+        this.eventBus.registerySubject('system').subscribe(e => {
+            this.router.navigateByUrl('system');
+        });
+
         // 消息管理页面跳转事件监听
         this.eventBus.registerySubject('message_manager').subscribe(e => {
             this.router.navigateByUrl('message/query');
