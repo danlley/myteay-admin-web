@@ -18,7 +18,7 @@ export class ModifyShopComponent implements OnInit {
 
     shopStatusList;
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe, public activeRoute: ActivatedRoute) {
+    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe, public activeRoute: ActivatedRoute, private eventBus: EventService) {
         this.ftConfitService = ftConfitService;
     }
 
@@ -33,6 +33,7 @@ export class ModifyShopComponent implements OnInit {
     modifyShopConfig() {
         this.ftConfitService.manageShopConfig(this.formData).subscribe(res => {
             this.data = this.filterResult(res.json());
+            this.eventBus.publish('system_shop_manage', this.title);
         });
     }
 

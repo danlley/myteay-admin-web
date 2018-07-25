@@ -18,7 +18,8 @@ export class ViewDetailShopComponent implements OnInit {
 
     shopStatusList;
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe, public activeRoute: ActivatedRoute) {
+    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+                public activeRoute: ActivatedRoute, private eventBus: EventService) {
         this.ftConfitService = ftConfitService;
     }
 
@@ -30,6 +31,9 @@ export class ViewDetailShopComponent implements OnInit {
         this.queryShopConfig();
     }
 
+    gotoShopConfig() {
+        this.eventBus.publish('system_shop_manage', this.title);
+    }
 
     queryShopConfig() {
         console.log('----------------------------------->', this.formData);
