@@ -13,7 +13,6 @@ export class GoodsQueryComponent implements OnInit {
     title = '商品概要管理!';
     ftConfitService: FatigeConfigService;
     contactList: any[];
-    contactKey: string;
     templateConfigList: any[];
     shopData;
     summaryTableElement: any[];
@@ -120,7 +119,7 @@ export class GoodsQueryComponent implements OnInit {
     }
 
     public gotoAddGoods(): void {
-        this.eventBus.publish('system_goods_add', this.title);
+        this.eventBus.publish('system_goods_add', this.shopData);
     }
 
     initContactList() {
