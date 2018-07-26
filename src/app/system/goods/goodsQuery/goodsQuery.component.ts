@@ -27,14 +27,16 @@ export class GoodsQueryComponent implements OnInit {
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
         this.ftConfitService = ftConfitService;
 
-        this.eventBus.registerySubject('single_shop_detail').subscribe(e => {
-            console.log('表格操作目标（详情）：', e[0]);
-            this.eventBus.publish('system_shop_view_detail', e[0]);
+        this.eventBus.registerySubject('system_goods_for_view_detail').subscribe(e => {
+            const sendData = [this.shopData, e[0]];
+            console.log('表格操作目标（详情）：', sendData);
+            this.eventBus.publish('system_goods_view_detail', sendData);
         });
 
-        this.eventBus.registerySubject('single_shop_modify').subscribe(e => {
-            console.log('表格操作目标（修改）：', e[0]);
-            this.eventBus.publish('system_shop_modify', e[0]);
+        this.eventBus.registerySubject('single_goods_for_modify').subscribe(e => {
+            const sendData = [this.shopData, e[0]];
+            console.log('表格操作目标（修改）：', sendData);
+            this.eventBus.publish('system_goods_modify', sendData);
         });
 
         this.eventBus.registerySubject('single_goods_delete').subscribe(e => {
@@ -102,7 +104,7 @@ export class GoodsQueryComponent implements OnInit {
     initGoodsList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['详情', 'single_shop_modify'], ['修改', 'single_shop_modify'],
+            'tableOp': [['详情', 'system_goods_for_view_detail'], ['修改', 'single_goods_for_modify'],
                 ['删除', 'single_goods_delete'], ['维护', 'single_goods_delete']],
             'tableContent': []
         };

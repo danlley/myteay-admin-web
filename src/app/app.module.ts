@@ -29,6 +29,8 @@ import {GoodsComponent} from './system/goods/goods.component';
 import {GoodsQueryComponent} from './system/goods/goodsQuery/goodsQuery.component';
 import {AddGoodsComponent} from './system/goods/addGoods/addGoods.component';
 import {SummaryTableComponent} from './summaryTable/summaryTable.component';
+import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.component';
+import {ViewDetailGoodsComponent} from './system/goods/viewDetailGoods/viewDetailGoods.component';
 
 @NgModule({
     declarations: [
@@ -52,6 +54,8 @@ import {SummaryTableComponent} from './summaryTable/summaryTable.component';
         GoodsComponent,
         GoodsQueryComponent,
         AddGoodsComponent,
+        ModifyGoodsComponent,
+        ViewDetailGoodsComponent,
         BottomComponent
     ],
     imports: [
@@ -82,6 +86,8 @@ import {SummaryTableComponent} from './summaryTable/summaryTable.component';
         GoodsComponent,
         GoodsQueryComponent,
         AddGoodsComponent,
+        ModifyGoodsComponent,
+        ViewDetailGoodsComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })

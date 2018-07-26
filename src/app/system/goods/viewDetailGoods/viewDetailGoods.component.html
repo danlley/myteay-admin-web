@@ -1,0 +1,138 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div>
+            <div style="align-items: center;">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <th colspan="6" align="left" valign="middle">>>查看商品摘要信息</th>
+                </table>
+            </div>
+        </div>
+        <app-summary-table [tableElement]="summaryTableElement" [tableTitle]="shopData[1]" [tableTitleFace]="'当前店铺'"></app-summary-table>
+        <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+            <p class="contact-submit">
+                <input type="submit" value="     返回     " (click)="goReturn()">
+            </p>
+        </div>
+        <!-- 表单内容 -->
+        <table align="center" width="95%"  cellpadding="0" cellspacing="0">
+            <th colspan="4" valign="middle">商品ID: {{goodsId}}</th>
+            <tr>
+                <td align="right" width="10%">商品标题：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="商品标题" [(ngModel)]="formData.goodsTitle">
+                    </p>
+                </td>
+                <td align="right" width="10%">套餐类型：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="套餐类型" [(ngModel)]="formData.goodsDesc">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">当前售价：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="当前售价" [(ngModel)]="formData.goodsPrice">
+                    </p>
+                </td>
+                <td align="right" width="10%">原始价格：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="原始价格" [(ngModel)]="formData.goodsCommPrice">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">营业时间：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="营业时间" [(ngModel)]="formData.goodsOnlineTime">
+                    </p>
+                </td>
+                <td align="right" width="10%">订购类型：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" [(ngModel)]="formData.orderType">
+                                <option *ngFor="let templateFlag of orderType"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">是否会员：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" [(ngModel)]="formData.isHuiyuan">
+                                <option *ngFor="let templateFlag of isHuiyuan"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+                <td align="right" width="10%">是否有券：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" [(ngModel)]="formData.isQuan">
+                                <option *ngFor="let templateFlag of isQuan"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">是否团购：</td>
+                <td align="left">
+                    <p class="contact-input contact-absolute-width">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" id="templateFlag" [(ngModel)]="formData.isTuan">
+                                <option *ngFor="let templateFlag of isTuan"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+                <td align="right" width="10%">过期时间：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="过期时间" [(ngModel)]="formData.gmtExpired">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">创建时间：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="创建时间" [(ngModel)]="formData.gmtCreated">
+                    </p>
+                </td>
+                <td align="right" width="10%">修改时间：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="修改时间" [(ngModel)]="formData.gmtModified">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">上传图片：</td>
+                <td align="left" colspan="3">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="上传图片" [(ngModel)]="formData.goodsImage">
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

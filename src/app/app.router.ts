@@ -13,6 +13,8 @@ import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailSh
 import {GoodsComponent} from './system/goods/goods.component';
 import {GoodsQueryComponent} from './system/goods/goodsQuery/goodsQuery.component';
 import {AddGoodsComponent} from './system/goods/addGoods/addGoods.component';
+import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.component';
+import {ViewDetailGoodsComponent} from './system/goods/viewDetailGoods/viewDetailGoods.component';
 
 export const appRouter: Routes = [
     {
@@ -43,6 +45,14 @@ export const appRouter: Routes = [
             {
                 path: 'system/goods/add',
                 component: AddGoodsComponent
+            },
+            {
+                path: 'system/goods/modify',
+                component: ModifyGoodsComponent
+            },
+            {
+                path: 'system/goods/view/detail',
+                component: ViewDetailGoodsComponent
             },
             {
                 path: 'system/shop',

@@ -18,7 +18,8 @@ export class ModifyShopComponent implements OnInit {
 
     shopStatusList;
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe, public activeRoute: ActivatedRoute, private eventBus: EventService) {
+    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+                public activeRoute: ActivatedRoute, private eventBus: EventService) {
         this.ftConfitService = ftConfitService;
     }
 
@@ -47,7 +48,7 @@ export class ModifyShopComponent implements OnInit {
             this.data = this.filterResult(res.json());
             this.formData.shopId = this.data.shopId;
             this.formData.gmtCreated = this.data.gmtCreated;
-            this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd hh:mm:ss');;
+            this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd hh:mm:ss');
             this.formData.gmtModified = this.data.gmtModified;
             this.formData.operationType = 'PX_MODIFY';
             this.formData.ownerIdcard = this.data.ownerIdcard;
