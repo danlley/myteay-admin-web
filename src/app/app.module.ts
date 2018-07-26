@@ -25,6 +25,10 @@ import {DatePipe} from '@angular/common';
 import {AddShopComponent} from './system/shop/addShop/addShop.component';
 import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component';
 import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailShop.component';
+import {GoodsComponent} from './system/goods/goods.component';
+import {GoodsQueryComponent} from './system/goods/goodsQuery/goodsQuery.component';
+import {AddGoodsComponent} from './system/goods/addGoods/addGoods.component';
+import {SummaryTableComponent} from './summaryTable/summaryTable.component';
 
 @NgModule({
     declarations: [
@@ -38,12 +42,16 @@ import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailSh
         CustomerSideLeftComponent,
         SystemSideLeftComponent,
         TableNoPaginatorComponent,
+        SummaryTableComponent,
         DefaultPageComponent,
         SystemComponent,
         ShopComponent,
         AddShopComponent,
         ModifyShopComponent,
         ViewDetailShopComponent,
+        GoodsComponent,
+        GoodsQueryComponent,
+        AddGoodsComponent,
         BottomComponent
     ],
     imports: [
@@ -63,6 +71,7 @@ import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailSh
         ModifyMessageConfigComponent,
         CustomerSideLeftComponent,
         TableNoPaginatorComponent,
+        SummaryTableComponent,
         MessageSideLeftComponent,
         SystemSideLeftComponent,
         SystemComponent,
@@ -70,6 +79,9 @@ import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailSh
         AddShopComponent,
         ModifyShopComponent,
         ViewDetailShopComponent,
+        GoodsComponent,
+        GoodsQueryComponent,
+        AddGoodsComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })

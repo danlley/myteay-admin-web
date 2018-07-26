@@ -4,12 +4,12 @@ import {DatePipe} from '@angular/common';
 import {EventService} from '../../asyncService/asyncService.service';
 
 @Component({
-    selector: 'app-shop',
-    templateUrl: './shop.component.html',
-    styleUrls: ['./shop.component.css']
+    selector: 'app-goods',
+    templateUrl: './goods.component.html',
+    styleUrls: ['./goods.component.css']
 })
-export class ShopComponent implements OnInit {
-    title = '疲劳度控制配置查询!';
+export class GoodsComponent implements OnInit {
+    title = '商品概要管理!';
     ftConfitService: FatigeConfigService;
     contactList: any[];
     contactKey: string;
@@ -63,7 +63,7 @@ export class ShopComponent implements OnInit {
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['详情', 'single_shop_detail'], ['修改', 'single_shop_modify'],  ['删除', 'single_shop_delete']],
+            'tableOp': [['立即管理商品', 'system_goods_manage_all']],
             'tableContent': []
         };
         this.ftConfitService.getAllShopConfig().subscribe(res => {

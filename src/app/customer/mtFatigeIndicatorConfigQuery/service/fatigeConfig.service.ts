@@ -30,6 +30,14 @@ export class FatigeConfigService {
         return this._http.post(environment.SYSTEM_SHOP_MNG_CONFIG_URL, data, this.getHeaderOptions());
     }
 
+    getAllGoodsConfig(): any {
+        return this._http.get(environment.GOODS_QUERY_CONFIG_URL + '', this.getHeaderOptions());
+    }
+
+    manageGoodsConfig(data): any {
+        return this._http.post(environment.GOODS_MNG_CONFIG_URL, data, this.getHeaderOptions());
+    }
+
     getDataDictionaryByKey(key): any {
         return this._http.get(environment.DATA_DIC_URL + key, this.getHeaderOptions());
     }

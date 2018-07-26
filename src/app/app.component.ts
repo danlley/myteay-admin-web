@@ -18,6 +18,21 @@ export class AppComponent implements OnInit {
             this.router.navigateByUrl('customer/query');
         });
 
+        // 商品管理首页（通过店铺管理商品摘要）
+        this.eventBus.registerySubject('system_goods_manage').subscribe(e => {
+            this.router.navigateByUrl('system/goods');
+        });
+
+        // 特定店铺的商品摘要管理
+        this.eventBus.registerySubject('system_goods_manage_all').subscribe(e => {
+            this.router.navigate(['system/goods/all'], {queryParams: {data: e}});
+        });
+
+        // 添加商品摘要数据
+        this.eventBus.registerySubject('system_goods_add').subscribe(e => {
+            this.router.navigate(['system/goods/add'], {queryParams: {data: e}});
+        });
+
         // 系统管理
         this.eventBus.registerySubject('system_shop_manage').subscribe(e => {
             this.router.navigateByUrl('system/shop');

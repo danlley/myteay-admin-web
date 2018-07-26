@@ -11,5 +11,7 @@ export const environment = {
     DATA_DIC_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/dic/',
     SYSTEM_SHOP_MNG_CONFIG_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/shop/manage',
     SYSTEM_QUERY_CONFIG_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/shop/all',
+    GOODS_QUERY_CONFIG_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/goods/all',
+    GOODS_MNG_CONFIG_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/goods/manage',
 
 };

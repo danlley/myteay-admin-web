@@ -14,15 +14,12 @@
             <td align="center">{{tableContentElement[5]}}</td>
             <td align="center">{{tableContentElement[6]}}</td>
             <td align="center">
-                <a style="cursor: pointer;" (click)="tableNoPaginatorOperation(tableContentElement, tableElement.tableOp[0])">详情</a>
-                <a style="cursor: pointer;" (click)="tableNoPaginatorOperation(tableContentElement, tableElement.tableOp[1])">修改</a>
-                <a style="cursor: pointer;" (click)="tableNoPaginatorOperation(tableContentElement, tableElement.tableOp[2])">删除</a>
+                <a *ngFor="let opElement of tableElement.tableOp" style="cursor: pointer;" (click)="tableNoPaginatorOperation(tableContentElement, opElement[1])"> {{opElement[0]}} </a>
             </td>
         </tr>
         <th colspan="8"></th>
     </table>
-    <label class="table-summary-bottom">>>表格记录条数：<span
-            style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
+    <label class="table-summary-bottom">>>表格记录条数：<span style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
 </div>
 <div *ngIf="tableElement.tableContent.length <= 0">
     <label class="table-summary-top" style="color: #ffffff">>>当前没有记录！<<</label>
