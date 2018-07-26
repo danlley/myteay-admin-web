@@ -11,6 +11,7 @@
         <app-summary-table [tableElement]="summaryTableElement" [tableTitle]="shopData[1]" [tableTitleFace]="'当前店铺'"></app-summary-table>
         <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
             <p class="contact-submit">
+                <input type="submit" value="     返回     " (click)="goReturn()">
                 <input type="submit" value="     修改商品摘要信息     " (click)="modifyGoodsConfig()">
             </p>
         </div>

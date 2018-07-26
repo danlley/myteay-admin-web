@@ -4,12 +4,12 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {Subject} from 'rxjs/Subject';
-import {TableNoPaginatorComponent} from './summaryTable.component';
+import {SummaryTableComponent} from './summaryTable.component';
 import {EventService} from '../asyncService/asyncService.service';
 
 @NgModule({
     declarations: [
-        TableNoPaginatorComponent,
+        SummaryTableComponent,
         Subject,
         EventService
     ],
@@ -19,7 +19,7 @@ import {EventService} from '../asyncService/asyncService.service';
         HttpModule
     ],
     providers: [Observable, Subject, EventService],
-    bootstrap: [TableNoPaginatorComponent]
+    bootstrap: [SummaryTableComponent]
 })
 export class SummaryTableModule {
 }

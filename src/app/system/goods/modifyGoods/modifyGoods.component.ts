@@ -37,6 +37,10 @@ export class ModifyGoodsComponent implements OnInit {
         this.initSingleGoods();
     }
 
+    goReturn() {
+        this.eventBus.publish('system_goods_manage_all', this.shopData);
+    }
+
     private initSingleGoods() {
         this.formData.goodsId = this.goodsId;
         this.formData.operationType = 'PX_QUERY_ONE';
