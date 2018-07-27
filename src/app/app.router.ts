@@ -15,6 +15,7 @@ import {GoodsQueryComponent} from './system/goods/goodsQuery/goodsQuery.componen
 import {AddGoodsComponent} from './system/goods/addGoods/addGoods.component';
 import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.component';
 import {ViewDetailGoodsComponent} from './system/goods/viewDetailGoods/viewDetailGoods.component';
+import {GoodsPackagesComponent} from './system/goods/goodsQuery/goodsPackages/goodsPackages.component';
 
 export const appRouter: Routes = [
     {
@@ -33,6 +34,10 @@ export const appRouter: Routes = [
             {
                 path: 'system',
                 component: SystemComponent
+            },
+            {
+                path: 'system/goods/packages/all',
+                component: GoodsPackagesComponent
             },
             {
                 path: 'system/goods',

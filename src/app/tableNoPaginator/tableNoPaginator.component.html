@@ -1,6 +1,6 @@
 <!-- 表单内容 -->
 <div *ngIf="tableElement.tableContent.length > 0">
-    <label class="table-summary-top">>>表格记录条数：<span
+    <label *ngIf="isNeedShow" class="table-summary-top">>>表格记录条数：<span
             style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
     <table align="center" class="table-operation-style">
         <th *ngFor="let tableColumn of tableElement.tableHeaders">{{tableColumn}}</th>
@@ -19,7 +19,7 @@
         </tr>
         <th colspan="8"></th>
     </table>
-    <label class="table-summary-bottom">>>表格记录条数：<span style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
+    <label *ngIf="isNeedShow" class="table-summary-bottom">>>表格记录条数：<span style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
 </div>
 <div *ngIf="tableElement.tableContent.length <= 0">
     <label class="table-summary-top" style="color: #ffffff">>>当前没有记录！<<</label>

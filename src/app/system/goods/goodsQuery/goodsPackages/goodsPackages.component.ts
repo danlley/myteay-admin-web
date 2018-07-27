@@ -1,23 +1,26 @@
 import {Component, OnInit} from '@angular/core';
 import {DatePipe} from '@angular/common';
-import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {EventService} from '../../../asyncService/asyncService.service';
+import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
+import {EventService} from '../../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-query-goods',
-    templateUrl: './goodsQuery.component.html',
-    styleUrls: ['./goodsQuery.component.css']
+    templateUrl: './goodsPackages.component.html',
+    styleUrls: ['./goodsPackages.component.css']
 })
 
-export class GoodsQueryComponent implements OnInit {
+export class GoodsPackagesComponent implements OnInit {
 
-    title = '商品概要管理!';
+    title = '套餐包管理!';
     ftConfitService: FatigeConfigService;
     contactList: any[];
     templateConfigList: any[];
     shopData;
+    goodsData;
     summaryTableElement: any[];
+    goodsId;
+    goodsPackagesDetailName;
 
     tableElement = {
         'tableHeaders': [],
@@ -29,28 +32,22 @@ export class GoodsQueryComponent implements OnInit {
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
         this.ftConfitService = ftConfitService;
 
-        this.eventBus.registerySubject('system_goods_for_view_detail').subscribe(e => {
-            const sendData = [this.shopData, e[0]];
-            console.log('表格操作目标（详情）：', sendData);
-            this.eventBus.publish('system_goods_view_detail', sendData);
-        });
-
-        this.eventBus.registerySubject('single_goods_for_modify').subscribe(e => {
-            const sendData = [this.shopData, e[0]];
-            console.log('表格操作目标（修改）：', sendData);
-            this.eventBus.publish('system_goods_modify', sendData);
-        });
-
-        this.eventBus.registerySubject('system_goods_packages_for_all').subscribe(e => {
-            const sendData = [this.shopData, e];
-            console.log('表格操作目标（维护）：', sendData);
-            this.eventBus.publish('system_goods_packages_all', sendData);
-        });
-
-        this.eventBus.registerySubject('single_goods_delete').subscribe(e => {
-            console.log('表格操作目标（删除）：', e[0]);
-            this.deleteSingleGoods(e[0]);
-        });
+        // this.eventBus.registerySubject('system_goods_for_view_detail').subscribe(e => {
+        //     const sendData = [this.shopData, e[0]];
+        //     console.log('表格操作目标（详情）：', sendData);
+        //     this.eventBus.publish('system_goods_view_detail', sendData);
+        // });
+        //
+        // this.eventBus.registerySubject('single_goods_for_modify').subscribe(e => {
+        //     const sendData = [this.shopData, e[0]];
+        //     console.log('表格操作目标（修改）：', sendData);
+        //     this.eventBus.publish('system_goods_modify', sendData);
+        // });
+        //
+        // this.eventBus.registerySubject('single_goods_delete').subscribe(e => {
+        //     console.log('表格操作目标（删除）：', e[0]);
+        //     this.deleteSingleGoods(e[0]);
+        // });
     }
 
     ngOnInit(): void {
@@ -60,39 +57,46 @@ export class GoodsQueryComponent implements OnInit {
     }
 
     private initShopData() {
-        const tmpData: string = this.activeRoute.snapshot.queryParams['data'];
+        const tmpData: string = this.activeRoute.snapshot.queryParams['shop'];
         const tmpArr: string[] = tmpData.split(',');
         this.shopData = tmpArr;
         console.log('=====--------->', this.shopData);
+
+        const tmpGoodsData: string = this.activeRoute.snapshot.queryParams['goods'];
+        const tmpGoodsArr: string[] = tmpGoodsData.split(',');
+        this.goodsData = tmpGoodsArr;
+        this.goodsId = this.goodsData[0];
+        console.log('=====--------->', this.goodsData);
 
         this.constructSummaryTableData();
     }
 
     private constructSummaryTableData() {
-        const id: PxSummaryTableElement = new PxSummaryTableElement();
-        id.face = '店铺ID';
-        id.value = this.shopData[0];
+        const goodsName: PxSummaryTableElement = new PxSummaryTableElement();
+        goodsName.face = '商品名称';
+        goodsName.value = this.goodsData[1];
 
         const name: PxSummaryTableElement = new PxSummaryTableElement();
         name.face = '店铺名称';
         name.value = this.shopData[1];
 
-        const owner: PxSummaryTableElement = new PxSummaryTableElement();
-        owner.face = '店主';
-        owner.value = this.shopData[2];
+        const goodsType: PxSummaryTableElement = new PxSummaryTableElement();
+        goodsType.face = '套餐类型';
+        goodsType.value = this.goodsData[2];
 
-        const status: PxSummaryTableElement = new PxSummaryTableElement();
-        status.face = '店铺状态';
-        status.value = this.shopData[3];
+        const price: PxSummaryTableElement = new PxSummaryTableElement();
+        price.face = '当前售价';
+        price.value = this.goodsData[3];
+
+        const sellsAmount: PxSummaryTableElement = new PxSummaryTableElement();
+        sellsAmount.face = '当前销量';
+        sellsAmount.value = this.goodsData[4];
 
         const expired: PxSummaryTableElement = new PxSummaryTableElement();
         expired.face = '过期时间';
-        expired.value = this.shopData[5];
+        expired.value = this.goodsData[5];
 
-        const address: PxSummaryTableElement = new PxSummaryTableElement();
-        address.face = '店铺地址';
-        address.value = this.shopData[4];
-        this.summaryTableElement = [[id, name, owner], [status, expired, address]];
+        this.summaryTableElement = [[name, goodsName, goodsType], [price, sellsAmount, expired]];
     }
 
     load() {
@@ -112,13 +116,12 @@ export class GoodsQueryComponent implements OnInit {
     initGoodsList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['详情', 'system_goods_for_view_detail'], ['修改', 'single_goods_for_modify'],
-                ['删除', 'single_goods_delete'], ['维护', 'system_goods_packages_for_all']],
+            'tableOp': [['修改', 'single_goods_for_modify'], ['删除', 'single_goods_delete']],
             'tableContent': []
         };
         this.ftConfitService.getAllGoodsByShopId(this.shopData[0]).subscribe(res => {
             this.templateConfigList = this.filterResult(res.json());
-            this.tableElement.tableHeaders = ['流水号', '商品名称', '套餐信息类型', '当前售价', '当前销量', '过期时间', '创建时间'];
+            this.tableElement.tableHeaders = ['自套餐流水号', '套餐包ID', '子商品名称', '子商品数量', '子套餐类型', '子商品单价', '创建时间'];
             this.templateConfigList.forEach(e => {
                 const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
                 const gmtExpired = this.datePipe.transform(e.gmtExpired, 'yyyy-MM-dd hh:mm:ss');

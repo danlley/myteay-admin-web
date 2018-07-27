@@ -21,6 +21,8 @@ export class TableNoPaginatorComponent implements OnInit {
         'tableContent': []
     };
 
+    @Input() isNeedShow = true;
+
     eventBus: EventService;
 
     /**
