@@ -14,5 +14,9 @@ export const environment = {
     GOODS_QUERY_CONFIG_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/goods/all',
     GOODS_QUERY_SHOP_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/goods/list/shop',
     GOODS_MNG_CONFIG_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/goods/manage',
+    GOODS_QUERY_PACKAGES_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/pkgs/list/goods',
+    GOODS_QUERY_SUB_PACKAGES_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/sub/pkgs/list/sub/packages/',
+    PKG_MNG_CONFIG_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/pkgs/manage',
+    PKG_SUB_MNG_CONFIG_URL: 'http://192.168.0.100:40009/myteay/api/phoenix/admin/manage/sub/pkgs/manage',
 
 };

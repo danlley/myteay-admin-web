@@ -128,7 +128,7 @@ export class GoodsQueryComponent implements OnInit {
         });
     }
 
-    public gotoAddGoods(): void {
+    public gotoAddGoods(elements): void {
         this.eventBus.publish('system_goods_add', this.shopData);
     }
 

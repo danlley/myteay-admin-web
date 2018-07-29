@@ -38,6 +38,22 @@ export class FatigeConfigService {
         return this._http.get(environment.GOODS_QUERY_SHOP_URL + '/' + shopId, this.getHeaderOptions());
     }
 
+    getAllPacakgesDetailByGoodsId(goodsId: string): any {
+        return this._http.get(environment.GOODS_QUERY_PACKAGES_URL + '/' + goodsId, this.getHeaderOptions());
+    }
+
+    managePackagesDetail(data): any {
+        return this._http.post(environment.PKG_MNG_CONFIG_URL, data, this.getHeaderOptions());
+    }
+
+    manageSubPackages(data): any {
+        return this._http.post(environment.PKG_SUB_MNG_CONFIG_URL, data, this.getHeaderOptions());
+    }
+
+    getAllSubPacakgesByGoodsId(subPackagesId: string): any {
+        return this._http.get(environment.GOODS_QUERY_SUB_PACKAGES_URL + '/' + subPackagesId, this.getHeaderOptions());
+    }
+
     manageGoodsConfig(data): any {
         return this._http.post(environment.GOODS_MNG_CONFIG_URL, data, this.getHeaderOptions());
     }

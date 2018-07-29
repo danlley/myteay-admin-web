@@ -14,13 +14,18 @@ export class GoodsPackagesComponent implements OnInit {
 
     title = '套餐包管理!';
     ftConfitService: FatigeConfigService;
-    contactList: any[];
+    packageTypeList: any[];
     templateConfigList: any[];
+    packagesDetailsList: PxPackageDetailModel[] = [];
     shopData;
     goodsData;
     summaryTableElement: any[];
     goodsId;
     goodsPackagesDetailName;
+    goodsPackagesDetailNameModified;
+    isNeedShowSubPackagesAdd = false;
+
+    subPackageData: PxSubPackagesModel = new PxSubPackagesModel();
 
     tableElement = {
         'tableHeaders': [],
@@ -103,41 +108,110 @@ export class GoodsPackagesComponent implements OnInit {
         this.initGoodsList();
     }
 
-    deleteSingleGoods(goodsId: number) {
-        const deleteData = new PxGoodsConfigModel();
-        deleteData.goodsId = goodsId;
-        console.log('=======================>', deleteData);
-        this.ftConfitService.manageGoodsConfig(deleteData).subscribe(res => {
-            console.log('=======================>', res.json());
+    doAddSubPackages(elements) {
+        this.subPackageData.packagesDetailId = elements.packagesDetailId;
+        console.log('=======================>', this.subPackageData);
+        this.ftConfitService.manageSubPackages(this.subPackageData).subscribe(res => {
+            const result = this.filterResult(res.json());
+            console.log('开始过滤处理结果：', result);
+            this.subPackageData = new PxSubPackagesModel();
             this.initGoodsList();
         });
     }
 
     initGoodsList() {
-        this.tableElement = {
-            'tableHeaders': [],
-            'tableOp': [['修改', 'single_goods_for_modify'], ['删除', 'single_goods_delete']],
-            'tableContent': []
-        };
-        this.ftConfitService.getAllGoodsByShopId(this.shopData[0]).subscribe(res => {
-            this.templateConfigList = this.filterResult(res.json());
-            this.tableElement.tableHeaders = ['自套餐流水号', '套餐包ID', '子商品名称', '子商品数量', '子套餐类型', '子商品单价', '创建时间'];
-            this.templateConfigList.forEach(e => {
-                const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
-                const gmtExpired = this.datePipe.transform(e.gmtExpired, 'yyyy-MM-dd hh:mm:ss');
-                this.tableElement.tableContent.push([e.goodsId, e.goodsTitle, e.goodsDesc, e.goodsPrice, e.goodsSellAmount,
-                    gmtExpired, gmtCreated]);
-            });
+
+
+
+        // 套餐包
+        this.ftConfitService.getAllPacakgesDetailByGoodsId(this.goodsId).subscribe(res => {
+            const tmpPackagesDetailList = this.filterResult(res.json());
+            if (tmpPackagesDetailList !== null) {
+                this.packagesDetailsList = [];
+                tmpPackagesDetailList.forEach(e => {
+                    const packagesDetail = new PxPackageDetailModel();
+                    packagesDetail.gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
+                    packagesDetail.gmtModified = this.datePipe.transform(e.gmtModified, 'yyyy-MM-dd hh:mm:ss');
+                    packagesDetail.packagesDetailId = e.packagesDetailId;
+                    packagesDetail.packageDetailName = e.packageDetailName;
+                    packagesDetail.goodsId = e.goodsId;
+                    packagesDetail.height = '90px';
+                    // 子套餐
+                    this.ftConfitService.getAllSubPacakgesByGoodsId(packagesDetail.packagesDetailId).subscribe(el => {
+                        packagesDetail.tableElement = {
+                            'tableHeaders': [],
+                            'tableOp': [['修改', 'single_goods_for_modify'], ['删除', 'single_goods_delete']],
+                            'tableContent': []
+                        };
+                        this.templateConfigList = this.filterResult(el.json());
+                        if (this.templateConfigList !== null) {
+                            packagesDetail.tableElement.tableHeaders = ['子套餐ID', '套餐包ID', '子套餐商品名称', '子套餐商品数量', '子套餐类型', '子商品单价', '创建时间'];
+                            this.templateConfigList.forEach(es => {
+                                const gmtCreated = this.datePipe.transform(es.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
+                                packagesDetail.tableElement.tableContent.push
+                                ([es.subPackagesId, es.packagesDetailId, es.subPackagesName, es.subPackagesAmount, es.subPackagesType,
+                                    es.subPackagePrice, gmtCreated]);
+                            });
+                        }
+                    });
+                    this.packagesDetailsList.push(packagesDetail);
+                });
+            }
         });
     }
 
-    public gotoAddGoods(): void {
-        this.eventBus.publish('system_goods_add', this.shopData);
+    public gotoAddPackageDetail(): void {
+        console.log('--------goodsPackagesDetailName------------>', this.goodsPackagesDetailName);
+
+        const packagesDetail = new PxPackageDetailModel();
+        packagesDetail.goodsId = this.goodsId;
+        packagesDetail.packageDetailName = this.goodsPackagesDetailName;
+        packagesDetail.operationType = 'PX_ADD';
+        this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
+            const result = this.filterResult(res.json());
+            console.log('开始过滤处理结果：', result);
+            this.initGoodsList();
+        });
+    }
+
+    public modifyPackagesDetail(elements): void {
+        console.log('--------goodsPackagesDetailNameModified------------>', this.goodsPackagesDetailNameModified);
+
+        const packagesDetail = new PxPackageDetailModel();
+        packagesDetail.goodsId = this.goodsId;
+        packagesDetail.packageDetailName = elements.goodsPackagesDetailNameModified;
+        packagesDetail.operationType = 'PX_MODIFY';
+        packagesDetail.packagesDetailId = elements.packagesDetailId;
+        this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
+            const result = this.filterResult(res.json());
+            console.log('开始过滤处理结果：', result);
+            this.initGoodsList();
+        });
+    }
+
+    public deletePackagesDetail(elements): void {
+        console.log('--------goodsPackagesDetailNameModified------------>', this.goodsPackagesDetailNameModified);
+
+        const packagesDetail = new PxPackageDetailModel();
+        packagesDetail.goodsId = this.goodsId;
+        packagesDetail.packageDetailName = elements.packageDetailName;
+        packagesDetail.operationType = 'PX_DELETE';
+        packagesDetail.packagesDetailId = elements.packagesDetailId;
+        this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
+            const result = this.filterResult(res.json());
+            console.log('开始过滤处理结果：', result);
+            this.initGoodsList();
+        });
+    }
+
+    public addSubPackages(elements): void {
+        elements.isNeedShowSubPackagesAdd = !elements.isNeedShowSubPackagesAdd;
+        elements.height = '190px';
     }
 
     initContactList() {
-        this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
-            this.contactList = this.filterResult(res.json());
+        this.ftConfitService.getDataDictionaryByKey('PxSubPackagesTypeEnum').subscribe(res => {
+            this.packageTypeList = this.filterResult(res.json());
         });
     }
 
@@ -157,22 +231,29 @@ export class PxSummaryTableElement {
     value: string;
 }
 
-export class PxGoodsConfigModel {
+export class PxPackageDetailModel {
+    packagesDetailId: string;
+    operationType = 'PX_ADD';
     goodsId: number;
-    operationType = 'PX_DELETE';
-    shopId: number;
-    goodsImage: string;
-    goodsTitle: string;
-    goodsDesc: string;
-    goodsPrice: string;
-    goodsCommPrice: string;
-    goodsOnlineTime: string;
-    orderType: string;
-    isHuiyuan: string;
-    isQuan: string;
-    isTuan: string;
-    goodsSellAmount: string;
-    gmtExpired: string;
+    packageDetailName: string;
+    gmtCreated: string;
+    gmtModified: string;
+    height: string;
+    tableElement = {
+        'tableHeaders': [],
+        'tableOp': [],
+        'tableContent': []
+    };
+}
+
+export class PxSubPackagesModel {
+    subPackagesId: string;
+    packagesDetailId: string;
+    subPackagesName: string;
+    subPackagesAmount: string;
+    subPackagesType: string;
+    subPackagePrice: string;
+    operationType = 'PX_ADD';
     gmtCreated: string;
     gmtModified: string;
 }

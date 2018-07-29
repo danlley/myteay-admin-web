@@ -21,6 +21,6 @@
     </table>
     <label *ngIf="isNeedShow" class="table-summary-bottom">>>表格记录条数：<span style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
 </div>
-<div *ngIf="tableElement.tableContent.length <= 0">
+<div *ngIf="tableElement.tableContent.length <= 0 && isNeedShow">
     <label class="table-summary-top" style="color: #ffffff">>>当前没有记录！<<</label>
 </div>
