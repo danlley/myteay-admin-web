@@ -148,8 +148,9 @@ export class GoodsPackagesComponent implements OnInit {
                             packagesDetail.tableElement.tableHeaders = ['子套餐ID', '套餐包ID', '子套餐商品名称', '子套餐商品数量', '子套餐类型', '子商品单价', '创建时间'];
                             this.templateConfigList.forEach(es => {
                                 const gmtCreated = this.datePipe.transform(es.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
+                                const show = this.getPackageTypeShow(es.subPackagesType);
                                 packagesDetail.tableElement.tableContent.push
-                                ([es.subPackagesId, es.packagesDetailId, es.subPackagesName, es.subPackagesAmount, es.subPackagesType,
+                                ([es.subPackagesId, es.packagesDetailId, es.subPackagesName, es.subPackagesAmount, show,
                                     es.subPackagePrice, gmtCreated]);
                             });
                         }
@@ -158,6 +159,17 @@ export class GoodsPackagesComponent implements OnInit {
                 });
             }
         });
+    }
+
+    private getPackageTypeShow(packageType: string): string {
+        let show: string;
+        this.packageTypeList.forEach(t => {
+            if (t.bizKey === packageType) {
+                show = t.value;
+            }
+        });
+
+        return show;
     }
 
     public gotoAddPackageDetail(): void {
