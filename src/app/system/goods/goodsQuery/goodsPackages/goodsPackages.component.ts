@@ -49,10 +49,10 @@ export class GoodsPackagesComponent implements OnInit {
         //     this.eventBus.publish('system_goods_modify', sendData);
         // });
         //
-        // this.eventBus.registerySubject('single_goods_delete').subscribe(e => {
-        //     console.log('表格操作目标（删除）：', e[0]);
-        //     this.deleteSingleGoods(e[0]);
-        // });
+        this.eventBus.registerySubject('single_sub_packages_for_delete').subscribe(e => {
+            console.log('表格操作目标（删除）：', e);
+            this.doDeleteSubPackages(e[0]);
+        });
     }
 
     ngOnInit(): void {
@@ -108,6 +108,19 @@ export class GoodsPackagesComponent implements OnInit {
         this.initGoodsList();
     }
 
+    doDeleteSubPackages(elements) {
+        this.subPackageData = new PxSubPackagesModel();
+        this.subPackageData.subPackagesId = elements;
+        this.subPackageData.operationType = 'PX_DELETE';
+        console.log('=======================>', this.subPackageData);
+        this.ftConfitService.manageSubPackages(this.subPackageData).subscribe(res => {
+            const result = this.filterResult(res.json());
+            console.log('开始过滤处理结果：', result);
+            this.subPackageData = new PxSubPackagesModel();
+            this.initGoodsList();
+        });
+    }
+
     doAddSubPackages(elements) {
         this.subPackageData.packagesDetailId = elements.packagesDetailId;
         console.log('=======================>', this.subPackageData);
@@ -140,7 +153,7 @@ export class GoodsPackagesComponent implements OnInit {
                     this.ftConfitService.getAllSubPacakgesByGoodsId(packagesDetail.packagesDetailId).subscribe(el => {
                         packagesDetail.tableElement = {
                             'tableHeaders': [],
-                            'tableOp': [['修改', 'single_goods_for_modify'], ['删除', 'single_goods_delete']],
+                            'tableOp': [['删除', 'single_sub_packages_for_delete']],
                             'tableContent': []
                         };
                         this.templateConfigList = this.filterResult(el.json());
