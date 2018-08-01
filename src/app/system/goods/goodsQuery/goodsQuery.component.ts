@@ -112,8 +112,13 @@ export class GoodsQueryComponent implements OnInit {
     initGoodsList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['详情', 'system_goods_for_view_detail'], ['修改', 'single_goods_for_modify'],
-                ['删除', 'single_goods_delete'], ['维护', 'system_goods_packages_for_all']],
+            'tableOp': [
+                ['子套餐维护', 'system_goods_packages_for_all'],
+                ['详情图片维护', 'system_goods_packages_for_all'],
+                ['套餐提醒维护', 'system_goods_packages_for_all'],
+                ['发布', 'system_goods_for_view_detail'],['下架', 'system_goods_for_view_detail'],['详情', 'system_goods_for_view_detail'],
+                ['修改', 'single_goods_for_modify'],['删除', 'single_goods_delete']
+            ],
             'tableContent': []
         };
         this.ftConfitService.getAllGoodsByShopId(this.shopData[0]).subscribe(res => {
