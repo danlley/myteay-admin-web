@@ -1,0 +1,50 @@
+<div *ngFor="let elements of packagesDetailsList"
+     style="align-content: center; width: 100%; margin: auto; left: 0; right: 0; background-color: #3bd4d6;border: #0a6079 1px solid;">
+    <div style="width: 100%; height: 40px; line-height: 40px; color: #0a6079; font-weight: 900; background: linear-gradient(to bottom, #43f4f6, #40bdbc);">
+        <div style="float: left; width: 7%; height: 100%; border: #0a6079 1px solid;">
+            <span>套餐包名称</span>
+        </div>
+        <div style="float: left; width: 13%; height: 100%; border: #0a6079 1px solid;">
+            <span>创建时间</span>
+        </div>
+        <div style="float: left; width: 13%; height: 100%; border: #0a6079 1px solid;">
+            <span>修改时间</span>
+        </div>
+        <div style="width: 67%; height: 100%; float: right; border: #0a6079 1px solid;">
+            <span>套餐包详情</span>
+        </div>
+    </div>
+    <div style="width: 100%; height: 200px; line-height: 200px;">
+        <div style="float: left; width: 7%; height: 100%; border: #0a6079 1px solid;">
+            <span style="font-size: 0.8em; color: rgba(155,32,49,0.76)">{{elements.packageDetailName}}</span>
+        </div>
+        <div style="float: left; width: 13%; height: 100%; border: #0a6079 1px solid;">
+            <span>{{elements.gmtCreated}}</span>
+        </div>
+        <div style="float: left; width: 13%; height: 100%; border: #0a6079 1px solid;">
+            <span>{{elements.gmtModified}}</span>
+        </div>
+        <div style="width: 67%; height: 100%; float: left; font-size: 0.6em;">
+            <div style="width: 100%; height: 25px; background: linear-gradient(to bottom, #36c5f6, #add0dc);">
+                <div class="div-td-title"><span>子套餐ID</span></div>
+                <div class="div-td-title"><span>套餐ID</span></div>
+                <div class="div-td-title"><span>子套餐名称</span></div>
+                <div class="div-td-title"><span>子套餐数量</span></div>
+                <div class="div-td-title"><span>子套餐大小</span></div>
+                <div class="div-td-title"><span>子套餐价格</span></div>
+                <div style="float: left; height: 25px; width: 40%; border: #0a6079 1px solid; color: #0a6079; font-weight: 900;line-height: 25px;"><span>子套餐创建时间</span></div>
+            </div>
+            <div *ngFor="let tableElement of elements.tableElement.tableContent" style="width: 100%; height: 25px;">
+                <div class="div-td-content"><span>{{tableElement[0]}}</span></div>
+                <div class="div-td-content"><span>{{tableElement[1]}}</span></div>
+                <div class="div-td-content"><span>{{tableElement[2]}}</span></div>
+                <div class="div-td-content"><span>{{tableElement[3]}}</span></div>
+                <div class="div-td-content"><span>{{tableElement[4]}}</span></div>
+                <div class="div-td-content"><span>{{tableElement[5]}}</span></div>
+                <div style="float: left; height: 25px; width: 40%; border: #0a6079 1px solid; line-height: 25px;"><span>{{tableElement[6]}}</span></div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

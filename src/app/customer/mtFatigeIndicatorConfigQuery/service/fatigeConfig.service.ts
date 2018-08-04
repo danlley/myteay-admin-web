@@ -62,6 +62,10 @@ export class FatigeConfigService {
         return this._http.post(environment.PKG_IMG_REMOVE_URL + imageId , this.getHeaderOptions());
     }
 
+    queryPackageAdv(goodsId): any {
+        return this._http.post(environment.PKG_DETAIL_ADV_URL + goodsId , this.getHeaderOptions());
+    }
+
     getAllPacakgesDetailByGoodsId(goodsId: string): any {
         return this._http.get(environment.GOODS_QUERY_PACKAGES_URL + '/' + goodsId, this.getHeaderOptions());
     }

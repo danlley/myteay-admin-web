@@ -11,6 +11,7 @@ import {DatePipe} from '@angular/common';
 })
 export class ViewDetailGoodsComponent implements OnInit {
     title = '商品摘要详情!';
+
     ftConfitService: FatigeConfigService;
     formData = new PxGoodsConfigModel();
 
@@ -78,6 +79,7 @@ export class ViewDetailGoodsComponent implements OnInit {
 
         this.constructSummaryTableData();
     }
+
 
     private constructSummaryTableData() {
         const id: PxSummaryTableElement = new PxSummaryTableElement();

@@ -1,0 +1,15 @@
+.div-td-title {
+    float: left;
+    height: 35px;
+    width: 7%;
+    border: #0a6079 1px solid;
+    color: #0a6079;
+    font-weight: 900;
+}
+
+.div-td-content {
+    float: left;
+    height: 35px;
+    width: 13%;
+    border: #0a6079 1px solid;
+}

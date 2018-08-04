@@ -22,4 +22,5 @@ export const environment = {
     PKG_IMG_CONFIG_URL: 'http://192.168.0.102:40009/myteay/api/phoenix/admin/manage/pkgs/image/manage/goods/',
     PKG_IMG_SHOW_URL: 'http://192.168.0.102:40009/myteay/api/phoenix/web/images/',
     PKG_IMG_REMOVE_URL: 'http://192.168.0.102:40009/myteay/api/phoenix/admin/manage/pkgs/image/manage/goods/remove/',
+    PKG_DETAIL_ADV_URL: 'http://192.168.0.102:40009/myteay/api/phoenix/admin/manage/goods/query/goods/adv/',
 };
