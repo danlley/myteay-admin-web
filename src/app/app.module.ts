@@ -32,6 +32,8 @@ import {SummaryTableComponent} from './summaryTable/summaryTable.component';
 import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.component';
 import {ViewDetailGoodsComponent} from './system/goods/viewDetailGoods/viewDetailGoods.component';
 import {GoodsPackagesComponent} from './system/goods/goodsQuery/goodsPackages/goodsPackages.component';
+import {PacakgesImageComponent} from './system/goods/goodsQuery/pacakgesImage/pacakgesImage.component';
+import {FileUploadModule} from 'ng2-file-upload';
 
 @NgModule({
     declarations: [
@@ -58,12 +60,14 @@ import {GoodsPackagesComponent} from './system/goods/goodsQuery/goodsPackages/go
         ModifyGoodsComponent,
         ViewDetailGoodsComponent,
         GoodsPackagesComponent,
+        PacakgesImageComponent,
         BottomComponent
     ],
     imports: [
         BrowserModule,
         RouterModule.forRoot(appRouter),
         FormsModule,
+        FileUploadModule,
         HttpModule
     ],
     providers: [BottomComponent,
@@ -91,6 +95,7 @@ import {GoodsPackagesComponent} from './system/goods/goodsQuery/goodsPackages/go
         ModifyGoodsComponent,
         ViewDetailGoodsComponent,
         GoodsPackagesComponent,
+        PacakgesImageComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })

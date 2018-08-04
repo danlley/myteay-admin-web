@@ -18,6 +18,15 @@ export class FatigeConfigService {
         return new RequestOptions({headers: headers});
     }
 
+    private getHeaderMultiOptions() {
+        const headers = new Headers({
+            'language-options': 'zh',
+            'Content-Type': 'multipart/form-data'
+        });
+
+        return new RequestOptions({headers: headers});
+    }
+
     getAllFatigeIndicatorConfig(): any {
         return this._http.get(environment.FATIGE_CONFIG_URL + '', this.getHeaderOptions());
     }
@@ -36,6 +45,21 @@ export class FatigeConfigService {
 
     getAllGoodsByShopId(shopId: string): any {
         return this._http.get(environment.GOODS_QUERY_SHOP_URL + '/' + shopId, this.getHeaderOptions());
+    }
+
+    getAllPackagesImageByGoodsId(shopId: string): any {
+        return this._http.get(environment.PKG_IMG_QUERY_GOODS_URL + shopId, this.getHeaderOptions());
+    }
+
+    managePackagesImage(file, goodsId): any {
+        // return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId + '?file=' + file, this.getHeaderOptions());
+        // return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId , file, this.getHeaderMultiOptions());
+        return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId , file, this.getHeaderOptions());
+        // return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId , file, this.getHeaderOptions());
+    }
+
+    removePackagesImage(imageId): any {
+        return this._http.post(environment.PKG_IMG_REMOVE_URL + imageId , this.getHeaderOptions());
     }
 
     getAllPacakgesDetailByGoodsId(goodsId: string): any {

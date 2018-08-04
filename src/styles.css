@@ -52,6 +52,7 @@
     vertical-align: top;
     padding: 0 14px;
     height: 45px;
+    line-height: 45px;
     font-weight: bold;
     color: #0a6079;
     text-shadow: 0 1px rgba(95, 229, 255, 0.5);

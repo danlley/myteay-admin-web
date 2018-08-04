@@ -47,6 +47,12 @@ export class GoodsQueryComponent implements OnInit {
             this.eventBus.publish('system_goods_packages_all', sendData);
         });
 
+        this.eventBus.registerySubject('system_goods_packages_image_for_all').subscribe(e => {
+            const sendData = [this.shopData, e];
+            console.log('表格操作目标（套餐详情图片）：', sendData);
+            this.eventBus.publish('system_goods_packages_image_all', sendData);
+        });
+
         this.eventBus.registerySubject('single_goods_delete').subscribe(e => {
             console.log('表格操作目标（删除）：', e[0]);
             this.deleteSingleGoods(e[0]);
@@ -114,10 +120,10 @@ export class GoodsQueryComponent implements OnInit {
             'tableHeaders': [],
             'tableOp': [
                 ['子套餐维护', 'system_goods_packages_for_all'],
-                ['详情图片维护', 'system_goods_packages_for_all'],
+                ['详情图片维护', 'system_goods_packages_image_for_all'],
                 ['套餐提醒维护', 'system_goods_packages_for_all'],
-                ['发布', 'system_goods_for_view_detail'],['下架', 'system_goods_for_view_detail'],['详情', 'system_goods_for_view_detail'],
-                ['修改', 'single_goods_for_modify'],['删除', 'single_goods_delete']
+                ['发布', 'system_goods_for_view_detail'], ['下架', 'system_goods_for_view_detail'], ['详情', 'system_goods_for_view_detail'],
+                ['修改', 'single_goods_for_modify'], ['删除', 'single_goods_delete']
             ],
             'tableContent': []
         };
