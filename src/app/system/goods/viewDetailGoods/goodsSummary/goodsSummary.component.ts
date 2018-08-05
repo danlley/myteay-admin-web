@@ -53,6 +53,7 @@ export class GoodsSummaryComponent implements OnInit {
         });
         this.ftConfitService.getDataDictionaryByKey('PxGoodsQuanEnum').subscribe(res => {
             const isQuan = this.filterResult(res.json());
+            console.log('isQuan：', isQuan);
             if (isQuan !== null) {
                 isQuan.forEach(e => {
                     if (e.bizKey === this.formData.isQuan) {

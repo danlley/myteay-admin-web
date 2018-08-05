@@ -48,6 +48,11 @@ export class AppComponent implements OnInit {
             this.router.navigate(['system/goods/packages/all'], {queryParams: {shop: e[0], goods: e[1]}});
         });
 
+        // 查看所有温馨提醒数据
+        this.eventBus.registerySubject('system_goods_packages_notice_all').subscribe(e => {
+            this.router.navigate(['system/goods/packages/notice/all'], {queryParams: {shop: e[0], goods: e[1]}});
+        });
+
         // 查看所有套餐详情图片数据
         this.eventBus.registerySubject('system_goods_packages_image_all').subscribe(e => {
             this.router.navigate(['system/goods/packages/image/all'], {queryParams: {shop: e[0], goods: e[1]}});

@@ -37,6 +37,7 @@ import {FileUploadModule} from 'ng2-file-upload';
 import {GoodsSummaryComponent} from './system/goods/viewDetailGoods/goodsSummary/goodsSummary.component';
 import {GoodsDetailComponent} from './system/goods/viewDetailGoods/goodsDetail/goodsDetail.component';
 import {GoodsDetailImageShowComponent} from './system/goods/viewDetailGoods/goodsDetailImageShow/goodsDetailImageShow.component';
+import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsNotice.component';
 
 @NgModule({
     declarations: [
@@ -66,6 +67,7 @@ import {GoodsDetailImageShowComponent} from './system/goods/viewDetailGoods/good
         PacakgesImageComponent,
         GoodsSummaryComponent,
         GoodsDetailComponent,
+        GoodsNoticeComponent,
         GoodsDetailImageShowComponent,
         BottomComponent
     ],
@@ -105,6 +107,7 @@ import {GoodsDetailImageShowComponent} from './system/goods/viewDetailGoods/good
         GoodsSummaryComponent,
         GoodsDetailComponent,
         GoodsDetailImageShowComponent,
+        GoodsNoticeComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })
