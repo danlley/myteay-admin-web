@@ -32,7 +32,7 @@ export class GoodsNoticeComponent implements OnInit {
         'tableContent': []
     };
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+    constructor(ftConfitService: FatigeConfigService, public datePipe: DatePipe,
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
         this.ftConfitService = ftConfitService;
 
@@ -101,6 +101,12 @@ export class GoodsNoticeComponent implements OnInit {
     }
 
     doAddSubPackages(elements) {
+
+        if (elements === undefined) {
+            console.log('当前温馨提醒分类信息不可用elements is null! ');
+            return;
+        }
+
         this.subPackageData.packagesNoticeId = elements.packagesNoticeId;
         console.log('=======================>', this.subPackageData);
         this.ftConfitService.managePackagesSubNotice(this.subPackageData).subscribe(res => {

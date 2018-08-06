@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {EventService} from '../../../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -15,10 +14,11 @@ export class GoodsSubNoticeComponent implements OnInit {
     title = '套餐包管理!';
 
     @Input() noticeData;
-    subNoticePackageDataList: PxPackageSubNoticeModel[] = [];
+    subNoticePackageDataList: PxPackageSubNoticeModel[];
+    height = 0;
 
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
-                public activeRoute: ActivatedRoute, private eventBus: EventService) {
+                public activeRoute: ActivatedRoute) {
     }
 
     ngOnInit(): void {
@@ -40,20 +40,16 @@ export class GoodsSubNoticeComponent implements OnInit {
 
     initGoodsList() {
         // 子提醒
-        // this.ftConfitService.getPackagesSubNotice(this.noticeData.packagesNoticeId).subscribe(e => {
-        //     this.subNoticePackageDataList = this.filterResult(e.json());
-        //     if (this.subNoticePackageDataList !== null) {
-        //         this.subNoticePackageDataList.forEach( res => {
-        //             const temp = new PxPackageSubNoticeModel();
-        //             temp.packagesSuNoticeId = res.packagesSuNoticeId;
-        //             temp.packagesNoticeId = res.packagesNoticeId;
-        //             temp.subNoticeDetail = res.subNoticeDetail;
-        //             temp.gmtCreated = this.datePipe.transform(res.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
-        //             temp.gmtModified = this.datePipe.transform(res.gmtModified, 'yyyy-MM-dd hh:mm:ss');
-        //             this.subNoticePackageDataList.push(temp);
-        //         });
-        //     }
-        // });
+        if (this.noticeData === undefined) {
+            console.log('当前温馨提醒分类信息不可用elements is null! ');
+            return;
+        }
+
+        console.log('当前温馨提醒分类信息 ', this.noticeData);
+
+        this.ftConfitService.getPackagesSubNotice(this.noticeData.packagesNoticeId).subscribe(e => {
+            this.subNoticePackageDataList = this.filterResult(e.json());
+        });
     }
 
 
