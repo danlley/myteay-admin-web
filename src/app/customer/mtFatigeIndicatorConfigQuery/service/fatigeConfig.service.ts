@@ -62,12 +62,24 @@ export class FatigeConfigService {
         return this._http.post(environment.PKG_IMG_REMOVE_URL + imageId , this.getHeaderOptions());
     }
 
-    queryPackageAdv(goodsId): any {
-        return this._http.post(environment.PKG_DETAIL_ADV_URL + goodsId , this.getHeaderOptions());
-    }
-
     getAllPacakgesDetailByGoodsId(goodsId: string): any {
         return this._http.get(environment.GOODS_QUERY_PACKAGES_URL + '/' + goodsId, this.getHeaderOptions());
+    }
+
+    getAllPacakgesNoticeByGoodsId(goodsId: string): any {
+        return this._http.get(environment.GOODS_QUERY_PACKAGES_NOTICE_URL + '/' + goodsId, this.getHeaderOptions());
+    }
+
+    managePackagesNotice(data): any {
+        return this._http.post(environment.GOODS_MNG_PACKAGES_NOTICE_URL, data, this.getHeaderOptions());
+    }
+
+    getPackagesSubNotice(subPackagesNoticeId): any {
+        return this._http.get(environment.GOODS_QUERY_PACKAGES_SUB_NOTICE_URL + '/' + subPackagesNoticeId, this.getHeaderOptions());
+    }
+
+    managePackagesSubNotice(data): any {
+        return this._http.post(environment.GOODS_MNG_PACKAGES_SUB_NOTICE_URL, data, this.getHeaderOptions());
     }
 
     managePackagesDetail(data): any {

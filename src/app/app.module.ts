@@ -38,6 +38,7 @@ import {GoodsSummaryComponent} from './system/goods/viewDetailGoods/goodsSummary
 import {GoodsDetailComponent} from './system/goods/viewDetailGoods/goodsDetail/goodsDetail.component';
 import {GoodsDetailImageShowComponent} from './system/goods/viewDetailGoods/goodsDetailImageShow/goodsDetailImageShow.component';
 import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsNotice.component';
+import {GoodsSubNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsSubNotice/goodsSubNotice.component';
 
 @NgModule({
     declarations: [
@@ -68,6 +69,7 @@ import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsN
         GoodsSummaryComponent,
         GoodsDetailComponent,
         GoodsNoticeComponent,
+        GoodsSubNoticeComponent,
         GoodsDetailImageShowComponent,
         BottomComponent
     ],
@@ -108,6 +110,7 @@ import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsN
         GoodsDetailComponent,
         GoodsDetailImageShowComponent,
         GoodsNoticeComponent,
+        GoodsSubNoticeComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })
