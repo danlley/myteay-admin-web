@@ -4,6 +4,8 @@ import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
 
+declare let laydate;
+
 @Component({
     selector: 'app-modify-goods',
     templateUrl: './modifyGoods.component.html',
@@ -35,6 +37,17 @@ export class ModifyGoodsComponent implements OnInit {
         this.initContactList();
         this.initShopData();
         this.initSingleGoods();
+
+        laydate.render({
+            elem: '#test1', // s为页面日期选择输入框的id
+            type: 'datetime',
+            theme: '#22787a',
+            done: (value, date) => {
+                this.formData.gmtExpired = value;
+                console.log(value);
+                console.log(date);
+            }
+        });
     }
 
     goReturn() {
