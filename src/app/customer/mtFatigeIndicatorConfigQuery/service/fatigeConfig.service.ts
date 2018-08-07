@@ -52,10 +52,7 @@ export class FatigeConfigService {
     }
 
     managePackagesImage(file, goodsId): any {
-        // return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId + '?file=' + file, this.getHeaderOptions());
-        // return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId , file, this.getHeaderMultiOptions());
         return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId , file, this.getHeaderOptions());
-        // return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId , file, this.getHeaderOptions());
     }
 
     removePackagesImage(imageId): any {

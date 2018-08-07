@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {EventService} from '../../../../asyncService/asyncService.service';
+import {environment} from '../../../../../environments/environment.prod';
 
 @Component({
     selector: 'app-view-detail-goods-summary',
@@ -20,6 +21,8 @@ export class GoodsSummaryComponent implements OnInit {
     private isQuanShow: any;
     private isTuanShow: any;
 
+    image;
+
     constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 private eventBus: EventService, private activeRoute: ActivatedRoute) {
         this.ftConfitService = ftConfitService;
@@ -28,6 +31,8 @@ export class GoodsSummaryComponent implements OnInit {
     ngOnInit(): void {
         console.log(this.title);
         this.initKeyList();
+
+        this.image = environment.PKG_IMG_SHOW_URL + this.formData.goodsImage;
     }
 
     initKeyList() {

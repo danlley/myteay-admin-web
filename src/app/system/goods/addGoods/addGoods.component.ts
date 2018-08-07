@@ -13,7 +13,7 @@ declare let laydate;
 export class AddGoodsComponent implements OnInit {
     title = '添加商品摘要!';
     ftConfitService: FatigeConfigService;
-    formData = new PxGoodsConfigModel();
+    goodsConfigModel = new PxGoodsConfigModel();
 
     shopData;
     summaryTableElement: any[];
@@ -22,6 +22,11 @@ export class AddGoodsComponent implements OnInit {
     isHuiyuan;
     isQuan;
     isTuan;
+
+    fileList;
+    currentFile: File;
+    fileName;
+    errorMessage;
 
     constructor(ftConfitService: FatigeConfigService, private eventBus: EventService, private activeRoute: ActivatedRoute) {
         this.ftConfitService = ftConfitService;
@@ -37,17 +42,38 @@ export class AddGoodsComponent implements OnInit {
             type: 'datetime',
             theme: '#22787a',
             done: (value, date) => {
-                this.formData.gmtExpired = value;
+                this.goodsConfigModel.gmtExpired = value;
                 console.log(value);
                 console.log(date);
             }
         });
     }
 
+    uploadFile($event) {
+        this.errorMessage = '';
+        this.fileList = $event.target.files;
+        this.currentFile = this.fileList[0];
+        this.fileName = this.currentFile.name;
+    }
+
     addNewGoodsConfig() {
-        this.formData.shopId = this.shopData[0];
-        console.log('----------------------------------->', this.formData);
-        this.ftConfitService.manageGoodsConfig(this.formData).subscribe(res => {
+        const formData: FormData = new FormData();
+        formData.append('file', this.currentFile, this.currentFile.name);
+        this.goodsConfigModel.shopId = this.shopData[0];
+        console.log('----------------------------------->', this.goodsConfigModel);
+        formData.append('shopId', this.goodsConfigModel.shopId);
+        formData.append('goodsTitle', this.goodsConfigModel.goodsTitle);
+        formData.append('goodsDesc', this.goodsConfigModel.goodsDesc);
+        formData.append('goodsPrice', this.goodsConfigModel.goodsPrice);
+        formData.append('goodsCommPrice', this.goodsConfigModel.goodsCommPrice);
+        formData.append('goodsOnlineTime', this.goodsConfigModel.goodsOnlineTime);
+        formData.append('orderType', this.goodsConfigModel.orderType);
+        formData.append('isHuiyuan', this.goodsConfigModel.isHuiyuan);
+        formData.append('isQuan', this.goodsConfigModel.isQuan);
+        formData.append('isTuan', this.goodsConfigModel.isTuan);
+        formData.append('operationType', this.goodsConfigModel.operationType);
+        formData.append('gmtExpired', this.goodsConfigModel.gmtExpired);
+        this.ftConfitService.manageGoodsConfig(formData).subscribe(res => {
             console.log('=======================>', res.json());
             this.eventBus.publish('system_goods_manage_all', this.shopData);
         });

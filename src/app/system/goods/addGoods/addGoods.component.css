@@ -1,28 +1,39 @@
-
-.rippler {
+.file {
     position: relative;
+    display: inline-block;
+    /*border-radius: 4px;*/
+    padding: 4px 12px;
     overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 40px;
+    margin-top: 8px;
+    /*background: #D0EEFF;*/
+    /*border: 1px solid #99D3F5;*/
+    /*color: #1E88C7;*/
+    font-weight: bold;
+    color: #0a6079;
+    text-shadow: 0 1px rgba(95, 229, 255, 0.5);
+    background: linear-gradient(to bottom, #3bd4d6, #339b9d);
+    border: 1px solid #378091;
+    border-bottom-color: #367f8f;
+    border-radius: 5px;
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
-.rippler-bs-primary .rippler-svg {
-    fill: #428bca;
+.file input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
 }
-.rippler-bs-info .rippler-svg {
-    fill: #5bc0de;
-}
-.rippler-bs-success .rippler-svg {
-    fill: #5cb85c;
-}
-.rippler-bs-warning .rippler-svg {
-    fill: #ed9c28;
-}
-.rippler-bs-danger .rippler-svg {
-    fill: #d2322d;
+
+.file:hover {
+    background: #AADFFD;
+    border-color: #78C3F3;
+    color: #004974;
+    text-decoration: none;
 }
 
 th{

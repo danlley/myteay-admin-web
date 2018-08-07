@@ -35,12 +35,6 @@ export class PacakgesImageComponent implements OnInit {
     fileName;
     errorMessage;
 
-    private uploader: FileUploader = new FileUploader({
-        url: environment.PKG_IMG_CONFIG_URL + this.goodsId,
-        method: 'POST',
-        itemAlias: 'file'
-    });
-
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
 
@@ -63,7 +57,6 @@ export class PacakgesImageComponent implements OnInit {
     }
 
     doUploadFile() {
-
         const formData: FormData = new FormData();
         formData.append('file', this.currentFile, this.currentFile.name);
         this.ftConfitService.managePackagesImage(formData, this.goodsId).subscribe(res => {
