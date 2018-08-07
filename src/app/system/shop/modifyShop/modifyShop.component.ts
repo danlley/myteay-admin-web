@@ -4,6 +4,8 @@ import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
 
+declare let laydate;
+
 @Component({
     selector: 'app-modify-shop',
     templateUrl: './modifyShop.component.html',
@@ -29,6 +31,17 @@ export class ModifyShopComponent implements OnInit {
 
         this.initContactList();
         this.queryShopConfig();
+
+        laydate.render({
+            elem: '#test1', // s为页面日期选择输入框的id
+            type: 'datetime',
+            theme: '#22787a',
+            done: (value, date) => {
+                this.formData.gmtExpired = value;
+                console.log(value);
+                console.log(date);
+            }
+        });
     }
 
     modifyShopConfig() {
@@ -48,7 +61,7 @@ export class ModifyShopComponent implements OnInit {
             this.data = this.filterResult(res.json());
             this.formData.shopId = this.data.shopId;
             this.formData.gmtCreated = this.data.gmtCreated;
-            this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd hh:mm:ss');
+            this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
             this.formData.gmtModified = this.data.gmtModified;
             this.formData.operationType = 'PX_MODIFY';
             this.formData.ownerIdcard = this.data.ownerIdcard;

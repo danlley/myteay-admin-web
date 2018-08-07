@@ -44,9 +44,9 @@ export class ViewDetailShopComponent implements OnInit {
         this.ftConfitService.manageShopConfig(queryData).subscribe(res => {
             this.data = this.filterResult(res.json());
             this.formData.shopId = this.data.shopId;
-            this.formData.gmtCreated = this.datePipe.transform(this.data.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
-            this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd hh:mm:ss');
-            this.formData.gmtModified = this.datePipe.transform(this.data.gmtModified, 'yyyy-MM-dd hh:mm:ss');
+            this.formData.gmtCreated = this.datePipe.transform(this.data.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
+            this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
+            this.formData.gmtModified = this.datePipe.transform(this.data.gmtModified, 'yyyy-MM-dd HH:mm:ss');
             this.formData.operationType = 'PX_MODIFY';
             this.formData.ownerIdcard = this.data.ownerIdcard;
             this.formData.ownerName = this.data.ownerName;

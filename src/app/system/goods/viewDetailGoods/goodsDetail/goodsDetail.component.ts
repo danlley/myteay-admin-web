@@ -40,8 +40,8 @@ export class GoodsDetailComponent implements OnInit {
                 this.packagesDetailsList = [];
                 tmpPackagesDetailList.forEach(e => {
                     const packagesDetail = new PxPackageDetailModel();
-                    packagesDetail.gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
-                    packagesDetail.gmtModified = this.datePipe.transform(e.gmtModified, 'yyyy-MM-dd hh:mm:ss');
+                    packagesDetail.gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
+                    packagesDetail.gmtModified = this.datePipe.transform(e.gmtModified, 'yyyy-MM-dd HH:mm:ss');
                     packagesDetail.packagesDetailId = e.packagesDetailId;
                     packagesDetail.packageDetailName = e.packageDetailName;
                     packagesDetail.goodsId = e.goodsId;
@@ -56,7 +56,7 @@ export class GoodsDetailComponent implements OnInit {
                         this.templateConfigList = this.filterResult(el.json());
                         if (this.templateConfigList !== null) {
                             this.templateConfigList.forEach(es => {
-                                const gmtCreated = this.datePipe.transform(es.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
+                                const gmtCreated = this.datePipe.transform(es.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
                                 const show = this.getPackageTypeShow(es.subPackagesType);
                                 packagesDetail.tableElement.tableContent.push
                                 ([es.subPackagesId, es.packagesDetailId, es.subPackagesName, es.subPackagesAmount, show,

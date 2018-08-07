@@ -79,8 +79,8 @@ export class PacakgesImageComponent implements OnInit {
             const result = this.filterResult(res.json());
             if (result !== null) {
                 result.forEach(e => {
-                    const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
-                    const gmtModified = this.datePipe.transform(e.gmtModified, 'yyyy-MM-dd hh:mm:ss');
+                    const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
+                    const gmtModified = this.datePipe.transform(e.gmtModified, 'yyyy-MM-dd HH:mm:ss');
                     const data = new PxPackageImageModel();
                     data.goodsId = e.goodsId;
                     data.imageId = e.imageId;

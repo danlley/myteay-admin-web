@@ -53,7 +53,7 @@ export class ModifyGoodsComponent implements OnInit {
             this.formData.isHuiyuan = this.data.isHuiyuan;
             this.formData.isQuan = this.data.isQuan;
             this.formData.isTuan = this.data.isTuan;
-            this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd hh:mm:ss');
+            this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
             this.formData.goodsOnlineTime = this.data.goodsOnlineTime;
             this.formData.orderType = this.data.orderType;
             this.formData.goodsCommPrice = this.data.goodsCommPrice;

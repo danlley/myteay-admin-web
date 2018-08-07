@@ -50,15 +50,15 @@ export class ViewDetailGoodsComponent implements OnInit {
             this.formData.isHuiyuan = this.data.isHuiyuan;
             this.formData.isQuan = this.data.isQuan;
             this.formData.isTuan = this.data.isTuan;
-            this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd hh:mm:ss');
+            this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
             this.formData.goodsOnlineTime = this.data.goodsOnlineTime;
             this.formData.orderType = this.data.orderType;
             this.formData.goodsCommPrice = this.data.goodsCommPrice;
             this.formData.goodsPrice = this.data.goodsPrice;
             this.formData.goodsDesc = this.data.goodsDesc;
             this.formData.goodsTitle = this.data.goodsTitle;
-            this.formData.gmtCreated = this.datePipe.transform(this.data.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
-            this.formData.gmtModified = this.datePipe.transform(this.data.gmtModified, 'yyyy-MM-dd hh:mm:ss');
+            this.formData.gmtCreated = this.datePipe.transform(this.data.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
+            this.formData.gmtModified = this.datePipe.transform(this.data.gmtModified, 'yyyy-MM-dd HH:mm:ss');
             this.formData.goodsSellAmount = this.data.goodsSellAmount;
             this.formData.shopId = this.data.shopId;
 
