@@ -19,9 +19,12 @@
       "prefix": "app",
       "styles": [
         "styles.css",
+        "assets/theme/default/laydate.css",
         "../node_modules/bootstrap/dist/css/bootstrap.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/laydate.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",

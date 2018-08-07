@@ -70,8 +70,8 @@ export class ShopComponent implements OnInit {
             this.templateConfigList = this.filterResult(res.json());
             this.tableElement.tableHeaders = ['流水号', '店铺名称', '店主', '店铺状态', '地址', '过期时间', '创建时间'];
             this.templateConfigList.forEach(e => {
-                const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd hh:mm:ss');
-                const gmtExpired = this.datePipe.transform(e.gmtExpired, 'yyyy-MM-dd hh:mm:ss');
+                const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
+                const gmtExpired = this.datePipe.transform(e.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
                 const shopStatus = this.getShopSwitchShow(e.shopStatus);
                 this.tableElement.tableContent.push([e.shopId, e.shopName, e.ownerName, shopStatus,
                     e.shopAddress, gmtExpired, gmtCreated]);

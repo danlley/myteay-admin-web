@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {EventService} from '../../../asyncService/asyncService.service';
 
+declare let laydate;
+
 @Component({
     selector: 'app-add-shop',
     templateUrl: './addShop.component.html',
@@ -21,6 +23,17 @@ export class AddShopComponent implements OnInit {
     ngOnInit(): void {
         console.log(this.title);
         this.initContactList();
+
+        laydate.render({
+            elem: '#test1', // s为页面日期选择输入框的id
+            type: 'datetime',
+            theme: '#22787a',
+            done: (value, date) => {
+                this.formData.gmtExpired = value;
+                console.log(value);
+                console.log(date);
+            }
+        });
     }
 
     addNewShopConfig() {

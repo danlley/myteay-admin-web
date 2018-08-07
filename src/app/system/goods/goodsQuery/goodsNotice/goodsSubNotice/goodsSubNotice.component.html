@@ -1,18 +1,18 @@
 <table *ngIf="subNoticePackageDataList !== undefined"  width="100%" cellspacing="0" cellpadding="0">
     <tr style="width: 100%; height: 25px; background: linear-gradient(to bottom, #22787a, #45d4d3);">
-        <td class="div-td-title" style="width: 7%"><span>ÌáĞÑID</span></td>
-        <td class="div-td-title" style="width: 73%"><span>ÄÚÈİ</span></td>
-        <td class="div-td-title" style="width: 20%"><span>²Ù×÷</span></td>
+        <td class="div-td-title" style="width: 7%"><span>æé†’ID</span></td>
+        <td class="div-td-title" style="width: 73%"><span>å†…å®¹</span></td>
+        <td class="div-td-title" style="width: 20%"><span>æ“ä½œ</span></td>
     </tr>
     <tr *ngFor="let subNoticeElement of subNoticePackageDataList" style="width: 100%;">
         <td class="div-td-content" style="width: 7%">
             <span>{{subNoticeElement.packagesSuNoticeId}}</span>
         </td>
         <td class="div-td-content" style="width: 73%; margin-left: 0px !important;" align="left">
-            <span style="margin-left: 20px; font-weight: 900; color: rgba(193,90,63,0.76);">{{subNoticeElement.subNoticeDetail}}</span>
+            <span style="margin-left: 20px; font-weight: 900; color: rgb(92,42,29);">{{subNoticeElement.subNoticeDetail}}</span>
         </td>
         <td class="div-td-content" style="width: 20%">
-            <span><a style="cursor: pointer;" (click)="doDeleteSubPackages(subNoticeElement)">É¾³ı</a> </span>
+            <span><a style="cursor: pointer;" (click)="doDeleteSubPackages(subNoticeElement)">åˆ é™¤</a> </span>
         </td>
     </tr>
 </table>
