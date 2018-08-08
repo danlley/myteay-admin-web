@@ -22,13 +22,13 @@
                 <td align="right" width="10%">商品标题：</td>
                 <td align="left" width="40%">
                     <p class="contact-input contact-absolute-width">
-                        <input type="text" name="expireTime" placeholder="商品标题" [(ngModel)]="formData.goodsTitle">
+                        <input type="text" name="expireTime" placeholder="商品标题" [(ngModel)]="goodsConfigModel.goodsTitle">
                     </p>
                 </td>
                 <td align="right" width="10%">套餐类型：</td>
                 <td align="left" width="40%">
                     <p class="contact-input contact-absolute-width">
-                        <input type="text" name="expireTime" placeholder="套餐类型" [(ngModel)]="formData.goodsDesc">
+                        <input type="text" name="expireTime" placeholder="套餐类型" [(ngModel)]="goodsConfigModel.goodsDesc">
                     </p>
                 </td>
             </tr>
@@ -36,13 +36,13 @@
                 <td align="right" width="10%">当前售价：</td>
                 <td align="left" width="40%">
                     <p class="contact-input contact-absolute-width">
-                        <input type="text" name="expireTime" placeholder="当前售价" [(ngModel)]="formData.goodsPrice">
+                        <input type="text" name="expireTime" placeholder="当前售价" [(ngModel)]="goodsConfigModel.goodsPrice">
                     </p>
                 </td>
                 <td align="right" width="10%">原始价格：</td>
                 <td align="left" width="40%">
                     <p class="contact-input contact-absolute-width">
-                        <input type="text" name="expireTime" placeholder="原始价格" [(ngModel)]="formData.goodsCommPrice">
+                        <input type="text" name="expireTime" placeholder="原始价格" [(ngModel)]="goodsConfigModel.goodsCommPrice">
                     </p>
                 </td>
             </tr>
@@ -50,14 +50,14 @@
                 <td align="right" width="10%">营业时间：</td>
                 <td align="left" width="40%">
                     <p class="contact-input contact-absolute-width">
-                        <input type="text" name="expireTime" placeholder="营业时间" [(ngModel)]="formData.goodsOnlineTime">
+                        <input type="text" name="expireTime" placeholder="营业时间" [(ngModel)]="goodsConfigModel.goodsOnlineTime">
                     </p>
                 </td>
                 <td align="right" width="10%">订购类型：</td>
                 <td align="left" width="40%">
                     <p class="contact-input contact-absolute-width">
                         <label for="templateFlag" class="select">
-                            <select name="templateFlag" [(ngModel)]="formData.orderType">
+                            <select name="templateFlag" [(ngModel)]="goodsConfigModel.orderType">
                                 <option *ngFor="let templateFlag of orderType"
                                         value="{{templateFlag.bizKey}}">{{templateFlag.value}}
                                 </option>
@@ -71,7 +71,7 @@
                 <td align="left" width="40%">
                     <p class="contact-input contact-absolute-width">
                         <label for="templateFlag" class="select">
-                            <select name="templateFlag" [(ngModel)]="formData.isHuiyuan">
+                            <select name="templateFlag" [(ngModel)]="goodsConfigModel.isHuiyuan">
                                 <option *ngFor="let templateFlag of isHuiyuan"
                                         value="{{templateFlag.bizKey}}">{{templateFlag.value}}
                                 </option>
@@ -83,7 +83,7 @@
                 <td align="left" width="40%">
                     <p class="contact-input contact-absolute-width">
                         <label for="templateFlag" class="select">
-                            <select name="templateFlag" [(ngModel)]="formData.isQuan">
+                            <select name="templateFlag" [(ngModel)]="goodsConfigModel.isQuan">
                                 <option *ngFor="let templateFlag of isQuan"
                                         value="{{templateFlag.bizKey}}">{{templateFlag.value}}
                                 </option>
@@ -97,7 +97,7 @@
                 <td align="left">
                     <p class="contact-input contact-absolute-width">
                         <label for="templateFlag" class="select">
-                            <select name="templateFlag" id="templateFlag" [(ngModel)]="formData.isTuan">
+                            <select name="templateFlag" id="templateFlag" [(ngModel)]="goodsConfigModel.isTuan">
                                 <option *ngFor="let templateFlag of isTuan"
                                         value="{{templateFlag.bizKey}}">{{templateFlag.value}}
                                 </option>
@@ -108,16 +108,19 @@
                 <td align="right" width="10%">过期时间：</td>
                 <td align="left" width="40%">
                     <p class="contact-input contact-absolute-width">
-                        <input type="text" name="expireTime" id="test1" placeholder="过期时间" [(ngModel)]="formData.gmtExpired">
+                        <input type="text" name="expireTime" id="test1" placeholder="过期时间" [(ngModel)]="goodsConfigModel.gmtExpired">
                     </p>
                 </td>
             </tr>
             <tr>
                 <td align="right">上传图片：</td>
                 <td align="left" colspan="3">
-                    <p class="contact-input contact-absolute-width">
-                        <input type="text" name="expireTime" placeholder="上传图片" [(ngModel)]="formData.goodsImage">
-                    </p>
+                    <div style="width: 10%; height: 100%; float: left;">
+                        <a href="javascript:;" class="file">选择文件    <input type="file" name="111" id="1" [(ngModel)] = "myFile" (change)="uploadFile($event)"></a>
+                    </div>
+                    <!--<p class="contact-input contact-absolute-width">-->
+                        <!--<input type="text" name="expireTime" placeholder="上传图片" [(ngModel)]="data.goodsImage">-->
+                    <!--</p>-->
                 </td>
             </tr>
         </table>
