@@ -17,7 +17,6 @@ export class PacakgesImageComponent implements OnInit {
     title = '套餐详情图片管理';
     shopData;
     goodsData;
-    summaryTableElement: any[];
     goodsId;
     goodsPackagesDetailNameModified;
     isNeedShowSubPackagesAdd = false;
@@ -36,12 +35,7 @@ export class PacakgesImageComponent implements OnInit {
     errorMessage;
 
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
-                public activeRoute: ActivatedRoute, private eventBus: EventService) {
-
-        this.eventBus.registerySubject('single_sub_packages_for_delete').subscribe(e => {
-            console.log('表格操作目标（删除）：', e);
-            // this.doDeleteSubPackages(e[0]);
-        });
+                public activeRoute: ActivatedRoute) {
     }
 
     ngOnInit(): void {
@@ -110,37 +104,7 @@ export class PacakgesImageComponent implements OnInit {
         this.goodsId = this.goodsData[0];
         console.log('=====--------->', this.goodsData);
 
-        this.constructSummaryTableData();
     }
-
-    private constructSummaryTableData() {
-        const goodsName: PxSummaryTableElement = new PxSummaryTableElement();
-        goodsName.face = '商品名称';
-        goodsName.value = this.goodsData[1];
-
-        const name: PxSummaryTableElement = new PxSummaryTableElement();
-        name.face = '店铺名称';
-        name.value = this.shopData[1];
-
-        const goodsType: PxSummaryTableElement = new PxSummaryTableElement();
-        goodsType.face = '套餐类型';
-        goodsType.value = this.goodsData[2];
-
-        const price: PxSummaryTableElement = new PxSummaryTableElement();
-        price.face = '当前售价';
-        price.value = this.goodsData[3];
-
-        const sellsAmount: PxSummaryTableElement = new PxSummaryTableElement();
-        sellsAmount.face = '当前销量';
-        sellsAmount.value = this.goodsData[4];
-
-        const expired: PxSummaryTableElement = new PxSummaryTableElement();
-        expired.face = '过期时间';
-        expired.value = this.goodsData[5];
-
-        this.summaryTableElement = [[name, goodsName, goodsType], [price, sellsAmount, expired]];
-    }
-
 
     filterResult(data): any {
         console.log('开始过滤处理结果：', data);
@@ -152,12 +116,6 @@ export class PacakgesImageComponent implements OnInit {
         return data.result;
     }
 }
-
-export class PxSummaryTableElement {
-    face: string;
-    value: string;
-}
-
 
 export class PxPackageImageModel {
     imageId;

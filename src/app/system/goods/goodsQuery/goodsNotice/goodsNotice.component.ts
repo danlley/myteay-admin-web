@@ -18,13 +18,11 @@ export class GoodsNoticeComponent implements OnInit {
 
     shopData;
     goodsData;
-    summaryTableElement: any[];
     goodsId;
     packagesNoticeName;
     isNeedShowSubPackagesAdd = false;
 
     subPackageData = new PxPackageSubNoticeModel();
-
 
     tableElement = {
         'tableHeaders': [],
@@ -58,36 +56,6 @@ export class GoodsNoticeComponent implements OnInit {
         this.goodsData = tmpGoodsArr;
         this.goodsId = this.goodsData[0];
         console.log('=====--------->', this.goodsData);
-
-        this.constructSummaryTableData();
-    }
-
-    private constructSummaryTableData() {
-        const goodsName: PxSummaryTableElement = new PxSummaryTableElement();
-        goodsName.face = '商品名称';
-        goodsName.value = this.goodsData[1];
-
-        const name: PxSummaryTableElement = new PxSummaryTableElement();
-        name.face = '店铺名称';
-        name.value = this.shopData[1];
-
-        const goodsType: PxSummaryTableElement = new PxSummaryTableElement();
-        goodsType.face = '套餐类型';
-        goodsType.value = this.goodsData[2];
-
-        const price: PxSummaryTableElement = new PxSummaryTableElement();
-        price.face = '当前售价';
-        price.value = this.goodsData[3];
-
-        const sellsAmount: PxSummaryTableElement = new PxSummaryTableElement();
-        sellsAmount.face = '当前销量';
-        sellsAmount.value = this.goodsData[4];
-
-        const expired: PxSummaryTableElement = new PxSummaryTableElement();
-        expired.face = '过期时间';
-        expired.value = this.goodsData[5];
-
-        this.summaryTableElement = [[name, goodsName, goodsType], [price, sellsAmount, expired]];
     }
 
     doDeleteSubPackages(elements) {
@@ -184,11 +152,6 @@ export class GoodsNoticeComponent implements OnInit {
         }
         return data.result;
     }
-}
-
-export class PxSummaryTableElement {
-    face: string;
-    value: string;
 }
 
 export class PxPackageNoticeModel {
