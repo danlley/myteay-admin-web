@@ -4,26 +4,42 @@ import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQ
 import {EventService} from '../../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {CommonServie} from '../../../../utils/common.servie';
+import {PxPackageDetailModel, PxSubPackagesModel} from '../../../../model/goods';
 
 @Component({
-    selector: 'app-query-goods',
+    selector: 'app-query-goods-packages',
     templateUrl: './goodsPackages.component.html',
     styleUrls: ['./goodsPackages.component.css']
 })
 
+/**
+ * 套餐包管理组件
+ */
 export class GoodsPackagesComponent implements OnInit {
 
-    title = '套餐包管理!';
+    title = '套餐包管理';
+
+    // 用于展示子套餐类型列表
     packageTypeList: any[];
-    templateConfigList: any[];
+
+    // 套餐列表
     packagesDetailsList: PxPackageDetailModel[] = [];
+
+    // 当前店铺及商品信息
     shopData;
     goodsData;
     goodsId;
+
+    // 套餐包名称，用于添加套餐包
     goodsPackagesDetailName;
+
+    // 套餐包名称，用于修改套餐包
     goodsPackagesDetailNameModified;
+
+    // 确定是否展示子套餐添加表单
     isNeedShowSubPackagesAdd = false;
 
+    // 用于子套餐内容添加
     subPackageData: PxSubPackagesModel = new PxSubPackagesModel();
 
     tableElement = {
@@ -32,6 +48,15 @@ export class GoodsPackagesComponent implements OnInit {
         'tableContent': []
     };
 
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {DatePipe} datePipe
+     * @param {CommonServie} commonService
+     * @param {ActivatedRoute} activeRoute
+     * @param {EventService} eventBus
+     */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie,
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
         this.eventBus.registerySubject('single_sub_packages_for_delete').subscribe(e => {
@@ -40,27 +65,32 @@ export class GoodsPackagesComponent implements OnInit {
         });
     }
 
+    /**
+     * 初始化当前组件
+     */
     ngOnInit(): void {
         this.initShopData();
-        this.initContactList();
-        this.initGoodsList();
+        this.initPackagesTypeList();
+        this.initPackagesDetailList();
     }
 
+    /**
+     * 初始化当前店铺及商品摘要信息
+     */
     private initShopData() {
-        const tmpData: string = this.activeRoute.snapshot.queryParams['shop'];
-        this.shopData = tmpData.split(',');
+        this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['shop']);
         console.log('=====--------->', this.shopData);
 
-        const tmpGoodsData: string = this.activeRoute.snapshot.queryParams['goods'];
-        this.goodsData = tmpGoodsData.split(',');
+        this.goodsData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['goods']);
         this.goodsId = this.goodsData[0];
         console.log('=====--------->', this.goodsData);
     }
 
-    load() {
-        this.initGoodsList();
-    }
-
+    /**
+     * 删除子套餐
+     *
+     * @param elements
+     */
     doDeleteSubPackages(elements) {
         this.subPackageData = new PxSubPackagesModel();
         this.subPackageData.subPackagesId = elements;
@@ -70,22 +100,31 @@ export class GoodsPackagesComponent implements OnInit {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.subPackageData = new PxSubPackagesModel();
-            this.initGoodsList();
+            this.initPackagesDetailList();
         });
     }
 
+    /**
+     * 添加子套餐
+     *
+     * @param elements
+     */
     doAddSubPackages(elements) {
         this.subPackageData.packagesDetailId = elements.packagesDetailId;
+        this.subPackageData.operationType = 'PX_ADD';
         console.log('=======================>', this.subPackageData);
         this.ftConfitService.manageSubPackages(this.subPackageData).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.subPackageData = new PxSubPackagesModel();
-            this.initGoodsList();
+            this.initPackagesDetailList();
         });
     }
 
-    initGoodsList() {
+    /**
+     * 查询当前商品下的所有套餐包及套餐包下的子套餐信息
+     */
+    initPackagesDetailList() {
         this.ftConfitService.getAllPacakgesDetailByGoodsId(this.goodsId).subscribe(res => {
             const tmpPackagesDetailList = this.commonService.filterResult(res.json());
             this.packagesDetailsList = [];
@@ -105,10 +144,11 @@ export class GoodsPackagesComponent implements OnInit {
                             'tableOp': [['删除', 'single_sub_packages_for_delete']],
                             'tableContent': []
                         };
-                        this.templateConfigList = this.commonService.filterResult(el.json());
-                        if (this.templateConfigList !== null) {
+
+                        const subPackagesList = this.commonService.filterResult(el.json());
+                        if (subPackagesList !== null) {
                             packagesDetail.tableElement.tableHeaders = ['子套餐ID', '套餐包ID', '子套餐商品名称', '子套餐商品数量', '子套餐类型', '子商品单价', '创建时间'];
-                            this.templateConfigList.forEach(es => {
+                            subPackagesList.forEach(es => {
                                 const gmtCreated = this.datePipe.transform(es.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
                                 const show = this.getPackageTypeShow(es.subPackagesType);
                                 packagesDetail.tableElement.tableContent.push
@@ -123,6 +163,12 @@ export class GoodsPackagesComponent implements OnInit {
         });
     }
 
+    /**
+     * 获取表格展示数据（用于展示子套餐的套餐类型）
+     *
+     * @param {string} packageType
+     * @returns {string}
+     */
     private getPackageTypeShow(packageType: string): string {
         let show = '';
         this.packageTypeList.forEach(t => {
@@ -134,6 +180,9 @@ export class GoodsPackagesComponent implements OnInit {
         return show;
     }
 
+    /**
+     * 添加套餐信息
+     */
     public gotoAddPackageDetail(): void {
         console.log('--------goodsPackagesDetailName------------>', this.goodsPackagesDetailName);
 
@@ -144,10 +193,15 @@ export class GoodsPackagesComponent implements OnInit {
         this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
-            this.initGoodsList();
+            this.initPackagesDetailList();
         });
     }
 
+    /**
+     * 修改套餐信息
+     *
+     * @param elements
+     */
     public modifyPackagesDetail(elements): void {
         console.log('--------goodsPackagesDetailNameModified------------>', this.goodsPackagesDetailNameModified);
 
@@ -159,10 +213,15 @@ export class GoodsPackagesComponent implements OnInit {
         this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
-            this.initGoodsList();
+            this.initPackagesDetailList();
         });
     }
 
+    /**
+     * 删除套餐信息
+     *
+     * @param elements
+     */
     public deletePackagesDetail(elements): void {
         console.log('--------goodsPackagesDetailNameModified------------>', this.goodsPackagesDetailNameModified);
 
@@ -174,45 +233,26 @@ export class GoodsPackagesComponent implements OnInit {
         this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
-            this.initGoodsList();
+            this.initPackagesDetailList();
         });
     }
 
+    /**
+     * 添加子套餐信息
+     *
+     * @param elements
+     */
     public addSubPackages(elements): void {
         elements.isNeedShowSubPackagesAdd = !elements.isNeedShowSubPackagesAdd;
         elements.height = '190px';
     }
 
-    initContactList() {
+    /**
+     * 初始化套餐类型可选值列表
+     */
+    initPackagesTypeList() {
         this.ftConfitService.getDataDictionaryByKey('PxSubPackagesTypeEnum').subscribe(res => {
             this.packageTypeList = this.commonService.filterResult(res.json());
         });
     }
-}
-
-export class PxPackageDetailModel {
-    packagesDetailId: string;
-    operationType = 'PX_ADD';
-    goodsId: number;
-    packageDetailName: string;
-    gmtCreated: string;
-    gmtModified: string;
-    height: string;
-    tableElement = {
-        'tableHeaders': [],
-        'tableOp': [],
-        'tableContent': []
-    };
-}
-
-export class PxSubPackagesModel {
-    subPackagesId: string;
-    packagesDetailId: string;
-    subPackagesName: string;
-    subPackagesAmount: string;
-    subPackagesType: string;
-    subPackagePrice: string;
-    operationType = 'PX_ADD';
-    gmtCreated: string;
-    gmtModified: string;
 }

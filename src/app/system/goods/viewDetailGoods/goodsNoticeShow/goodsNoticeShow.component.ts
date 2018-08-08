@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {PxPackageDetailModel} from '../../goodsQuery/goodsPackages/goodsPackages.component';
-import {PxGoodsConfigModel} from '../../../../model/goods';
+import {PxGoodsConfigModel, PxPackageDetailModel, PxPackageNoticeModel} from '../../../../model/goods';
 import {CommonServie} from '../../../../utils/common.servie';
 
 @Component({
@@ -68,12 +67,4 @@ export class GoodsNoticeShowComponent implements OnInit {
     }
 }
 
-export class PxPackageNoticeModel {
-    packagesNoticeId: string;
-    operationType = 'PX_ADD';
-    goodsId: string;
-    packagesNoticeName: string;
-    gmtCreated: string;
-    gmtModified: string;
-}
 

@@ -12,31 +12,57 @@ declare let laydate;
     templateUrl: './addGoods.component.html',
     styleUrls: ['./addGoods.component.css']
 })
+
+/**
+ * 添加商品摘要信息
+ */
 export class AddGoodsComponent implements OnInit {
-    title = '添加商品摘要!';
+    title = '添加商品摘要信息';
+
+    /** 商品摘要数据管理模型 */
     goodsConfigModel = new PxGoodsConfigModel();
 
+    // 店铺信息，用于构建页面店铺信息展示
     shopData;
 
+    // 页面表单所需的下拉菜单
     orderType;
     isHuiyuan;
     isQuan;
     isTuan;
 
+    // 文件处理所需变量，用于上传商品摘要所需的图片文件
     fileList;
     currentFile: File;
     fileName;
     errorMessage;
 
+    /**
+     * 组件构造
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {EventService} eventBus
+     * @param {CommonServie} commonService
+     * @param {ActivatedRoute} activeRoute
+     */
     constructor(private ftConfitService: FatigeConfigService, private eventBus: EventService,
                 private commonService: CommonServie, private activeRoute: ActivatedRoute) {
     }
 
+    /**
+     * 初始化页面所需数据
+     */
     ngOnInit(): void {
+        // 打印当前页面title
         console.log(this.title);
-        this.initContactList();
-        this.initShopData();
 
+        // 初始化页面下拉菜单所需数据
+        this.initSelectList();
+
+        // 初始化店铺信息
+        this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
+
+        // 初始化日期选择组件
         laydate.render({
             elem: '#test1', // s为页面日期选择输入框的id
             type: 'datetime',
@@ -49,6 +75,11 @@ export class AddGoodsComponent implements OnInit {
         });
     }
 
+    /**
+     * 选择上传文件后的数据处理
+     *
+     * @param $event
+     */
     uploadFile($event) {
         this.errorMessage = '';
         this.fileList = $event.target.files;
@@ -56,6 +87,9 @@ export class AddGoodsComponent implements OnInit {
         this.fileName = this.currentFile.name;
     }
 
+    /**
+     * 添加新的商品摘要信息
+     */
     addNewGoodsConfig() {
         const formData: FormData = new FormData();
         formData.append('file', this.currentFile, this.currentFile.name);
@@ -79,27 +113,28 @@ export class AddGoodsComponent implements OnInit {
         });
     }
 
-    private initShopData() {
-        const tmpData: string = this.activeRoute.snapshot.queryParams['data'];
-        const tmpArr: string[] = tmpData.split(',');
-        this.shopData = tmpArr;
-        console.log('=====--------->', this.shopData);
-    }
-
-    initContactList() {
+    /**
+     * 下拉菜单初始化
+     */
+    initSelectList() {
+        // 订购类型列表
         this.ftConfitService.getDataDictionaryByKey('PxGoodsOrderTypeEnum').subscribe(res => {
             this.orderType = this.commonService.filterResult(res.json());
         });
+
+        // 是否支持会员选择列表
         this.ftConfitService.getDataDictionaryByKey('PxGoodsHuiyuanEnum').subscribe(res => {
             this.isHuiyuan = this.commonService.filterResult(res.json());
         });
+
+        // 是否支持优惠券选择列表
         this.ftConfitService.getDataDictionaryByKey('PxGoodsQuanEnum').subscribe(res => {
             this.isQuan = this.commonService.filterResult(res.json());
         });
+
+        // 是否支持团购选择列表
         this.ftConfitService.getDataDictionaryByKey('PxGoodsTuanEnum').subscribe(res => {
             this.isTuan = this.commonService.filterResult(res.json());
         });
     }
-
-
 }

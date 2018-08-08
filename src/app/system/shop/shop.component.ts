@@ -3,6 +3,7 @@ import {FatigeConfigService} from '../../customer/mtFatigeIndicatorConfigQuery/s
 import {DatePipe} from '@angular/common';
 import {EventService} from '../../asyncService/asyncService.service';
 import {CommonServie} from '../../utils/common.servie';
+import {PxShopConfigModel} from '../../model/shop';
 
 @Component({
     selector: 'app-shop',
@@ -52,6 +53,7 @@ export class ShopComponent implements OnInit {
     deleteSingleShop(shopId: number) {
         const deleteData = new PxShopConfigModel();
         deleteData.shopId = shopId;
+        deleteData.operationType = 'PX_DELETE';
         console.log('=======================>', deleteData);
         this.ftConfitService.manageShopConfig(deleteData).subscribe(res => {
             console.log('=======================>', res.json());
@@ -102,20 +104,4 @@ export class ShopComponent implements OnInit {
             this.contactList = this.commonService.filterResult(res.json());
         });
     }
-}
-
-export class PxShopConfigModel {
-    shopId: number;
-    shopName: string;
-    shopAddress: string;
-    shopTel: string;
-    waiterName: string;
-    ownerName: string;
-    ownerPhone: string;
-    ownerIdcard: string;
-    shopStatus: string;
-    operationType = 'PX_DELETE';
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
 }

@@ -3,6 +3,7 @@ import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuer
 import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
+import {PxShopConfigModel} from '../../../model/shop';
 
 @Component({
     selector: 'app-view-detail-shop',
@@ -75,20 +76,4 @@ export class ViewDetailShopComponent implements OnInit {
         }
         return data.result;
     }
-}
-
-export class PxShopConfigModel {
-    shopId: number;
-    shopName: string;
-    shopAddress: string;
-    shopTel: string;
-    waiterName: string;
-    ownerName: string;
-    ownerPhone: string;
-    ownerIdcard: string;
-    shopStatus: string;
-    operationType = 'PX_MODIFY';
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
 }

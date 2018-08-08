@@ -4,6 +4,7 @@ import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
 import {CommonServie} from '../../../utils/common.servie';
+import {PxShopConfigModel} from '../../../model/shop';
 
 declare let laydate;
 
@@ -81,20 +82,4 @@ export class ModifyShopComponent implements OnInit {
         });
     }
 
-}
-
-export class PxShopConfigModel {
-    shopId: number;
-    shopName: string;
-    shopAddress: string;
-    shopTel: string;
-    waiterName: string;
-    ownerName: string;
-    ownerPhone: string;
-    ownerIdcard: string;
-    shopStatus: string;
-    operationType = 'PX_MODIFY';
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
 }

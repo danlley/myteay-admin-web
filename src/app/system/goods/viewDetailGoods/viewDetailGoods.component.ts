@@ -69,9 +69,8 @@ export class ViewDetailGoodsComponent implements OnInit {
     }
 
     private initShopData() {
-        const tmpData: string = this.activeRoute.snapshot.queryParams['data'];
         this.goodsId = this.activeRoute.snapshot.queryParams['id'];
-        this.shopData = tmpData.split(',');
+        this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
         console.log('=====--------->', this.shopData);
     }
 

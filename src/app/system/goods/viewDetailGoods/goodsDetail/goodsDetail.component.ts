@@ -1,8 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {PxPackageDetailModel} from '../../goodsQuery/goodsPackages/goodsPackages.component';
-import {PxGoodsConfigModel} from '../../../../model/goods';
+import {PxGoodsConfigModel, PxPackageDetailModel} from '../../../../model/goods';
 import {CommonServie} from '../../../../utils/common.servie';
 
 @Component({

@@ -4,22 +4,28 @@ import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQ
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../../../environments/environment.prod';
 import {CommonServie} from '../../../../utils/common.servie';
+import {PxPackageImageModel} from '../../../../model/goods';
 
 @Component({
-    selector: 'app-query-goods',
+    selector: 'app-query-goods-package-image',
     templateUrl: './pacakgesImage.component.html',
     styleUrls: ['./pacakgesImage.component.css']
 })
 
+/**
+ * 套餐包详情图片管理组件
+ */
 export class PacakgesImageComponent implements OnInit {
 
     title = '套餐详情图片管理';
+
+    // 店铺及商品信息
     shopData;
     goodsData;
     goodsId;
-    goodsPackagesDetailNameModified;
-    isNeedShowSubPackagesAdd = false;
-    templateConfigList: any[];
+
+    //
+    packageImageList: any[];
     myFile: File;
 
     tableElement = {
@@ -33,15 +39,31 @@ export class PacakgesImageComponent implements OnInit {
     fileName;
     errorMessage;
 
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {DatePipe} datePipe
+     * @param {CommonServie} commonService
+     * @param {ActivatedRoute} activeRoute
+     */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 private commonService: CommonServie, public activeRoute: ActivatedRoute) {
     }
 
+    /**
+     * 初始化当前组件
+     */
     ngOnInit(): void {
         this.initShopData();
         this.queryImageListByGoodsId();
     }
 
+    /**
+     * 选择上传文件后的处理动作
+     *
+     * @param $event
+     */
     uploadFile($event) {
         this.errorMessage = '';
         this.fileList = $event.target.files;
@@ -49,18 +71,24 @@ export class PacakgesImageComponent implements OnInit {
         this.fileName = this.currentFile.name;
     }
 
+    /**
+     * 执行文件上传动作
+     */
     doUploadFile() {
         const formData: FormData = new FormData();
         formData.append('file', this.currentFile, this.currentFile.name);
         this.ftConfitService.managePackagesImage(formData, this.goodsId).subscribe(res => {
-            this.templateConfigList = this.commonService.filterResult(res.json());
+            this.packageImageList = this.commonService.filterResult(res.json());
             this.queryImageListByGoodsId();
             this.fileName = '';
         });
     }
 
+    /**
+     * 查询当前商品下的所有详情图片
+     */
     queryImageListByGoodsId() {
-        this.templateConfigList = [];
+        this.packageImageList = [];
         this.ftConfitService.getAllPackagesImageByGoodsId(this.goodsId).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             if (result !== null) {
@@ -76,13 +104,18 @@ export class PacakgesImageComponent implements OnInit {
                     data.imageShow = environment.PKG_IMG_SHOW_URL + e.image;
                     console.log('data==========--->', data);
                     console.log('e==========--->', e);
-                    this.templateConfigList.push(data);
+                    this.packageImageList.push(data);
                 });
             }
         });
 
     }
 
+    /**
+     * 图片删除动作
+     *
+     * @param element
+     */
     doOperation(element) {
         this.ftConfitService.removePackagesImage(element.imageId).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
@@ -91,27 +124,17 @@ export class PacakgesImageComponent implements OnInit {
         });
     }
 
+    /**
+     * 初始化店铺及商品信息
+     */
     private initShopData() {
-        const tmpData: string = this.activeRoute.snapshot.queryParams['shop'];
-        const tmpArr: string[] = tmpData.split(',');
-        this.shopData = tmpArr;
+        this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['shop']);
         console.log('=====--------->', this.shopData);
 
-        const tmpGoodsData: string = this.activeRoute.snapshot.queryParams['goods'];
-        const tmpGoodsArr: string[] = tmpGoodsData.split(',');
-        this.goodsData = tmpGoodsArr;
+        this.goodsData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['goods']);
         this.goodsId = this.goodsData[0];
         console.log('=====--------->', this.goodsData);
 
     }
 
-}
-
-export class PxPackageImageModel {
-    imageId;
-    goodsId;
-    image;
-    imageShow;
-    gmtCreated;
-    gmtModified;
 }

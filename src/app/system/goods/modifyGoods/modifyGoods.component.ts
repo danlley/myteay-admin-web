@@ -13,11 +13,20 @@ declare let laydate;
     templateUrl: './modifyGoods.component.html',
     styleUrls: ['./modifyGoods.component.css']
 })
+
+/**
+ * 商品摘要修改组件
+ */
 export class ModifyGoodsComponent implements OnInit {
-    title = '修改商品摘要!';
+    title = '修改商品摘要';
+
+    // 商品摘要模型，用于暂存待修改的商品摘要数据和历史商品摘要数据的展示
     goodsConfigModel = new PxGoodsConfigModel();
 
+    // 店铺信息
     shopData;
+
+    // 商品摘要修改表单所需的下拉列表数据
     orderType;
     isHuiyuan;
     isQuan;
@@ -33,16 +42,29 @@ export class ModifyGoodsComponent implements OnInit {
     errorMessage;
     isNeedUpload = false;
 
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {DatePipe} datePipe
+     * @param {CommonServie} commonService
+     * @param {EventService} eventBus
+     * @param {ActivatedRoute} activeRoute
+     */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie,
                 private eventBus: EventService, private activeRoute: ActivatedRoute) {
     }
 
+    /**
+     * 初始化当前组件
+     */
     ngOnInit(): void {
         console.log(this.title);
         this.initContactList();
         this.initShopData();
         this.initSingleGoods();
 
+        // 初始化上传组件
         laydate.render({
             elem: '#test1', // s为页面日期选择输入框的id
             type: 'datetime',
@@ -55,10 +77,16 @@ export class ModifyGoodsComponent implements OnInit {
         });
     }
 
+    /**
+     * 返回商品摘要列表页面
+     */
     goReturn() {
         this.eventBus.publish('system_goods_manage_all', this.shopData);
     }
 
+    /**
+     * 商品摘要修改表单数据渲染
+     */
     private initSingleGoods() {
         const formData: FormData = new FormData();
         formData.append('goodsId', this.goodsId);
@@ -88,6 +116,11 @@ export class ModifyGoodsComponent implements OnInit {
         });
     }
 
+    /**
+     * 选择文件上传后的准备动作
+     *
+     * @param $event
+     */
     uploadFile($event) {
         this.errorMessage = '';
         this.fileList = $event.target.files;
@@ -96,6 +129,9 @@ export class ModifyGoodsComponent implements OnInit {
         this.isNeedUpload = true;
     }
 
+    /**
+     * 执行商品修改动作
+     */
     modifyGoodsConfig() {
         const formData: FormData = new FormData();
         if (this.isNeedUpload) {
@@ -123,14 +159,18 @@ export class ModifyGoodsComponent implements OnInit {
         });
     }
 
+    /**
+     * 初始化店铺及商品信息
+     */
     private initShopData() {
-        const tmpData: string = this.activeRoute.snapshot.queryParams['data'];
         this.goodsId = this.activeRoute.snapshot.queryParams['id'];
-        const tmpArr: string[] = tmpData.split(',');
-        this.shopData = tmpArr;
+        this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
         console.log('=====--------->', this.shopData);
     }
 
+    /**
+     * 初始化商品概要信息修改所需的各种下拉菜单选项
+     */
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxGoodsOrderTypeEnum').subscribe(res => {
             this.orderType = this.commonService.filterResult(res.json());

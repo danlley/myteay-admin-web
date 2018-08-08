@@ -3,6 +3,10 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class CommonServie {
 
+    public initShopData(urlQueryData: string): string[] {
+        return  urlQueryData.split(',');
+    }
+
     public filterResult(data): any {
         console.log('开始过滤处理结果：', data);
 

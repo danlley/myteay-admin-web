@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {EventService} from '../../../asyncService/asyncService.service';
 import {CommonServie} from '../../../utils/common.servie';
+import {PxShopConfigModel} from '../../../model/shop';
 
 declare let laydate;
 
@@ -37,6 +38,7 @@ export class AddShopComponent implements OnInit {
 
     addNewShopConfig() {
         console.log('----------------------------------->', this.formData);
+        this.formData.operationType = 'PX_ADD';
         this.ftConfitService.manageShopConfig(this.formData).subscribe(res => {
             console.log('=======================>', res.json());
             this.eventBus.publish('system_shop_manage', this.title);
@@ -50,18 +52,4 @@ export class AddShopComponent implements OnInit {
     }
 }
 
-export class PxShopConfigModel {
-    shopId: number;
-    shopName: string;
-    shopAddress: string;
-    shopTel: string;
-    waiterName: string;
-    ownerName: string;
-    ownerPhone: string;
-    ownerIdcard: string;
-    shopStatus: string;
-    operationType = 'PX_ADD';
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
-}
+

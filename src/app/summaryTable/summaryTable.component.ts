@@ -12,23 +12,31 @@ import {Component, Input, OnInit} from '@angular/core';
 export class SummaryTableComponent implements OnInit {
 
     /** 表格主题 */
-    @Input() tableTitle = 'add message config!';
+    @Input() tableTitle = '商品管理通用汇总表';
 
     /** 表格主题 */
-    @Input() tableTitleFace = 'add message config!';
+    @Input() tableTitleFace = '';
 
     /** 用于表格页面渲染的数据，需要通过父组件传入 */
     @Input() tableElement = [];
     @Input() shopData = [];
 
+    /**
+     * 组件构造
+     */
     constructor() {
     }
 
+    /**
+     * 表格基本信息的初始化工作
+     */
     ngOnInit(): void {
-        console.log('----------------->', this.tableElement);
         this.constructSummaryTableData();
     }
 
+    /**
+     *  初始化表格数据
+     */
     private constructSummaryTableData() {
 
         if (this.shopData === undefined || this.shopData === null || this.shopData.length === 0) {
@@ -64,6 +72,9 @@ export class SummaryTableComponent implements OnInit {
 
 }
 
+/**
+ * 表格数据模型
+ */
 export class PxSummaryTableElement {
     face: string;
     value: string;

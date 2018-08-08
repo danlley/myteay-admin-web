@@ -1,6 +1,8 @@
 <div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
     <app-system-side-left></app-system-side-left>
     <div class="title-content">
+
+        <!-- 页面头，用于展示当前店铺等信息 -->
         <div>
             <div style="align-items: center;">
                 <table width="100%" cellpadding="0" cellspacing="0">
@@ -9,11 +11,14 @@
             </div>
         </div>
         <app-summary-table [shopData]="shopData" [tableTitle]="shopData[1]" [tableTitleFace]="'当前店铺'"></app-summary-table>
+
+        <!-- 添加按钮 -->
         <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
             <p class="contact-submit">
                 <input type="submit" value="     添加商品摘要信息     " (click)="addNewGoodsConfig()">
             </p>
         </div>
+
         <!-- 表单内容 -->
         <table align="center" width="95%"  cellpadding="0" cellspacing="0">
             <th colspan="4"></th>
