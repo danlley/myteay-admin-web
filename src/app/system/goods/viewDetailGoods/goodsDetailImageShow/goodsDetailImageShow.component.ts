@@ -15,6 +15,7 @@ export class GoodsDetailImageShowComponent implements OnInit {
 
     ftConfitService: FatigeConfigService;
     templateConfigList = [];
+    templateNameList = [];
     @Input() formData = new PxGoodsConfigModel();
 
 
@@ -35,6 +36,7 @@ export class GoodsDetailImageShowComponent implements OnInit {
             if (result !== null) {
                 result.forEach(e => {
                     this.templateConfigList.push(environment.PKG_IMG_SHOW_URL + e.image);
+                    this.templateNameList.push(e.image);
                 });
             }
         });

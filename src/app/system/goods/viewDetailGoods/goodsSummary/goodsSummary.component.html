@@ -3,31 +3,31 @@
         <span> 商品ID: </span>
     </div>
     <div class="div-td-content">
-        <span>{{formData.goodsId}}</span>
+        <span>{{goodsConfigModel.goodsId}}</span>
     </div>
     <div class="div-td-title">
         <span>商品标题：</span>
     </div>
     <div class="div-td-content">
-        <span>{{formData.goodsTitle}}</span>
+        <span>{{goodsConfigModel.goodsTitle}}</span>
     </div>
     <div class="div-td-title">
         <span>套餐类型：</span>
     </div>
     <div class="div-td-content">
-        <span>{{formData.goodsDesc}}</span>
+        <span>{{goodsConfigModel.goodsDesc}}</span>
     </div>
     <div class="div-td-title">
         <span>当前售价：</span>
     </div>
     <div class="div-td-content">
-        <span>{{formData.goodsPrice}}</span>
+        <span>{{goodsConfigModel.goodsPrice}}</span>
     </div>
     <div class="div-td-title">
         <span>原始价格：</span>
     </div>
     <div class="div-td-content">
-        <span>{{formData.goodsCommPrice}}</span>
+        <span>{{goodsConfigModel.goodsCommPrice}}</span>
     </div>
 </div>
 <div  style="width: 100%; height: 35px; background-color: #3bd4d6">
@@ -35,31 +35,31 @@
         <span>营业时间：</span>
     </div>
     <div class="div-td-content">
-        <span>{{formData.goodsOnlineTime}}</span>
+        <span>{{goodsConfigModel.goodsOnlineTime}}</span>
     </div>
     <div class="div-td-title">
         <span>订购类型：</span>
     </div>
     <div class="div-td-content">
-        <span>{{orderTypeShow}}</span>
+        <span>{{goodsConfigModel.orderTypeShow}}</span>
     </div>
     <div class="div-td-title">
         <span>是否会员：</span>
     </div>
     <div class="div-td-content">
-        <span>{{isHuiyuanShow}}</span>
+        <span>{{goodsConfigModel.isHuiyuanShow}}</span>
     </div>
     <div class="div-td-title">
         <span>是否有券：</span>
     </div>
     <div class="div-td-content">
-        <span>{{isQuanShow}}</span>
+        <span>{{goodsConfigModel.isQuanShow}}</span>
     </div>
     <div class="div-td-title">
         <span>是否团购：</span>
     </div>
     <div class="div-td-content">
-        <span>{{isTuanShow}}</span>
+        <span>{{goodsConfigModel.isTuanShow}}</span>
     </div>
 </div>
 <div  style="width: 100%; height: 35px; background-color: #3bd4d6">
@@ -67,30 +67,33 @@
         <span>过期时间：</span>
     </div>
     <div class="div-td-content">
-        <span>{{formData.gmtExpired}}</span>
+        <span>{{goodsConfigModel.gmtExpired}}</span>
     </div>
     <div class="div-td-title">
         <span>创建时间：</span>
     </div>
     <div class="div-td-content">
-        <span>{{formData.gmtCreated}}</span>
+        <span>{{goodsConfigModel.gmtCreated}}</span>
     </div>
     <div class="div-td-title">
         <span>修改时间：</span>
     </div>
     <div class="div-td-content">
-        <span>{{formData.gmtModified}}</span>
+        <span>{{goodsConfigModel.gmtModified}}</span>
     </div>
-    <div style="float: left; height: 35px; width: 40%; border: #0a6079 1px solid; ">
-        <span></span>
+    <div class="div-td-title">
+        <span>图片地址：</span>
+    </div>
+    <div style="float: left; height: 35px; width: 33%; border: #0a6079 1px solid; ">
+        <span>{{goodsConfigModel.goodsImage}}</span>
     </div>
 </div>
-<div  style="width: 100%; height: 200px; background-color: #3bd4d6">
+<div  style="width: 100%; height: 110px; background-color: #3bd4d6">
     <div style="float: left; height: 100%; width: 7%; border: #0a6079 1px solid; color: #0a6079; font-weight: 900;">
-        <span>上传图片：</span>
+        <span>摘要图片：</span>
     </div>
     <div style="float: left; height: 100%; width: 33%; border: #0a6079 1px solid; ">
-        <span>{{formData.goodsImage}}</span>
+        <span><img src="{{goodsConfigModel.goodsImageShow}}" style="width: 80px; height: 100px; margin-top: 5px;"></span>
     </div>
     <div style="float: left; height: 100%; width: 60%; border: #0a6079 1px solid; ">
         <span></span>
