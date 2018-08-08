@@ -53,6 +53,7 @@ export class GoodsComponent implements OnInit {
     deleteSingleShop(shopId: number) {
         const deleteData = new PxShopConfigModel();
         deleteData.shopId = shopId;
+        deleteData.operationType = 'PX_DELETE';
         console.log('=======================>', deleteData);
         this.ftConfitService.manageShopConfig(deleteData).subscribe(res => {
             console.log('=======================>', res.json());
@@ -77,10 +78,6 @@ export class GoodsComponent implements OnInit {
                     e.shopAddress, gmtExpired, gmtCreated]);
             });
         });
-    }
-
-    public gotoAddShop(): void {
-        this.eventBus.publish('system_shop_add', this.title);
     }
 
     private getShopSwitchShow(shopStatus: string): string {

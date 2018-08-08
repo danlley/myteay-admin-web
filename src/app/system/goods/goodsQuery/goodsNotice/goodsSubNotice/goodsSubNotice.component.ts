@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -19,7 +18,7 @@ export class GoodsSubNoticeComponent implements OnInit {
     subNoticePackageDataList: PxPackageSubNoticeModel[];
     height = 0;
 
-    constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+    constructor(private ftConfitService: FatigeConfigService,
                 public activeRoute: ActivatedRoute) {
     }
 
@@ -64,16 +63,6 @@ export class GoodsSubNoticeComponent implements OnInit {
         }
         return data.result;
     }
-}
-
-
-export class PxPackageNoticeModel {
-    packagesNoticeId: string;
-    operationType = 'PX_ADD';
-    goodsId: string;
-    packagesNoticeName: string;
-    gmtCreated: string;
-    gmtModified: string;
 }
 
 export class PxPackageSubNoticeModel {

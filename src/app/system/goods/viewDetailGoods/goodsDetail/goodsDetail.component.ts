@@ -1,9 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {EventService} from '../../../../asyncService/asyncService.service';
 import {PxPackageDetailModel} from '../../goodsQuery/goodsPackages/goodsPackages.component';
+import {PxGoodsConfigModel} from '../../../../model/goods';
 
 @Component({
     selector: 'app-view-detail-goods-detail',
@@ -19,8 +18,7 @@ export class GoodsDetailComponent implements OnInit {
     packagesDetailsList: PxPackageDetailModel[] = [];
     packageTypeList: any[];
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
-                private eventBus: EventService, private activeRoute: ActivatedRoute) {
+    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe) {
         this.ftConfitService = ftConfitService;
     }
 
@@ -78,7 +76,7 @@ export class GoodsDetailComponent implements OnInit {
     }
 
     private getPackageTypeShow(packageType: string): string {
-        let show: string;
+        let show = '';
         this.packageTypeList.forEach(t => {
             if (t.bizKey === packageType) {
                 show = t.value;
@@ -99,22 +97,3 @@ export class GoodsDetailComponent implements OnInit {
     }
 }
 
-export class PxGoodsConfigModel {
-    goodsId: number;
-    operationType = 'PX_MODIFY';
-    shopId: number;
-    goodsImage: string;
-    goodsTitle: string;
-    goodsDesc: string;
-    goodsPrice: string;
-    goodsCommPrice: string;
-    goodsOnlineTime: string;
-    orderType: string;
-    isHuiyuan: string;
-    isQuan: string;
-    isTuan: string;
-    goodsSellAmount: string;
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
-}

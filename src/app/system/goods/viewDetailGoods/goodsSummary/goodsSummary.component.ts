@@ -4,6 +4,7 @@ import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {EventService} from '../../../../asyncService/asyncService.service';
 import {environment} from '../../../../../environments/environment.prod';
+import {PxGoodsConfigModel} from '../../../../model/goods';
 
 @Component({
     selector: 'app-view-detail-goods-summary',
@@ -16,19 +17,11 @@ export class GoodsSummaryComponent implements OnInit {
     ftConfitService: FatigeConfigService;
     @Input() formData = new PxGoodsConfigModel();
 
-    private orderTypeShow: any;
-    private isHuiyuanShow: any;
-    private isQuanShow: any;
-    private isTuanShow: any;
-
     data;
-
     goodsConfigModel = new PxGoodsConfigModel();
-
     image;
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
-                private eventBus: EventService, private activeRoute: ActivatedRoute) {
+    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe) {
         this.ftConfitService = ftConfitService;
     }
 
@@ -61,7 +54,7 @@ export class GoodsSummaryComponent implements OnInit {
                 const isHuiyuan = this.filterResult(res2.json());
                 if (isHuiyuan !== null) {
                     isHuiyuan.forEach(e => {
-                        if (e.bizKey === this.formData.isHuiyuan) {
+                        if (e.bizKey === this.goodsConfigModel.isHuiyuan) {
                             this.goodsConfigModel.isHuiyuanShow = e.value;
                         }
                     });
@@ -72,7 +65,7 @@ export class GoodsSummaryComponent implements OnInit {
                 console.log('isQuan：', isQuan);
                 if (isQuan !== null) {
                     isQuan.forEach(e => {
-                        if (e.bizKey === this.formData.isQuan) {
+                        if (e.bizKey === this.goodsConfigModel.isQuan) {
                             this.goodsConfigModel.isQuanShow = e.value;
                         }
                     });
@@ -82,7 +75,7 @@ export class GoodsSummaryComponent implements OnInit {
                 const isTuan = this.filterResult(res4.json());
                 if (isTuan !== null) {
                     isTuan.forEach(e => {
-                        if (e.bizKey === this.formData.isTuan) {
+                        if (e.bizKey === this.goodsConfigModel.isTuan) {
                             this.goodsConfigModel.isTuanShow = e.value;
                         }
                     });
@@ -119,29 +112,4 @@ export class GoodsSummaryComponent implements OnInit {
         }
         return data.result;
     }
-}
-
-export class PxGoodsConfigModel {
-    goodsId: number;
-    operationType = 'PX_MODIFY';
-    shopId: number;
-    goodsImage: string;
-    goodsImageShow: string;
-    goodsTitle: string;
-    goodsDesc: string;
-    goodsPrice: string;
-    goodsCommPrice: string;
-    goodsOnlineTime: string;
-    orderType: string;
-    isHuiyuan: string;
-    isQuan: string;
-    isTuan: string;
-    orderTypeShow: string;
-    isHuiyuanShow: string;
-    isQuanShow: string;
-    isTuanShow: string;
-    goodsSellAmount: string;
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
 }

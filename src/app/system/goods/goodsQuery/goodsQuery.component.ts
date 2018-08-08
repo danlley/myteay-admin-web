@@ -3,6 +3,7 @@ import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
+import {PxGoodsConfigModel} from '../../../model/goods';
 
 @Component({
     selector: 'app-query-goods',
@@ -84,6 +85,7 @@ export class GoodsQueryComponent implements OnInit {
     deleteSingleGoods(goodsId: number) {
         const deleteData = new PxGoodsConfigModel();
         deleteData.goodsId = goodsId;
+        deleteData.operationType = 'PX_DELETE';
         console.log('=======================>', deleteData);
         this.ftConfitService.manageGoodsConfig(deleteData).subscribe(res => {
             console.log('=======================>', res.json());
@@ -136,22 +138,3 @@ export class GoodsQueryComponent implements OnInit {
     }
 }
 
-export class PxGoodsConfigModel {
-    goodsId: number;
-    operationType = 'PX_DELETE';
-    shopId: number;
-    goodsImage: string;
-    goodsTitle: string;
-    goodsDesc: string;
-    goodsPrice: string;
-    goodsCommPrice: string;
-    goodsOnlineTime: string;
-    orderType: string;
-    isHuiyuan: string;
-    isQuan: string;
-    isTuan: string;
-    goodsSellAmount: string;
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
-}

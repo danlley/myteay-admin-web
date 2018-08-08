@@ -1,9 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {EventService} from '../../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
-import {FileUploader} from 'ng2-file-upload';
 import {environment} from '../../../../../environments/environment.prod';
 
 @Component({

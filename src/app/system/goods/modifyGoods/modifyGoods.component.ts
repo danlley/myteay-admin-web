@@ -3,6 +3,7 @@ import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuer
 import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
+import {PxGoodsConfigModel} from '../../../model/goods';
 
 declare let laydate;
 
@@ -114,7 +115,7 @@ export class ModifyGoodsComponent implements OnInit {
         formData.append('isHuiyuan', this.goodsConfigModel.isHuiyuan);
         formData.append('isQuan', this.goodsConfigModel.isQuan);
         formData.append('isTuan', this.goodsConfigModel.isTuan);
-        formData.append('operationType', this.goodsConfigModel.operationType);
+        formData.append('operationType', 'PX_MODIFY');
         formData.append('gmtExpired', this.goodsConfigModel.gmtExpired);
         console.log('----------------------------------->', formData);
         this.ftConfitService.manageGoodsConfig(formData).subscribe(res => {
@@ -155,24 +156,4 @@ export class ModifyGoodsComponent implements OnInit {
         }
         return data.result;
     }
-}
-
-export class PxGoodsConfigModel {
-    goodsId: number;
-    operationType = 'PX_MODIFY';
-    shopId: number;
-    goodsImage: string;
-    goodsTitle: string;
-    goodsDesc: string;
-    goodsPrice: string;
-    goodsCommPrice: string;
-    goodsOnlineTime: string;
-    orderType: string;
-    isHuiyuan: string;
-    isQuan: string;
-    isTuan: string;
-    goodsSellAmount: string;
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
 }

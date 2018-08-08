@@ -3,6 +3,7 @@ import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuer
 import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
+import {PxGoodsConfigModel} from '../../../model/goods';
 
 @Component({
     selector: 'app-view-detail-goods',
@@ -16,8 +17,6 @@ export class ViewDetailGoodsComponent implements OnInit {
     formData = new PxGoodsConfigModel();
 
     shopData;
-    summaryTableElement: any[];
-
     orderType;
     isHuiyuan;
     isQuan;
@@ -102,25 +101,4 @@ export class ViewDetailGoodsComponent implements OnInit {
         }
         return data.result;
     }
-}
-
-
-export class PxGoodsConfigModel {
-    goodsId: number;
-    operationType = 'PX_MODIFY';
-    shopId: number;
-    goodsImage: string;
-    goodsTitle: string;
-    goodsDesc: string;
-    goodsPrice: string;
-    goodsCommPrice: string;
-    goodsOnlineTime: string;
-    orderType: string;
-    isHuiyuan: string;
-    isQuan: string;
-    isTuan: string;
-    goodsSellAmount: string;
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
 }

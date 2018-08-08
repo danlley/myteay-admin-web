@@ -4,6 +4,7 @@ import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {EventService} from '../../../../asyncService/asyncService.service';
 import {PxPackageDetailModel} from '../../goodsQuery/goodsPackages/goodsPackages.component';
+import {PxGoodsConfigModel} from '../../../../model/goods';
 
 @Component({
     selector: 'app-view-detail-goods-notice-show',
@@ -57,25 +58,6 @@ export class GoodsNoticeShowComponent implements OnInit {
                     packagesDetail.packageDetailName = e.packageDetailName;
                     packagesDetail.goodsId = e.goodsId;
                     packagesDetail.height = '90px';
-                    // 子套餐
-                    // this.ftConfitService.getAllSubPacakgesByGoodsId(packagesDetail.packagesDetailId).subscribe(el => {
-                    //     packagesDetail.tableElement = {
-                    //         'tableHeaders': [],
-                    //         'tableOp': [['删除', '']],
-                    //         'tableContent': []
-                    //     };
-                    //     this.templateConfigList = this.filterResult(el.json());
-                    //     if (this.templateConfigList !== null) {
-                    //         this.templateConfigList.forEach(es => {
-                    //             const gmtCreated = this.datePipe.transform(es.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
-                    //             const show = this.getPackageTypeShow(es.subPackagesType);
-                    //             packagesDetail.tableElement.tableContent.push
-                    //             ([es.subPackagesId, es.packagesDetailId, es.subPackagesName, es.subPackagesAmount, show,
-                    //                 es.subPackagePrice, gmtCreated]);
-                    //             console.log('es---------->' + this.formData.goodsId, es);
-                    //         });
-                    //     }
-                    // });
                     this.packagesDetailsList.push(packagesDetail);
                 });
             }
@@ -110,27 +92,6 @@ export class GoodsNoticeShowComponent implements OnInit {
     }
 }
 
-export class PxGoodsConfigModel {
-    goodsId: number;
-    operationType = 'PX_MODIFY';
-    shopId: number;
-    goodsImage: string;
-    goodsTitle: string;
-    goodsDesc: string;
-    goodsPrice: string;
-    goodsCommPrice: string;
-    goodsOnlineTime: string;
-    orderType: string;
-    isHuiyuan: string;
-    isQuan: string;
-    isTuan: string;
-    goodsSellAmount: string;
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
-}
-
-
 export class PxPackageNoticeModel {
     packagesNoticeId: string;
     operationType = 'PX_ADD';
@@ -140,11 +101,3 @@ export class PxPackageNoticeModel {
     gmtModified: string;
 }
 
-export class PxPackageSubNoticeModel {
-    packagesNoticeId: string;
-    operationType = 'PX_ADD';
-    packagesSuNoticeId: string;
-    subNoticeDetail: string;
-    gmtCreated: string;
-    gmtModified: string;
-}

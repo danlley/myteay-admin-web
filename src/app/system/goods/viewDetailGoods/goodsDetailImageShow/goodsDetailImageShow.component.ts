@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {EventService} from '../../../../asyncService/asyncService.service';
 import {environment} from '../../../../../environments/environment.prod';
+import {PxGoodsConfigModel} from '../../../../model/goods';
 
 @Component({
     selector: 'app-view-detail-goods-image-show',
@@ -19,8 +17,7 @@ export class GoodsDetailImageShowComponent implements OnInit {
     @Input() formData = new PxGoodsConfigModel();
 
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
-                private eventBus: EventService, private activeRoute: ActivatedRoute) {
+    constructor(ftConfitService: FatigeConfigService) {
         this.ftConfitService = ftConfitService;
     }
 
@@ -50,24 +47,4 @@ export class GoodsDetailImageShowComponent implements OnInit {
         }
         return data.result;
     }
-}
-
-export class PxGoodsConfigModel {
-    goodsId: number;
-    operationType = 'PX_MODIFY';
-    shopId: number;
-    goodsImage: string;
-    goodsTitle: string;
-    goodsDesc: string;
-    goodsPrice: string;
-    goodsCommPrice: string;
-    goodsOnlineTime: string;
-    orderType: string;
-    isHuiyuan: string;
-    isQuan: string;
-    isTuan: string;
-    goodsSellAmount: string;
-    gmtExpired: string;
-    gmtCreated: string;
-    gmtModified: string;
 }
