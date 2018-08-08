@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FatigeConfigService} from '../../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {ActivatedRoute} from '@angular/router';
+import {CommonServie} from '../../../../../utils/common.servie';
 
 @Component({
     selector: 'app-query-goods-packages-sub-notice',
@@ -19,7 +20,7 @@ export class GoodsSubNoticeComponent implements OnInit {
     height = 0;
 
     constructor(private ftConfitService: FatigeConfigService,
-                public activeRoute: ActivatedRoute) {
+                private commonService: CommonServie, public activeRoute: ActivatedRoute) {
     }
 
     ngOnInit(): void {
@@ -33,7 +34,7 @@ export class GoodsSubNoticeComponent implements OnInit {
         subPackageData.operationType = 'PX_DELETE';
         console.log('=======================>', subPackageData);
         this.ftConfitService.managePackagesSubNotice(subPackageData).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.initGoodsList();
         });
@@ -49,19 +50,8 @@ export class GoodsSubNoticeComponent implements OnInit {
         console.log('当前温馨提醒分类信息 ', this.noticeData);
 
         this.ftConfitService.getPackagesSubNotice(this.noticeData.packagesNoticeId).subscribe(e => {
-            this.subNoticePackageDataList = this.filterResult(e.json());
+            this.subNoticePackageDataList = this.commonService.filterResult(e.json());
         });
-    }
-
-
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
     }
 }
 

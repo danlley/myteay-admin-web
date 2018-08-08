@@ -3,6 +3,7 @@ import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {EventService} from '../../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
+import {CommonServie} from '../../../../utils/common.servie';
 
 @Component({
     selector: 'app-query-goods-packages-notice',
@@ -13,7 +14,6 @@ import {ActivatedRoute} from '@angular/router';
 export class GoodsNoticeComponent implements OnInit {
 
     title = '套餐包管理!';
-    ftConfitService: FatigeConfigService;
     packagesNoticeList: PxPackageNoticeModel[] = [];
 
     shopData;
@@ -30,9 +30,8 @@ export class GoodsNoticeComponent implements OnInit {
         'tableContent': []
     };
 
-    constructor(ftConfitService: FatigeConfigService, public datePipe: DatePipe,
-                public activeRoute: ActivatedRoute, private eventBus: EventService) {
-        this.ftConfitService = ftConfitService;
+    constructor(private ftConfitService: FatigeConfigService, public datePipe: DatePipe,
+                private commonService: CommonServie, public activeRoute: ActivatedRoute, private eventBus: EventService) {
 
         this.eventBus.registerySubject('single_sub_packages_for_delete').subscribe(e => {
             console.log('表格操作目标（删除）：', e);
@@ -63,7 +62,7 @@ export class GoodsNoticeComponent implements OnInit {
         this.subPackageData.operationType = 'PX_DELETE';
         console.log('=======================>', this.subPackageData);
         this.ftConfitService.managePackagesSubNotice(this.subPackageData).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             this.initGoodsList();
         });
     }
@@ -78,7 +77,7 @@ export class GoodsNoticeComponent implements OnInit {
         this.subPackageData.packagesNoticeId = elements.packagesNoticeId;
         console.log('=======================>', this.subPackageData);
         this.ftConfitService.managePackagesSubNotice(this.subPackageData).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             this.subPackageData = new PxPackageSubNoticeModel();
             this.initGoodsList();
         });
@@ -87,7 +86,7 @@ export class GoodsNoticeComponent implements OnInit {
     initGoodsList() {
         // 套餐包
         this.ftConfitService.getAllPacakgesNoticeByGoodsId(this.goodsId).subscribe(res => {
-            this.packagesNoticeList = this.filterResult(res.json());
+            this.packagesNoticeList = this.commonService.filterResult(res.json());
             console.log('packagesNoticeList：', this.packagesNoticeList);
         });
     }
@@ -101,7 +100,7 @@ export class GoodsNoticeComponent implements OnInit {
         packagesDetail.packagesNoticeName = this.packagesNoticeName;
         packagesDetail.operationType = 'PX_ADD';
         this.ftConfitService.managePackagesNotice(packagesDetail).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.initGoodsList();
         });
@@ -116,7 +115,7 @@ export class GoodsNoticeComponent implements OnInit {
         packagesDetail.operationType = 'PX_MODIFY';
         packagesDetail.packagesNoticeId = elements.packagesNoticeId;
         this.ftConfitService.managePackagesNotice(packagesDetail).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.initGoodsList();
         });
@@ -131,7 +130,7 @@ export class GoodsNoticeComponent implements OnInit {
         packagesDetail.operationType = 'PX_DELETE';
         packagesDetail.packagesNoticeId = elements.packagesNoticeId;
         this.ftConfitService.managePackagesNotice(packagesDetail).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.initGoodsList();
         });
@@ -142,16 +141,6 @@ export class GoodsNoticeComponent implements OnInit {
         elements.height = '190px';
     }
 
-
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
-    }
 }
 
 export class PxPackageNoticeModel {
