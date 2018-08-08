@@ -8,9 +8,13 @@ import {CommonServie} from '../../utils/common.servie';
     templateUrl: './goods.component.html',
     styleUrls: ['./goods.component.css']
 })
+
+/**
+ * 商品管理组件
+ */
 export class GoodsComponent implements OnInit {
     title = '商品概要管理!';
-    contactList: any[];
+    shopStatusList: any[];
     contactKey: string;
     templateConfigList: any[];
 
@@ -20,16 +24,29 @@ export class GoodsComponent implements OnInit {
         'tableContent': []
     };
 
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {DatePipe} datePipe
+     * @param {CommonServie} commonService
+     */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 private commonService: CommonServie) {
     }
 
+    /**
+     * 初始化组件
+     */
     ngOnInit(): void {
         console.log(this.title);
-        this.initContactList();
+        this.initShopStatusList();
         this.initShopList();
     }
 
+    /**
+     * 构建店铺信息列表，用于进入店铺进行相应的商品管理
+     */
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
@@ -49,13 +66,19 @@ export class GoodsComponent implements OnInit {
         });
     }
 
+    /**
+     * 转换店铺状态码为对应的店铺状态值
+     *
+     * @param {string} shopStatus
+     * @returns {string}
+     */
     private getShopSwitchShow(shopStatus: string): string {
-        if (this.contactList === null) {
+        if (this.shopStatusList === null) {
             return '';
         }
 
         let shopStatusActural = '';
-        this.contactList.forEach(e => {
+        this.shopStatusList.forEach(e => {
             if (e.bizKey === shopStatus) {
                 shopStatusActural = e.value;
             }
@@ -64,9 +87,9 @@ export class GoodsComponent implements OnInit {
         return shopStatusActural;
     }
 
-    initContactList() {
+    initShopStatusList() {
         this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
-            this.contactList = this.commonService.filterResult(res.json());
+            this.shopStatusList = this.commonService.filterResult(res.json());
         });
     }
 

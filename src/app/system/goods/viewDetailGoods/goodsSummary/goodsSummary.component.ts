@@ -10,6 +10,10 @@ import {CommonServie} from '../../../../utils/common.servie';
     templateUrl: './goodsSummary.component.html',
     styleUrls: ['./goodsSummary.component.css']
 })
+
+/**
+ * 商品摘要展示组件
+ */
 export class GoodsSummaryComponent implements OnInit {
     title = '商品摘要详情!';
 
@@ -19,16 +23,30 @@ export class GoodsSummaryComponent implements OnInit {
     goodsConfigModel = new PxGoodsConfigModel();
     image;
 
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {CommonServie} commonService
+     * @param {DatePipe} datePipe
+     */
     constructor(private ftConfitService: FatigeConfigService, private commonService: CommonServie, private datePipe: DatePipe) {
     }
 
+    /**
+     * 初始化组件
+     */
     ngOnInit(): void {
         console.log(this.title);
         this.initSingleGoods();
 
+        // 商品摘要图片预览地址
         this.image = environment.PKG_IMG_SHOW_URL + this.formData.goodsImage;
     }
 
+    /**
+     * 查询当前商品摘要信息
+     */
     private initSingleGoods() {
         const formData: FormData = new FormData();
         formData.append('goodsId', this.formData.goodsId);

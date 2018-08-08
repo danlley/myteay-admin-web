@@ -4,14 +4,19 @@ import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
 import {PxShopConfigModel} from '../../../model/shop';
+import {CommonServie} from '../../../utils/common.servie';
 
 @Component({
     selector: 'app-view-detail-shop',
     templateUrl: './viewDetailShop.component.html',
     styleUrls: ['./viewDetailShop.component.css']
 })
+
+/**
+ * 店铺详情查看组件
+ */
 export class ViewDetailShopComponent implements OnInit {
-    title = '修改店铺!';
+    title = '店铺详情查看';
     shopId: number;
     ftConfitService: FatigeConfigService;
     formData = new PxShopConfigModel();
@@ -19,11 +24,23 @@ export class ViewDetailShopComponent implements OnInit {
 
     shopStatusList;
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {DatePipe} datePipe
+     * @param {CommonServie} commonService
+     * @param {ActivatedRoute} activeRoute
+     * @param {EventService} eventBus
+     */
+    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie,
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
         this.ftConfitService = ftConfitService;
     }
 
+    /**
+     * 初始化组件
+     */
     ngOnInit(): void {
         this.shopId = this.activeRoute.snapshot.queryParams['id'];
         console.log('shopId==================>', this.shopId);
@@ -32,10 +49,16 @@ export class ViewDetailShopComponent implements OnInit {
         this.queryShopConfig();
     }
 
+    /**
+     * 返回店铺管理页面
+     */
     gotoShopConfig() {
         this.eventBus.publish('system_shop_manage', this.title);
     }
 
+    /**
+     * 查询店铺信息
+     */
     queryShopConfig() {
         console.log('----------------------------------->', this.formData);
         const queryData = new PxShopConfigModel();
@@ -43,7 +66,7 @@ export class ViewDetailShopComponent implements OnInit {
         queryData.operationType = 'PX_QUERY_ONE';
         console.log('=======================>', queryData);
         this.ftConfitService.manageShopConfig(queryData).subscribe(res => {
-            this.data = this.filterResult(res.json());
+            this.data = this.commonService.filterResult(res.json());
             this.formData.shopId = this.data.shopId;
             this.formData.gmtCreated = this.datePipe.transform(this.data.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
             this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
@@ -61,19 +84,13 @@ export class ViewDetailShopComponent implements OnInit {
         });
     }
 
+    /**
+     * 获取店铺状态列表
+     */
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
-            this.shopStatusList = this.filterResult(res.json());
+            this.shopStatusList = this.commonService.filterResult(res.json());
         });
     }
 
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
-    }
 }

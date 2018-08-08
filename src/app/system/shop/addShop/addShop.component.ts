@@ -11,18 +11,32 @@ declare let laydate;
     templateUrl: './addShop.component.html',
     styleUrls: ['./addShop.component.css']
 })
+
+/**
+ * 添加店铺组件
+ */
 export class AddShopComponent implements OnInit {
     title = '添加店铺!';
     formData = new PxShopConfigModel();
 
     shopStatusList;
 
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {CommonServie} commonService
+     * @param {EventService} eventBus
+     */
     constructor(private ftConfitService: FatigeConfigService, private commonService: CommonServie, private eventBus: EventService) {
     }
 
+    /**
+     * 初始化组件
+     */
     ngOnInit(): void {
         console.log(this.title);
-        this.initContactList();
+        this.initShopStatusList();
 
         laydate.render({
             elem: '#test1', // s为页面日期选择输入框的id
@@ -36,6 +50,9 @@ export class AddShopComponent implements OnInit {
         });
     }
 
+    /**
+     * 添加新店铺
+     */
     addNewShopConfig() {
         console.log('----------------------------------->', this.formData);
         this.formData.operationType = 'PX_ADD';
@@ -45,7 +62,10 @@ export class AddShopComponent implements OnInit {
         });
     }
 
-    initContactList() {
+    /**
+     * 获取店铺状态列表，用于选择店铺状态
+     */
+    initShopStatusList() {
         this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
             this.shopStatusList = this.commonService.filterResult(res.json());
         });

@@ -14,7 +14,7 @@
                         <p class="contact-input contact-absolute-width" style="margin-top: 25px;">
                             <label for="contactKey" class="select" style="margin-left: 0px;">
                                 <select name="contactKey" id="contactKey" [(ngModel)]="contactKey">
-                                    <option *ngFor="let contactType of contactList" value="{{contactType.bizKey}}">
+                                    <option *ngFor="let contactType of shopStatusList" value="{{contactType.bizKey}}">
                                         {{contactType.value}}
                                     </option>
                                 </select>

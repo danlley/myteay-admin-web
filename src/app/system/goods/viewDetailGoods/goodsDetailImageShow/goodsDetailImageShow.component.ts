@@ -9,22 +9,37 @@ import {CommonServie} from '../../../../utils/common.servie';
     templateUrl: './goodsDetailImageShow.component.html',
     styleUrls: ['./goodsDetailImageShow.component.css']
 })
+
+/**
+ * 商品详情图片展示组件
+ */
 export class GoodsDetailImageShowComponent implements OnInit {
-    title = '商品摘要详情!';
+    title = '商品详情图片展示组件';
 
     templateConfigList = [];
     templateNameList = [];
     @Input() formData = new PxGoodsConfigModel();
 
-
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {CommonServie} commonService
+     */
     constructor(private ftConfitService: FatigeConfigService, private commonService: CommonServie) {
     }
 
+    /**
+     * 初始化当前组件
+     */
     ngOnInit(): void {
         console.log(this.title);
         this.queryImageListByGoodsId();
     }
 
+    /**
+     * 查询当前商品对应的详情图片列表
+     */
     queryImageListByGoodsId() {
         this.templateConfigList = [];
         this.ftConfitService.getAllPackagesImageByGoodsId(this.formData.goodsId + '').subscribe(res => {
@@ -36,6 +51,5 @@ export class GoodsDetailImageShowComponent implements OnInit {
                 });
             }
         });
-
     }
 }

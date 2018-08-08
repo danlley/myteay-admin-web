@@ -9,23 +9,40 @@ import {CommonServie} from '../../../../utils/common.servie';
     templateUrl: './goodsDetail.component.html',
     styleUrls: ['./goodsDetail.component.css']
 })
+
+/**
+ * 商品摘要详情展示组件
+ */
 export class GoodsDetailComponent implements OnInit {
-    title = '商品摘要详情!';
+    title = '商品摘要详情展示';
 
     @Input() formData = new PxGoodsConfigModel();
     templateConfigList: any[];
     packagesDetailsList: PxPackageDetailModel[] = [];
     packageTypeList: any[];
 
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {DatePipe} datePipe
+     * @param {CommonServie} commonService
+     */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie) {
     }
 
+    /**
+     * 初始化当前组件
+     */
     ngOnInit(): void {
         console.log(this.title);
         this.initContactList();
         this.initGoodsList();
     }
 
+    /**
+     * 初始化套餐及子套餐列表
+     */
     initGoodsList() {
         // 套餐包
         this.ftConfitService.getAllPacakgesDetailByGoodsId(this.formData.goodsId + '').subscribe(res => {
@@ -67,12 +84,21 @@ export class GoodsDetailComponent implements OnInit {
         });
     }
 
+    /**
+     * 初始化套餐类型
+     */
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxSubPackagesTypeEnum').subscribe(res => {
             this.packageTypeList = this.commonService.filterResult(res.json());
         });
     }
 
+    /**
+     * 用于查询子套餐类型对应的名称
+     *
+     * @param {string} packageType
+     * @returns {string}
+     */
     private getPackageTypeShow(packageType: string): string {
         let show = '';
         this.packageTypeList.forEach(t => {

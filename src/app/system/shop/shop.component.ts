@@ -10,9 +10,13 @@ import {PxShopConfigModel} from '../../model/shop';
     templateUrl: './shop.component.html',
     styleUrls: ['./shop.component.css']
 })
+
+/**
+ * 店铺管理组件
+ */
 export class ShopComponent implements OnInit {
-    title = '疲劳度控制配置查询!';
-    contactList: any[];
+    title = '店铺管理';
+    shopStatusList: any[];
     contactKey: string;
     templateConfigList: any[];
 
@@ -22,6 +26,14 @@ export class ShopComponent implements OnInit {
         'tableContent': []
     };
 
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {DatePipe} datePipe
+     * @param {CommonServie} commonService
+     * @param {EventService} eventBus
+     */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 private commonService: CommonServie, private eventBus: EventService) {
         this.eventBus.registerySubject('single_shop_detail').subscribe(e => {
@@ -40,16 +52,20 @@ export class ShopComponent implements OnInit {
         });
     }
 
+    /**
+     * 初始化组件
+     */
     ngOnInit(): void {
         console.log(this.title);
-        this.initContactList();
+        this.initShopStatusList();
         this.initShopList();
     }
 
-    load() {
-        this.initShopList();
-    }
-
+    /**
+     * 删除店铺组件
+     *
+     * @param {number} shopId
+     */
     deleteSingleShop(shopId: number) {
         const deleteData = new PxShopConfigModel();
         deleteData.shopId = shopId;
@@ -61,6 +77,9 @@ export class ShopComponent implements OnInit {
         });
     }
 
+    /**
+     * 初始化店铺列表
+     */
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
@@ -80,17 +99,26 @@ export class ShopComponent implements OnInit {
         });
     }
 
+    /**
+     * 进入添加店铺页面
+     */
     public gotoAddShop(): void {
         this.eventBus.publish('system_shop_add', this.title);
     }
 
+    /**
+     * 获取店铺状态的中文解释
+     *
+     * @param {string} shopStatus
+     * @returns {string}
+     */
     private getShopSwitchShow(shopStatus: string): string {
-        if (this.contactList === null) {
+        if (this.shopStatusList === null) {
             return '';
         }
 
         let shopStatusActural = '';
-        this.contactList.forEach(e => {
+        this.shopStatusList.forEach(e => {
             if (e.bizKey === shopStatus) {
                 shopStatusActural = e.value;
             }
@@ -99,9 +127,12 @@ export class ShopComponent implements OnInit {
         return shopStatusActural;
     }
 
-    initContactList() {
+    /**
+     * 初始化店铺状态列表
+     */
+    initShopStatusList() {
         this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
-            this.contactList = this.commonService.filterResult(res.json());
+            this.shopStatusList = this.commonService.filterResult(res.json());
         });
     }
 }

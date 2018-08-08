@@ -13,6 +13,10 @@ declare let laydate;
     templateUrl: './modifyShop.component.html',
     styleUrls: ['./modifyShop.component.css']
 })
+
+/**
+ * 修改店铺组件
+ */
 export class ModifyShopComponent implements OnInit {
     title = '修改店铺!';
     shopId: number;
@@ -21,15 +25,27 @@ export class ModifyShopComponent implements OnInit {
 
     shopStatusList;
 
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {DatePipe} datePipe
+     * @param {CommonServie} commonService
+     * @param {ActivatedRoute} activeRoute
+     * @param {EventService} eventBus
+     */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 private commonService: CommonServie, public activeRoute: ActivatedRoute, private eventBus: EventService) {
     }
 
+    /**
+     * 初始化当前组件
+     */
     ngOnInit(): void {
         this.shopId = this.activeRoute.snapshot.queryParams['id'];
         console.log('shopId==================>', this.shopId);
 
-        this.initContactList();
+        this.initShopStatusList();
         this.queryShopConfig();
 
         laydate.render({
@@ -44,6 +60,9 @@ export class ModifyShopComponent implements OnInit {
         });
     }
 
+    /**
+     * 修改店铺信息
+     */
     modifyShopConfig() {
         this.ftConfitService.manageShopConfig(this.formData).subscribe(res => {
             this.data = this.commonService.filterResult(res.json());
@@ -51,6 +70,9 @@ export class ModifyShopComponent implements OnInit {
         });
     }
 
+    /**
+     * 查询当前店铺信息，用于填充店铺修改表单
+     */
     queryShopConfig() {
         console.log('----------------------------------->', this.formData);
         const queryData = new PxShopConfigModel();
@@ -76,7 +98,10 @@ export class ModifyShopComponent implements OnInit {
         });
     }
 
-    initContactList() {
+    /**
+     * 初始化店铺下拉菜单表单数据
+     */
+    initShopStatusList() {
         this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
             this.shopStatusList = this.commonService.filterResult(res.json());
         });

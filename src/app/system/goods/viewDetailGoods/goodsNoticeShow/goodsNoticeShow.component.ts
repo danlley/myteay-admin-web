@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {PxGoodsConfigModel, PxPackageDetailModel, PxPackageNoticeModel} from '../../../../model/goods';
+import {PxGoodsConfigModel, PxPackageNoticeModel} from '../../../../model/goods';
 import {CommonServie} from '../../../../utils/common.servie';
 
 @Component({
@@ -9,27 +9,39 @@ import {CommonServie} from '../../../../utils/common.servie';
     templateUrl: './goodsNoticeShow.component.html',
     styleUrls: ['./goodsNoticeShow.component.css']
 })
+
+/**
+ * 温馨提醒展示组件
+ */
 export class GoodsNoticeShowComponent implements OnInit {
-    title = '商品摘要详情!';
+    title = '温馨提醒展示';
 
     @Input() formData = new PxGoodsConfigModel();
-    templateConfigList: any[];
-    packagesDetailsList: PxPackageDetailModel[] = [];
-    packageTypeList: any[];
 
     packagesNoticeList: PxPackageNoticeModel[] = [];
 
+    /**
+     * 构建组件
+     *
+     * @param {FatigeConfigService} ftConfitService
+     * @param {DatePipe} datePipe
+     * @param {CommonServie} commonService
+     */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 private commonService: CommonServie) {
     }
 
+    /**
+     * 初始化组件
+     */
     ngOnInit(): void {
         console.log(this.title);
-        this.initContactList();
-        this.initGoodsList();
         this.initGoodsNoticeList();
     }
 
+    /**
+     * 初始化提醒分类列表
+     */
     initGoodsNoticeList() {
         // 套餐包
         this.ftConfitService.getAllPacakgesNoticeByGoodsId(this.formData.goodsId + '').subscribe(res => {
@@ -37,34 +49,4 @@ export class GoodsNoticeShowComponent implements OnInit {
             console.log('packagesNoticeList：', this.packagesNoticeList);
         });
     }
-
-    initGoodsList() {
-        // 套餐包
-        this.ftConfitService.getAllPacakgesDetailByGoodsId(this.formData.goodsId + '').subscribe(res => {
-            const tmpPackagesDetailList = this.commonService.filterResult(res.json());
-            console.log('tmpPackagesDetailList---------->' + this.formData.goodsId, tmpPackagesDetailList);
-
-            if (tmpPackagesDetailList !== null) {
-                this.packagesDetailsList = [];
-                tmpPackagesDetailList.forEach(e => {
-                    const packagesDetail = new PxPackageDetailModel();
-                    packagesDetail.gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
-                    packagesDetail.gmtModified = this.datePipe.transform(e.gmtModified, 'yyyy-MM-dd HH:mm:ss');
-                    packagesDetail.packagesDetailId = e.packagesDetailId;
-                    packagesDetail.packageDetailName = e.packageDetailName;
-                    packagesDetail.goodsId = e.goodsId;
-                    packagesDetail.height = '90px';
-                    this.packagesDetailsList.push(packagesDetail);
-                });
-            }
-        });
-    }
-
-    initContactList() {
-        this.ftConfitService.getDataDictionaryByKey('PxSubPackagesTypeEnum').subscribe(res => {
-            this.packageTypeList = this.commonService.filterResult(res.json());
-        });
-    }
 }
-
-

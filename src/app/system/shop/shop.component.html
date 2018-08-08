@@ -14,7 +14,7 @@
                         <p class="contact-input contact-absolute-width" style="margin-top: 25px;">
                             <label for="contactKey" class="select" style="margin-left: 0px;">
                                 <select name="contactKey" id="contactKey" [(ngModel)]="contactKey">
-                                    <option *ngFor="let contactType of contactList" value="{{contactType.bizKey}}">
+                                    <option *ngFor="let contactType of shopStatusList" value="{{contactType.bizKey}}">
                                         {{contactType.value}}
                                     </option>
                                 </select>
@@ -25,7 +25,7 @@
             </div>
             <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
                 <p class="contact-submit">
-                    <input type="button" class="button" value="   查   询   " (click)="load()">
+                    <input type="button" class="button" value="   查   询   " (click)="initShopList()">
                     <input type="button" class="button" value="添加店铺配置" (click)="gotoAddShop()">
                 </p>
             </div>
