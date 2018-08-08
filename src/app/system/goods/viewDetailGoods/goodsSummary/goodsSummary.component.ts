@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {EventService} from '../../../../asyncService/asyncService.service';
 import {environment} from '../../../../../environments/environment.prod';
 import {PxGoodsConfigModel} from '../../../../model/goods';
+import {CommonServie} from '../../../../utils/common.servie';
 
 @Component({
     selector: 'app-view-detail-goods-summary',
@@ -14,15 +13,13 @@ import {PxGoodsConfigModel} from '../../../../model/goods';
 export class GoodsSummaryComponent implements OnInit {
     title = '商品摘要详情!';
 
-    ftConfitService: FatigeConfigService;
     @Input() formData = new PxGoodsConfigModel();
 
     data;
     goodsConfigModel = new PxGoodsConfigModel();
     image;
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe) {
-        this.ftConfitService = ftConfitService;
+    constructor(private ftConfitService: FatigeConfigService, private commonService: CommonServie, private datePipe: DatePipe) {
     }
 
     ngOnInit(): void {
@@ -39,9 +36,9 @@ export class GoodsSummaryComponent implements OnInit {
         console.log('--formData--------------------------------->', this.formData.goodsId);
         console.log('--formData--------------------------------->', this.formData.goodsId);
         this.ftConfitService.manageGoodsConfig(formData).subscribe(res => {
-            this.data = this.filterResult(res.json());
+            this.data = this.commonService.filterResult(res.json());
             this.ftConfitService.getDataDictionaryByKey('PxGoodsOrderTypeEnum').subscribe(res1 => {
-                const orderType = this.filterResult(res1.json());
+                const orderType = this.commonService.filterResult(res1.json());
                 if (orderType !== null) {
                     orderType.forEach(e => {
                         if (e.bizKey === this.goodsConfigModel.orderType) {
@@ -51,7 +48,7 @@ export class GoodsSummaryComponent implements OnInit {
                 }
             });
             this.ftConfitService.getDataDictionaryByKey('PxGoodsHuiyuanEnum').subscribe(res2 => {
-                const isHuiyuan = this.filterResult(res2.json());
+                const isHuiyuan = this.commonService.filterResult(res2.json());
                 if (isHuiyuan !== null) {
                     isHuiyuan.forEach(e => {
                         if (e.bizKey === this.goodsConfigModel.isHuiyuan) {
@@ -61,7 +58,7 @@ export class GoodsSummaryComponent implements OnInit {
                 }
             });
             this.ftConfitService.getDataDictionaryByKey('PxGoodsQuanEnum').subscribe(res3 => {
-                const isQuan = this.filterResult(res3.json());
+                const isQuan = this.commonService.filterResult(res3.json());
                 console.log('isQuan：', isQuan);
                 if (isQuan !== null) {
                     isQuan.forEach(e => {
@@ -72,7 +69,7 @@ export class GoodsSummaryComponent implements OnInit {
                 }
             });
             this.ftConfitService.getDataDictionaryByKey('PxGoodsTuanEnum').subscribe(res4 => {
-                const isTuan = this.filterResult(res4.json());
+                const isTuan = this.commonService.filterResult(res4.json());
                 if (isTuan !== null) {
                     isTuan.forEach(e => {
                         if (e.bizKey === this.goodsConfigModel.isTuan) {
@@ -100,16 +97,5 @@ export class GoodsSummaryComponent implements OnInit {
             this.goodsConfigModel.shopId = this.data.shopId;
             console.log('==goodsConfigModel---------------==>', this.goodsConfigModel);
         });
-    }
-
-
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
     }
 }

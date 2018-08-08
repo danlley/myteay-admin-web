@@ -1,10 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {EventService} from '../../../../asyncService/asyncService.service';
 import {PxPackageDetailModel} from '../../goodsQuery/goodsPackages/goodsPackages.component';
 import {PxGoodsConfigModel} from '../../../../model/goods';
+import {CommonServie} from '../../../../utils/common.servie';
 
 @Component({
     selector: 'app-view-detail-goods-notice-show',
@@ -14,7 +13,6 @@ import {PxGoodsConfigModel} from '../../../../model/goods';
 export class GoodsNoticeShowComponent implements OnInit {
     title = '商品摘要详情!';
 
-    ftConfitService: FatigeConfigService;
     @Input() formData = new PxGoodsConfigModel();
     templateConfigList: any[];
     packagesDetailsList: PxPackageDetailModel[] = [];
@@ -22,9 +20,8 @@ export class GoodsNoticeShowComponent implements OnInit {
 
     packagesNoticeList: PxPackageNoticeModel[] = [];
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
-                private eventBus: EventService, private activeRoute: ActivatedRoute) {
-        this.ftConfitService = ftConfitService;
+    constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+                private commonService: CommonServie) {
     }
 
     ngOnInit(): void {
@@ -37,7 +34,7 @@ export class GoodsNoticeShowComponent implements OnInit {
     initGoodsNoticeList() {
         // 套餐包
         this.ftConfitService.getAllPacakgesNoticeByGoodsId(this.formData.goodsId + '').subscribe(res => {
-            this.packagesNoticeList = this.filterResult(res.json());
+            this.packagesNoticeList = this.commonService.filterResult(res.json());
             console.log('packagesNoticeList：', this.packagesNoticeList);
         });
     }
@@ -45,7 +42,7 @@ export class GoodsNoticeShowComponent implements OnInit {
     initGoodsList() {
         // 套餐包
         this.ftConfitService.getAllPacakgesDetailByGoodsId(this.formData.goodsId + '').subscribe(res => {
-            const tmpPackagesDetailList = this.filterResult(res.json());
+            const tmpPackagesDetailList = this.commonService.filterResult(res.json());
             console.log('tmpPackagesDetailList---------->' + this.formData.goodsId, tmpPackagesDetailList);
 
             if (tmpPackagesDetailList !== null) {
@@ -66,29 +63,8 @@ export class GoodsNoticeShowComponent implements OnInit {
 
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxSubPackagesTypeEnum').subscribe(res => {
-            this.packageTypeList = this.filterResult(res.json());
+            this.packageTypeList = this.commonService.filterResult(res.json());
         });
-    }
-
-    private getPackageTypeShow(packageType: string): string {
-        let show: string;
-        this.packageTypeList.forEach(t => {
-            if (t.bizKey === packageType) {
-                show = t.value;
-            }
-        });
-
-        return show;
-    }
-
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
     }
 }
 

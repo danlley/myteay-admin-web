@@ -4,6 +4,7 @@ import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
 import {PxGoodsConfigModel} from '../../../model/goods';
+import {CommonServie} from '../../../utils/common.servie';
 
 declare let laydate;
 
@@ -14,7 +15,6 @@ declare let laydate;
 })
 export class ModifyGoodsComponent implements OnInit {
     title = '修改商品摘要!';
-    ftConfitService: FatigeConfigService;
     goodsConfigModel = new PxGoodsConfigModel();
 
     shopData;
@@ -33,9 +33,8 @@ export class ModifyGoodsComponent implements OnInit {
     errorMessage;
     isNeedUpload = false;
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+    constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie,
                 private eventBus: EventService, private activeRoute: ActivatedRoute) {
-        this.ftConfitService = ftConfitService;
     }
 
     ngOnInit(): void {
@@ -66,7 +65,7 @@ export class ModifyGoodsComponent implements OnInit {
         formData.append('operationType', 'PX_QUERY_ONE');
         console.log('--formData--------------------------------->', this.goodsId);
         this.ftConfitService.manageGoodsConfig(formData).subscribe(res => {
-            this.data = this.filterResult(res.json());
+            this.data = this.commonService.filterResult(res.json());
             this.goodsConfigModel.operationType = 'PX_MODIFY';
             this.goodsConfigModel.goodsId = this.data.goodsId;
             this.goodsConfigModel.goodsImage = this.data.goodsImage;
@@ -134,26 +133,16 @@ export class ModifyGoodsComponent implements OnInit {
 
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxGoodsOrderTypeEnum').subscribe(res => {
-            this.orderType = this.filterResult(res.json());
+            this.orderType = this.commonService.filterResult(res.json());
         });
         this.ftConfitService.getDataDictionaryByKey('PxGoodsHuiyuanEnum').subscribe(res => {
-            this.isHuiyuan = this.filterResult(res.json());
+            this.isHuiyuan = this.commonService.filterResult(res.json());
         });
         this.ftConfitService.getDataDictionaryByKey('PxGoodsQuanEnum').subscribe(res => {
-            this.isQuan = this.filterResult(res.json());
+            this.isQuan = this.commonService.filterResult(res.json());
         });
         this.ftConfitService.getDataDictionaryByKey('PxGoodsTuanEnum').subscribe(res => {
-            this.isTuan = this.filterResult(res.json());
+            this.isTuan = this.commonService.filterResult(res.json());
         });
-    }
-
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
     }
 }

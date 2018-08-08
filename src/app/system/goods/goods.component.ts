@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FatigeConfigService} from '../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {DatePipe} from '@angular/common';
 import {EventService} from '../../asyncService/asyncService.service';
+import {CommonServie} from '../../utils/common.servie';
 
 @Component({
     selector: 'app-goods',
@@ -10,7 +11,6 @@ import {EventService} from '../../asyncService/asyncService.service';
 })
 export class GoodsComponent implements OnInit {
     title = '商品概要管理!';
-    ftConfitService: FatigeConfigService;
     contactList: any[];
     contactKey: string;
     templateConfigList: any[];
@@ -21,9 +21,8 @@ export class GoodsComponent implements OnInit {
         'tableContent': []
     };
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe, private eventBus: EventService) {
-        this.ftConfitService = ftConfitService;
-
+    constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+                private commonService: CommonServie, private eventBus: EventService) {
         this.eventBus.registerySubject('single_shop_detail').subscribe(e => {
             console.log('表格操作目标（详情）：', e[0]);
             this.eventBus.publish('system_shop_view_detail', e[0]);
@@ -68,7 +67,7 @@ export class GoodsComponent implements OnInit {
             'tableContent': []
         };
         this.ftConfitService.getAllShopConfig().subscribe(res => {
-            this.templateConfigList = this.filterResult(res.json());
+            this.templateConfigList = this.commonService.filterResult(res.json());
             this.tableElement.tableHeaders = ['流水号', '店铺名称', '店主', '店铺状态', '地址', '过期时间', '创建时间'];
             this.templateConfigList.forEach(e => {
                 const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
@@ -97,19 +96,10 @@ export class GoodsComponent implements OnInit {
 
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
-            this.contactList = this.filterResult(res.json());
+            this.contactList = this.commonService.filterResult(res.json());
         });
     }
 
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
-    }
 }
 
 export class PxShopConfigModel {

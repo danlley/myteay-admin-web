@@ -3,6 +3,7 @@ import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuer
 import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
+import {CommonServie} from '../../../utils/common.servie';
 
 declare let laydate;
 
@@ -14,15 +15,13 @@ declare let laydate;
 export class ModifyShopComponent implements OnInit {
     title = '修改店铺!';
     shopId: number;
-    ftConfitService: FatigeConfigService;
     formData = new PxShopConfigModel();
     data;
 
     shopStatusList;
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
-                public activeRoute: ActivatedRoute, private eventBus: EventService) {
-        this.ftConfitService = ftConfitService;
+    constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+                private commonService: CommonServie, public activeRoute: ActivatedRoute, private eventBus: EventService) {
     }
 
     ngOnInit(): void {
@@ -46,7 +45,7 @@ export class ModifyShopComponent implements OnInit {
 
     modifyShopConfig() {
         this.ftConfitService.manageShopConfig(this.formData).subscribe(res => {
-            this.data = this.filterResult(res.json());
+            this.data = this.commonService.filterResult(res.json());
             this.eventBus.publish('system_shop_manage', this.title);
         });
     }
@@ -58,7 +57,7 @@ export class ModifyShopComponent implements OnInit {
         queryData.operationType = 'PX_QUERY_ONE';
         console.log('=======================>', queryData);
         this.ftConfitService.manageShopConfig(queryData).subscribe(res => {
-            this.data = this.filterResult(res.json());
+            this.data = this.commonService.filterResult(res.json());
             this.formData.shopId = this.data.shopId;
             this.formData.gmtCreated = this.data.gmtCreated;
             this.formData.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
@@ -78,19 +77,10 @@ export class ModifyShopComponent implements OnInit {
 
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
-            this.shopStatusList = this.filterResult(res.json());
+            this.shopStatusList = this.commonService.filterResult(res.json());
         });
     }
 
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
-    }
 }
 
 export class PxShopConfigModel {

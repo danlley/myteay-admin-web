@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {EventService} from '../../../asyncService/asyncService.service';
+import {CommonServie} from '../../../utils/common.servie';
 
 declare let laydate;
 
@@ -11,13 +12,11 @@ declare let laydate;
 })
 export class AddShopComponent implements OnInit {
     title = '添加店铺!';
-    ftConfitService: FatigeConfigService;
     formData = new PxShopConfigModel();
 
     shopStatusList;
 
-    constructor(ftConfitService: FatigeConfigService, private eventBus: EventService) {
-        this.ftConfitService = ftConfitService;
+    constructor(private ftConfitService: FatigeConfigService, private commonService: CommonServie, private eventBus: EventService) {
     }
 
     ngOnInit(): void {
@@ -46,18 +45,8 @@ export class AddShopComponent implements OnInit {
 
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
-            this.shopStatusList = this.filterResult(res.json());
+            this.shopStatusList = this.commonService.filterResult(res.json());
         });
-    }
-
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
     }
 }
 

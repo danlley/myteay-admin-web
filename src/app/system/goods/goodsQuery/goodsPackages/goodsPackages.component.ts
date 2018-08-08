@@ -3,6 +3,7 @@ import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {EventService} from '../../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
+import {CommonServie} from '../../../../utils/common.servie';
 
 @Component({
     selector: 'app-query-goods',
@@ -13,7 +14,6 @@ import {ActivatedRoute} from '@angular/router';
 export class GoodsPackagesComponent implements OnInit {
 
     title = '套餐包管理!';
-    ftConfitService: FatigeConfigService;
     packageTypeList: any[];
     templateConfigList: any[];
     packagesDetailsList: PxPackageDetailModel[] = [];
@@ -32,10 +32,8 @@ export class GoodsPackagesComponent implements OnInit {
         'tableContent': []
     };
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+    constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie,
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
-        this.ftConfitService = ftConfitService;
-
         this.eventBus.registerySubject('single_sub_packages_for_delete').subscribe(e => {
             console.log('表格操作目标（删除）：', e);
             this.doDeleteSubPackages(e[0]);
@@ -50,13 +48,11 @@ export class GoodsPackagesComponent implements OnInit {
 
     private initShopData() {
         const tmpData: string = this.activeRoute.snapshot.queryParams['shop'];
-        const tmpArr: string[] = tmpData.split(',');
-        this.shopData = tmpArr;
+        this.shopData = tmpData.split(',');
         console.log('=====--------->', this.shopData);
 
         const tmpGoodsData: string = this.activeRoute.snapshot.queryParams['goods'];
-        const tmpGoodsArr: string[] = tmpGoodsData.split(',');
-        this.goodsData = tmpGoodsArr;
+        this.goodsData = tmpGoodsData.split(',');
         this.goodsId = this.goodsData[0];
         console.log('=====--------->', this.goodsData);
     }
@@ -71,7 +67,7 @@ export class GoodsPackagesComponent implements OnInit {
         this.subPackageData.operationType = 'PX_DELETE';
         console.log('=======================>', this.subPackageData);
         this.ftConfitService.manageSubPackages(this.subPackageData).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.subPackageData = new PxSubPackagesModel();
             this.initGoodsList();
@@ -82,7 +78,7 @@ export class GoodsPackagesComponent implements OnInit {
         this.subPackageData.packagesDetailId = elements.packagesDetailId;
         console.log('=======================>', this.subPackageData);
         this.ftConfitService.manageSubPackages(this.subPackageData).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.subPackageData = new PxSubPackagesModel();
             this.initGoodsList();
@@ -90,14 +86,10 @@ export class GoodsPackagesComponent implements OnInit {
     }
 
     initGoodsList() {
-
-
-
-        // 套餐包
         this.ftConfitService.getAllPacakgesDetailByGoodsId(this.goodsId).subscribe(res => {
-            const tmpPackagesDetailList = this.filterResult(res.json());
+            const tmpPackagesDetailList = this.commonService.filterResult(res.json());
+            this.packagesDetailsList = [];
             if (tmpPackagesDetailList !== null) {
-                this.packagesDetailsList = [];
                 tmpPackagesDetailList.forEach(e => {
                     const packagesDetail = new PxPackageDetailModel();
                     packagesDetail.gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
@@ -113,7 +105,7 @@ export class GoodsPackagesComponent implements OnInit {
                             'tableOp': [['删除', 'single_sub_packages_for_delete']],
                             'tableContent': []
                         };
-                        this.templateConfigList = this.filterResult(el.json());
+                        this.templateConfigList = this.commonService.filterResult(el.json());
                         if (this.templateConfigList !== null) {
                             packagesDetail.tableElement.tableHeaders = ['子套餐ID', '套餐包ID', '子套餐商品名称', '子套餐商品数量', '子套餐类型', '子商品单价', '创建时间'];
                             this.templateConfigList.forEach(es => {
@@ -132,7 +124,7 @@ export class GoodsPackagesComponent implements OnInit {
     }
 
     private getPackageTypeShow(packageType: string): string {
-        let show: string;
+        let show = '';
         this.packageTypeList.forEach(t => {
             if (t.bizKey === packageType) {
                 show = t.value;
@@ -150,7 +142,7 @@ export class GoodsPackagesComponent implements OnInit {
         packagesDetail.packageDetailName = this.goodsPackagesDetailName;
         packagesDetail.operationType = 'PX_ADD';
         this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.initGoodsList();
         });
@@ -165,7 +157,7 @@ export class GoodsPackagesComponent implements OnInit {
         packagesDetail.operationType = 'PX_MODIFY';
         packagesDetail.packagesDetailId = elements.packagesDetailId;
         this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.initGoodsList();
         });
@@ -180,7 +172,7 @@ export class GoodsPackagesComponent implements OnInit {
         packagesDetail.operationType = 'PX_DELETE';
         packagesDetail.packagesDetailId = elements.packagesDetailId;
         this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.initGoodsList();
         });
@@ -193,18 +185,8 @@ export class GoodsPackagesComponent implements OnInit {
 
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxSubPackagesTypeEnum').subscribe(res => {
-            this.packageTypeList = this.filterResult(res.json());
+            this.packageTypeList = this.commonService.filterResult(res.json());
         });
-    }
-
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
     }
 }
 

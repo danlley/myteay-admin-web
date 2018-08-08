@@ -3,6 +3,7 @@ import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../../../environments/environment.prod';
+import {CommonServie} from '../../../../utils/common.servie';
 
 @Component({
     selector: 'app-query-goods',
@@ -33,7 +34,7 @@ export class PacakgesImageComponent implements OnInit {
     errorMessage;
 
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
-                public activeRoute: ActivatedRoute) {
+                private commonService: CommonServie, public activeRoute: ActivatedRoute) {
     }
 
     ngOnInit(): void {
@@ -52,7 +53,7 @@ export class PacakgesImageComponent implements OnInit {
         const formData: FormData = new FormData();
         formData.append('file', this.currentFile, this.currentFile.name);
         this.ftConfitService.managePackagesImage(formData, this.goodsId).subscribe(res => {
-            this.templateConfigList = this.filterResult(res.json());
+            this.templateConfigList = this.commonService.filterResult(res.json());
             this.queryImageListByGoodsId();
             this.fileName = '';
         });
@@ -61,7 +62,7 @@ export class PacakgesImageComponent implements OnInit {
     queryImageListByGoodsId() {
         this.templateConfigList = [];
         this.ftConfitService.getAllPackagesImageByGoodsId(this.goodsId).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             if (result !== null) {
                 result.forEach(e => {
                     const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
@@ -84,7 +85,7 @@ export class PacakgesImageComponent implements OnInit {
 
     doOperation(element) {
         this.ftConfitService.removePackagesImage(element.imageId).subscribe(res => {
-            const result = this.filterResult(res.json());
+            const result = this.commonService.filterResult(res.json());
             console.log('=====--------->', result);
             this.queryImageListByGoodsId();
         });
@@ -104,15 +105,6 @@ export class PacakgesImageComponent implements OnInit {
 
     }
 
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
-    }
 }
 
 export class PxPackageImageModel {

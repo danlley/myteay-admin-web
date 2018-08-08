@@ -3,6 +3,7 @@ import {DatePipe} from '@angular/common';
 import {FatigeConfigService} from '../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {PxPackageDetailModel} from '../../goodsQuery/goodsPackages/goodsPackages.component';
 import {PxGoodsConfigModel} from '../../../../model/goods';
+import {CommonServie} from '../../../../utils/common.servie';
 
 @Component({
     selector: 'app-view-detail-goods-detail',
@@ -12,14 +13,12 @@ import {PxGoodsConfigModel} from '../../../../model/goods';
 export class GoodsDetailComponent implements OnInit {
     title = '商品摘要详情!';
 
-    ftConfitService: FatigeConfigService;
     @Input() formData = new PxGoodsConfigModel();
     templateConfigList: any[];
     packagesDetailsList: PxPackageDetailModel[] = [];
     packageTypeList: any[];
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe) {
-        this.ftConfitService = ftConfitService;
+    constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie) {
     }
 
     ngOnInit(): void {
@@ -31,7 +30,7 @@ export class GoodsDetailComponent implements OnInit {
     initGoodsList() {
         // 套餐包
         this.ftConfitService.getAllPacakgesDetailByGoodsId(this.formData.goodsId + '').subscribe(res => {
-            const tmpPackagesDetailList = this.filterResult(res.json());
+            const tmpPackagesDetailList = this.commonService.filterResult(res.json());
             console.log('tmpPackagesDetailList---------->' + this.formData.goodsId, tmpPackagesDetailList);
 
             if (tmpPackagesDetailList !== null) {
@@ -51,7 +50,7 @@ export class GoodsDetailComponent implements OnInit {
                             'tableOp': [['删除', '']],
                             'tableContent': []
                         };
-                        this.templateConfigList = this.filterResult(el.json());
+                        this.templateConfigList = this.commonService.filterResult(el.json());
                         if (this.templateConfigList !== null) {
                             this.templateConfigList.forEach(es => {
                                 const gmtCreated = this.datePipe.transform(es.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
@@ -71,7 +70,7 @@ export class GoodsDetailComponent implements OnInit {
 
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxSubPackagesTypeEnum').subscribe(res => {
-            this.packageTypeList = this.filterResult(res.json());
+            this.packageTypeList = this.commonService.filterResult(res.json());
         });
     }
 
@@ -84,16 +83,6 @@ export class GoodsDetailComponent implements OnInit {
         });
 
         return show;
-    }
-
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
     }
 }
 

@@ -4,6 +4,7 @@ import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuer
 import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {PxGoodsConfigModel} from '../../../model/goods';
+import {CommonServie} from '../../../utils/common.servie';
 
 @Component({
     selector: 'app-query-goods',
@@ -14,7 +15,6 @@ import {PxGoodsConfigModel} from '../../../model/goods';
 export class GoodsQueryComponent implements OnInit {
 
     title = '商品概要管理!';
-    ftConfitService: FatigeConfigService;
     contactList: any[];
     templateConfigList: any[];
     shopData;
@@ -25,10 +25,8 @@ export class GoodsQueryComponent implements OnInit {
         'tableContent': []
     };
 
-    constructor(ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+    constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie,
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
-        this.ftConfitService = ftConfitService;
-
         this.eventBus.registerySubject('system_goods_for_view_detail').subscribe(e => {
             const sendData = [this.shopData, e[0]];
             console.log('表格操作目标（详情）：', sendData);
@@ -106,7 +104,7 @@ export class GoodsQueryComponent implements OnInit {
             'tableContent': []
         };
         this.ftConfitService.getAllGoodsByShopId(this.shopData[0]).subscribe(res => {
-            this.templateConfigList = this.filterResult(res.json());
+            this.templateConfigList = this.commonService.filterResult(res.json());
             this.tableElement.tableHeaders = ['流水号', '商品名称', '套餐信息类型', '当前售价', '当前销量', '过期时间', '创建时间'];
             this.templateConfigList.forEach(e => {
                 const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
@@ -123,18 +121,8 @@ export class GoodsQueryComponent implements OnInit {
 
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
-            this.contactList = this.filterResult(res.json());
+            this.contactList = this.commonService.filterResult(res.json());
         });
-    }
-
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
-
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
     }
 }
 
