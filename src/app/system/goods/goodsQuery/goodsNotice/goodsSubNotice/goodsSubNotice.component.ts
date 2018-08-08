@@ -14,6 +14,8 @@ export class GoodsSubNoticeComponent implements OnInit {
     title = '套餐包管理!';
 
     @Input() noticeData;
+
+    @Input() isShowOperation = true;
     subNoticePackageDataList: PxPackageSubNoticeModel[];
     height = 0;
 
