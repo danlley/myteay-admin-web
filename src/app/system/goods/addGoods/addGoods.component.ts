@@ -3,6 +3,7 @@ import {FatigeConfigService} from '../../../customer/mtFatigeIndicatorConfigQuer
 import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {PxGoodsConfigModel} from '../../../model/goods';
+import {CommonServie} from '../../../utils/common.servie';
 
 declare let laydate;
 
@@ -13,7 +14,6 @@ declare let laydate;
 })
 export class AddGoodsComponent implements OnInit {
     title = '添加商品摘要!';
-    ftConfitService: FatigeConfigService;
     goodsConfigModel = new PxGoodsConfigModel();
 
     shopData;
@@ -28,8 +28,8 @@ export class AddGoodsComponent implements OnInit {
     fileName;
     errorMessage;
 
-    constructor(ftConfitService: FatigeConfigService, private eventBus: EventService, private activeRoute: ActivatedRoute) {
-        this.ftConfitService = ftConfitService;
+    constructor(private ftConfitService: FatigeConfigService, private eventBus: EventService,
+                private commonService: CommonServie, private activeRoute: ActivatedRoute) {
     }
 
     ngOnInit(): void {
@@ -88,26 +88,18 @@ export class AddGoodsComponent implements OnInit {
 
     initContactList() {
         this.ftConfitService.getDataDictionaryByKey('PxGoodsOrderTypeEnum').subscribe(res => {
-            this.orderType = this.filterResult(res.json());
+            this.orderType = this.commonService.filterResult(res.json());
         });
         this.ftConfitService.getDataDictionaryByKey('PxGoodsHuiyuanEnum').subscribe(res => {
-            this.isHuiyuan = this.filterResult(res.json());
+            this.isHuiyuan = this.commonService.filterResult(res.json());
         });
         this.ftConfitService.getDataDictionaryByKey('PxGoodsQuanEnum').subscribe(res => {
-            this.isQuan = this.filterResult(res.json());
+            this.isQuan = this.commonService.filterResult(res.json());
         });
         this.ftConfitService.getDataDictionaryByKey('PxGoodsTuanEnum').subscribe(res => {
-            this.isTuan = this.filterResult(res.json());
+            this.isTuan = this.commonService.filterResult(res.json());
         });
     }
 
-    filterResult(data): any {
-        console.log('开始过滤处理结果：', data);
 
-        if ('CAMP_OPERATE_SUCCESS' !== data.operateResult) {
-            console.log('返回结果失败：', data);
-            return null;
-        }
-        return data.result;
-    }
 }

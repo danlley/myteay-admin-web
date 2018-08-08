@@ -40,6 +40,7 @@ import {GoodsDetailImageShowComponent} from './system/goods/viewDetailGoods/good
 import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsNotice.component';
 import {GoodsSubNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsSubNotice/goodsSubNotice.component';
 import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoticeShow/goodsNoticeShow.component';
+import {CommonServie} from './utils/common.servie';
 
 @NgModule({
     declarations: [
@@ -86,6 +87,7 @@ import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoti
         TitleComponent,
         DatePipe,
         EventService,
+        CommonServie,
         FatigeConfigService,
         DefaultPageComponent,
         MessageManagerComponent,
