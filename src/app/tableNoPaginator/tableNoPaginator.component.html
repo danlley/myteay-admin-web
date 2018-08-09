@@ -3,18 +3,18 @@
     <label *ngIf="isNeedShow" class="table-summary-top">>>表格记录条数：<span
             style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
     <table align="center" class="table-operation-style">
-        <th *ngFor="let tableColumn of tableElement.tableHeaders">{{tableColumn}}</th>
-        <th>操作</th>
+        <th *ngFor="let tableColumn of tableElement.tableHeaders" style="font-size: 0.8em;">{{tableColumn}}</th>
+        <th style="font-size: 0.8em;">操作</th>
         <tr class="table-no-paginator-tr-style" *ngFor="let tableContentElement of tableElement.tableContent">
-            <td align="center">{{tableContentElement[0]}}</td>
-            <td align="center">{{tableContentElement[1]}}</td>
-            <td align="center">{{tableContentElement[2]}}</td>
-            <td align="center">{{tableContentElement[3]}}</td>
-            <td align="center">{{tableContentElement[4]}}</td>
-            <td align="center">{{tableContentElement[5]}}</td>
-            <td align="center">{{tableContentElement[6]}}</td>
-            <td align="center">
-                <a *ngFor="let opElement of tableElement.tableOp" style="cursor: pointer;" (click)="tableNoPaginatorOperation(tableContentElement, opElement[1])"> {{opElement[0]}} </a>
+            <td align="center" style="font-size: 0.4em;">{{tableContentElement[0]}}</td>
+            <td align="center" style="font-size: 0.4em;">{{tableContentElement[1]}}</td>
+            <td align="center" style="font-size: 0.4em;">{{tableContentElement[2]}}</td>
+            <td align="center" style="font-size: 0.4em;">{{tableContentElement[3]}}</td>
+            <td align="center" style="font-size: 0.4em;">{{tableContentElement[4]}}</td>
+            <td align="center" style="font-size: 0.4em;">{{tableContentElement[5]}}</td>
+            <td align="center" style="font-size: 0.4em;">{{tableContentElement[6]}}</td>
+            <td align="center" style="font-size: 0.4em;">
+                <a *ngFor="let opElement of tableElement.tableOp" style="cursor: pointer; margin-left: 20px; color: #721c24;" (click)="tableNoPaginatorOperation(tableContentElement, opElement[1])"> {{opElement[0]}} </a>
             </td>
         </tr>
         <th colspan="8"></th>
