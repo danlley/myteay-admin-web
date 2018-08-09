@@ -18,6 +18,7 @@ import {GoodsPackagesComponent} from './system/goods/goodsQuery/goodsPackages/go
 import {PacakgesImageComponent} from './system/goods/goodsQuery/pacakgesImage/pacakgesImage.component';
 import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsNotice.component';
 import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
+import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
 
 export const appRouter: Routes = [
     {
@@ -72,6 +73,10 @@ export const appRouter: Routes = [
             {
                 path: 'system/goods/view/active',
                 component: ActiveGoodsComponent
+            },
+            {
+                path: 'system/goods/view/inactive',
+                component: InactiveGoodsComponent
             },
             {
                 path: 'system/shop',

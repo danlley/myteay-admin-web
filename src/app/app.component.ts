@@ -43,7 +43,12 @@ export class AppComponent implements OnInit {
             this.router.navigate(['system/goods/view/active'], {queryParams: {data: e[0], id: e[1]}});
         });
 
-        // 发布单条商品摘要数据
+        // 下架单条商品摘要数据
+        this.eventBus.registerySubject('system_goods_view_inactive').subscribe(e => {
+            this.router.navigate(['system/goods/view/inactive'], {queryParams: {data: e[0], id: e[1]}});
+        });
+
+        // 查看商品摘要数据
         this.eventBus.registerySubject('system_goods_view_detail').subscribe(e => {
             this.router.navigate(['system/goods/view/detail'], {queryParams: {data: e[0], id: e[1]}});
         });

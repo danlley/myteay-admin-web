@@ -42,6 +42,7 @@ import {GoodsSubNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goo
 import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoticeShow/goodsNoticeShow.component';
 import {CommonServie} from './utils/common.servie';
 import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
+import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
 
 @NgModule({
     declarations: [
@@ -76,6 +77,7 @@ import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.compo
         GoodsNoticeShowComponent,
         GoodsDetailImageShowComponent,
         ActiveGoodsComponent,
+        InactiveGoodsComponent,
         BottomComponent
     ],
     imports: [
@@ -119,6 +121,7 @@ import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.compo
         GoodsSubNoticeComponent,
         GoodsNoticeShowComponent,
         ActiveGoodsComponent,
+        InactiveGoodsComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })
