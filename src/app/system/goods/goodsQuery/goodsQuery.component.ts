@@ -157,5 +157,11 @@ export class GoodsQueryComponent implements OnInit {
         this.eventBus.publish('system_goods_add', this.shopData);
     }
 
+    /**
+     * 返回商品摘要列表页面
+     */
+    goReturn() {
+        this.eventBus.publish('system_goods_manage', this.shopData);
+    }
 }
 
