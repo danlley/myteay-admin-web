@@ -5,6 +5,7 @@ import {ActivatedRoute} from '@angular/router';
 import {environment} from '../../../../../environments/environment.prod';
 import {CommonServie} from '../../../../utils/common.servie';
 import {PxPackageImageModel} from '../../../../model/goods';
+import {EventService} from '../../../../asyncService/asyncService.service';
 
 @Component({
     selector: 'app-query-goods-package-image',
@@ -47,7 +48,7 @@ export class PacakgesImageComponent implements OnInit {
      * @param {CommonServie} commonService
      * @param {ActivatedRoute} activeRoute
      */
-    constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+    constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,  private eventBus: EventService,
                 private commonService: CommonServie, public activeRoute: ActivatedRoute) {
     }
 
@@ -109,6 +110,13 @@ export class PacakgesImageComponent implements OnInit {
             }
         });
 
+    }
+
+    /**
+     * 返回商品摘要列表页面
+     */
+    goReturn() {
+        this.eventBus.publish('system_goods_manage_all', this.shopData);
     }
 
     /**

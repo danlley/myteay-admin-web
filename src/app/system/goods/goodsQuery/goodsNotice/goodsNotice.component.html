@@ -12,7 +12,7 @@
                 <!-- 温馨提醒分类添加表单 -->
                 <table width="100%">
                     <tr>
-                        <td align="right" width="90%">
+                        <td align="right" width="80%">
                             <p class="contact-input contact-absolute-width">
                                 <input type="text" name="goodsPackagesDetailName" placeholder="温馨提醒类别"
                                        [(ngModel)]="packagesNoticeName">
@@ -20,8 +20,8 @@
                         </td>
                         <td align="right">
                             <p class="contact-submit">
-                                <input type="button" class="button" value="   添加温馨提醒类别   "
-                                       (click)="gotoAddPackageNotice()">
+                                <input type="button" class="button" value="   添加温馨提醒类别   " (click)="gotoAddPackageNotice()">
+                                <input type="button" class="button" value="   返回   " (click)="goReturn()">
                             </p>
                         </td>
                     </tr>
@@ -95,7 +95,7 @@
                 <app-query-goods-packages-sub-notice [noticeData]="elements"></app-query-goods-packages-sub-notice>
             </div>
             <!-- 页面底边距控制 -->
-            <div style="width: 100%; height: 70px;"></div>
+            <div style="width: 100%; height: 270px;"></div>
         </div>
     </div>
 </div>

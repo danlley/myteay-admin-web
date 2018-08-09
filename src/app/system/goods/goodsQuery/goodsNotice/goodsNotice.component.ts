@@ -134,6 +134,13 @@ export class GoodsNoticeComponent implements OnInit {
     }
 
     /**
+     * 返回商品摘要列表页面
+     */
+    goReturn() {
+        this.eventBus.publish('system_goods_manage_all', this.shopData);
+    }
+
+    /**
      * 添加提醒分类
      */
     public gotoAddPackageNotice(): void {
@@ -146,6 +153,7 @@ export class GoodsNoticeComponent implements OnInit {
         this.ftConfitService.managePackagesNotice(packagesDetail).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
+            this.packagesNoticeName = '';
             this.initPackagesNoticeList();
         });
     }

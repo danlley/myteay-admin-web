@@ -86,6 +86,14 @@ export class GoodsPackagesComponent implements OnInit {
         console.log('=====--------->', this.goodsData);
     }
 
+
+    /**
+     * 返回商品摘要列表页面
+     */
+    goReturn() {
+        this.eventBus.publish('system_goods_manage_all', this.shopData);
+    }
+
     /**
      * 删除子套餐
      *

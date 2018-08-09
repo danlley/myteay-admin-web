@@ -48,6 +48,13 @@ export class GoodsQueryComponent implements OnInit {
             this.eventBus.publish('system_goods_view_detail', sendData);
         });
 
+        // 监听商品详情展示请求
+        this.eventBus.registerySubject('system_goods_view_for_active').subscribe(e => {
+            const sendData = [this.shopData, e[0]];
+            console.log('表格操作目标（详情）：', sendData);
+            this.eventBus.publish('system_goods_view_active', sendData);
+        });
+
         // 监听商品概要信息修改请求
         this.eventBus.registerySubject('single_goods_for_modify').subscribe(e => {
             const sendData = [this.shopData, e[0]];
@@ -119,7 +126,7 @@ export class GoodsQueryComponent implements OnInit {
                 ['子套餐维护', 'system_goods_packages_for_all'],
                 ['详情图片维护', 'system_goods_packages_image_for_all'],
                 ['套餐提醒维护', 'system_goods_packages_notice_for_all'],
-                ['发布', 'system_goods_for_view_detail'], ['下架', 'system_goods_for_view_detail'], ['详情', 'system_goods_for_view_detail'],
+                ['发布', 'system_goods_view_for_active'], ['下架', 'system_goods_for_view_detail'], ['详情', 'system_goods_for_view_detail'],
                 ['修改', 'single_goods_for_modify'], ['删除', 'single_goods_delete']
             ],
             'tableContent': []

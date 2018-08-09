@@ -114,6 +114,13 @@ export class AddGoodsComponent implements OnInit {
     }
 
     /**
+     * 返回商品摘要列表页面
+     */
+    goReturn() {
+        this.eventBus.publish('system_goods_manage_all', this.shopData);
+    }
+
+    /**
      * 下拉菜单初始化
      */
     initSelectList() {

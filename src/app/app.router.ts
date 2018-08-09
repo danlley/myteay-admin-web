@@ -3,7 +3,6 @@ import {MtFatigeIndicatorConfigQueryComponent} from './customer/mtFatigeIndicato
 import {DefaultPageComponent} from './defaultPage/defaultPage.component';
 import {MessageManagerComponent} from './message/mtMessageManager/messageManager.component';
 import {AddMessageConfigComponent} from './message/addMessageConfig/addMessageConfig.component';
-import {ModifyMessageConfigModule} from './message/modifyMessageConfig/modifyMessageConfig.module';
 import {ModifyMessageConfigComponent} from './message/modifyMessageConfig/modifyMessageConfig.component';
 import {SystemComponent} from './system/system.component';
 import {ShopComponent} from './system/shop/shop.component';
@@ -18,6 +17,7 @@ import {ViewDetailGoodsComponent} from './system/goods/viewDetailGoods/viewDetai
 import {GoodsPackagesComponent} from './system/goods/goodsQuery/goodsPackages/goodsPackages.component';
 import {PacakgesImageComponent} from './system/goods/goodsQuery/pacakgesImage/pacakgesImage.component';
 import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsNotice.component';
+import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
 
 export const appRouter: Routes = [
     {
@@ -68,6 +68,10 @@ export const appRouter: Routes = [
             {
                 path: 'system/goods/view/detail',
                 component: ViewDetailGoodsComponent
+            },
+            {
+                path: 'system/goods/view/active',
+                component: ActiveGoodsComponent
             },
             {
                 path: 'system/shop',

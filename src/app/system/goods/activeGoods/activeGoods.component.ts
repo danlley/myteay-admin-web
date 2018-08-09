@@ -7,16 +7,16 @@ import {PxGoodsConfigModel} from '../../../model/goods';
 import {CommonServie} from '../../../utils/common.servie';
 
 @Component({
-    selector: 'app-view-detail-goods',
+    selector: 'app-view-detail-goods-active',
     templateUrl: './activeGoods.component.html',
     styleUrls: ['./activeGoods.component.css']
 })
 
 /**
- * 商品详情展示组件
+ * 商品发布组件
  */
 export class ActiveGoodsComponent implements OnInit {
-    title = '商品详情展示组件';
+    title = '商品发布';
 
     formData = new PxGoodsConfigModel();
 
