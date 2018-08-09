@@ -173,23 +173,33 @@ export class GoodsNoticeComponent implements OnInit {
             return;
         }
 
+        const that = this;
+        let time = 0;
         goodsPackagesNoticeList.forEach(e => {
-            this.ftConfitService.managePackagesNotice(e).subscribe(res => {
-                const result = this.commonService.filterResult(res.json());
-                console.log('packagesNoticeId：', result.packagesNoticeId);
-                const packagesNoticeId = result.packagesNoticeId;
-                const goodsPackagesSubNoticeList = e.goodsPackagesSubNoticeList;
-                if (goodsPackagesSubNoticeList !== undefined) {
-                    goodsPackagesSubNoticeList.forEach( s => {
-                        s.packagesNoticeId = packagesNoticeId;
-                        this.ftConfitService.managePackagesSubNotice(s).subscribe(res1 => {
-                            const result1 = this.commonService.filterResult(res1.json());
-                            this.initPackagesNoticeList();
+            time += 200;
+            setTimeout(function () {
+                that.ftConfitService.managePackagesNotice(e).subscribe(res => {
+                    const result = that.commonService.filterResult(res.json());
+                    console.log('packagesNoticeId：', result.packagesNoticeId);
+                    const packagesNoticeId = result.packagesNoticeId;
+                    const goodsPackagesSubNoticeList = e.goodsPackagesSubNoticeList;
+                    if (goodsPackagesSubNoticeList !== undefined) {
+                        let time1 = 0;
+                        goodsPackagesSubNoticeList.forEach(s => {
+                            time1 += 200;
+                            s.packagesNoticeId = packagesNoticeId;
+                            setTimeout(function () {
+                                that.ftConfitService.managePackagesSubNotice(s).subscribe(res1 => {
+                                    const result1 = that.commonService.filterResult(res1.json());
+                                    that.initPackagesNoticeList();
+                                });
+                            }, time1 + '');
                         });
-                    });
-                }
-            });
+                    }
+                });
+            }, time + '');
         });
+
         this.initPackagesNoticeList();
     }
 

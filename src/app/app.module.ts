@@ -44,6 +44,7 @@ import {CommonServie} from './utils/common.servie';
 import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
 import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
 import {AutoCommitGoodsNoticeService} from './utils/autoCommitGoodsNotice.service';
+import {AutoCommitGoodsPackagesService} from './utils/autoCommitGoodsPackages.service';
 
 @NgModule({
     declarations: [
@@ -95,6 +96,7 @@ import {AutoCommitGoodsNoticeService} from './utils/autoCommitGoodsNotice.servic
         CommonServie,
         FatigeConfigService,
         AutoCommitGoodsNoticeService,
+        AutoCommitGoodsPackagesService,
         DefaultPageComponent,
         MessageManagerComponent,
         AddMessageConfigComponent,

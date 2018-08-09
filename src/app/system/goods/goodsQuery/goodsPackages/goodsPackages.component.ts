@@ -5,6 +5,7 @@ import {EventService} from '../../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {CommonServie} from '../../../../utils/common.servie';
 import {PxPackageDetailModel, PxSubPackagesModel} from '../../../../model/goods';
+import {AutoCommitGoodsPackagesService} from '../../../../utils/autoCommitGoodsPackages.service';
 
 @Component({
     selector: 'app-query-goods-packages',
@@ -54,10 +55,12 @@ export class GoodsPackagesComponent implements OnInit {
      * @param {FatigeConfigService} ftConfitService
      * @param {DatePipe} datePipe
      * @param {CommonServie} commonService
+     * @param {AutoCommitGoodsPackagesService} autoCommitGoodsPackagesService
      * @param {ActivatedRoute} activeRoute
      * @param {EventService} eventBus
      */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie,
+                private autoCommitGoodsPackagesService: AutoCommitGoodsPackagesService,
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
         this.eventBus.registerySubject('single_sub_packages_for_delete').subscribe(e => {
             console.log('表格操作目标（删除）：', e);
@@ -202,6 +205,31 @@ export class GoodsPackagesComponent implements OnInit {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
             this.initPackagesDetailList();
+        });
+    }
+
+    /**
+     * 自动生成套餐模板
+     */
+    public gotoAutoAddPackages() {
+        const pxPackageDetailModelList = this.autoCommitGoodsPackagesService.getPxPackageDetailModelList(this.goodsId);
+        console.log('pxPackageDetailModelList：', pxPackageDetailModelList);
+        if (pxPackageDetailModelList === undefined) {
+            console.log('pxPackageDetailModelList 不可用，无法完成自动生成套餐模板');
+            return;
+        }
+        const that = this;
+        let time = 0;
+        pxPackageDetailModelList.forEach(e => {
+            time += 200;
+            setTimeout(function () {
+                that.ftConfitService.managePackagesDetail(e).subscribe(res => {
+                    const result = that.commonService.filterResult(res.json());
+                    console.log('开始过滤处理结果：', result);
+                    that.initPackagesDetailList();
+                });
+            }, time + '');
+            console.log('8888888888889999999999000000000000==========--------=======》', e);
         });
     }
 

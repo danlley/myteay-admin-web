@@ -124,6 +124,18 @@
                 <!-- 子套餐内容展示 -->
                 <app-table-no-paginator [tableElement]="elements.tableElement" [tableTitle]="title" [isNeedShow]="false"></app-table-no-paginator>
             </div>
+
+            <!-- 页面底边距控制 -->
+            <div style="width: 100%; height: 70px;"></div>
+            <div style="width: 97%; margin: auto; left: 0; right: 0;">
+                <table width="100%"><tr><td align="right">
+                    <p class="contact-submit">
+                        <input type="button" class="button" value="   一键添加套餐包模板   " (click)="gotoAutoAddPackages()">
+                    </p>
+                </td></tr></table>
+            </div>
+
+            <!-- 页面底边距控制 -->
             <div style="width: 100%; height: 170px;"></div>
         </div>
     </div>
