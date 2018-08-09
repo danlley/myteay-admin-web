@@ -43,6 +43,7 @@ import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoti
 import {CommonServie} from './utils/common.servie';
 import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
 import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
+import {AutoCommitGoodsNoticeService} from './utils/autoCommitGoodsNotice.service';
 
 @NgModule({
     declarations: [
@@ -93,6 +94,7 @@ import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods
         EventService,
         CommonServie,
         FatigeConfigService,
+        AutoCommitGoodsNoticeService,
         DefaultPageComponent,
         MessageManagerComponent,
         AddMessageConfigComponent,

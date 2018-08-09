@@ -5,6 +5,8 @@ import {EventService} from '../../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 import {CommonServie} from '../../../../utils/common.servie';
 import {PxPackageNoticeModel, PxPackageSubNoticeModel} from '../../../../model/goods';
+import {AutoCommitGoodsNoticeService} from '../../../../utils/autoCommitGoodsNotice.service';
+
 
 @Component({
     selector: 'app-query-goods-packages-notice',
@@ -52,11 +54,13 @@ export class GoodsNoticeComponent implements OnInit {
      *
      * @param {FatigeConfigService} ftConfitService
      * @param {DatePipe} datePipe
+     * @param {AutoCommitGoodsNoticeService} autoCommitGoodsNoticeService
      * @param {CommonServie} commonService
      * @param {ActivatedRoute} activeRoute
      * @param {EventService} eventBus
      */
     constructor(private ftConfitService: FatigeConfigService, public datePipe: DatePipe,
+                private autoCommitGoodsNoticeService: AutoCommitGoodsNoticeService,
                 private commonService: CommonServie, public activeRoute: ActivatedRoute, private eventBus: EventService) {
 
         this.eventBus.registerySubject('single_sub_packages_for_delete').subscribe(e => {
@@ -159,6 +163,37 @@ export class GoodsNoticeComponent implements OnInit {
     }
 
     /**
+     * 自动添加提醒分类
+     */
+    public gotoAutoAddPackageNotice(): void {
+        const goodsPackagesNoticeList = this.autoCommitGoodsNoticeService.getGoodsPackagesNoticeList(this.goodsId);
+        console.log('--------goodsPackagesNoticeList------------>', goodsPackagesNoticeList);
+        if (goodsPackagesNoticeList === undefined) {
+            console.log('无法执行保存模板动作');
+            return;
+        }
+
+        goodsPackagesNoticeList.forEach(e => {
+            this.ftConfitService.managePackagesNotice(e).subscribe(res => {
+                const result = this.commonService.filterResult(res.json());
+                console.log('packagesNoticeId：', result.packagesNoticeId);
+                const packagesNoticeId = result.packagesNoticeId;
+                const goodsPackagesSubNoticeList = e.goodsPackagesSubNoticeList;
+                if (goodsPackagesSubNoticeList !== undefined) {
+                    goodsPackagesSubNoticeList.forEach( s => {
+                        s.packagesNoticeId = packagesNoticeId;
+                        this.ftConfitService.managePackagesSubNotice(s).subscribe(res1 => {
+                            const result1 = this.commonService.filterResult(res1.json());
+                            this.initPackagesNoticeList();
+                        });
+                    });
+                }
+            });
+        });
+        this.initPackagesNoticeList();
+    }
+
+    /**
      * 修改提醒分类
      *
      * @param elements
@@ -209,7 +244,6 @@ export class GoodsNoticeComponent implements OnInit {
     }
 
 }
-
 
 
 

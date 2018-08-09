@@ -39,6 +39,7 @@ export class PxPackageNoticeModel {
     packagesNoticeName: string;
     gmtCreated: string;
     gmtModified: string;
+    goodsPackagesSubNoticeList: PxPackageSubNoticeModel[];
 }
 
 
