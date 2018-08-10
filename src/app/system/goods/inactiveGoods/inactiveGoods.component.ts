@@ -23,6 +23,8 @@ export class InactiveGoodsComponent implements OnInit {
     shopData;
     goodsId;
 
+    isNeesShowOnffButton = true;
+
     /**
      * 构建组件
      *
@@ -46,14 +48,30 @@ export class InactiveGoodsComponent implements OnInit {
     }
 
     /**
+     * 商品下架
+     */
+    public operateOffline() {
+        this.formData.goodsId = this.goodsId;
+        this.formData.operationType = 'PX_MODIFY';
+        this.formData.goodsStatus = 'PX_GOODS_OFFLINE';
+        this.ftConfitService.manageGoodsStatus(this.formData).subscribe(res => {
+            const data = this.commonService.filterResult(res.json());
+            console.log('====data===================>', data);
+            this.goReturn();
+        });
+    }
+
+    /**
      * 获取当前商品信息
      */
     private initSingleGoods() {
+        const formData: FormData = new FormData();
+        formData.append('goodsId', this.goodsId);
+        formData.append('operationType', 'PX_QUERY_ONE');
         this.formData.goodsId = this.goodsId;
         this.formData.operationType = 'PX_QUERY_ONE';
-        this.ftConfitService.manageGoodsConfig(this.formData).subscribe(res => {
+        this.ftConfitService.manageGoodsConfig(formData).subscribe(res => {
             const data = this.commonService.filterResult(res.json());
-            this.formData.goodsId = data.goodsId;
             this.formData.goodsImage = data.goodsImage;
             this.formData.isHuiyuan = data.isHuiyuan;
             this.formData.isQuan = data.isQuan;
@@ -69,8 +87,13 @@ export class InactiveGoodsComponent implements OnInit {
             this.formData.gmtModified = this.datePipe.transform(data.gmtModified, 'yyyy-MM-dd HH:mm:ss');
             this.formData.goodsSellAmount = data.goodsSellAmount;
             this.formData.shopId = data.shopId;
+            this.formData.goodsStatus = data.goodsStatus;
+            if (this.formData.goodsStatus === 'PX_GOODS_OFFLINE'
+                || this.formData.goodsStatus === 'PX_GOODS_DRAFT' || this.formData.goodsStatus === undefined) {
+                this.isNeesShowOnffButton = false;
+            }
 
-            console.log('=======================>', res.json());
+            console.log('========isNeesShowOnffButton===============>', this.formData);
         });
     }
 

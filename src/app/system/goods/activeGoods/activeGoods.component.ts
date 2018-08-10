@@ -48,6 +48,9 @@ export class ActiveGoodsComponent implements OnInit {
         this.initSingleGoods();
     }
 
+    /**
+     * 商品发布
+     */
     public operateOnline() {
         this.formData.goodsId = this.goodsId;
         this.formData.operationType = 'PX_MODIFY';
