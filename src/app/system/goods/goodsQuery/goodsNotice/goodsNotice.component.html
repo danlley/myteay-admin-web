@@ -28,7 +28,9 @@
                 </table>
             </div>
         </div>
-
+        <div style="height: 35px; width: 100%;">
+            <span  *ngIf="isNeedShowErrMsg" style="color: #721c24">{{errMsg}}</span>
+        </div>
         <!-- 温馨提醒分类展示及修改表单 -->
         <div style="overflow:scroll; width:100%; height:600px;">
             <div *ngFor="let elements of packagesNoticeList"
@@ -54,13 +56,13 @@
                     <div style="width: 70%; height: 100%; float: right;">
                         <table width="100%">
                             <tr>
-                                <td width="45%">
+                                <td width="25%">
                                     <p class="contact-input contact-absolute-width" style="margin-left: 15px;">
                                         <input type="text" name="expireTime"
                                                [(ngModel)]="elements.goodsPackagesDetailNameModified">
                                     </p>
                                 </td>
-                                <td width="55%">
+                                <td width="75%">
                                     <p class="contact-submit" style="margin-right: 5px; margin-top: 2px;">
                                         <input type="button" class="button" value="   修改温馨提醒类别   "
                                                (click)="modifyPackagesNotice(elements)">

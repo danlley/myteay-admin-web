@@ -49,6 +49,9 @@ export class GoodsNoticeComponent implements OnInit {
         'tableContent': []
     };
 
+    isNeedShowErrMsg = false;
+    errMsg = '';
+
     /**
      * 组件构造
      *
@@ -239,6 +242,12 @@ export class GoodsNoticeComponent implements OnInit {
         this.ftConfitService.managePackagesNotice(packagesDetail).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
+            const data = res.json();
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '删除温馨提醒出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.initPackagesNoticeList();
         });
     }
