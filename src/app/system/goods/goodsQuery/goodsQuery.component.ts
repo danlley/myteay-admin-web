@@ -132,7 +132,7 @@ export class GoodsQueryComponent implements OnInit {
             this.errMsg = '';
             if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
                 this.isNeedShowErrMsg = true;
-                this.errMsg = '删除店铺出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+                this.errMsg = '删除商品出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
             }
             this.initGoodsPackagesList();
         });
@@ -147,7 +147,7 @@ export class GoodsQueryComponent implements OnInit {
             'tableOp': [
                 ['子套餐维护', 'system_goods_packages_for_all'],
                 ['详情图片维护', 'system_goods_packages_image_for_all'],
-                ['套餐提醒维护', 'system_goods_packages_notice_for_all'],
+                ['温馨提醒维护', 'system_goods_packages_notice_for_all'],
                 ['发布', 'system_goods_view_for_active'], ['下架', 'system_goods_view_for_inactive'], ['详情', 'system_goods_for_view_detail'],
                 ['修改', 'single_goods_for_modify'], ['删除', 'single_goods_delete']
             ],

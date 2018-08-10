@@ -25,7 +25,9 @@
                 </table>
             </div>
         </div>
-
+        <div *ngIf="isNeedShowErrMsg" style="height: 35px; width: 100%;">
+            <span style="color: #721c24">{{errMsg}}</span>
+        </div>
         <!-- 表单及套餐包、子套餐数据展示 -->
         <div style="overflow:scroll; width:100%; height:600px;">
             <div *ngFor="let elements of packagesDetailsList"

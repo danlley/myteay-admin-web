@@ -40,6 +40,9 @@ export class PacakgesImageComponent implements OnInit {
     fileName;
     errorMessage;
 
+    isNeedShowErrMsg = false;
+    errMsg = '';
+
     /**
      * 构建组件
      *
@@ -128,6 +131,12 @@ export class PacakgesImageComponent implements OnInit {
         this.ftConfitService.removePackagesImage(element.imageId).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('=====--------->', result);
+            const data = res.json();
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '删除商品出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.queryImageListByGoodsId();
         });
     }
