@@ -25,6 +25,9 @@ export class InactiveGoodsComponent implements OnInit {
 
     isNeesShowOnffButton = true;
 
+    isNeedShowErrMsg = false;
+    errMsg = '';
+
     /**
      * 构建组件
      *
@@ -55,9 +58,16 @@ export class InactiveGoodsComponent implements OnInit {
         this.formData.operationType = 'PX_MODIFY';
         this.formData.goodsStatus = 'PX_GOODS_OFFLINE';
         this.ftConfitService.manageGoodsStatus(this.formData).subscribe(res => {
-            const data = this.commonService.filterResult(res.json());
-            console.log('====data===================>', data);
-            this.goReturn();
+            const data = res.json();
+            console.log('====data=====res==============>', data);
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '下架商品出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
+
+            if (!this.isNeedShowErrMsg) {
+                this.goReturn();
+            }
         });
     }
 

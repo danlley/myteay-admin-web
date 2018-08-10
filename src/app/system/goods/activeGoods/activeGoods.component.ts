@@ -25,6 +25,8 @@ export class ActiveGoodsComponent implements OnInit {
 
     // 是否显示发布按钮
     isNeesShowOnlineButton = true;
+    isNeedShowErrMsg = false;
+    errMsg = '';
 
     /**
      * 构建组件
@@ -56,9 +58,16 @@ export class ActiveGoodsComponent implements OnInit {
         this.formData.operationType = 'PX_MODIFY';
         this.formData.goodsStatus = 'PX_GOODS_ONLINE';
         this.ftConfitService.manageGoodsStatus(this.formData).subscribe(res => {
-            const data = this.commonService.filterResult(res.json());
-            console.log('====data=====res==============>', res);
-            this.goReturn();
+            const data = res.json();
+            console.log('====data=====res==============>', data);
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '发布商品出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
+
+            if (!this.isNeedShowErrMsg) {
+                this.goReturn();
+            }
         });
     }
 

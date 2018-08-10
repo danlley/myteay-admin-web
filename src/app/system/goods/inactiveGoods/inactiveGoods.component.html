@@ -17,7 +17,9 @@
                 <input type="submit" value="     返回     " (click)="goReturn()">
             </p>
         </div>
-        <div style="height: 35px; width: 100%;"></div>
+        <div style="height: 35px; width: 100%;">
+            <span *ngIf="isNeedShowErrMsg" style="color: #721c24">{{errMsg}}</span>
+        </div>
         <!-- 详情展示 -->
         <div style="height: 500px; width: 100%; overflow: scroll;">
             <div style="width: 95%; border: #0a6079 1px solid; margin: auto; left: 0; right: 0; height: 300px;">
