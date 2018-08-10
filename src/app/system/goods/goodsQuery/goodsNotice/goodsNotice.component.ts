@@ -81,6 +81,17 @@ export class GoodsNoticeComponent implements OnInit {
     }
 
     /**
+     * 收取删除子提醒的删除提示信息，并进行回显
+     *
+     * @param $event
+     */
+    showSubCertainMessage($event) {
+        console.log('----------------->', $event);
+        this.isNeedShowErrMsg = $event.isNeedShowErrMsg;
+        this.errMsg = $event.errMsg;
+    }
+
+    /**
      * 初始化当前店铺及商品相关信息，用于做操作提示
      */
     private initShopData() {
@@ -102,7 +113,13 @@ export class GoodsNoticeComponent implements OnInit {
         this.subPackageData.operationType = 'PX_DELETE';
         console.log('=======================>', this.subPackageData);
         this.ftConfitService.managePackagesSubNotice(this.subPackageData).subscribe(res => {
-            const result = this.commonService.filterResult(res.json());
+            const data = res.json();
+            console.log('data-----------result---->', res);
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '删除子提醒信息出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.initPackagesNoticeList();
         });
     }

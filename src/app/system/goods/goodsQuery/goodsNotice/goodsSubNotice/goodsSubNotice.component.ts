@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FatigeConfigService} from '../../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {ActivatedRoute} from '@angular/router';
 import {CommonServie} from '../../../../../utils/common.servie';
@@ -23,8 +23,13 @@ export class GoodsSubNoticeComponent implements OnInit {
     // 是否展示温馨提醒之内容的按钮
     @Input() isShowOperation = true;
 
+    @Output() resultMessage: EventEmitter<SubNoticeResultMessage> = new EventEmitter();
+
     // 提醒子内容展示列表
     subNoticePackageDataList: PxPackageSubNoticeModel[];
+
+    isNeedShowErrMsg = false;
+    errMsg = '';
 
     /**
      * 组件构造
@@ -58,6 +63,17 @@ export class GoodsSubNoticeComponent implements OnInit {
         this.ftConfitService.managePackagesSubNotice(subPackageData).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
+            const data = res.json();
+            console.log('data-----------result---->', res);
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '删除子提醒信息出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+                const message = new SubNoticeResultMessage();
+                message.isNeedShowErrMsg = this.isNeedShowErrMsg;
+                message.errMsg = this.errMsg;
+                this.resultMessage.emit(message);
+            }
             this.initSubNoticeList();
         });
     }
@@ -80,4 +96,7 @@ export class GoodsSubNoticeComponent implements OnInit {
     }
 }
 
-
+export class SubNoticeResultMessage {
+    isNeedShowErrMsg = false;
+    errMsg = '';
+}

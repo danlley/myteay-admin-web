@@ -94,7 +94,7 @@
                 </table>
 
                 <!-- 温馨提醒子项列表展示 -->
-                <app-query-goods-packages-sub-notice [noticeData]="elements"></app-query-goods-packages-sub-notice>
+                <app-query-goods-packages-sub-notice [noticeData]="elements" (resultMessage)="showSubCertainMessage($event)"></app-query-goods-packages-sub-notice>
             </div>
 
             <!-- 页面底边距控制 -->

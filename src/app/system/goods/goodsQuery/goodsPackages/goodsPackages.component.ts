@@ -112,7 +112,6 @@ export class GoodsPackagesComponent implements OnInit {
         console.log('=======================>', this.subPackageData);
         this.ftConfitService.manageSubPackages(this.subPackageData).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
-            console.log('开始过滤处理结果：', result);
             console.log('=====--------->', result);
             const data = res.json();
             this.errMsg = '';
