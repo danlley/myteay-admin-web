@@ -138,13 +138,26 @@ export class GoodsQueryComponent implements OnInit {
             ],
             'tableContent': []
         };
+
+        let goodsStatusList = [];
+        this.ftConfitService.getDataDictionaryByKey('PxGoodsStatusEnum').subscribe(res5 => {
+            goodsStatusList = this.commonService.filterResult(res5.json());
+        });
         this.ftConfitService.getAllGoodsByShopId(this.shopData[0]).subscribe(res => {
             const goodsList = this.commonService.filterResult(res.json());
-            this.tableElement.tableHeaders = ['流水号', '商品名称', '套餐信息类型', '当前售价', '当前销量', '过期时间', '创建时间'];
+            this.tableElement.tableHeaders = ['流水号', '商品名称', '套餐信息类型', '当前售价', '商品当前状态', '过期时间', '创建时间'];
             goodsList.forEach(e => {
                 const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
                 const gmtExpired = this.datePipe.transform(e.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
-                this.tableElement.tableContent.push([e.goodsId, e.goodsTitle, e.goodsDesc, e.goodsPrice, e.goodsSellAmount,
+                let goodsStatus = e.goodsStatus;
+                if (goodsStatusList !== null) {
+                    goodsStatusList.forEach(s => {
+                        if (s.bizKey === e.goodsStatus) {
+                            goodsStatus = s.value;
+                        }
+                    });
+                }
+                this.tableElement.tableContent.push([e.goodsId, e.goodsTitle, e.goodsDesc, e.goodsPrice, goodsStatus,
                     gmtExpired, gmtCreated]);
             });
         });

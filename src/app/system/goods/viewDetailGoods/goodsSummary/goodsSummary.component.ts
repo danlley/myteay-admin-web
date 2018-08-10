@@ -97,9 +97,8 @@ export class GoodsSummaryComponent implements OnInit {
                 }
             });
             this.goodsConfigModel.goodsStatus = this.data.goodsStatus;
-            this.ftConfitService.getDataDictionaryByKey('PxGoodsStatusEnum').subscribe(res4 => {
-                const goodsStatusList = this.commonService.filterResult(res4.json());
-                console.log('==goodsStatusList---------------'+this.goodsConfigModel.goodsStatus+'==>', goodsStatusList);
+            this.ftConfitService.getDataDictionaryByKey('PxGoodsStatusEnum').subscribe(res5 => {
+                const goodsStatusList = this.commonService.filterResult(res5.json());
                 if (goodsStatusList !== null) {
                     goodsStatusList.forEach(e => {
                         if (e.bizKey === this.goodsConfigModel.goodsStatus) {
