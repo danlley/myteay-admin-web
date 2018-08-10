@@ -96,6 +96,16 @@ export class GoodsSummaryComponent implements OnInit {
                     });
                 }
             });
+            this.ftConfitService.getDataDictionaryByKey('PxGoodsStatusEnum').subscribe(res4 => {
+                const goodsStatusList = this.commonService.filterResult(res4.json());
+                if (goodsStatusList !== null) {
+                    goodsStatusList.forEach(e => {
+                        if (e.bizKey === this.data.goodsStatus) {
+                            this.goodsConfigModel.goodsStatus = e.value;
+                        }
+                    });
+                }
+            });
             this.goodsConfigModel.goodsId = this.data.goodsId;
             this.goodsConfigModel.goodsImage = this.data.goodsImage;
             this.goodsConfigModel.goodsImageShow = environment.PKG_IMG_SHOW_URL + this.data.goodsImage;

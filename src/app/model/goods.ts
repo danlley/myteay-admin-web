@@ -3,6 +3,7 @@ export class PxGoodsConfigModel {
     operationType = 'PX_DELETE';
     shopId: number;
     goodsImage: string;
+    goodsStatus: string;
     goodsTitle: string;
     goodsDesc: string;
     goodsPrice: string;
