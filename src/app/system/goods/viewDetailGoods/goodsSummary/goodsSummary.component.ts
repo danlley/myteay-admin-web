@@ -52,9 +52,15 @@ export class GoodsSummaryComponent implements OnInit {
         formData.append('goodsId', this.formData.goodsId);
         formData.append('operationType', 'PX_QUERY_ONE');
         console.log('--formData--------------------------------->', this.formData.goodsId);
-        console.log('--formData--------------------------------->', this.formData.goodsId);
+
         this.ftConfitService.manageGoodsConfig(formData).subscribe(res => {
             this.data = this.commonService.filterResult(res.json());
+            console.log('====data===================>', this.data);
+            this.goodsConfigModel.isHuiyuan = this.data.isHuiyuan;
+            this.goodsConfigModel.isQuan = this.data.isQuan;
+            this.goodsConfigModel.isTuan = this.data.isTuan;
+            this.goodsConfigModel.orderType = this.data.orderType;
+
             this.ftConfitService.getDataDictionaryByKey('PxGoodsOrderTypeEnum').subscribe(res1 => {
                 const orderType = this.commonService.filterResult(res1.json());
                 if (orderType !== null) {
@@ -110,12 +116,8 @@ export class GoodsSummaryComponent implements OnInit {
             this.goodsConfigModel.goodsId = this.data.goodsId;
             this.goodsConfigModel.goodsImage = this.data.goodsImage;
             this.goodsConfigModel.goodsImageShow = environment.PKG_IMG_SHOW_URL + this.data.goodsImage;
-            this.goodsConfigModel.isHuiyuan = this.data.isHuiyuan;
-            this.goodsConfigModel.isQuan = this.data.isQuan;
-            this.goodsConfigModel.isTuan = this.data.isTuan;
             this.goodsConfigModel.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
             this.goodsConfigModel.goodsOnlineTime = this.data.goodsOnlineTime;
-            this.goodsConfigModel.orderType = this.data.orderType;
             this.goodsConfigModel.goodsCommPrice = this.data.goodsCommPrice;
             this.goodsConfigModel.goodsPrice = this.data.goodsPrice;
             this.goodsConfigModel.goodsDesc = this.data.goodsDesc;

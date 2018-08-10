@@ -27,4 +27,5 @@ export const environment = {
     GOODS_MNG_PACKAGES_NOTICE_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/pkgs/notice/manage',
     GOODS_QUERY_PACKAGES_SUB_NOTICE_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/pkgs/sub/notice/list/notice/',
     GOODS_MNG_PACKAGES_SUB_NOTICE_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/pkgs/sub/notice/manage',
+    GOODS_MNG_GOODS_STATUS_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/goods/status/',
 };

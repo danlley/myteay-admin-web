@@ -95,6 +95,10 @@ export class FatigeConfigService {
         return this._http.post(environment.GOODS_MNG_CONFIG_URL, data, this.getHeaderOptions());
     }
 
+    manageGoodsStatus(data): any {
+        return this._http.post(environment.GOODS_MNG_GOODS_STATUS_URL, data, this.getHeaderOptions());
+    }
+
     getDataDictionaryByKey(key): any {
         return this._http.get(environment.DATA_DIC_URL + key, this.getHeaderOptions());
     }

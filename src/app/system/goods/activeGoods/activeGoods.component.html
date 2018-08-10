@@ -13,7 +13,8 @@
         <app-summary-table [shopData]="shopData" [tableTitle]="title" [tableTitleFace]="'当前操作'"></app-summary-table>
         <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
             <p class="contact-submit">
-                <input type="submit" value="     立 即 发 布     " (click)="goReturn()">
+                <input *ngIf="isNeesShowOnlineButton" type="submit" value="     立 即 发 布     " (click)="operateOnline()">
+                <input type="button" class="button" value="   返回   " (click)="goReturn()">
             </p>
         </div>
         <div style="height: 35px; width: 100%;"></div>
