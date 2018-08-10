@@ -96,12 +96,14 @@ export class GoodsSummaryComponent implements OnInit {
                     });
                 }
             });
+            this.goodsConfigModel.goodsStatus = this.data.goodsStatus;
             this.ftConfitService.getDataDictionaryByKey('PxGoodsStatusEnum').subscribe(res4 => {
                 const goodsStatusList = this.commonService.filterResult(res4.json());
+                console.log('==goodsStatusList---------------'+this.goodsConfigModel.goodsStatus+'==>', goodsStatusList);
                 if (goodsStatusList !== null) {
                     goodsStatusList.forEach(e => {
-                        if (e.bizKey === this.data.goodsStatus) {
-                            this.goodsConfigModel.goodsStatus = e.value;
+                        if (e.bizKey === this.goodsConfigModel.goodsStatus) {
+                            this.goodsConfigModel.goodsStatusShow = e.value;
                         }
                     });
                 }

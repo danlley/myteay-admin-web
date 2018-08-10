@@ -4,6 +4,7 @@ export class PxGoodsConfigModel {
     shopId: number;
     goodsImage: string;
     goodsStatus: string;
+    goodsStatusShow: string;
     goodsTitle: string;
     goodsDesc: string;
     goodsPrice: string;
