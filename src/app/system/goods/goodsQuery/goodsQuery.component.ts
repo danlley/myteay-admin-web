@@ -29,6 +29,9 @@ export class GoodsQueryComponent implements OnInit {
         'tableContent': []
     };
 
+    isNeedShowErrMsg = false;
+    errMsg = '';
+
     /**
      * 构建组件
      *
@@ -107,18 +110,30 @@ export class GoodsQueryComponent implements OnInit {
         this.initGoodsPackagesList();
     }
 
+
+    doQuery() {
+        this.errMsg = '';
+        this.isNeedShowErrMsg = false;
+        this.initGoodsPackagesList();
+    }
+
     /**
      * 删除商品
      *
      * @param {number} goodsId
      */
     deleteSingleGoods(goodsId: number) {
-        const deleteData = new PxGoodsConfigModel();
-        deleteData.goodsId = goodsId;
-        deleteData.operationType = 'PX_DELETE';
-        console.log('=======================>', deleteData);
-        this.ftConfitService.manageGoodsConfig(deleteData).subscribe(res => {
+        const formData: FormData = new FormData();
+        formData.append('goodsId', goodsId);
+        formData.append('operationType', 'PX_DELETE');
+        this.ftConfitService.manageGoodsConfig(formData).subscribe(res => {
             console.log('=======================>', res.json());
+            const data = res.json();
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '删除店铺出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.initGoodsPackagesList();
         });
     }
