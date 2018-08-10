@@ -26,6 +26,9 @@ export class ShopComponent implements OnInit {
         'tableContent': []
     };
 
+    isNeedShowErrMsg = false;
+    errMsg = '';
+
     /**
      * 构建组件
      *
@@ -73,17 +76,30 @@ export class ShopComponent implements OnInit {
         console.log('=======================>', deleteData);
         this.ftConfitService.manageShopConfig(deleteData).subscribe(res => {
             console.log('=======================>', res.json());
+            const data = res.json();
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '删除店铺出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.initShopList();
         });
+    }
+
+    doQuery() {
+        this.errMsg = '';
+        this.isNeedShowErrMsg = false;
+        this.initShopList();
     }
 
     /**
      * 初始化店铺列表
      */
     initShopList() {
+
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['详情', 'single_shop_detail'], ['修改', 'single_shop_modify'],  ['删除', 'single_shop_delete']],
+            'tableOp': [['详情', 'single_shop_detail'], ['修改', 'single_shop_modify'], ['删除', 'single_shop_delete']],
             'tableContent': []
         };
         this.ftConfitService.getAllShopConfig().subscribe(res => {
