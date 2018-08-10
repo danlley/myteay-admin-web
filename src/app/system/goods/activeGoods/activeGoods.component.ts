@@ -57,7 +57,7 @@ export class ActiveGoodsComponent implements OnInit {
         this.formData.goodsStatus = 'PX_GOODS_ONLINE';
         this.ftConfitService.manageGoodsStatus(this.formData).subscribe(res => {
             const data = this.commonService.filterResult(res.json());
-            console.log('====data===================>', data);
+            console.log('====data=====res==============>', res);
             this.goReturn();
         });
     }
