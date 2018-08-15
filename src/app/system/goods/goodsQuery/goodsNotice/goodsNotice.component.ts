@@ -141,6 +141,12 @@ export class GoodsNoticeComponent implements OnInit {
         console.log('=======================>', this.subPackageData);
         this.ftConfitService.managePackagesSubNotice(this.subPackageData).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
+            const data = res.json();
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '追加温馨提醒信息出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.subPackageData = new PxPackageSubNoticeModel();
             this.initPackagesNoticeList();
         });
