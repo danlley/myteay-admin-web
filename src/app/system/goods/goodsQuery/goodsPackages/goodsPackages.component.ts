@@ -213,6 +213,12 @@ export class GoodsPackagesComponent implements OnInit {
         this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
+            const data = res.json();
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '添加套餐包信息出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.initPackagesDetailList();
         });
     }
@@ -235,7 +241,15 @@ export class GoodsPackagesComponent implements OnInit {
                 that.ftConfitService.managePackagesDetail(e).subscribe(res => {
                     const result = that.commonService.filterResult(res.json());
                     console.log('开始过滤处理结果：', result);
-                    that.initPackagesDetailList();
+                    const data = res.json();
+                    this.errMsg = '';
+                    if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                        this.isNeedShowErrMsg = true;
+                        this.errMsg = '自动添加套餐信息出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+                    }
+                    if (data.operateResult === 'CAMP_OPERATE_SUCCESS') {
+                        that.initPackagesDetailList();
+                    }
                 });
             }, time + '');
             console.log('8888888888889999999999000000000000==========--------=======》', e);
@@ -258,6 +272,12 @@ export class GoodsPackagesComponent implements OnInit {
         this.ftConfitService.managePackagesDetail(packagesDetail).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
+            const data = res.json();
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '修改套餐包信息出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.initPackagesDetailList();
         });
     }
