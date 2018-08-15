@@ -136,6 +136,12 @@ export class GoodsPackagesComponent implements OnInit {
         this.ftConfitService.manageSubPackages(this.subPackageData).subscribe(res => {
             const result = this.commonService.filterResult(res.json());
             console.log('开始过滤处理结果：', result);
+            const data = res.json();
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '追加子套餐信息出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.subPackageData = new PxSubPackagesModel();
             this.initPackagesDetailList();
         });
