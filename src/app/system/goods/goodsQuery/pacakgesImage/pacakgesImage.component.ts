@@ -83,6 +83,12 @@ export class PacakgesImageComponent implements OnInit {
         formData.append('file', this.currentFile, this.currentFile.name);
         this.ftConfitService.managePackagesImage(formData, this.goodsId).subscribe(res => {
             this.packageImageList = this.commonService.filterResult(res.json());
+            const data = res.json();
+            this.errMsg = '';
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '追加图片信息出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.queryImageListByGoodsId();
             this.fileName = '';
         });
