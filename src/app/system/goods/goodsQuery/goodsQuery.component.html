@@ -17,7 +17,10 @@
             <span style="color: #721c24">{{errMsg}}</span>
         </div>
         <div style="align-content: center; width: 95%; margin: auto; left: 0; right: 0;">
-            <app-table-no-paginator [tableElement]="tableElement" [tableTitle]="title"></app-table-no-paginator>
+            <div style="height: 500px; width: 100%; overflow: scroll;">
+                <app-table-no-paginator [tableElement]="tableElement" [tableTitle]="title"></app-table-no-paginator>
+                <div style="height: 270px; width: 100px;"></div>
+            </div>
         </div>
     </div>
 </div>

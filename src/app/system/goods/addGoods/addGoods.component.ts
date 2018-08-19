@@ -55,7 +55,7 @@ export class AddGoodsComponent implements OnInit {
     ngOnInit(): void {
         // 打印当前页面title
         console.log(this.title);
-        this.goodsConfigModel.goodsOnlineTime = '早8:00~晚21:00';
+        this.goodsConfigModel.goodsOnlineTime = '周一至周日';
         this.goodsConfigModel.goodsDesc = '经典单人套餐';
 
         // 初始化页面下拉菜单所需数据
