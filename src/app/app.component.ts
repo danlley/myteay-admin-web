@@ -114,6 +114,12 @@ export class AppComponent implements OnInit {
         this.eventBus.registerySubject('campaign_shop').subscribe(e => {
             this.router.navigateByUrl('system/campaign');
         });
+
+        // 单个店铺店内营销管理页面跳转事件监听
+        this.eventBus.registerySubject('campaign_shop_single').subscribe(e => {
+            console.log('------------->', e);
+            this.router.navigate(['system/campaign/single'], {queryParams: {data: e}});
+        });
     }
 
     ngOnInit(): void {

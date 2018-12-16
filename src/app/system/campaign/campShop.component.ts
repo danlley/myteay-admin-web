@@ -50,7 +50,7 @@ export class CampShopComponent implements OnInit {
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['立即管理营销活动', 'system_goods_manage_all']],
+            'tableOp': [['立即管理营销活动', 'campaign_shop_single']],
             'tableContent': []
         };
         this.ftConfitService.getAllShopConfig().subscribe(res => {

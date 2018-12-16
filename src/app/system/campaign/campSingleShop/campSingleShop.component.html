@@ -2,30 +2,14 @@
     <app-system-side-left></app-system-side-left>
     <div class="title-content">
         <div style="align-items: left; left: 15px !important;">
-            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 30px;">
-                <div style="width: 100%;">
-                    <div style="border-top-right-radius: 8px; background-color: #3bd4d6; border-bottom: #0a6079 1px solid; height: 35px; line-height: 35px; width: 15%; align-content: left;">
-                        >>单个店铺营销活动管理
-                    </div>
-                </div>
-                <div style="border: #3bd4d6 1px solid; width: 100%; background-color: #3bd4d6;">
-                    <div style="float: left; width: 270px; height: 80px; line-height: 80px;"><span style="margin-right: 0px;">店铺开关 :</span></div>
-                    <div>
-                        <p class="contact-input contact-absolute-width" style="margin-top: 25px;">
-                            <label for="contactKey" class="select" style="margin-left: 0px;">
-                                <select name="contactKey" id="contactKey" [(ngModel)]="contactKey">
-                                    <option *ngFor="let contactType of shopStatusList" value="{{contactType.bizKey}}">
-                                        {{contactType.value}}
-                                    </option>
-                                </select>
-                            </label>
-                        </p>
-                    </div>
-                </div>
-            </div>
+
+            <!-- 当前店铺汇总信息 -->
+            <app-summary-table [shopData]="shopData" [tableTitle]="shopData[1]" [tableTitleFace]="'当前店铺'"></app-summary-table>
             <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
                 <p class="contact-submit">
-                    <input type="button" class="button" value="   查   询   " (click)="initShopList()">
+                    <input type="button" class="button" value="   返回   " (click)="goReturn()">
+                    <input type="button" class="button" value="   查   询   " (click)="doQuery()">
+                    <input type="button" class="button" value="   新增营销活动   " (click)="gotoAddGoods()">
                 </p>
             </div>
         </div>

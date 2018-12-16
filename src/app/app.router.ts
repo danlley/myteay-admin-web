@@ -20,6 +20,7 @@ import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsN
 import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
 import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
 import {CampShopComponent} from './system/campaign/campShop.component';
+import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSingleShop.component';
 
 export const appRouter: Routes = [
     {
@@ -42,6 +43,10 @@ export const appRouter: Routes = [
             {
                 path: 'system/campaign',
                 component: CampShopComponent
+            },
+            {
+                path: 'system/campaign/single',
+                component: CampSingleShopComponent
             },
             {
                 path: 'system/goods/packages/all',

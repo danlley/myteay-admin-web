@@ -46,6 +46,7 @@ import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods
 import {AutoCommitGoodsNoticeService} from './utils/autoCommitGoodsNotice.service';
 import {AutoCommitGoodsPackagesService} from './utils/autoCommitGoodsPackages.service';
 import {CampShopComponent} from './system/campaign/campShop.component';
+import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSingleShop.component';
 
 @NgModule({
     declarations: [
@@ -81,6 +82,7 @@ import {CampShopComponent} from './system/campaign/campShop.component';
         GoodsDetailImageShowComponent,
         ActiveGoodsComponent,
         CampShopComponent,
+        CampSingleShopComponent,
         InactiveGoodsComponent,
         BottomComponent
     ],
@@ -129,6 +131,7 @@ import {CampShopComponent} from './system/campaign/campShop.component';
         GoodsNoticeShowComponent,
         ActiveGoodsComponent,
         CampShopComponent,
+        CampSingleShopComponent,
         InactiveGoodsComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
