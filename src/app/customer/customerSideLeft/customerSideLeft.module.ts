@@ -21,5 +21,5 @@ import {EventService} from '../../asyncService/asyncService.service';
     providers: [Observable, Subject, EventService],
     bootstrap: [CustomerSideLeftComponent]
 })
-export class MessageSideLeftModule {
+export class CustomerSideLeftModule {
 }

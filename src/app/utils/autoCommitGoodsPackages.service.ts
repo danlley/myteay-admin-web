@@ -7,16 +7,16 @@ export class AutoCommitGoodsPackagesService {
     public getPxPackageDetailModelList(goodsId): PxPackageDetailModel[] {
         const pxPackageDetailModelList: PxPackageDetailModel[] = [];
 
-        const packagesDetail1 = this.getSinglePxPackageDetailModel(goodsId, 'ÌØÉ«²Ë');
+        const packagesDetail1 = this.getSinglePxPackageDetailModel(goodsId, 'ç‰¹è‰²èœ');
         pxPackageDetailModelList.push(packagesDetail1);
 
-        const packagesDetail2 = this.getSinglePxPackageDetailModel(goodsId, 'Åä²Ë2Ñ¡1');
+        const packagesDetail2 = this.getSinglePxPackageDetailModel(goodsId, 'é…èœ2é€‰1');
         pxPackageDetailModelList.push(packagesDetail2);
 
-        const packagesDetail3 = this.getSinglePxPackageDetailModel(goodsId, 'ÒûÁÏ2Ñ¡1');
+        const packagesDetail3 = this.getSinglePxPackageDetailModel(goodsId, 'é¥®æ–™2é€‰1');
         pxPackageDetailModelList.push(packagesDetail3);
 
-        const packagesDetail4 = this.getSinglePxPackageDetailModel(goodsId, 'ÆäËû');
+        const packagesDetail4 = this.getSinglePxPackageDetailModel(goodsId, 'å…¶ä»–');
         pxPackageDetailModelList.push(packagesDetail4);
 
         return pxPackageDetailModelList;

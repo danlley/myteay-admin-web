@@ -19,6 +19,7 @@ import {PacakgesImageComponent} from './system/goods/goodsQuery/pacakgesImage/pa
 import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsNotice.component';
 import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
 import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
+import {CampShopComponent} from './system/campaign/campShop.component';
 
 export const appRouter: Routes = [
     {
@@ -37,6 +38,10 @@ export const appRouter: Routes = [
             {
                 path: 'system',
                 component: SystemComponent
+            },
+            {
+                path: 'system/campaign',
+                component: CampShopComponent
             },
             {
                 path: 'system/goods/packages/all',

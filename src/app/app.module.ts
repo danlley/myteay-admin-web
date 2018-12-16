@@ -45,6 +45,7 @@ import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.compo
 import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
 import {AutoCommitGoodsNoticeService} from './utils/autoCommitGoodsNotice.service';
 import {AutoCommitGoodsPackagesService} from './utils/autoCommitGoodsPackages.service';
+import {CampShopComponent} from './system/campaign/campShop.component';
 
 @NgModule({
     declarations: [
@@ -79,6 +80,7 @@ import {AutoCommitGoodsPackagesService} from './utils/autoCommitGoodsPackages.se
         GoodsNoticeShowComponent,
         GoodsDetailImageShowComponent,
         ActiveGoodsComponent,
+        CampShopComponent,
         InactiveGoodsComponent,
         BottomComponent
     ],
@@ -89,7 +91,8 @@ import {AutoCommitGoodsPackagesService} from './utils/autoCommitGoodsPackages.se
         FileUploadModule,
         HttpModule
     ],
-    providers: [BottomComponent,
+    providers: [
+        BottomComponent,
         TitleComponent,
         DatePipe,
         EventService,
@@ -125,6 +128,7 @@ import {AutoCommitGoodsPackagesService} from './utils/autoCommitGoodsPackages.se
         GoodsSubNoticeComponent,
         GoodsNoticeShowComponent,
         ActiveGoodsComponent,
+        CampShopComponent,
         InactiveGoodsComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
