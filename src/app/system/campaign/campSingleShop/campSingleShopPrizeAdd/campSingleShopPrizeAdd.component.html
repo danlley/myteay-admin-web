@@ -4,12 +4,10 @@
         <div style="align-items: left; left: 15px !important;">
 
             <!-- 当前店铺汇总信息 -->
-            <app-camp-summary-table [shopData]="shopData" [tableTitle]="shopData[8]" [tableTitleFace]="'当前活动'"></app-camp-summary-table>
+            <app-camp-summary-table [shopData]="shopData" [tableTitle]="shopData[8]" [tableTitleFace]="'当前奖品添加活动'"></app-camp-summary-table>
             <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
                 <p class="contact-submit">
                     <input type="button" class="button" value="   返回   " (click)="goReturn()">
-                    <input type="button" class="button" value="   查   询   " (click)="doQuery()">
-                    <input type="button" class="button" value="   添加奖品   " (click)="gotoAddCampPrize()">
                 </p>
             </div>
         </div>
@@ -17,7 +15,7 @@
             <span style="color: #721c24">{{errMsg}}</span>
         </div>
         <div style="align-content: center; width: 95%; margin: auto; left: 0; right: 0;">
-            <app-table-no-paginator [tableElement]="tableElement" [tableTitle]="title"></app-table-no-paginator>
+            <!--<app-table-no-paginator [tableElement]="tableElement" [tableTitle]="title"></app-table-no-paginator>-->
         </div>
     </div>
 </div>

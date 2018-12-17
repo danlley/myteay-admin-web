@@ -6,15 +6,15 @@ import {ActivatedRoute} from '@angular/router';
 import {EventService} from '../../../../asyncService/asyncService.service';
 
 @Component({
-    selector: 'app-camp-shop-single-prize-mng',
-    templateUrl: './campSingleShopPrizeMng.component.html',
-    styleUrls: ['./campSingleShopPrizeMng.component.css']
+    selector: 'app-camp-shop-single-prize-add',
+    templateUrl: './campSingleShopPrizeAdd.component.html',
+    styleUrls: ['./campSingleShopPrizeAdd.component.css']
 })
 
 /**
  * 店铺内营销活动奖品管理组件
  */
-export class CampSingleShopPrizeMngComponent implements OnInit {
+export class CampSingleShopPrizeAddComponent implements OnInit {
     title = '店内营销活动奖品管理!';
     campStatusList: any[];
     templateConfigList: any[];
@@ -113,24 +113,10 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
     }
 
     /**
-     * 刷新当前营销活动列表
-     */
-    doQuery() {
-        this.initCampPrizeList();
-    }
-
-    /**
      * 返回店铺列表页面
      */
     goReturn() {
-        this.eventBus.publish('campaign_shop_single', this.shopData);
-    }
-
-    /**
-     * 进入奖品添加页面
-     */
-    gotoAddCampPrize() {
-        this.eventBus.publish('campaign_shop_single_prize_add', this.shopData);
+        this.eventBus.publish('campaign_shop_single_prize_mng', this.shopData);
     }
 }
 
