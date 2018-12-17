@@ -47,6 +47,8 @@ import {AutoCommitGoodsNoticeService} from './utils/autoCommitGoodsNotice.servic
 import {AutoCommitGoodsPackagesService} from './utils/autoCommitGoodsPackages.service';
 import {CampShopComponent} from './system/campaign/campShop.component';
 import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSingleShop.component';
+import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/campSingleShopPrizeMng/campSingleShopPrizeMng.component';
+import {CampSummaryTableComponent} from './system/campaign/campSummaryTable/campSummaryTable.component';
 
 @NgModule({
     declarations: [
@@ -83,6 +85,8 @@ import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSing
         ActiveGoodsComponent,
         CampShopComponent,
         CampSingleShopComponent,
+        CampSingleShopPrizeMngComponent,
+        CampSummaryTableComponent,
         InactiveGoodsComponent,
         BottomComponent
     ],
@@ -132,6 +136,8 @@ import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSing
         ActiveGoodsComponent,
         CampShopComponent,
         CampSingleShopComponent,
+        CampSingleShopPrizeMngComponent,
+        CampSummaryTableComponent,
         InactiveGoodsComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]

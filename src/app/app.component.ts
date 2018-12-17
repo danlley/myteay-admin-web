@@ -120,6 +120,12 @@ export class AppComponent implements OnInit {
             console.log('------------->', e);
             this.router.navigate(['system/campaign/single'], {queryParams: {data: e}});
         });
+
+        // 单个店铺店内营销活动奖品管理页面跳转事件监听
+        this.eventBus.registerySubject('campaign_shop_single_prize_mng').subscribe(e => {
+            console.log('------------->', e);
+            this.router.navigate(['system/campaign/prize'], {queryParams: {data: e}});
+        });
     }
 
     ngOnInit(): void {

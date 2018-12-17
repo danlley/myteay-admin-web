@@ -5,8 +5,6 @@ import {CommonServie} from '../../../../utils/common.servie';
 import {ActivatedRoute} from '@angular/router';
 import {EventService} from '../../../../asyncService/asyncService.service';
 
-declare let laydate;
-
 @Component({
     selector: 'app-camp-shop-single-prize-mng',
     templateUrl: './campSingleShopPrizeMng.component.html',
@@ -43,26 +41,6 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
      */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 private commonService: CommonServie, private activeRoute: ActivatedRoute, private eventBus: EventService) {
-        // 监听店内营销活动奖品删除请求
-        this.eventBus.registerySubject('single_shop_camp_delete').subscribe(e => {
-            this.gotoDeleteCampBase(e[0]);
-        });
-
-        // 监听店内营销活动奖品下架请求
-        this.eventBus.registerySubject('single_shop_camp_shutdown').subscribe(e => {
-            const sendData = [this.shopData, e[0]];
-            console.log('表格操作目标（详情）：', sendData);
-            this.gotoChangeCampBaseStatus(e[0], 'CAMP_OFFLINE');
-            // this.eventBus.publish('system_goods_view_detail', sendData);
-        });
-
-        // 监听店内营销活动奖品上架请求
-        this.eventBus.registerySubject('single_shop_camp_start').subscribe(e => {
-            const sendData = [this.shopData, e[0]];
-            console.log('表格操作目标（详情）：', sendData);
-            this.gotoChangeCampBaseStatus(e[0], 'CAMP_ONLINE');
-            // this.eventBus.publish('system_goods_view_detail', sendData);
-        });
     }
 
     /**
@@ -75,32 +53,8 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
         // 初始化店铺信息
         this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
 
-        this.initCampStatusList();
-        this.initCampBaseList();
-
-        // 初始化日期选择组件
-        laydate.render({
-            elem: '#test1', // s为页面日期选择输入框的id
-            type: 'datetime',
-            theme: '#22787a',
-            done: (value, date) => {
-                this.campBaseModel.campStart = value;
-                console.log(value);
-                console.log(date);
-            }
-        });
-
-        // 初始化日期选择组件
-        laydate.render({
-            elem: '#test2', // s为页面日期选择输入框的id
-            type: 'datetime',
-            theme: '#22787a',
-            done: (value, date) => {
-                this.campBaseModel.campEnd = value;
-                console.log(value);
-                console.log(date);
-            }
-        });
+        // this.initCampStatusList();
+        // this.initCampBaseList();
     }
 
     /**

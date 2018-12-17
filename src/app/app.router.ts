@@ -21,6 +21,7 @@ import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.compo
 import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
 import {CampShopComponent} from './system/campaign/campShop.component';
 import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSingleShop.component';
+import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/campSingleShopPrizeMng/campSingleShopPrizeMng.component';
 
 export const appRouter: Routes = [
     {
@@ -47,6 +48,10 @@ export const appRouter: Routes = [
             {
                 path: 'system/campaign/single',
                 component: CampSingleShopComponent
+            },
+            {
+                path: 'system/campaign/prize',
+                component: CampSingleShopPrizeMngComponent
             },
             {
                 path: 'system/goods/packages/all',
