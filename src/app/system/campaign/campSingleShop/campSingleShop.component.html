@@ -22,6 +22,9 @@
                 </p>
             </div>
         </div>
+        <div *ngIf="isNeedShowErrMsg" style="height: 35px; width: 100%;">
+            <span style="color: #721c24">{{errMsg}}</span>
+        </div>
         <div style="align-content: center; width: 95%; margin: auto; left: 0; right: 0;">
             <app-table-no-paginator [tableElement]="tableElement" [tableTitle]="title"></app-table-no-paginator>
         </div>

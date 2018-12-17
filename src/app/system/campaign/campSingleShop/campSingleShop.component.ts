@@ -25,6 +25,9 @@ export class CampSingleShopComponent implements OnInit {
     shopData;
     campBaseModel: CampBaseModel = new CampBaseModel();
 
+    isNeedShowErrMsg = false;
+    errMsg = '';
+
     tableElement = {
         'tableHeaders': [],
         'tableOp': [],
@@ -40,6 +43,26 @@ export class CampSingleShopComponent implements OnInit {
      */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 private commonService: CommonServie, private activeRoute: ActivatedRoute, private eventBus: EventService) {
+        // 监听店内营销活动删除请求
+        this.eventBus.registerySubject('single_shop_camp_delete').subscribe(e => {
+            this.gotoDeleteCampBase(e[0]);
+        });
+
+        // 监听店内营销活动关闭请求
+        this.eventBus.registerySubject('single_shop_camp_shutdown').subscribe(e => {
+            const sendData = [this.shopData, e[0]];
+            console.log('表格操作目标（详情）：', sendData);
+            this.gotoChangeCampBaseStatus(e[0], 'CAMP_OFFLINE');
+            // this.eventBus.publish('system_goods_view_detail', sendData);
+        });
+
+        // 监听店内营销活动启动请求
+        this.eventBus.registerySubject('single_shop_camp_start').subscribe(e => {
+            const sendData = [this.shopData, e[0]];
+            console.log('表格操作目标（详情）：', sendData);
+            this.gotoChangeCampBaseStatus(e[0], 'CAMP_ONLINE');
+            // this.eventBus.publish('system_goods_view_detail', sendData);
+        });
     }
 
     /**
@@ -80,6 +103,58 @@ export class CampSingleShopComponent implements OnInit {
         });
     }
 
+    /**
+     * 变更营销活动状态
+     *
+     * @param {string} campId
+     */
+    gotoChangeCampBaseStatus(campId: string, campStatus: string) {
+        const campBaseModel: CampBaseModel = new CampBaseModel();
+        campBaseModel.shopId = this.shopData[0];
+        campBaseModel.shopName = this.shopData[1];
+        campBaseModel.campId = campId;
+        campBaseModel.campStatus = campStatus;
+        console.log('----------------------------------->', this.campBaseModel);
+        campBaseModel.operationType = 'PX_MODIFY';
+        this.ftConfitService.manageCampBaseConfig(campBaseModel).subscribe(res => {
+            console.log('=======================>', res.json());
+            this.doQuery();
+            this.errMsg = '';
+            const data = res.json();
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '店内营销活动执行‘' + campStatus + '’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
+        });
+    }
+
+    /**
+     * 删除营销活动
+     *
+     * @param {string} campId
+     */
+    gotoDeleteCampBase(campId: string) {
+        const campBaseModel: CampBaseModel = new CampBaseModel();
+        campBaseModel.shopId = this.shopData[0];
+        campBaseModel.shopName = this.shopData[1];
+        campBaseModel.campId = campId;
+        console.log('----------------------------------->', this.campBaseModel);
+        campBaseModel.operationType = 'PX_DELETE';
+        this.ftConfitService.manageCampBaseConfig(campBaseModel).subscribe(res => {
+            console.log('=======================>', res.json());
+            this.doQuery();
+            this.errMsg = '';
+            const data = res.json();
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '店内营销活动执行‘删除’操作出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
+        });
+    }
+
+    /**
+     * 新增营销活动
+     */
     gotoAddCampBase() {
         this.campBaseModel.shopId = this.shopData[0];
         this.campBaseModel.shopName = this.shopData[1];
@@ -97,9 +172,9 @@ export class CampSingleShopComponent implements OnInit {
     initCampBaseList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['停止', 'camp_shop_single_shutdown'],
-                ['删除', 'camp_shop_single_shutdown'],
-                ['启动', 'camp_shop_single_start'],
+            'tableOp': [['停止', 'single_shop_camp_shutdown'],
+                ['删除', 'single_shop_camp_delete'],
+                ['启动', 'single_shop_camp_start'],
                 ['查看', 'camp_shop_single_view'],
                 ['添加奖品', 'camp_shop_single_mng']],
             'tableContent': []
