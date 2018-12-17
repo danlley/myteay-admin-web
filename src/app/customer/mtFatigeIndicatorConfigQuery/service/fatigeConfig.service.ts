@@ -35,6 +35,14 @@ export class FatigeConfigService {
         return this._http.get(environment.SYSTEM_QUERY_CONFIG_URL + '', this.getHeaderOptions());
     }
 
+    getShopAllCampBaseConfig(shopId: string): any {
+        return this._http.get(environment.CAMP_BASE_QUERY_CONFIG_URL  + '/' + shopId, this.getHeaderOptions());
+    }
+
+    manageCampBaseConfig(data): any {
+        return this._http.post(environment.SYSTEM_CAMP_BASE_MNG_CONFIG_URL, data, this.getHeaderOptions());
+    }
+
     manageShopConfig(data): any {
         return this._http.post(environment.SYSTEM_SHOP_MNG_CONFIG_URL, data, this.getHeaderOptions());
     }
