@@ -57,6 +57,7 @@ export class CampSingleShopComponent implements OnInit {
         this.eventBus.registerySubject('single_shop_camp_start').subscribe(e => {
             this.gotoChangeCampBaseStatus(e[0], 'CAMP_ONLINE');
         });
+
     }
 
     /**
@@ -68,6 +69,13 @@ export class CampSingleShopComponent implements OnInit {
 
         // 初始化店铺信息
         this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
+
+        // 监听店内营销活动奖品上架请求
+        this.eventBus.registerySubject('campaign_shop_prize_single_prize_mng').subscribe(e => {
+            const sendData = [this.shopData, e];
+            console.log('表格操作目标（详情）：', sendData);
+            this.eventBus.publish('campaign_shop_single_prize_mng', sendData);
+        });
 
         this.initCampStatusList();
         this.initCampBaseList();
@@ -170,7 +178,7 @@ export class CampSingleShopComponent implements OnInit {
                 ['删除', 'single_shop_camp_delete'],
                 ['启动', 'single_shop_camp_start'],
                 ['查看', 'camp_shop_single_view'],
-                ['奖品管理', 'campaign_shop_single_prize_mng']],
+                ['奖品管理', 'campaign_shop_prize_single_prize_mng']],
             'tableContent': []
         };
         this.ftConfitService.getShopAllCampBaseConfig(this.shopData[0]).subscribe(res => {

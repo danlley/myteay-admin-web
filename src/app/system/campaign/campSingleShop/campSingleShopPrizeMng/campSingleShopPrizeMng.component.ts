@@ -21,10 +21,13 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
 
     // 店铺信息，用于构建页面店铺信息展示
     shopData;
-    campBaseModel: CampBaseModel = new CampBaseModel();
+    campPrizeModel: CampPrizeModel = new CampPrizeModel();
 
     isNeedShowErrMsg = false;
     errMsg = '';
+
+    campId = '';
+    shopId = '';
 
     tableElement = {
         'tableHeaders': [],
@@ -49,101 +52,35 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
     ngOnInit(): void {
         console.log(this.title);
 
-
         // 初始化店铺信息
         this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
+        this.campId = this.shopData[7];
+        this.shopId = this.shopData[0];
 
-        // this.initCampStatusList();
-        // this.initCampBaseList();
-    }
-
-    /**
-     * 变更营销活动状态
-     *
-     * @param {string} campId
-     */
-    gotoChangeCampBaseStatus(campId: string, campStatus: string) {
-        const campBaseModel: CampBaseModel = new CampBaseModel();
-        campBaseModel.shopId = this.shopData[0];
-        campBaseModel.shopName = this.shopData[1];
-        campBaseModel.campId = campId;
-        campBaseModel.campStatus = campStatus;
-        console.log('----------------------------------->', this.campBaseModel);
-        campBaseModel.operationType = 'PX_MODIFY';
-        this.ftConfitService.manageCampBaseConfig(campBaseModel).subscribe(res => {
-            console.log('=======================>', res.json());
-            this.doQuery();
-            this.errMsg = '';
-            const data = res.json();
-            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
-                this.isNeedShowErrMsg = true;
-                this.errMsg = '店内营销活动执行‘' + campStatus + '’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
-            }
-        });
-    }
-
-    /**
-     * 删除营销活动
-     *
-     * @param {string} campId
-     */
-    gotoDeleteCampBase(campId: string) {
-        const campBaseModel: CampBaseModel = new CampBaseModel();
-        campBaseModel.shopId = this.shopData[0];
-        campBaseModel.shopName = this.shopData[1];
-        campBaseModel.campId = campId;
-        console.log('----------------------------------->', this.campBaseModel);
-        campBaseModel.operationType = 'PX_DELETE';
-        this.ftConfitService.manageCampBaseConfig(campBaseModel).subscribe(res => {
-            console.log('=======================>', res.json());
-            this.doQuery();
-            this.errMsg = '';
-            const data = res.json();
-            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
-                this.isNeedShowErrMsg = true;
-                this.errMsg = '店内营销活动执行‘删除’操作出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
-            }
-        });
-    }
-
-    /**
-     * 新增营销活动
-     */
-    gotoAddCampBase() {
-        this.campBaseModel.shopId = this.shopData[0];
-        this.campBaseModel.shopName = this.shopData[1];
-        console.log('----------------------------------->', this.campBaseModel);
-        this.campBaseModel.operationType = 'PX_ADD';
-        this.ftConfitService.manageCampBaseConfig(this.campBaseModel).subscribe(res => {
-            console.log('=======================>', res.json());
-            this.doQuery();
-        });
+        this.initCampStatusList();
+        this.initCampPrizeList();
     }
 
     /**
      * 构建店内营销活动列表，用于进入店铺进行相应的店内营销活动管理
      */
-    initCampBaseList() {
+    initCampPrizeList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['停止', 'single_shop_camp_shutdown'],
+            'tableOp': [['下架', 'single_shop_camp_shutdown'],
                 ['删除', 'single_shop_camp_delete'],
-                ['启动', 'single_shop_camp_start'],
+                ['上架', 'single_shop_camp_start'],
                 ['查看', 'camp_shop_single_view'],
-                ['添加奖品', 'camp_shop_single_mng']],
+                ['关联商品', 'camp_shop_single_mng']],
             'tableContent': []
         };
-        this.ftConfitService.getShopAllCampBaseConfig(this.shopData[0]).subscribe(res => {
+        this.ftConfitService.getShopAllCampPrizeConfig(this.campId).subscribe(res => {
             this.templateConfigList = this.commonService.filterResult(res.json());
-            this.tableElement.tableHeaders = ['活动ID', '活动名称', '活动开始时间', '活动结束时间', '活动状态', '创建时间', '修改时间'];
+            this.tableElement.tableHeaders = ['奖品名称', '奖品等级', '奖品比率', '奖位分布', '奖品单位价值', '奖品状态', '奖品数量'];
             this.templateConfigList.forEach(e => {
-                const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
-                const gmtModified = this.datePipe.transform(e.gmtModified, 'yyyy-MM-dd HH:mm:ss');
-                const campStart = this.datePipe.transform(e.campStart, 'yyyy-MM-dd HH:mm:ss');
-                const campEnd = this.datePipe.transform(e.campEnd, 'yyyy-MM-dd HH:mm:ss');
-                const campStatus = this.getCampSwitchShow(e.campStatus);
-                this.tableElement.tableContent.push([e.campId, e.campName, campStart, campEnd,
-                    campStatus, gmtCreated, gmtModified]);
+                const campPrizeStatus = this.getCampSwitchShow(e.prizeStatus);
+                this.tableElement.tableContent.push([e.prizeName, e.prizeLevel, e.prizePercent, e.distribution,
+                    e.price, campPrizeStatus, e.prizeAmount]);
             });
         });
     }
@@ -170,7 +107,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
     }
 
     initCampStatusList() {
-        this.ftConfitService.getDataDictionaryByKey('CampStatusEnum').subscribe(res => {
+        this.ftConfitService.getDataDictionaryByKey('CampPrizeStatusEnum').subscribe(res => {
             this.campStatusList = this.commonService.filterResult(res.json());
         });
     }
@@ -179,24 +116,29 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
      * 刷新当前营销活动列表
      */
     doQuery() {
-        this.initCampBaseList();
+        this.initCampPrizeList();
     }
 
     /**
      * 返回店铺列表页面
      */
     goReturn() {
-        this.eventBus.publish('campaign_shop', this.shopData);
+        this.eventBus.publish('campaign_shop_single', this.shopData);
     }
 }
 
-export class CampBaseModel {
+export class CampPrizeModel {
+    prizeId: string;
+    prizeName: string;
     campId: string;
-    campName: string;
     shopId: string;
-    shopName: string;
-    campStatus = 'CAMP_DRAFT';
-    campStart: string;
-    campEnd: string;
+    prizeLevel: string;
+    prizePercent: string;
+    distribution: string;
+    price: string;
+    prizeAmount: string;
+    prizeStatus = 'CAMP_PRIZE_DRAFT';
+    prizeEffictive: string;
+    prizeExpired: string;
     operationType = 'PX_ADD';
 }
