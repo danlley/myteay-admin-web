@@ -58,6 +58,8 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
         this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
         this.campId = this.shopData[7];
         this.shopId = this.shopData[0];
+        this.campPrizeModel.campId = this.campId;
+        this.campPrizeModel.shopId = this.shopId;
 
         this.initCampStatusList();
 
@@ -87,8 +89,14 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
     }
 
     doAddSingleShopCampPrize() {
-        //
+        console.log('this.campPrizeModel------------------------->', this.campPrizeModel);
+        this.campPrizeModel.operationType = 'PX_ADD';
+        this.ftConfitService.manageCampPrizeConfig(this.campPrizeModel).subscribe(res => {
+            console.log('=======================>', res.json());
+            this.eventBus.publish('campaign_shop_single_prize_mng', this.shopData);
+        });
     }
+
 
 
     initCampStatusList() {

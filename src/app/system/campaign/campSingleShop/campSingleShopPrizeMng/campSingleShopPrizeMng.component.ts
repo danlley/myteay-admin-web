@@ -44,6 +44,10 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
      */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 private commonService: CommonServie, private activeRoute: ActivatedRoute, private eventBus: EventService) {
+        // 监听店内营销活动启动请求
+        this.eventBus.registerySubject('single_shop_camp_prize_delete').subscribe(e => {
+            this.doDeleteSingleShopCampPrize(e[0]);
+        });
     }
 
     /**
@@ -68,7 +72,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
         this.tableElement = {
             'tableHeaders': [],
             'tableOp': [['下架', 'single_shop_camp_shutdown'],
-                ['删除', 'single_shop_camp_delete'],
+                ['删除', 'single_shop_camp_prize_delete'],
                 ['上架', 'single_shop_camp_start'],
                 ['查看', 'camp_shop_single_view'],
                 ['关联商品', 'camp_shop_single_mng']],
@@ -76,10 +80,10 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
         };
         this.ftConfitService.getShopAllCampPrizeConfig(this.campId).subscribe(res => {
             this.templateConfigList = this.commonService.filterResult(res.json());
-            this.tableElement.tableHeaders = ['奖品名称', '奖品等级', '奖品比率', '奖位分布', '奖品单位价值', '奖品状态', '奖品数量'];
+            this.tableElement.tableHeaders = ['奖品ID', '奖品名称', '奖品等级', '奖品比率', '奖品单位价值', '奖品状态', '奖品数量'];
             this.templateConfigList.forEach(e => {
                 const campPrizeStatus = this.getCampSwitchShow(e.prizeStatus);
-                this.tableElement.tableContent.push([e.prizeName, e.prizeLevel, e.prizePercent, e.distribution,
+                this.tableElement.tableContent.push([ e.prizeId, e.prizeName, e.prizeLevel, e.prizePercent,
                     e.price, campPrizeStatus, e.prizeAmount]);
             });
         });
@@ -131,6 +135,19 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
      */
     gotoAddCampPrize() {
         this.eventBus.publish('campaign_shop_single_prize_add', this.shopData);
+    }
+
+    /**
+     * 删除奖品
+     */
+    doDeleteSingleShopCampPrize(prizeId) {
+        console.log('this.campPrizeModel------------------------->', this.campPrizeModel);
+        this.campPrizeModel.operationType = 'PX_DELETE';
+        this.campPrizeModel.prizeId = prizeId;
+        this.ftConfitService.manageCampPrizeConfig(this.campPrizeModel).subscribe(res => {
+            console.log('=======================>', res.json());
+            this.doQuery();
+        });
     }
 }
 

@@ -47,6 +47,10 @@ export class FatigeConfigService {
         return this._http.post(environment.SYSTEM_CAMP_BASE_MNG_CONFIG_URL, data, this.getHeaderOptions());
     }
 
+    manageCampPrizeConfig(data): any {
+        return this._http.post(environment.SYSTEM_CAMP_PRIZE_MNG_CONFIG_URL, data, this.getHeaderOptions());
+    }
+
     manageShopConfig(data): any {
         return this._http.post(environment.SYSTEM_SHOP_MNG_CONFIG_URL, data, this.getHeaderOptions());
     }
