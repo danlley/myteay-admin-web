@@ -17,6 +17,11 @@ import {EventService} from '../../../../asyncService/asyncService.service';
 export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     title = '店内营销活动奖品管理!';
     templateConfigList: any[];
+    goodsTypeOption;
+
+    goodsType;
+    shopId;
+    goodsName = '';
 
     // 店铺信息，用于构建页面店铺信息展示
     shopData;
@@ -49,10 +54,30 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
         // 初始化店铺信息
         this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
 
-        this.doQuerySingleShopCampPrize( this.shopData[14]);
+        this.shopId = this.shopData[0];
 
+        this.doQuerySingleShopCampPrize(this.shopData[14]);
+        this.initSelectList();
     }
 
+    /**
+     * 查询当前店铺上架商品列表
+     */
+    doQueryOnlineGoodsList() {
+        console.log('goodsType--------------->', this.goodsType);
+        console.log('shopId--------------->', this.shopId);
+        console.log('goodsName--------------->', this.goodsName);
+    }
+
+    /**
+     * 下拉菜单初始化
+     */
+    initSelectList() {
+
+        this.ftConfitService.getDataDictionaryByKey('PxGoodsTypeEnum').subscribe(res => {
+            this.goodsTypeOption = this.commonService.filterResult(res.json());
+        });
+    }
 
     /**
      * 查询单个奖品详情
@@ -66,7 +91,6 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
             console.log('=======================>', this.viewData);
         });
     }
-
 
 
     /**

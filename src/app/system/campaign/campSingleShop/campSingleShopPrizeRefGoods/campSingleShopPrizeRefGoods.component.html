@@ -7,8 +7,21 @@
             <!-- 表格内容 -->
             <app-camp-prize-summary-table [viewData]="viewData"></app-camp-prize-summary-table>
             <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
-                <p class="contact-submit">
-                    <input type="button" class="button" value="   返回   " (click)="goReturn()">
+                <p class="contact-input contact-absolute-width">
+                    <input type="text" name="goodsName"  placeholder="商品名称关键字" [(ngModel)]="goodsName">
+                </p>
+                <p class="contact-input contact-absolute-width" style="margin-left: 280px; margin-top: -60px;">
+                    <label for="templateFlag" id="templateFlag" class="select">
+                        <select name="goodsType" id="goodsType" [(ngModel)]="goodsType">
+                            <option *ngFor="let templateFlag of goodsTypeOption"
+                                    value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                            </option>
+                        </select>
+                    </label>
+                </p>
+                <p class="contact-submit" style="margin-top: -70px;">
+                    <input type="button" class="button" style="margin-right: 440px;" value="   查  询   " (click)="doQueryOnlineGoodsList()">
+                    <input type="button" class="button" style="margin-left: 100px;" value="   返回   " (click)="goReturn()">
                 </p>
             </div>
         </div>
