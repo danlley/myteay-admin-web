@@ -22,6 +22,7 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     goodsType;
     shopId;
     goodsName = '';
+    i = 100;
 
     // 店铺信息，用于构建页面店铺信息展示
     shopData;

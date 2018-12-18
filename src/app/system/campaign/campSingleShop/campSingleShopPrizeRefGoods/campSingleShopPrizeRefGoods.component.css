@@ -28,9 +28,48 @@
 }
 
 .summary-table-common-element {
-	border: #258587 1px solid; float: left; width: 20%; height: 30px; line-height: 30px;
+	border: #258587 1px solid;
+	float: left;
+	width: 20%;
+	height: 30px;
+	line-height: 30px;
 }
 
 .summary-table-large-element {
-	border: #258587 1px solid; float: left; width: 30%; height: 30px; line-height: 30px;
+	border: #258587 1px solid;
+	float: left;
+	width: 30%;
+	height: 30px;
+	line-height: 30px;
 }
+
+/* ------------           滚动条           -------------- */
+::-webkit-scrollbar-thumb {
+	background-color: #dddddd;
+	background-clip: padding-box;
+	min-height: 28px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background-color: #bbb;
+}
+
+.test1::-webkit-scrollbar {
+	width: 10px;
+}
+
+.test1::-webkit-scrollbar-track {
+	background: #43f4f6 linear-gradient(to right, rgba(0, 255, 0, 0), rgba(34, 120, 122, 0.5));
+	transition: background-color .5s;
+	-webkit-border-radius: 2em;
+	-moz-border-radius: 2em;
+	border-radius: 2em;
+}
+
+.test1::-webkit-scrollbar-thumb {
+	background-color: #258587;
+	-webkit-border-radius: 2em;
+	-moz-border-radius: 2em;
+	border-radius: 2em;
+}
+
