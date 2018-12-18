@@ -51,6 +51,7 @@ import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/
 import {CampSummaryTableComponent} from './system/campaign/campSummaryTable/campSummaryTable.component';
 import {CampSingleShopPrizeAddComponent} from './system/campaign/campSingleShop/campSingleShopPrizeAdd/campSingleShopPrizeAdd.component';
 import {CampSingleShopPrizeViewDetailComponent} from './system/campaign/campSingleShop/campSingleShopPrizeViewDetail/campSingleShopPrizeViewDetail.component';
+import {CampSingleShopPrizeRefGoodsComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoods.component';
 
 @NgModule({
     declarations: [
@@ -91,6 +92,7 @@ import {CampSingleShopPrizeViewDetailComponent} from './system/campaign/campSing
         CampSummaryTableComponent,
         CampSingleShopPrizeAddComponent,
         CampSingleShopPrizeViewDetailComponent,
+        CampSingleShopPrizeRefGoodsComponent,
         InactiveGoodsComponent,
         BottomComponent
     ],
@@ -144,6 +146,7 @@ import {CampSingleShopPrizeViewDetailComponent} from './system/campaign/campSing
         CampSummaryTableComponent,
         CampSingleShopPrizeAddComponent,
         CampSingleShopPrizeViewDetailComponent,
+        CampSingleShopPrizeRefGoodsComponent,
         InactiveGoodsComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]

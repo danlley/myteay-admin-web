@@ -59,11 +59,18 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
             this.doOfflineSingleShopCampPrize(e[0]);
         });
 
-        // 监听店内营销活动奖品下架请求
+        // 监听店内营销活动奖品详情查看请求
         this.eventBus.registerySubject('campaign_shop_single_prize_view_detail_inner').subscribe(e => {
             const sendData = [this.shopData, e];
             console.log('表格操作目标（详情）：', sendData);
             this.eventBus.publish('campaign_shop_single_prize_view_detail', sendData);
+        });
+
+        // 监听店内营销活动奖品下架请求
+        this.eventBus.registerySubject('campaign_shop_single_prize_ref_inner').subscribe(e => {
+            const sendData = [this.shopData, e];
+            console.log('表格操作目标（详情）：', sendData);
+            this.eventBus.publish('campaign_shop_single_prize_ref', sendData);
         });
     }
 
@@ -92,7 +99,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
                 ['删除', 'single_shop_camp_prize_delete'],
                 ['上架', 'single_shop_camp_prize_online'],
                 ['查看', 'campaign_shop_single_prize_view_detail_inner'],
-                ['关联商品', 'camp_shop_single_mng']],
+                ['关联商品', 'campaign_shop_single_prize_ref_inner']],
             'tableContent': []
         };
         this.ftConfitService.getShopAllCampPrizeConfig(this.campId).subscribe(res => {
