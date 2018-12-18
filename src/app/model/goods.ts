@@ -16,6 +16,7 @@ export class PxGoodsConfigModel {
     isQuan: string;
     isTuan: string;
     orderTypeShow: string;
+    goodsTypeShow: string;
     goodsImageShow: string;
     isHuiyuanShow: string;
     isQuanShow: string;

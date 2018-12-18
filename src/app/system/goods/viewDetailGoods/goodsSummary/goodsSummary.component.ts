@@ -60,6 +60,7 @@ export class GoodsSummaryComponent implements OnInit {
             this.goodsConfigModel.isQuan = this.data.isQuan;
             this.goodsConfigModel.isTuan = this.data.isTuan;
             this.goodsConfigModel.orderType = this.data.orderType;
+            this.goodsConfigModel.goodsType = this.data.goodsType;
 
             this.ftConfitService.getDataDictionaryByKey('PxGoodsOrderTypeEnum').subscribe(res1 => {
                 const orderType = this.commonService.filterResult(res1.json());
@@ -67,6 +68,16 @@ export class GoodsSummaryComponent implements OnInit {
                     orderType.forEach(e => {
                         if (e.bizKey === this.goodsConfigModel.orderType) {
                             this.goodsConfigModel.orderTypeShow = e.value;
+                        }
+                    });
+                }
+            });
+            this.ftConfitService.getDataDictionaryByKey('PxGoodsTypeEnum').subscribe(res5 => {
+                const goodsType = this.commonService.filterResult(res5.json());
+                if (goodsType !== null) {
+                    goodsType.forEach(e => {
+                        if (e.bizKey === this.goodsConfigModel.goodsType) {
+                            this.goodsConfigModel.goodsTypeShow = e.value;
                         }
                     });
                 }
