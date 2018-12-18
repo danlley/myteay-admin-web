@@ -1,0 +1,43 @@
+<!-- 表格内容 -->
+<div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 0px;">
+    <div class="summary-table-body">
+        <div class="summary-table-element-face">奖品ID：</div>
+        <div class="summary-table-common-element"><span>{{viewData.prizeId}}</span></div>
+        <div class="summary-table-element-face">奖品状态：</div>
+        <div class="summary-table-common-element"><span >{{viewData.prizeStatus}}</span></div>
+        <div class="summary-table-element-face">奖品名称：</div>
+        <div class="summary-table-large-element"><span>{{viewData.prizeName}}</span></div>
+    </div>
+    <div class="summary-table-body">
+        <div class="summary-table-element-face">奖品等级：</div>
+        <div class="summary-table-common-element"><span >{{viewData.prizeLevel}}</span></div>
+        <div class="summary-table-element-face">活动ID：</div>
+        <div class="summary-table-common-element"><span>{{viewData.campId}}</span></div>
+        <div class="summary-table-element-face">店铺ID：</div>
+        <div class="summary-table-large-element"><span >{{viewData.shopId}}</span></div>
+    </div>
+    <div class="summary-table-body">
+        <div class="summary-table-element-face">中奖几率：</div>
+        <div class="summary-table-common-element"><span >{{viewData.prizePercent}}</span></div>
+        <div class="summary-table-element-face">奖位分布：</div>
+        <div class="summary-table-common-element"><span >{{viewData.distribution}}</span></div>
+        <div class="summary-table-element-face">奖品价值：</div>
+        <div class="summary-table-large-element"><span >{{viewData.price}}</span></div>
+    </div>
+    <div class="summary-table-body">
+        <div class="summary-table-element-face">奖品数量：</div>
+        <div class="summary-table-common-element"><span >{{viewData.prizeAmount}}</span></div>
+        <div class="summary-table-element-face">起效时间：</div>
+        <div class="summary-table-common-element"><span >{{viewData.prizeEffictive | date: 'yyyy-MM-dd HH:mm:ss'}}</span></div>
+        <div class="summary-table-element-face">过期时间：</div>
+        <div class="summary-table-large-element"><span >{{viewData.prizeExpired | date: 'yyyy-MM-dd HH:mm:ss'}}</span></div>
+    </div>
+    <div class="summary-table-body">
+        <div class="summary-table-element-face">记录创建时间：</div>
+        <div class="summary-table-common-element"><span >{{viewData.gmtCreated | date: 'yyyy-MM-dd HH:mm:ss'}}</span></div>
+        <div class="summary-table-element-face">最后修改时间：</div>
+        <div class="summary-table-common-element"><span >{{viewData.gmtModified | date: 'yyyy-MM-dd HH:mm:ss'}}</span></div>
+        <div class="summary-table-element-face"></div>
+        <div class="summary-table-large-element"></div>
+    </div>
+</div>
