@@ -118,9 +118,21 @@
                 </td>
             </tr>
             <tr>
+                <td align="right" width="10%">商品类型：</td>
+                <td align="left">
+                    <p class="contact-input contact-absolute-width">
+                        <label for="templateFlag" class="select">
+                            <select name="goodsType" id="goodsType" [(ngModel)]="goodsConfigModel.goodsType">
+                                <option *ngFor="let templateFlag of goodsTypeOption"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
                 <td align="right">上传图片：</td>
                 <td align="left" colspan="3">
-                    <div style="width: 10%; height: 100%; float: left;">
+                    <div style="width: 20%; height: 100%; float: left;">
                         <a href="javascript:;" class="file">选择文件    <input type="file" name="" id="1" [(ngModel)] = "myFile" (change)="uploadFile($event)"></a>
                     </div>
                 </td>

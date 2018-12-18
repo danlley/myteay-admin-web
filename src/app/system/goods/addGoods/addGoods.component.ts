@@ -30,6 +30,7 @@ export class AddGoodsComponent implements OnInit {
     isHuiyuan;
     isQuan;
     isTuan;
+    goodsTypeOption;
 
     // 文件处理所需变量，用于上传商品摘要所需的图片文件
     fileList;
@@ -104,6 +105,7 @@ export class AddGoodsComponent implements OnInit {
         formData.append('goodsCommPrice', this.goodsConfigModel.goodsCommPrice);
         formData.append('goodsOnlineTime', this.goodsConfigModel.goodsOnlineTime);
         formData.append('orderType', this.goodsConfigModel.orderType);
+        formData.append('goodsType', this.goodsConfigModel.goodsType);
         formData.append('isHuiyuan', this.goodsConfigModel.isHuiyuan);
         formData.append('isQuan', this.goodsConfigModel.isQuan);
         formData.append('isTuan', this.goodsConfigModel.isTuan);
@@ -144,6 +146,10 @@ export class AddGoodsComponent implements OnInit {
         // 是否支持团购选择列表
         this.ftConfitService.getDataDictionaryByKey('PxGoodsTuanEnum').subscribe(res => {
             this.isTuan = this.commonService.filterResult(res.json());
+        });
+
+        this.ftConfitService.getDataDictionaryByKey('PxGoodsTypeEnum').subscribe(res => {
+            this.goodsTypeOption = this.commonService.filterResult(res.json());
         });
     }
 }
