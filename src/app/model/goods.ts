@@ -11,6 +11,7 @@ export class PxGoodsConfigModel {
     goodsCommPrice: string;
     goodsOnlineTime: string;
     orderType: string;
+    goodsType: string;
     isHuiyuan: string;
     isQuan: string;
     isTuan: string;

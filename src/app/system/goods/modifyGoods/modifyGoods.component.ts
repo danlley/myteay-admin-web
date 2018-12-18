@@ -31,6 +31,7 @@ export class ModifyGoodsComponent implements OnInit {
     isHuiyuan;
     isQuan;
     isTuan;
+    goodsTypeOption;
 
     goodsId;
     data;
@@ -103,6 +104,7 @@ export class ModifyGoodsComponent implements OnInit {
             this.goodsConfigModel.gmtExpired = this.datePipe.transform(this.data.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
             this.goodsConfigModel.goodsOnlineTime = this.data.goodsOnlineTime;
             this.goodsConfigModel.orderType = this.data.orderType;
+            this.goodsConfigModel.goodsType = this.data.goodsType;
             this.goodsConfigModel.goodsCommPrice = this.data.goodsCommPrice;
             this.goodsConfigModel.goodsPrice = this.data.goodsPrice;
             this.goodsConfigModel.goodsDesc = this.data.goodsDesc;
@@ -147,6 +149,7 @@ export class ModifyGoodsComponent implements OnInit {
         formData.append('goodsCommPrice', this.goodsConfigModel.goodsCommPrice);
         formData.append('goodsOnlineTime', this.goodsConfigModel.goodsOnlineTime);
         formData.append('orderType', this.goodsConfigModel.orderType);
+        formData.append('goodsType', this.goodsConfigModel.goodsType);
         formData.append('isHuiyuan', this.goodsConfigModel.isHuiyuan);
         formData.append('isQuan', this.goodsConfigModel.isQuan);
         formData.append('isTuan', this.goodsConfigModel.isTuan);
@@ -183,6 +186,9 @@ export class ModifyGoodsComponent implements OnInit {
         });
         this.ftConfitService.getDataDictionaryByKey('PxGoodsTuanEnum').subscribe(res => {
             this.isTuan = this.commonService.filterResult(res.json());
+        });
+        this.ftConfitService.getDataDictionaryByKey('PxGoodsTypeEnum').subscribe(res => {
+            this.goodsTypeOption = this.commonService.filterResult(res.json());
         });
     }
 }
