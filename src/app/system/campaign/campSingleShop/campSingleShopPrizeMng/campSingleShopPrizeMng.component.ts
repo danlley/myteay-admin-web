@@ -44,9 +44,26 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
      */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
                 private commonService: CommonServie, private activeRoute: ActivatedRoute, private eventBus: EventService) {
-        // 监听店内营销活动启动请求
+        // 监听店内营销活动奖品删除请求
         this.eventBus.registerySubject('single_shop_camp_prize_delete').subscribe(e => {
             this.doDeleteSingleShopCampPrize(e[0]);
+        });
+
+        // 监听店内营销活动奖品上架请求
+        this.eventBus.registerySubject('single_shop_camp_prize_online').subscribe(e => {
+            this.doOnlineSingleShopCampPrize(e[0]);
+        });
+
+        // 监听店内营销活动奖品下架请求
+        this.eventBus.registerySubject('single_shop_camp_prize_offline').subscribe(e => {
+            this.doOfflineSingleShopCampPrize(e[0]);
+        });
+
+        // 监听店内营销活动奖品下架请求
+        this.eventBus.registerySubject('campaign_shop_single_prize_view_detail_inner').subscribe(e => {
+            const sendData = [this.shopData, e];
+            console.log('表格操作目标（详情）：', sendData);
+            this.eventBus.publish('campaign_shop_single_prize_view_detail', sendData);
         });
     }
 
@@ -71,10 +88,10 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
     initCampPrizeList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['下架', 'single_shop_camp_shutdown'],
+            'tableOp': [['下架', 'single_shop_camp_prize_offline'],
                 ['删除', 'single_shop_camp_prize_delete'],
-                ['上架', 'single_shop_camp_start'],
-                ['查看', 'camp_shop_single_view'],
+                ['上架', 'single_shop_camp_prize_online'],
+                ['查看', 'campaign_shop_single_prize_view_detail_inner'],
                 ['关联商品', 'camp_shop_single_mng']],
             'tableContent': []
         };
@@ -149,6 +166,35 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
             this.doQuery();
         });
     }
+
+    /**
+     * 上架奖品
+     */
+    doOnlineSingleShopCampPrize(prizeId) {
+        console.log('this.campPrizeModel------------------------->', this.campPrizeModel);
+        this.campPrizeModel.operationType = 'PX_MODIFY';
+        this.campPrizeModel.prizeId = prizeId;
+        this.campPrizeModel.prizeStatus = 'CAMP_PRIZE_ONLINE';
+        this.ftConfitService.manageCampPrizeConfig(this.campPrizeModel).subscribe(res => {
+            console.log('=======================>', res.json());
+            this.doQuery();
+        });
+    }
+
+    /**
+     * 下架奖品
+     */
+    doOfflineSingleShopCampPrize(prizeId) {
+        console.log('this.campPrizeModel------------------------->', this.campPrizeModel);
+        this.campPrizeModel.operationType = 'PX_MODIFY';
+        this.campPrizeModel.prizeId = prizeId;
+        this.campPrizeModel.prizeStatus = 'CAMP_PRIZE_OFFLINE';
+        this.ftConfitService.manageCampPrizeConfig(this.campPrizeModel).subscribe(res => {
+            console.log('=======================>', res.json());
+            this.doQuery();
+        });
+    }
+
 }
 
 export class CampPrizeModel {

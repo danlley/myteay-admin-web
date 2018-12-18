@@ -1,0 +1,63 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div style="align-items: left; left: 15px !important; width: 100%;">
+
+            <!-- 当前店铺汇总信息 -->
+            <app-camp-summary-table [shopData]="shopData" [tableTitle]="shopData[8]" [tableTitleFace]="'当前活动奖品查看'"></app-camp-summary-table>
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+                <p class="contact-submit">
+                    <input type="button" class="button" value="   返回   " (click)="goReturn()">
+                </p>
+            </div>
+        </div>
+
+        <!-- 表单内容 -->
+        <table align="center" width="95%"  cellpadding="1" cellspacing="1" border="1">
+            <th colspan="4" align="center" valign="middle">查看奖品详情</th>
+            <tr>
+                <td align="right" width="10%">奖品ID：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;; margin-left: 10px;">{{viewData.prizeId}}</span></td>
+                <td align="right" width="10%">奖品状态：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.prizeStatus}}</span></td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">奖品名称：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;; margin-left: 10px;">{{viewData.prizeName}}</span></td>
+                <td align="right" width="10%">奖品等级：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.prizeLevel}}</span></td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">活动ID：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;; margin-left: 10px;">{{viewData.campId}}</span></td>
+                <td align="right" width="10%">店铺ID：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.shopId}}</span></td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">中奖几率：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.prizePercent}}</span></td>
+                <td align="right" width="10%">奖位分布：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.distribution}}</span></td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">奖品价值：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.price}}</span></td>
+                <td align="right" width="10%">奖品数量：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.prizeAmount}}</span></td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">起效时间：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.prizeEffictive | date: 'yyyy-MM-dd HH:mm:ss'}}</span></td>
+                <td align="right" width="10%">过期时间：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.prizeExpired | date: 'yyyy-MM-dd HH:mm:ss'}}</span></td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">记录创建时间：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.gmtCreated | date: 'yyyy-MM-dd HH:mm:ss'}}</span></td>
+                <td align="right" width="10%">最后修改时间：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.gmtModified | date: 'yyyy-MM-dd HH:mm:ss'}}</span></td>
+            </tr>
+        </table>
+    </div>
+
+</div>
