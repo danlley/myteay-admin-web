@@ -16,7 +16,6 @@ import {EventService} from '../../../../asyncService/asyncService.service';
  */
 export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     title = '店内营销活动奖品管理!';
-    campStatusList: any[];
     templateConfigList: any[];
 
     // 店铺信息，用于构建页面店铺信息展示
@@ -50,7 +49,6 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
         // 初始化店铺信息
         this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
 
-        this.initCampPrizeStatusList();
         this.doQuerySingleShopCampPrize( this.shopData[14]);
 
     }
@@ -69,11 +67,7 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
         });
     }
 
-    initCampPrizeStatusList() {
-        this.ftConfitService.getDataDictionaryByKey('CampPrizeStatusEnum').subscribe(res => {
-            this.campStatusList = this.commonService.filterResult(res.json());
-        });
-    }
+
 
     /**
      * 返回店铺列表页面

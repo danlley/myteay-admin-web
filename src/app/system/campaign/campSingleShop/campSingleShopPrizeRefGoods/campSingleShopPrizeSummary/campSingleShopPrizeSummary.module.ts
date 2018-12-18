@@ -6,6 +6,8 @@ import {FormsModule} from '@angular/forms';
 import {Subject} from 'rxjs/Subject';
 import {CampSingleShopPrizeSummaryComponent} from './campSingleShopPrizeSummary.component';
 import {EventService} from '../../../../../asyncService/asyncService.service';
+import {DatePipe} from '@angular/common';
+import {FatigeConfigService} from '../../../../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,7 @@ import {EventService} from '../../../../../asyncService/asyncService.service';
         FormsModule,
         HttpModule
     ],
-    providers: [Observable, Subject, EventService],
+    providers: [FatigeConfigService, DatePipe, Observable, Subject, EventService],
     bootstrap: [CampSingleShopPrizeSummaryComponent]
 })
 export class CampSummaryTableModule {
