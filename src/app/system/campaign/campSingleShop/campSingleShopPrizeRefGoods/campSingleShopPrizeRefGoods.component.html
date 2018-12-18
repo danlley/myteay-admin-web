@@ -37,6 +37,25 @@
         <div style="align-items: left; left: 15px !important; width: 100%;">
             <div style="width: 95%; margin: auto; left: 0; right: 0;">
                 <div class="test1" style="height: 700px; border-radius: 8px; overflow-y:scroll; width: 400px; border: 1px #00F7DE solid; background-color: #55dac1;">
+                    <div *ngFor="let goods of goodsList" class="goods-item-style" (click)="">
+                        <div style="width: 100px; height: 100px; float: left;">
+                            <img style="border-radius: 5px; border: #2f3e45 1px solid; height: 100px; width: 100px;" src="{{imgPath}}{{goods.goodsImage}}">
+                        </div>
+                        <div style="width: 280px; height: 100px; margin-top: -100px; float: right;">
+                            <div style="height: 30px;">
+                                <span style="float: left; line-height: 30px;">{{goods.goodsTitle}}</span>
+                            </div>
+                            <div style="height: 30px;">
+                                <span style="float: left;line-height: 30px;">
+                                    ￥ <span style="color: #f3384b; font-weight: 900;">{{goods.goodsPrice}}</span> 元
+                                </span>
+                            </div>
+                            <div style="height: 30px;">
+                                <span style="float: left; line-height: 30px;">{{goods.goodsOnlineTime}}</span>
+                            </div>
+                        </div>
+                    </div>
+                
                 </div>
                 <div style="height: 700px; width: 100px; margin-left: 400px; margin-top: -700px;">
                     <div style="height: 140px; width: 100%; margin-top: 300px;">

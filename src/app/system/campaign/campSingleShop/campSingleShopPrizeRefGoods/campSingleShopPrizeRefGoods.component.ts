@@ -4,6 +4,7 @@ import {DatePipe} from '@angular/common';
 import {CommonServie} from '../../../../utils/common.servie';
 import {ActivatedRoute} from '@angular/router';
 import {EventService} from '../../../../asyncService/asyncService.service';
+import {environment} from '../../../../../environments/environment.prod';
 
 @Component({
     selector: 'app-camp-shop-single-prize-ref',
@@ -22,7 +23,8 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     goodsType;
     shopId;
     goodsName = '';
-    i = 100;
+    goodsList;
+    imgPath = environment.PKG_IMG_SHOW_URL;
 
     // 店铺信息，用于构建页面店铺信息展示
     shopData;
@@ -59,6 +61,17 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
 
         this.doQuerySingleShopCampPrize(this.shopData[14]);
         this.initSelectList();
+        this.initGoodsPackagesList();
+    }
+
+    /**
+     * 初始化商品概要列表表格展示数据
+     */
+    initGoodsPackagesList() {
+            this.ftConfitService.getAllGoodsByShopId(this.shopId).subscribe(res => {
+                this.goodsList = this.commonService.filterResult(res.json());
+                console.log('this.goodsList---------->', this.goodsList);
+            });
     }
 
     /**
