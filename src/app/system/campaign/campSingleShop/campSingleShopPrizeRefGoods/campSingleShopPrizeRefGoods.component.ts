@@ -4,7 +4,7 @@ import {DatePipe} from '@angular/common';
 import {CommonServie} from '../../../../utils/common.servie';
 import {ActivatedRoute} from '@angular/router';
 import {EventService} from '../../../../asyncService/asyncService.service';
-import {environment} from '../../../../../environments/environment.prod';
+import {PxGoodsConfigModel} from '../../../../model/goods';
 
 @Component({
     selector: 'app-camp-shop-single-prize-ref',
@@ -24,7 +24,9 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     shopId;
     goodsName = '';
     goodsList;
-    imgPath = environment.PKG_IMG_SHOW_URL;
+    goodsListLeftSide: PxGoodsConfigModel[] = [];
+    goodsListRightSide: PxGoodsConfigModel[] = [];
+
 
     // 店铺信息，用于构建页面店铺信息展示
     shopData;
@@ -64,14 +66,47 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
         this.initGoodsPackagesList();
     }
 
+    gotoRightSide(goods) {
+        this.goodsListRightSide.push(goods);
+        this.goodsListLeftSide = [];
+        this.goodsList.forEach(e => {
+            let addFlag = true;
+            this.goodsListRightSide.forEach(e1 => {
+                if (e.goodsId === e1.goodsId) {
+                    addFlag = false;
+                }
+            });
+            if (addFlag) {
+                this.goodsListLeftSide.push(e);
+            }
+        });
+    }
+
+    gotoLeftSide(goods) {
+        this.goodsListLeftSide.push(goods);
+        this.goodsListRightSide = [];
+        this.goodsList.forEach(e => {
+            let addFlag = true;
+            this.goodsListLeftSide.forEach(e1 => {
+                if (e.goodsId === e1.goodsId) {
+                    addFlag = false;
+                }
+            });
+            if (addFlag) {
+                this.goodsListRightSide.push(e);
+            }
+        });
+    }
+
     /**
      * 初始化商品概要列表表格展示数据
      */
     initGoodsPackagesList() {
-            this.ftConfitService.getAllGoodsByShopId(this.shopId).subscribe(res => {
-                this.goodsList = this.commonService.filterResult(res.json());
-                console.log('this.goodsList---------->', this.goodsList);
-            });
+        this.ftConfitService.getAllGoodsByShopId(this.shopId).subscribe(res => {
+            this.goodsList = this.commonService.filterResult(res.json());
+            this.goodsListLeftSide = this.goodsList;
+            console.log('this.goodsList---------->', this.goodsList);
+        });
     }
 
     /**
