@@ -26,6 +26,7 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     goodsList;
     goodsListLeftSide: PxGoodsConfigModel[] = [];
     goodsListRightSide: PxGoodsConfigModel[] = [];
+    goodsListEndSide: PxGoodsConfigModel[] = [];
 
 
     // 店铺信息，用于构建页面店铺信息展示
@@ -64,6 +65,7 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
         this.doQuerySingleShopCampPrize(this.shopData[14]);
         this.initSelectList();
         this.initGoodsPackagesList();
+        this.initPrizeRefGoodsEndSideList();
     }
 
     gotoRightSide(goods) {
@@ -94,6 +96,20 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
             });
             if (addFlag) {
                 this.goodsListRightSide.push(e);
+            }
+        });
+    }
+
+    /**
+     * 初始化已经完成奖品关联的商品展示数据
+     */
+    initPrizeRefGoodsEndSideList() {
+        this.ftConfitService.getShopCampPrizeRefGoodsListConfig(this.shopData[14]).subscribe(res => {
+            const list = this.commonService.filterResult(res.json());
+            if (list !== null) {
+                list.forEach( e => {
+                    this.goodsListEndSide.push(e.pxGoodsModel);
+                });
             }
         });
     }
