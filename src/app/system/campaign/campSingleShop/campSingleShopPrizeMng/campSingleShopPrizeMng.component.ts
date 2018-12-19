@@ -170,6 +170,12 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
         this.campPrizeModel.prizeId = prizeId;
         this.ftConfitService.manageCampPrizeConfig(this.campPrizeModel).subscribe(res => {
             console.log('=======================>', res.json());
+            this.errMsg = '';
+            const data = res.json();
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '奖品执行‘删除’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.doQuery();
         });
     }
