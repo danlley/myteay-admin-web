@@ -22,17 +22,23 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
 
     goodsType = '';
     shopId;
+    prizeId;
     goodsName = '';
     goodsList;
     goodsListLeftSide: PxGoodsConfigModel[] = [];
     goodsListRightSide: PxGoodsConfigModel[] = [];
     goodsListEndSide: PxGoodsConfigModel[] = [];
+    goodsRefList: CampPrizeRefGoodsModel[] = [];
 
 
     // 店铺信息，用于构建页面店铺信息展示
     shopData;
     campPrizeModel: CampPrizeModel = new CampPrizeModel();
     viewData: CampPrizeModel = new CampPrizeModel();
+
+
+    isNeedShowErrMsg = false;
+    errMsg = '';
 
     tableElement = {
         'tableHeaders': [],
@@ -61,13 +67,49 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
         this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
 
         this.shopId = this.shopData[0];
+        this.prizeId = this.shopData[14];
 
-        this.doQuerySingleShopCampPrize(this.shopData[14]);
+        this.doQuerySingleShopCampPrize(this.prizeId);
         this.initSelectList();
         this.initGoodsPackagesList();
         this.initPrizeRefGoodsEndSideList();
     }
 
+    /**
+     * 对待保存列表执行保存动作
+     */
+    doAddOnlineGoodsRefList() {
+
+        if (this.goodsListRightSide !== null && this.goodsListRightSide !== undefined){
+            this.goodsListRightSide.forEach( e => {
+                const model: CampPrizeRefGoodsModel = new CampPrizeRefGoodsModel();
+                model.goodsId = e.goodsId;
+                model.prizeId = this.prizeId;
+                this.goodsRefList.push(model);
+            });
+        }
+
+        this.goodsListEndSide = [];
+        this.ftConfitService.manageShopCampPrizeRefGoodsListConfig(this.goodsRefList).subscribe(res => {
+            const list = this.commonService.filterResult(res.json());
+            this.errMsg = '';
+            const data = res.json();
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '奖品关联商品出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
+            if (list !== null) {
+                list.forEach( e => {
+                    this.goodsListEndSide.push(e.pxGoodsModel);
+                });
+            }
+        });
+    }
+
+    /**
+     * 将商品从选择列表中移入待保存列表
+     * @param goods
+     */
     gotoRightSide(goods) {
         this.goodsListRightSide.push(goods);
         this.goodsListLeftSide = [];
@@ -84,6 +126,10 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
         });
     }
 
+    /**
+     * 将商品从待保存列表移除
+     * @param goods
+     */
     gotoLeftSide(goods) {
         this.goodsListLeftSide.push(goods);
         this.goodsListRightSide = [];
@@ -104,7 +150,8 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
      * 初始化已经完成奖品关联的商品展示数据
      */
     initPrizeRefGoodsEndSideList() {
-        this.ftConfitService.getShopCampPrizeRefGoodsListConfig(this.shopData[14]).subscribe(res => {
+        this.goodsListEndSide = [];
+        this.ftConfitService.getShopCampPrizeRefGoodsListConfig(this.prizeId).subscribe(res => {
             const list = this.commonService.filterResult(res.json());
             if (list !== null) {
                 list.forEach( e => {
@@ -176,6 +223,13 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     goReturn() {
         this.eventBus.publish('campaign_shop_single_prize_mng', this.shopData);
     }
+}
+
+export class CampPrizeRefGoodsModel {
+    prizeId: string;
+    goodsId: number;
+    gmtCreated: string;
+    gmtModified: string;
 }
 
 export class CampPrizeModel {
