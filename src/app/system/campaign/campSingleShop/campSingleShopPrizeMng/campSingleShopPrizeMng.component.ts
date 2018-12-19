@@ -184,6 +184,12 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
         this.campPrizeModel.prizeStatus = 'CAMP_PRIZE_ONLINE';
         this.ftConfitService.manageCampPrizeConfig(this.campPrizeModel).subscribe(res => {
             console.log('=======================>', res.json());
+            this.errMsg = '';
+            const data = res.json();
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '奖品执行‘上架’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.doQuery();
         });
     }
@@ -198,6 +204,12 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
         this.campPrizeModel.prizeStatus = 'CAMP_PRIZE_OFFLINE';
         this.ftConfitService.manageCampPrizeConfig(this.campPrizeModel).subscribe(res => {
             console.log('=======================>', res.json());
+            this.errMsg = '';
+            const data = res.json();
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '奖品执行‘下架’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
             this.doQuery();
         });
     }
