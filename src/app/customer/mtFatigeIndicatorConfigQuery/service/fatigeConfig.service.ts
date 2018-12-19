@@ -43,6 +43,11 @@ export class FatigeConfigService {
         return this._http.get(environment.CAMP_PRIZE_QUERY_CONFIG_URL  + '/' + campId, this.getHeaderOptions());
     }
 
+
+    getSingleShopPrizeGoodsConfig(data): any {
+        return this._http.post(environment.SYSTEM_CAMP_PRIZE_REF_GOODS_MNG_CONFIG_URL, data, this.getHeaderOptions());
+    }
+
     manageCampBaseConfig(data): any {
         return this._http.post(environment.SYSTEM_CAMP_BASE_MNG_CONFIG_URL, data, this.getHeaderOptions());
     }

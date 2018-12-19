@@ -20,7 +20,7 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     templateConfigList: any[];
     goodsTypeOption;
 
-    goodsType;
+    goodsType = '';
     shopId;
     goodsName = '';
     goodsList;
@@ -102,10 +102,24 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
      * 初始化商品概要列表表格展示数据
      */
     initGoodsPackagesList() {
-        this.ftConfitService.getAllGoodsByShopId(this.shopId).subscribe(res => {
+        const formData: FormData = new FormData();
+        formData.append('shopId', this.shopId);
+        formData.append('goodsTitle', this.goodsName);
+        formData.append('goodsType', this.goodsType);
+        this.ftConfitService.getSingleShopPrizeGoodsConfig(formData).subscribe(res => {
             this.goodsList = this.commonService.filterResult(res.json());
-            this.goodsListLeftSide = this.goodsList;
-            console.log('this.goodsList---------->', this.goodsList);
+            this.goodsListLeftSide = [];
+            this.goodsList.forEach(e => {
+                let addFlag = true;
+                this.goodsListRightSide.forEach(e1 => {
+                    if (e.goodsId === e1.goodsId) {
+                        addFlag = false;
+                    }
+                });
+                if (addFlag) {
+                    this.goodsListLeftSide.push(e);
+                }
+            });
         });
     }
 
@@ -113,9 +127,7 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
      * 查询当前店铺上架商品列表
      */
     doQueryOnlineGoodsList() {
-        console.log('goodsType--------------->', this.goodsType);
-        console.log('shopId--------------->', this.shopId);
-        console.log('goodsName--------------->', this.goodsName);
+        this.initGoodsPackagesList();
     }
 
     /**
