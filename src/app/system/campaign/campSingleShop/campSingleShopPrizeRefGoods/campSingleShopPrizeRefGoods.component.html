@@ -50,7 +50,7 @@
                     </div>
                 </div>
                 <div class="test1" style="height: 700px; width: 400px; border-radius: 8px; overflow-y:scroll; margin-left: 500px; margin-top: -1000px; border: 1px #00F7DE solid; background-color: #55dac1;">
-                    <app-camp-prize-goods-item  *ngFor="let goods of goodsListRightSide" [goods]="goods" (click)="gotoLeftSide(goods)"></app-camp-prize-goods-item>
+                    <app-camp-prize-goods-item  *ngFor="let goods of goodsListRightSide" [goods]="goods" (click)="gotoLeftSide(goods, initFlag)"></app-camp-prize-goods-item>
                 </div>
                 <div class="test1" style="height: 700px; width: 400px; border-radius: 8px; overflow-y:scroll; margin-left: 920px; margin-top: -700px; border: 1px #00F7DE solid; background-color: #55dac1;">
                     <app-camp-prize-goods-item  *ngFor="let goods of goodsListEndSide" [goods]="goods"></app-camp-prize-goods-item>

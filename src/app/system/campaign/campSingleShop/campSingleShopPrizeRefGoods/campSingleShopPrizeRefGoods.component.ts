@@ -40,6 +40,8 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     isNeedShowErrMsg = false;
     errMsg = '';
 
+    initFlag = true;
+
     tableElement = {
         'tableHeaders': [],
         'tableOp': [],
@@ -79,9 +81,9 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
      * 对待保存列表执行保存动作
      */
     doAddOnlineGoodsRefList() {
-
-        if (this.goodsListRightSide !== null && this.goodsListRightSide !== undefined){
-            this.goodsListRightSide.forEach( e => {
+        this.goodsRefList = [];
+        if (this.goodsListRightSide !== null && this.goodsListRightSide !== undefined) {
+            this.goodsListRightSide.forEach(e => {
                 const model: CampPrizeRefGoodsModel = new CampPrizeRefGoodsModel();
                 model.goodsId = e.goodsId;
                 model.prizeId = this.prizeId;
@@ -97,9 +99,10 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
             if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
                 this.isNeedShowErrMsg = true;
                 this.errMsg = '奖品关联商品出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+                this.initPrizeRefGoodsEndSideList();
             }
             if (list !== null) {
-                list.forEach( e => {
+                list.forEach(e => {
                     this.goodsListEndSide.push(e.pxGoodsModel);
                 });
             }
@@ -130,8 +133,18 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
      * 将商品从待保存列表移除
      * @param goods
      */
-    gotoLeftSide(goods) {
+    gotoLeftSide(goods, initFlag: boolean) {
         this.goodsListLeftSide.push(goods);
+        if (!initFlag) {
+            const tempList = [];
+            this.goodsListRightSide.forEach(e => {
+                if (e.goodsId !== goods.goodsId) {
+                    tempList.push(e);
+                }
+            });
+            this.goodsListRightSide = tempList;
+            return;
+        }
         this.goodsListRightSide = [];
         this.goodsList.forEach(e => {
             let addFlag = true;
@@ -154,8 +167,17 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
         this.ftConfitService.getShopCampPrizeRefGoodsListConfig(this.prizeId).subscribe(res => {
             const list = this.commonService.filterResult(res.json());
             if (list !== null) {
-                list.forEach( e => {
+                list.forEach(e => {
                     this.goodsListEndSide.push(e.pxGoodsModel);
+                    let addFlag = false;
+                    this.goodsListRightSide.forEach(e1 => {
+                        addFlag = (e1.goodsId === e.pxGoodsModel.goodsId);
+                    });
+
+                    if (!addFlag) {
+                        this.goodsListRightSide.push(e.pxGoodsModel);
+                        this.initFlag = false;
+                    }
                 });
             }
         });
