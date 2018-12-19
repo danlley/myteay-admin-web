@@ -28,4 +28,13 @@ export const environment = {
     GOODS_QUERY_PACKAGES_SUB_NOTICE_URL: 'http://192.168.0.101:40009/myteay/api/phoenix/admin/manage/pkgs/sub/notice/list/notice/',
     GOODS_MNG_PACKAGES_SUB_NOTICE_URL: 'http://192.168.0.101:40009/myteay/api/phoenix/admin/manage/pkgs/sub/notice/manage',
     GOODS_MNG_GOODS_STATUS_URL: 'http://192.168.0.101:40009/myteay/api/phoenix/admin/manage/goods/status/',
+
+    // 营销平台
+    CAMP_BASE_QUERY_CONFIG_URL: 'http://192.168.0.101:40009/myteay/api/phoenix/camp/manage/base/list/shop/',
+    CAMP_PRIZE_QUERY_CONFIG_URL: 'http://192.168.0.101:40009/myteay/api/phoenix/camp/manage/prize/list/prize/',
+    CAMP_PRIZE_GOODS_REF_QUERY_CONFIG_URL: 'http://192.168.0.101:40009/myteay/api/phoenix/camp/manage/prize/ref/list',
+    CAMP_PRIZE_GOODS_REF_MNG_CONFIG_URL: 'http://192.168.0.101:40009/myteay/api/phoenix/camp/manage/prize/ref/manage',
+    SYSTEM_CAMP_BASE_MNG_CONFIG_URL: 'http://192.168.0.101:40009/myteay/api/phoenix/camp/manage/base/manage',
+    SYSTEM_CAMP_PRIZE_MNG_CONFIG_URL: 'http://192.168.0.101:40009/myteay/api/phoenix/camp/manage/prize/manage',
+    SYSTEM_CAMP_PRIZE_REF_GOODS_MNG_CONFIG_URL: 'http://192.168.0.101:40009/myteay/api/phoenix/admin/manage/goods/query/goods/condition/',
 };
