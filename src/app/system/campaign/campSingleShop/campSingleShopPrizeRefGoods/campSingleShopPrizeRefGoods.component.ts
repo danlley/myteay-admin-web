@@ -243,7 +243,15 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
      * 返回店铺列表页面
      */
     goReturn() {
-        this.eventBus.publish('campaign_shop_single_prize_mng', this.shopData);
+        const data = [];
+        let i = 0;
+        this.shopData.forEach(e => {
+            if ( i < 14) {
+                data.push(e);
+                i++;
+            }
+        });
+        this.eventBus.publish('campaign_shop_single_prize_mng', data);
     }
 }
 
