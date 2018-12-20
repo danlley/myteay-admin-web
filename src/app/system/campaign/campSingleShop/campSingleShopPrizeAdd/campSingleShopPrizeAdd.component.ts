@@ -93,7 +93,14 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
         this.campPrizeModel.operationType = 'PX_ADD';
         this.ftConfitService.manageCampPrizeConfig(this.campPrizeModel).subscribe(res => {
             console.log('=======================>', res.json());
-            this.eventBus.publish('campaign_shop_single_prize_mng', this.shopData);
+            this.errMsg = '';
+            const data = res.json();
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '奖品执行‘上架’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            } else {
+                this.eventBus.publish('campaign_shop_single_prize_mng', this.shopData);
+            }
         });
     }
 
