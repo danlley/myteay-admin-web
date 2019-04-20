@@ -19,6 +19,8 @@ declare let laydate;
 export class CampSingleShopPrizeAddComponent implements OnInit {
     title = '店内营销活动奖品管理!';
     campStatusList: any[];
+    campPrizeLimitList: any[];
+    campPrizeTypeList: any[];
     templateConfigList: any[];
 
     // 店铺信息，用于构建页面店铺信息展示
@@ -110,6 +112,12 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
         this.ftConfitService.getDataDictionaryByKey('CampPrizeStatusEnum').subscribe(res => {
             this.campStatusList = this.commonService.filterResult(res.json());
         });
+        this.ftConfitService.getDataDictionaryByKey('CampPrizeLimitEnum').subscribe(res => {
+            this.campPrizeLimitList = this.commonService.filterResult(res.json());
+        });
+        this.ftConfitService.getDataDictionaryByKey('CampPrizeTypeEnum').subscribe(res => {
+            this.campPrizeTypeList = this.commonService.filterResult(res.json());
+        });
     }
 
     /**
@@ -123,6 +131,9 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
 export class CampPrizeModel {
     prizeId: string;
     prizeName: string;
+    prizeType = 'CAMP_COMMON_PRIZE';
+    prizeLimit = 'CAMP_ALL_LIMIT';
+    orderTotalAmount = '0.00';
     campId: string;
     shopId: string;
     prizeLevel: string;

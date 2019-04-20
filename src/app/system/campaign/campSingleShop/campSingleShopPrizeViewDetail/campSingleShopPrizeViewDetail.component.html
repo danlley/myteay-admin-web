@@ -46,6 +46,16 @@
                 <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.prizeAmount}}</span></td>
             </tr>
             <tr>
+                <td align="right" width="10%">奖品受众：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.prizeLimit}}</span></td>
+                <td align="right" width="10%">订单金额限制：</td>
+                <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.prizeType}}</span></td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">奖品价值：</td>
+                <td align="left" width="40%" colspan="3"><span style="color: #721c24; margin-left: 10px;">{{viewData.orderTotalAmount}}</span></td>
+            </tr>
+            <tr>
                 <td align="right" width="10%">起效时间：</td>
                 <td align="left" width="40%"><span style="color: #721c24; margin-left: 10px;">{{viewData.prizeEffictive | date: 'yyyy-MM-dd HH:mm:ss'}}</span></td>
                 <td align="right" width="10%">过期时间：</td>

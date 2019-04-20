@@ -56,8 +56,12 @@ export class AddGoodsComponent implements OnInit {
     ngOnInit(): void {
         // 打印当前页面title
         console.log(this.title);
-        this.goodsConfigModel.goodsOnlineTime = '周一至周日';
-        this.goodsConfigModel.goodsDesc = '经典单人套餐';
+        this.goodsConfigModel.goodsOnlineTime = '周一至周日 早8点至晚10点';
+        this.goodsConfigModel.goodsDesc = '单品';
+        this.goodsConfigModel.orderType = 'PX_NON_APPOINTMENT';
+        this.goodsConfigModel.isTuan = 'PX_HAS_TUAN';
+        this.goodsConfigModel.isQuan = 'PX_HAS_QUAN';
+        this.goodsConfigModel.isHuiyuan = 'PX_UNSUPPORT_HUIYUAN';
 
         // 初始化页面下拉菜单所需数据
         this.initSelectList();

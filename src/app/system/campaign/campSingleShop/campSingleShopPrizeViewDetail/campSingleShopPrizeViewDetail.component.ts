@@ -86,6 +86,9 @@ export class CampSingleShopPrizeViewDetailComponent implements OnInit {
 export class CampPrizeModel {
     prizeId: string;
     prizeName: string;
+    prizeType = 'CAMP_COMMON_PRIZE';
+    prizeLimit = 'CAMP_ALL_LIMIT';
+    orderTotalAmount = '0.00';
     campId: string;
     shopId: string;
     prizeLevel: string;

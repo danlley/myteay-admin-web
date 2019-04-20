@@ -17,7 +17,7 @@
         </div>
 
         <!-- 表单内容 -->
-        <table align="center" width="95%"  cellpadding="0" cellspacing="0">
+        <table align="center" width="95%" cellpadding="0" cellspacing="0">
             <th colspan="4" align="center" valign="middle">添加奖品</th>
             <tr>
                 <td align="right" width="10%">奖品名称：</td>
@@ -58,6 +58,40 @@
                 <td align="left" width="40%">
                     <p class="contact-input contact-absolute-width">
                         <input type="text" name="expireTime" placeholder="奖品数量" [(ngModel)]="campPrizeModel.prizeAmount">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">奖品受众：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" id="templateFlag" [(ngModel)]="campPrizeModel.prizeLimit">
+                                <option *ngFor="let templateFlag of campPrizeLimitList"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+                <td align="right" width="10%">订单金额限制：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" id="templateFlag1" [(ngModel)]="campPrizeModel.prizeType">
+                                <option *ngFor="let templateFlag of campPrizeTypeList"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">订单金额限制：</td>
+                <td align="left" width="40%" colspan="3">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="orderTotalAmount" placeholder="订单金额限制" [(ngModel)]="campPrizeModel.orderTotalAmount">
                     </p>
                 </td>
             </tr>
