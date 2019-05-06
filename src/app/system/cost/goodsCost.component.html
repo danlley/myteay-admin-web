@@ -1,0 +1,15 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div style="align-items: left; left: 15px !important;">
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+                <p class="contact-submit">
+                    <input type="button" class="button" value="   查   询   " (click)="initShopList()">
+                </p>
+            </div>
+        </div>
+        <div style="align-content: center; width: 95%; margin: auto; left: 0; right: 0;">
+            <app-table-no-paginator [tableElement]="tableElement" [tableTitle]="title"></app-table-no-paginator>
+        </div>
+    </div>
+</div>

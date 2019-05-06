@@ -25,6 +25,7 @@ import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/
 import {CampSingleShopPrizeAddComponent} from './system/campaign/campSingleShop/campSingleShopPrizeAdd/campSingleShopPrizeAdd.component';
 import {CampSingleShopPrizeViewDetailComponent} from './system/campaign/campSingleShop/campSingleShopPrizeViewDetail/campSingleShopPrizeViewDetail.component';
 import {CampSingleShopPrizeRefGoodsComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoods.component';
+import {GoodsCostComponent} from './system/cost/goodsCost.component';
 
 export const appRouter: Routes = [
     {
@@ -43,6 +44,10 @@ export const appRouter: Routes = [
             {
                 path: 'system',
                 component: SystemComponent
+            },
+            {
+                path: 'system/goods/cost',
+                component: GoodsCostComponent
             },
             {
                 path: 'system/campaign',

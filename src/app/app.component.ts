@@ -14,6 +14,11 @@ export class AppComponent implements OnInit {
     constructor(private eventBus: EventService, private router: Router) {
 
         // 疲劳度管理页面跳转事件监听
+        this.eventBus.registerySubject('system_goods_cost').subscribe(e => {
+            this.router.navigateByUrl('system/goods/cost');
+        });
+
+        // 疲劳度管理页面跳转事件监听
         this.eventBus.registerySubject('fatige_indicator_config_query').subscribe(e => {
             this.router.navigateByUrl('customer/query');
         });
