@@ -4,7 +4,7 @@ import {DatePipe} from '@angular/common';
 import {CommonServie} from '../../utils/common.servie';
 
 @Component({
-    selector: 'app-goods',
+    selector: 'app-goods-cost',
     templateUrl: './goodsCost.component.html',
     styleUrls: ['./goodsCost.component.css']
 })
@@ -50,7 +50,7 @@ export class GoodsCostComponent implements OnInit {
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['商品成本管理', 'system_goods_manage_all']],
+            'tableOp': [['商品成本管理', 'system_goods_cost_mng_listener']],
             'tableContent': []
         };
         this.ftConfitService.getAllShopConfig().subscribe(res => {

@@ -13,7 +13,12 @@ export class AppComponent implements OnInit {
 
     constructor(private eventBus: EventService, private router: Router) {
 
-        // 疲劳度管理页面跳转事件监听
+        // 店铺成本设置页面跳转事件监听
+        this.eventBus.registerySubject('system_goods_cost_mng').subscribe(e => {
+            this.router.navigateByUrl('system/goods/cost/mng');
+        });
+
+        // 店铺成本控制页面跳转事件监听
         this.eventBus.registerySubject('system_goods_cost').subscribe(e => {
             this.router.navigateByUrl('system/goods/cost');
         });
