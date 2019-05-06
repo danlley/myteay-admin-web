@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 
         // 店铺成本设置页面跳转事件监听
         this.eventBus.registerySubject('system_goods_cost_mng').subscribe(e => {
-            this.router.navigateByUrl('system/goods/cost/mng');
+            this.router.navigate(['system/goods/cost/mng'], {queryParams: {data: e}});
         });
 
         // 店铺成本控制页面跳转事件监听
