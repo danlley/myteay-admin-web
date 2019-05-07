@@ -12,6 +12,8 @@ export const environment = {
     SYSTEM_SHOP_MNG_CONFIG_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/shop/manage',
     SYSTEM_QUERY_CONFIG_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/shop/all',
     GOODS_QUERY_CONFIG_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/goods/all',
+    GOODS_COST_CFG_QUERY_CONFIG_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/goods/cost/all',
+    GOODS_COST_CFG_MNG_CONFIG_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/goods/cost/manage',
     GOODS_QUERY_SHOP_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/goods/list/shop',
     GOODS_MNG_CONFIG_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/goods/manage',
     GOODS_QUERY_PACKAGES_URL: 'http://192.168.0.103:40009/myteay/api/phoenix/admin/manage/pkgs/list/goods',

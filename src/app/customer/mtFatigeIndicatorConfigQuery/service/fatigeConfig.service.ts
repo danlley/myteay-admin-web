@@ -68,8 +68,12 @@ export class FatigeConfigService {
         return this._http.post(environment.SYSTEM_SHOP_MNG_CONFIG_URL, data, this.getHeaderOptions());
     }
 
-    getAllGoodsConfig(): any {
-        return this._http.get(environment.GOODS_QUERY_CONFIG_URL + '', this.getHeaderOptions());
+    getAllGoodsCostConfig(shopId): any {
+        return this._http.get(environment.GOODS_COST_CFG_QUERY_CONFIG_URL + '/' + shopId, this.getHeaderOptions());
+    }
+
+    manageGoodsCostConfig(data): any {
+        return this._http.post(environment.GOODS_COST_CFG_MNG_CONFIG_URL, data, this.getHeaderOptions());
     }
 
     getAllGoodsByShopId(shopId: string): any {

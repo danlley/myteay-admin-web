@@ -21,6 +21,7 @@ export class GoodsCostMngComponent implements OnInit {
 
     // 当前店铺信息
     shopData;
+    goodsCostCfgList;
 
     imgPath = environment.PKG_IMG_SHOW_URL;
 
@@ -88,33 +89,30 @@ export class GoodsCostMngComponent implements OnInit {
             goodsStatusList = this.commonService.filterResult(res5.json());
         });
 
-        const that = this;
-        const time = 300;
-        setTimeout(function () {
-            that.ftConfitService.getAllGoodsByShopId(that.shopData[0]).subscribe(res => {
-                const goodsList = that.commonService.filterResult(res.json());
-                that.tableElement.tableHeaders = ['图片', '流水号', '商品名称', '套餐信息类型', '当前售价', '商品成本（单位：元）', '商品当前状态', '过期时间', '创建时间'];
-                goodsList.forEach(e => {
-                    const gmtCreated = that.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
-                    const gmtExpired = that.datePipe.transform(e.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
-                    let goodsStatus = e.goodsStatus;
-                    if (goodsStatusList !== null) {
-                        goodsStatusList.forEach(s => {
-                            if (s.bizKey === e.goodsStatus) {
-                                goodsStatus = s.value;
-                            }
-                        });
-                    }
-                    that.tableElement.tableContent.push([e.goodsId, e.goodsTitle, e.goodsDesc, e.goodsPrice, '0.00', goodsStatus,
-                        gmtExpired, gmtCreated, false, e.goodsImage]);
-                });
+        this.tableElement.tableHeaders = ['图片', '流水号', '商品名称', '套餐信息类型', '当前售价', '商品成本（元）', '商品当前状态', '过期时间', '创建时间'];
+        this.ftConfitService.getAllGoodsCostConfig(this.shopData[0]).subscribe(res => {
+            this.goodsCostCfgList = this.commonService.filterResult(res.json());
+            this.goodsCostCfgList.forEach(e => {
+                e.showStatus = false;
+                if (goodsStatusList !== null) {
+                    goodsStatusList.forEach(s => {
+                        if (s.bizKey === e.goodsStatus) {
+                            e.goodsStatusShow = s.value;
+                        }
+                    });
+                }
             });
-        }, time + '');
+        });
     }
 
     manageGoodsCost(tableContentElement) {
         console.log('=====--------->', tableContentElement);
-        this.initGoodsPackagesList();
+        tableContentElement.showStatus = false;
+        this.ftConfitService.manageGoodsCostConfig(tableContentElement).subscribe(res => {
+            const goodsCostCfg = this.commonService.filterResult(res.json());
+            console.log('成本单条信息处理结果--->', goodsCostCfg);
+            this.initGoodsPackagesList();
+        });
     }
 
     /**
