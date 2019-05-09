@@ -104,12 +104,34 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
         };
         this.ftConfitService.getShopAllCampPrizeConfig(this.campId).subscribe(res => {
             this.templateConfigList = this.commonService.filterResult(res.json());
-            this.tableElement.tableHeaders = ['奖品ID', '奖品名称', '奖品等级', '奖品比率', '奖品单位价值', '奖品状态', '奖品数量'];
+            this.tableElement.tableHeaders = ['奖品ID', '奖品名称', '奖品等级', '奖品比率', '奖品单位价值', '奖位分布', '奖品状态', '奖品数量'];
             this.templateConfigList.forEach(e => {
                 const campPrizeStatus = this.getCampSwitchShow(e.prizeStatus);
-                this.tableElement.tableContent.push([e.prizeId, e.prizeName, e.prizeLevel, e.prizePercent,
-                    e.price, campPrizeStatus, e.prizeAmount]);
+                e.prizeStatusShow = campPrizeStatus;
+                e.showStatus = false;
             });
+        });
+    }
+
+    changeShowStatus(tableContentElement) {
+
+        if (tableContentElement.prizeStatus !== 'CAMP_PRIZE_ONLINE') {
+            tableContentElement.showStatus = !tableContentElement.showStatus;
+        }
+    }
+
+    modifyPrizeInfo(campPrizeModel) {
+        campPrizeModel.showStatus = false;
+        campPrizeModel.operationType = 'PX_MODIFY';
+        this.ftConfitService.manageCampPrizeConfig(campPrizeModel).subscribe(res => {
+            console.log('=======================>', res.json());
+            this.errMsg = '';
+            const data = res.json();
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '奖品执行‘上架’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
+            this.initCampPrizeList();
         });
     }
 

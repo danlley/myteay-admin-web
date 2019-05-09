@@ -17,7 +17,46 @@
             <span style="color: #721c24">{{errMsg}}</span>
         </div>
         <div style="height: 500px; width: 95%; overflow: scroll; align-content: center; margin: auto; left: 0; right: 0;">
-            <app-table-no-paginator [tableElement]="tableElement" [tableTitle]="title"></app-table-no-paginator>
+            <!-- 表单内容 -->
+            <div >
+                <table align="center" class="table-operation-style">
+                    <th *ngFor="let tableColumn of tableElement.tableHeaders" style="font-size: 0.8em;">{{tableColumn}}</th>
+                    <th style="font-size: 0.8em;">操作</th>
+                    <tr class="table-no-paginator-tr-style" *ngFor="let element of templateConfigList">
+                        <td align="center" style="font-size: 0.4em;">{{element.prizeId}}</td>
+                        <td align="center" style="font-size: 0.4em;">{{element.prizeName}}</td>
+                        <td align="center" style="font-size: 0.4em; width: 80px;">
+                            <span *ngIf="!element.showStatus" style="width: 100%;" (click)="changeShowStatus(element)" >{{element.prizeLevel}}</span>
+                            <input *ngIf="element.showStatus" type="text" class="inner-input-syle" name="prizeLevel" placeholder="奖品等级" [(ngModel)]="element.prizeLevel">
+                        </td>
+                        <td align="center" style="font-size: 0.4em;">
+                            <span *ngIf="!element.showStatus"  style="width: 100%;" (click)="changeShowStatus(element)" >{{element.prizePercent}}</span>
+                            <input *ngIf="element.showStatus" type="text" class="inner-input-syle" name="prizePercent" placeholder="奖品等级" [(ngModel)]="element.prizePercent">
+                        </td>
+                        <td align="center" style="font-size: 0.4em;">{{element.price}}</td>
+                        <td align="center" style="font-size: 0.4em;">
+                            <span *ngIf="!element.showStatus" style="width: 100%;" (click)="changeShowStatus(element)">{{element.distribution}}</span>
+                            <input *ngIf="element.showStatus" type="text" class="inner-input-syle" name="distribution" placeholder="奖品等级" [(ngModel)]="element.distribution">
+                        </td>
+                        <td align="center" style="font-size: 0.4em;">
+                            <span *ngIf="element.prizeStatus === 'CAMP_PRIZE_ONLINE'" style="color: #4da11e">{{element.prizeStatusShow}}</span>
+                            <span *ngIf="element.prizeStatus !== 'CAMP_PRIZE_ONLINE'" style="color: #f93950">{{element.prizeStatusShow}}</span>
+                        </td>
+                        <td align="center" style="font-size: 0.4em;">
+                            <span *ngIf="!element.showStatus" style="width: 100%;" (click)="changeShowStatus(element)">{{element.prizeAmount}}</span>
+                            <input *ngIf="element.showStatus" type="text" class="inner-input-syle" name="prizeAmount" placeholder="奖品等级" [(ngModel)]="element.prizeAmount">
+                        </td>
+                        <td align="center" style="font-size: 0.4em;">
+                            <a *ngFor="let opElement of tableElement.tableOp" style="cursor: pointer; margin-left: 20px; color: #721c24;" (click)="tableNoPaginatorOperation(element, opElement[1])"> {{opElement[0]}} </a>
+                            <input *ngIf="element.showStatus" class="inner-button-style" type="button" value="修改"  (click)="modifyPrizeInfo(element)">
+                        </td>
+                    </tr>
+                    <th colspan="9"></th>
+                </table>
+            </div>
+            <div *ngIf="templateConfigList === undefined || templateConfigList === null">
+                <label class="table-summary-top" style="color: #ffffff">>>当前没有记录！<<</label>
+            </div>
             <div style="height: 370px; width: 100px;"></div>
         </div>
     </div>
