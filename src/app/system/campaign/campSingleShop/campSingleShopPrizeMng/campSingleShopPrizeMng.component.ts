@@ -107,7 +107,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
             this.tableElement.tableHeaders = ['奖品ID', '奖品名称', '奖品等级', '奖品比率', '奖品单位价值', '奖品状态', '奖品数量'];
             this.templateConfigList.forEach(e => {
                 const campPrizeStatus = this.getCampSwitchShow(e.prizeStatus);
-                this.tableElement.tableContent.push([ e.prizeId, e.prizeName, e.prizeLevel, e.prizePercent,
+                this.tableElement.tableContent.push([e.prizeId, e.prizeName, e.prizeLevel, e.prizePercent,
                     e.price, campPrizeStatus, e.prizeAmount]);
             });
         });
@@ -144,6 +144,9 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
      * 刷新当前营销活动列表
      */
     doQuery() {
+        this.isNeedShowErrMsg = false;
+        this.errMsg = '';
+
         this.initCampPrizeList();
     }
 
@@ -154,7 +157,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
         const data = [];
         let i = 0;
         this.shopData.forEach(e => {
-            if ( i < 7) {
+            if (i < 7) {
                 data.push(e);
                 i++;
             }
@@ -184,7 +187,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
                 this.isNeedShowErrMsg = true;
                 this.errMsg = '奖品执行‘删除’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
             }
-            this.doQuery();
+            this.initCampPrizeList();
         });
     }
 
@@ -204,7 +207,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
                 this.isNeedShowErrMsg = true;
                 this.errMsg = '奖品执行‘上架’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
             }
-            this.doQuery();
+            this.initCampPrizeList();
         });
     }
 
@@ -224,7 +227,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
                 this.isNeedShowErrMsg = true;
                 this.errMsg = '奖品执行‘下架’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
             }
-            this.doQuery();
+            this.initCampPrizeList();
         });
     }
 
