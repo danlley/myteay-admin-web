@@ -45,13 +45,13 @@ export class CampSingleShopPrizeViewDetailComponent implements OnInit {
      * 初始化组件
      */
     ngOnInit(): void {
-        console.log(this.title);
-
         // 初始化店铺信息
         this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
 
         this.initCampPrizeStatusList();
-        this.doQuerySingleShopCampPrize( this.shopData[14]);
+
+        this.doQuerySingleShopCampPrize( this.shopData[15]);
+        console.log('this.shopData[14]', this.shopData[14]);
 
     }
 

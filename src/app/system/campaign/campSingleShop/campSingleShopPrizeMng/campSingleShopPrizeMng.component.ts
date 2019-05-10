@@ -46,29 +46,29 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
                 private commonService: CommonServie, private activeRoute: ActivatedRoute, private eventBus: EventService) {
         // 监听店内营销活动奖品删除请求
         this.eventBus.registerySubject('single_shop_camp_prize_delete').subscribe(e => {
-            this.doDeleteSingleShopCampPrize(e[0]);
+            this.doDeleteSingleShopCampPrize(e.prizeId);
         });
 
         // 监听店内营销活动奖品上架请求
         this.eventBus.registerySubject('single_shop_camp_prize_online').subscribe(e => {
-            this.doOnlineSingleShopCampPrize(e[0]);
+            this.doOnlineSingleShopCampPrize(e.prizeId);
         });
 
         // 监听店内营销活动奖品下架请求
         this.eventBus.registerySubject('single_shop_camp_prize_offline').subscribe(e => {
-            this.doOfflineSingleShopCampPrize(e[0]);
+            this.doOfflineSingleShopCampPrize(e.prizeId);
         });
 
         // 监听店内营销活动奖品详情查看请求
         this.eventBus.registerySubject('campaign_shop_single_prize_view_detail_inner').subscribe(e => {
-            const sendData = [this.shopData, e];
+            const sendData = [this.shopData, e.prizeId];
             console.log('表格操作目标（详情）：', sendData);
             this.eventBus.publish('campaign_shop_single_prize_view_detail', sendData);
         });
 
         // 监听店内营销活动奖品下架请求
         this.eventBus.registerySubject('campaign_shop_single_prize_ref_inner').subscribe(e => {
-            const sendData = [this.shopData, e];
+            const sendData = [this.shopData, e.prizeId];
             console.log('表格操作目标（详情）：', sendData);
             this.eventBus.publish('campaign_shop_single_prize_ref', sendData);
         });
@@ -103,6 +103,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
             'tableContent': []
         };
         this.ftConfitService.getShopAllCampPrizeConfig(this.campId).subscribe(res => {
+            console.log('this.campId----------', this.campId);
             this.templateConfigList = this.commonService.filterResult(res.json());
             this.tableElement.tableHeaders = ['奖品ID', '奖品名称', '奖品等级', '奖品比率', '奖品单位价值', '奖位分布', '奖品状态', '奖品数量'];
             this.templateConfigList.forEach(e => {
@@ -118,6 +119,17 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
         if (tableContentElement.prizeStatus !== 'CAMP_PRIZE_ONLINE') {
             tableContentElement.showStatus = !tableContentElement.showStatus;
         }
+    }
+
+    /**
+     * 向外发布异步事件，确保当前表格组件的引入者能够完成其目标动作
+     *
+     * @param currentTableElement   当前表格行中数据
+     * @param operation             目标操作类型（VIEW_DETAIL, MODIFY_DETAIL, DELETE_DETAIL）
+     */
+    tableNoPaginatorOperation(currentTableElement, operation) {
+        console.log('执行查询动作：  operation=' + operation, currentTableElement);
+        this.eventBus.publish(operation, currentTableElement);
     }
 
     modifyPrizeInfo(campPrizeModel) {

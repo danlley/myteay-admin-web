@@ -66,10 +66,14 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
         console.log(this.title);
 
         // 初始化店铺信息
-        this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
+        const data = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
 
-        this.shopId = this.shopData[0];
-        this.prizeId = this.shopData[14];
+        this.shopData = data;
+        console.log('this.shopData-------->', this.shopData);
+
+        console.log('this.shopData-------->', data[14]);
+        this.prizeId = data[14];
+        this.shopId = data[0];
 
         this.doQuerySingleShopCampPrize(this.prizeId);
         this.initSelectList();
@@ -193,6 +197,7 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
         formData.append('goodsType', this.goodsType);
         this.ftConfitService.getSingleShopPrizeGoodsConfig(formData).subscribe(res => {
             this.goodsList = this.commonService.filterResult(res.json());
+            console.log('左侧数据 this.goodsList---------------->', this.goodsList);
             this.goodsListLeftSide = [];
             this.goodsList.forEach(e => {
                 let addFlag = true;
