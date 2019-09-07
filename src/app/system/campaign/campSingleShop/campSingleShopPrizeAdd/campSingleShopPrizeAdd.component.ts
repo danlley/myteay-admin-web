@@ -130,17 +130,17 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
 
 export class CampPrizeModel {
     prizeId: string;
-    prizeName: string;
+    prizeName = '2元优惠券';
     prizeType = 'CAMP_COMMON_PRIZE';
     prizeLimit = 'CAMP_ALL_LIMIT';
     orderTotalAmount = '0.00';
     campId: string;
     shopId: string;
     prizeLevel: string;
-    prizePercent: string;
-    distribution: string;
-    price: string;
-    prizeAmount: string;
+    prizePercent = '100';
+    distribution = 'GP:{P:1/30}';
+    price = '2.00';
+    prizeAmount = '999999';
     prizeStatus = 'CAMP_PRIZE_DRAFT';
     prizeEffictive: string;
     prizeExpired: string;

@@ -56,6 +56,9 @@ import {CampSingleShopPrizeSummaryComponent} from './system/campaign/campSingleS
 import {CampSingleShopPrizeRefGoodsItemComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoodsItem/campSingleShopPrizeRefGoodsItem.component';
 import {GoodsCostComponent} from './system/cost/goodsCost.component';
 import {GoodsCostMngComponent} from './system/cost/goodsCostMng/goodsCostMng.component';
+import {ProviderComponent} from './system/provider/provider.component';
+import {ProductComponent} from './system/provider/product/product.component';
+import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
 
 @NgModule({
     declarations: [
@@ -102,6 +105,9 @@ import {GoodsCostMngComponent} from './system/cost/goodsCostMng/goodsCostMng.com
         InactiveGoodsComponent,
         GoodsCostComponent,
         GoodsCostMngComponent,
+        ProviderComponent,
+        ProductComponent,
+        ProductAddComponent,
         BottomComponent
     ],
     imports: [
@@ -160,6 +166,9 @@ import {GoodsCostMngComponent} from './system/cost/goodsCostMng/goodsCostMng.com
         InactiveGoodsComponent,
         GoodsCostComponent,
         GoodsCostMngComponent,
+        ProviderComponent,
+        ProductComponent,
+        ProductAddComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })

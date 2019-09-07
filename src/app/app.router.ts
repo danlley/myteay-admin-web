@@ -27,6 +27,9 @@ import {CampSingleShopPrizeViewDetailComponent} from './system/campaign/campSing
 import {CampSingleShopPrizeRefGoodsComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoods.component';
 import {GoodsCostComponent} from './system/cost/goodsCost.component';
 import {GoodsCostMngComponent} from './system/cost/goodsCostMng/goodsCostMng.component';
+import {ProviderComponent} from './system/provider/provider.component';
+import {ProductComponent} from './system/provider/product/product.component';
+import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
 
 export const appRouter: Routes = [
     {
@@ -41,6 +44,18 @@ export const appRouter: Routes = [
             {
                 path: 'customer/query',
                 component: MtFatigeIndicatorConfigQueryComponent
+            },
+            {
+                path: 'system/provider',
+                component: ProviderComponent
+            },
+            {
+                path: 'system/provider/product',
+                component: ProductComponent
+            },
+            {
+                path: 'system/provider/product/add',
+                component: ProductAddComponent
             },
             {
                 path: 'system',

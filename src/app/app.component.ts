@@ -13,6 +13,21 @@ export class AppComponent implements OnInit {
 
     constructor(private eventBus: EventService, private router: Router) {
 
+        // 原材料管理页面跳转事件监听
+        this.eventBus.registerySubject('system_provider').subscribe(e => {
+            this.router.navigate(['system/provider'], {queryParams: {data: e}});
+        });
+
+        // 原材料产品管理页面跳转事件监听
+        this.eventBus.registerySubject('system_provider_product').subscribe(e => {
+            this.router.navigate(['system/provider/product'], {queryParams: {data: e}});
+        });
+
+        // 原材料产品管理页面跳转事件监听
+        this.eventBus.registerySubject('system_provider_product_add').subscribe(e => {
+            this.router.navigate(['system/provider/product/add'], {queryParams: {data: e}});
+        });
+
         // 店铺成本设置页面跳转事件监听
         this.eventBus.registerySubject('system_goods_cost_mng').subscribe(e => {
             this.router.navigate(['system/goods/cost/mng'], {queryParams: {data: e}});
