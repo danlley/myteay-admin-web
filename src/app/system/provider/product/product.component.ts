@@ -65,7 +65,7 @@ export class ProductComponent implements OnInit {
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['原材料管理', 'system_provider_product_listener']],
+            'tableOp': [['详情', 'system_provider_product_listener'],['修改', 'system_provider_product_listener'],['删除', 'system_provider_product_listener'],['配料维护', 'system_provider_product_listener'],['询价维护', 'system_provider_product_listener'],['说明书维护', 'system_provider_product_listener']],
             'tableContent': []
         };
         this.ftConfitService.getAllProductsConfig(this.shopId).subscribe(res => {
