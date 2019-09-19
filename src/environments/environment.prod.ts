@@ -39,5 +39,6 @@ export const environment = {
     CAMP_PRIZE_GOODS_REF_MNG_CONFIG_URL: 'http://192.168.2.101:40009/myteay/api/phoenix/camp/manage/prize/ref/manage',
     SYSTEM_CAMP_BASE_MNG_CONFIG_URL: 'http://192.168.2.101:40009/myteay/api/phoenix/camp/manage/base/manage',
     SYSTEM_CAMP_PRIZE_MNG_CONFIG_URL: 'http://192.168.2.101:40009/myteay/api/phoenix/camp/manage/prize/manage',
+    SYSTEM_PROVIDER_PRODUCT_MNG_CONFIG_URL: 'http://192.168.2.101:40009/tiancan/api/provider/manage/do/mng',
     SYSTEM_CAMP_PRIZE_REF_GOODS_MNG_CONFIG_URL: 'http://192.168.2.101:40009/myteay/api/phoenix/admin/manage/goods/query/goods/condition/',
 };

@@ -22,6 +22,8 @@ export class ProductAddComponent implements OnInit {
     templateConfigList: any[];
     shopId;
     shopData;
+    errMsg;
+    isNeedShowErrMsg;
     product: Product = new Product();
 
     tableElement = {
@@ -61,6 +63,20 @@ export class ProductAddComponent implements OnInit {
 
 
     doAddShopProduct() {
+        console.log('this.product------------------------->', this.product);
+        this.product.operationType = 'PX_ADD';
+        this.product.shopId = this.shopId;
+        this.ftConfitService.addProviderProduct(this.product).subscribe(res => {
+            console.log('=======================>', res.json());
+            this.errMsg = '';
+            const data = res.json();
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '保存原材料出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            } else {
+                this.eventBus.publish('system_provider_product_listener', this.shopData);
+            }
+        });
     }
 
     goReturn() {

@@ -105,7 +105,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
         this.ftConfitService.getShopAllCampPrizeConfig(this.campId).subscribe(res => {
             console.log('this.campId----------', this.campId);
             this.templateConfigList = this.commonService.filterResult(res.json());
-            this.tableElement.tableHeaders = ['奖品ID', '奖品名称', '奖品等级', '奖品比率', '奖品单位价值', '奖位分布', '奖品状态', '奖品数量'];
+            this.tableElement.tableHeaders = ['奖品ID', '奖品名称', '奖品等级', '奖品比率', '奖品单位价值', '奖位分布', '奖品状态', '出奖限制'];
             this.templateConfigList.forEach(e => {
                 const campPrizeStatus = this.getCampSwitchShow(e.prizeStatus);
                 e.prizeStatusShow = campPrizeStatus;
