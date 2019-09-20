@@ -1,0 +1,100 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div style="align-items: left; left: 15px !important;">
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+                <p class="contact-submit">
+                    <input type="button" class="button" value="   返回   " (click)="goReturn()">
+                    <input type="button" class="button" value="   刷新   " (click)="doQueryShopProduct()">
+                </p>
+            </div>
+        </div>
+        <div style="overflow: scroll; align-content: center; width: 95%; margin: auto; left: 0; right: 0;">
+            <!-- 表单内容 -->
+            <table align="center" width="95%" cellpadding="0" cellspacing="0">
+                <th colspan="4" align="center" valign="middle">{{shopData[1]}}--原材料详情</th>
+                <tr>
+                    <td class="td-title" align="right" width="10%">产品名称：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.productName}}</span>
+                    </td>
+                    <td align="right" width="10%">条形码：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.tiaoCode}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">进货单位：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.atomic}}</span>
+                    </td>
+                    <td align="right" width="10%">单位重量：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.weight}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">产品标准号：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.procotolCode}}</span>
+                    </td>
+                    <td align="right" width="10%">规格：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.specification}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">许可证编号：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.license}}</span>
+                    </td>
+                    <td align="right" width="10%">保质期：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.expiration}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">保存环境：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.storegeType}}</span>
+                    </td>
+                    <td align="right" width="10%">保存温度：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.storegeTemp}}℃</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">是否清真：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.muslimFlag}}</span>
+                    </td>
+                    <td align="right" width="10%">产地：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.producingArea}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">公司：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.company}}</span>
+                    </td>
+                    <td align="right" width="10%">公司地址：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.address}}</span>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">传真：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.fax}}</span>
+                    </td>
+                    <td align="right" width="10%">联系电话：</td>
+                    <td align="left" width="40%">
+                        <span class="td-content">{{product.tel}}</span>
+                    </td>
+                </tr>
+                <th colspan="4" align="center" valign="middle"></th>
+            </table>
+        </div>
+    </div>
+</div>

@@ -28,6 +28,16 @@ export class AppComponent implements OnInit {
             this.router.navigate(['system/provider/product/add'], {queryParams: {data: e}});
         });
 
+        // 原材料产品详情页面跳转事件监听
+        this.eventBus.registerySubject('system_provider_product_detail').subscribe(e => {
+            this.router.navigate(['system/provider/product/detail'], {queryParams: {data: e}});
+        });
+
+        // 原材料产品修改页面跳转事件监听
+        this.eventBus.registerySubject('system_provider_product_modify').subscribe(e => {
+            this.router.navigate(['system/provider/product/modify'], {queryParams: {data: e}});
+        });
+
         // 店铺成本设置页面跳转事件监听
         this.eventBus.registerySubject('system_goods_cost_mng').subscribe(e => {
             this.router.navigate(['system/goods/cost/mng'], {queryParams: {data: e}});

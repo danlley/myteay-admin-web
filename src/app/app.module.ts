@@ -59,6 +59,8 @@ import {GoodsCostMngComponent} from './system/cost/goodsCostMng/goodsCostMng.com
 import {ProviderComponent} from './system/provider/provider.component';
 import {ProductComponent} from './system/provider/product/product.component';
 import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
+import {ProductDetailComponent} from './system/provider/product/productDetail/productDetail.component';
+import {ProductModifyComponent} from './system/provider/product/productModify/productModify.component';
 
 @NgModule({
     declarations: [
@@ -108,6 +110,8 @@ import {ProductAddComponent} from './system/provider/product/productAdd/productA
         ProviderComponent,
         ProductComponent,
         ProductAddComponent,
+        ProductDetailComponent,
+        ProductModifyComponent,
         BottomComponent
     ],
     imports: [
@@ -169,6 +173,8 @@ import {ProductAddComponent} from './system/provider/product/productAdd/productA
         ProviderComponent,
         ProductComponent,
         ProductAddComponent,
+        ProductDetailComponent,
+        ProductModifyComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })

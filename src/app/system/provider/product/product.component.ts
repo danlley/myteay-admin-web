@@ -42,6 +42,22 @@ export class ProductComponent implements OnInit {
             this.eventBus.publish('system_provider_product', e);
         });
 
+        // 监听商品详情展示请求
+        this.eventBus.registerySubject('system_provider_product_detail_listener').subscribe(e => {
+            const arr = [];
+            arr.push(this.shopData);
+            arr.push(e);
+            this.eventBus.publish('system_provider_product_detail', arr);
+        });
+
+        // 监听商品详情展示请求
+        this.eventBus.registerySubject('system_provider_product_modify_listener').subscribe(e => {
+            const arr = [];
+            arr.push(this.shopData);
+            arr.push(e);
+            this.eventBus.publish('system_provider_product_modify', arr);
+        });
+
         const data = this.activeRoute.snapshot.queryParams['data'];
         if (data !== undefined && data !== '') {
             this.shopData = data.split(',');
@@ -65,7 +81,7 @@ export class ProductComponent implements OnInit {
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['详情', 'system_provider_product_listener'],['修改', 'system_provider_product_listener'],['删除', 'system_provider_product_listener'],['配料维护', 'system_provider_product_listener'],['询价维护', 'system_provider_product_listener'],['说明书维护', 'system_provider_product_listener']],
+            'tableOp': [['详情', 'system_provider_product_detail_listener'],['修改', 'system_provider_product_modify_listener'],['删除', 'system_provider_product_listener'],['配料维护', 'system_provider_product_listener'],['询价维护', 'system_provider_product_listener'],['说明书维护', 'system_provider_product_listener']],
             'tableContent': []
         };
         this.ftConfitService.getAllProductsConfig(this.shopId).subscribe(res => {

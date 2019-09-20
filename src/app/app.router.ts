@@ -30,6 +30,8 @@ import {GoodsCostMngComponent} from './system/cost/goodsCostMng/goodsCostMng.com
 import {ProviderComponent} from './system/provider/provider.component';
 import {ProductComponent} from './system/provider/product/product.component';
 import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
+import {ProductDetailComponent} from './system/provider/product/productDetail/productDetail.component';
+import {ProductModifyComponent} from './system/provider/product/productModify/productModify.component';
 
 export const appRouter: Routes = [
     {
@@ -56,6 +58,14 @@ export const appRouter: Routes = [
             {
                 path: 'system/provider/product/add',
                 component: ProductAddComponent
+            },
+            {
+                path: 'system/provider/product/detail',
+                component: ProductDetailComponent
+            },
+            {
+                path: 'system/provider/product/modify',
+                component: ProductModifyComponent
             },
             {
                 path: 'system',
