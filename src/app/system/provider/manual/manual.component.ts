@@ -6,15 +6,15 @@ import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-    selector: 'app-system-provider-product',
-    templateUrl: './product.component.html',
-    styleUrls: ['./product.component.css']
+    selector: 'app-system-provider-manual',
+    templateUrl: './manual.component.html',
+    styleUrls: ['./manual.component.css']
 })
 
 /**
  * 原材料管理组件
  */
-export class ProductComponent implements OnInit {
+export class ManualComponent implements OnInit {
     title = '原材料管理!';
     shopStatusList: any[];
     contactKey: string;
@@ -37,50 +37,6 @@ export class ProductComponent implements OnInit {
      */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie,
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
-        // 监听商品详情展示请求
-        this.eventBus.registerySubject('system_provider_product_listener').subscribe(e => {
-            this.eventBus.publish('system_provider_product', e);
-        });
-
-        // 监听商品详情展示请求
-        this.eventBus.registerySubject('system_provider_product_detail_listener').subscribe(e => {
-            const arr = [];
-            arr.push(this.shopData);
-            arr.push(e);
-            this.eventBus.publish('system_provider_product_detail', arr);
-        });
-
-        // 监听商品详情展示请求
-        this.eventBus.registerySubject('system_provider_product_modify_listener').subscribe(e => {
-            const arr = [];
-            arr.push(this.shopData);
-            arr.push(e);
-            this.eventBus.publish('system_provider_product_modify', arr);
-        });
-
-        // 监听商品详情展示请求
-        this.eventBus.registerySubject('system_provider_nutritional_listener').subscribe(e => {
-            const arr = [];
-            arr.push(this.shopData);
-            arr.push(e);
-            this.eventBus.publish('system_provider_nutritional', arr);
-        });
-
-        // 监听商品详情展示请求
-        this.eventBus.registerySubject('system_provider_manual_listener').subscribe(e => {
-            const arr = [];
-            arr.push(this.shopData);
-            arr.push(e);
-            this.eventBus.publish('system_provider_manual', arr);
-        });
-
-        // 监听商品详情展示请求
-        this.eventBus.registerySubject('system_provider_price_listener').subscribe(e => {
-            const arr = [];
-            arr.push(this.shopData);
-            arr.push(e);
-            this.eventBus.publish('system_provider_price', arr);
-        });
 
         const data = this.activeRoute.snapshot.queryParams['data'];
         if (data !== undefined && data !== '') {
@@ -105,13 +61,13 @@ export class ProductComponent implements OnInit {
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['详情', 'system_provider_product_detail_listener'],['修改', 'system_provider_product_modify_listener'],['删除', 'system_provider_product_listener'],['配料维护', 'system_provider_nutritional_listener'],['询价维护', 'system_provider_price_listener'],['说明书维护', 'system_provider_manual_listener']],
+            'tableOp': [['详情', 'system_provider_product_detail_listener'],['修改', 'system_provider_product_modify_listener'],['删除', 'system_provider_product_listener'],['配料维护', 'system_provider_product_listener'],['询价维护', 'system_provider_product_listener'],['说明书维护', 'system_provider_product_listener']],
             'tableContent': []
         };
         this.ftConfitService.getAllProductsConfig(this.shopId).subscribe(res => {
             console.log('----------------->', res);
             this.templateConfigList = this.commonService.filterResult(res.json());
-            this.tableElement.tableHeaders = ['流水号', '原材料', '进货单位', '重量', '公司', '产地', '保存环境'];
+            this.tableElement.tableHeaders = ['帮助手册', '原材料', '进货单位', '重量', '公司', '产地', '保存环境'];
 
             if (this.templateConfigList !== null && this.templateConfigList !== undefined) {
                 this.templateConfigList.forEach(e => {

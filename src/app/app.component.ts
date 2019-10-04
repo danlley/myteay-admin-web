@@ -37,6 +37,18 @@ export class AppComponent implements OnInit {
         this.eventBus.registerySubject('system_provider_product_modify').subscribe(e => {
             this.router.navigate(['system/provider/product/modify'], {queryParams: {data: e}});
         });
+        // 原材料产品修改页面跳转事件监听
+        this.eventBus.registerySubject('system_provider_nutritional').subscribe(e => {
+            this.router.navigate(['system/provider/nutritional'], {queryParams: {data: e}});
+        });
+        // 原材料产品修改页面跳转事件监听
+        this.eventBus.registerySubject('system_provider_manual').subscribe(e => {
+            this.router.navigate(['system/provider/manual'], {queryParams: {data: e}});
+        });
+        // 原材料产品修改页面跳转事件监听
+        this.eventBus.registerySubject('system_provider_price').subscribe(e => {
+            this.router.navigate(['system/provider/price'], {queryParams: {data: e}});
+        });
 
         // 店铺成本设置页面跳转事件监听
         this.eventBus.registerySubject('system_goods_cost_mng').subscribe(e => {

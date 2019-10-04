@@ -61,6 +61,9 @@ import {ProductComponent} from './system/provider/product/product.component';
 import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
 import {ProductDetailComponent} from './system/provider/product/productDetail/productDetail.component';
 import {ProductModifyComponent} from './system/provider/product/productModify/productModify.component';
+import {NutritionalComponent} from './system/provider/nutritional/nutritional.component';
+import {ManualComponent} from './system/provider/manual/manual.component';
+import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
 
 @NgModule({
     declarations: [
@@ -112,6 +115,9 @@ import {ProductModifyComponent} from './system/provider/product/productModify/pr
         ProductAddComponent,
         ProductDetailComponent,
         ProductModifyComponent,
+        NutritionalComponent,
+        ManualComponent,
+        PpPriceComponent,
         BottomComponent
     ],
     imports: [
@@ -175,6 +181,9 @@ import {ProductModifyComponent} from './system/provider/product/productModify/pr
         ProductAddComponent,
         ProductDetailComponent,
         ProductModifyComponent,
+        NutritionalComponent,
+        ManualComponent,
+        PpPriceComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })

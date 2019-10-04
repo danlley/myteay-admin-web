@@ -32,6 +32,9 @@ import {ProductComponent} from './system/provider/product/product.component';
 import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
 import {ProductDetailComponent} from './system/provider/product/productDetail/productDetail.component';
 import {ProductModifyComponent} from './system/provider/product/productModify/productModify.component';
+import {NutritionalComponent} from './system/provider/nutritional/nutritional.component';
+import {ManualComponent} from './system/provider/manual/manual.component';
+import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
 
 export const appRouter: Routes = [
     {
@@ -54,6 +57,18 @@ export const appRouter: Routes = [
             {
                 path: 'system/provider/product',
                 component: ProductComponent
+            },
+            {
+                path: 'system/provider/nutritional',
+                component: NutritionalComponent
+            },
+            {
+                path: 'system/provider/manual',
+                component: ManualComponent
+            },
+            {
+                path: 'system/provider/price',
+                component: PpPriceComponent
             },
             {
                 path: 'system/provider/product/add',
