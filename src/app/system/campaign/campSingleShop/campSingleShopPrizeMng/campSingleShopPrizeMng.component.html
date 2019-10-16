@@ -33,7 +33,10 @@
                             <span *ngIf="!element.showStatus"  style="width: 100%;" (click)="changeShowStatus(element)" >{{element.prizePercent}}</span>
                             <input *ngIf="element.showStatus" type="text" class="inner-input-syle" name="prizePercent" placeholder="中奖概率" [(ngModel)]="element.prizePercent">
                         </td>
-                        <td align="center" style="font-size: 0.4em;">{{element.price}}</td>
+                        <td align="center" style="font-size: 0.4em;">
+                            <span *ngIf="!element.showStatus"  style="width: 100%;" (click)="changeShowStatus(element)" >{{element.price}}</span>
+                            <input *ngIf="element.showStatus" type="text" class="inner-input-syle" name="prizePercent" placeholder="奖品单位价值" [(ngModel)]="element.price">
+                        </td>
                         <td align="center" style="font-size: 0.4em;">
                             <span *ngIf="!element.showStatus" style="width: 100%;" (click)="changeShowStatus(element)">{{element.distribution}}</span>
                             <input *ngIf="element.showStatus" type="text" class="inner-input-syle" name="distribution" placeholder="奖位分布" [(ngModel)]="element.distribution">
