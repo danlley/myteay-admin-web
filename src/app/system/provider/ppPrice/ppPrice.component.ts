@@ -21,6 +21,7 @@ export class PpPriceComponent implements OnInit {
     templateConfigList: any[];
     shopId;
     shopData;
+    saveData: ProviderProductPrice = new ProviderProductPrice();
 
     tableElement = {
         'tableHeaders': [],
@@ -38,31 +39,25 @@ export class PpPriceComponent implements OnInit {
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie,
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
         // 监听商品详情展示请求
-        this.eventBus.registerySubject('system_provider_product_listener').subscribe(e => {
-            this.eventBus.publish('system_provider_product', e);
+        this.eventBus.registerySubject('system_provider_product_price_del_listener').subscribe(e => {
+            console.log('e===---==->', e);
+
+            const data = new ProviderProductPrice();
+            data.id = e[0];
+            data.productId = e[1];
+            data.productPrice = e[2];
+            data.productProvider = e[3];
+            data.operationType = 'PX_DELETE';
+            this.gotoProductPriceDelPage(data);
         });
 
-        // 监听商品详情展示请求
-        this.eventBus.registerySubject('system_provider_product_detail_listener').subscribe(e => {
-            const arr = [];
-            arr.push(this.shopData);
-            arr.push(e);
-            this.eventBus.publish('system_provider_product_detail', arr);
-        });
-
-        // 监听商品详情展示请求
-        this.eventBus.registerySubject('system_provider_product_modify_listener').subscribe(e => {
-            const arr = [];
-            arr.push(this.shopData);
-            arr.push(e);
-            this.eventBus.publish('system_provider_product_modify', arr);
-        });
 
         const data = this.activeRoute.snapshot.queryParams['data'];
         if (data !== undefined && data !== '') {
             this.shopData = data.split(',');
             this.shopId = this.shopData[0];
-            console.log('原材料管理：', this.shopData[0]);
+            this.saveData.productId = this.shopData[7];
+            console.log('原材料管理：', this.saveData);
         }
     }
 
@@ -72,27 +67,27 @@ export class PpPriceComponent implements OnInit {
     ngOnInit(): void {
         console.log(this.title);
         this.initShopStatusList();
-        this.initShopList();
+        this.initProductPriceList();
     }
 
     /**
      * 构建店铺信息列表，用于进入店铺进行相应的商品管理
      */
-    initShopList() {
+    initProductPriceList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['详情', 'system_provider_product_detail_listener'],['修改', 'system_provider_product_modify_listener'],['删除', 'system_provider_product_listener'],['配料维护', 'system_provider_product_listener'],['询价维护', 'system_provider_product_listener'],['说明书维护', 'system_provider_product_listener']],
+            'tableOp': [['删除', 'system_provider_product_price_del_listener']],
             'tableContent': []
         };
-        this.ftConfitService.getAllProductsConfig(this.shopId).subscribe(res => {
+        this.ftConfitService.queryProductPriceConfigAll(this.saveData.productId).subscribe(res => {
             console.log('----------------->', res);
             this.templateConfigList = this.commonService.filterResult(res.json());
-            this.tableElement.tableHeaders = ['询价', '原材料', '进货单位', '重量', '公司', '产地', '保存环境'];
+            this.tableElement.tableHeaders = ['报价序号', '产品序号',  '价格（元）', '报价单位', '创建时间', '最后修改时间'];
 
             if (this.templateConfigList !== null && this.templateConfigList !== undefined) {
                 this.templateConfigList.forEach(e => {
-                    this.tableElement.tableContent.push([e.id, e.productName, e.atomic, e.weight,
-                        e.company, e.producingArea, e.storegeType]);
+                    this.tableElement.tableContent.push([e.id, e.productId, e.productPrice, e.productProvider,
+                        e.gmtCreated, e.gmtModified]);
                 });
             }
         });
@@ -104,12 +99,47 @@ export class PpPriceComponent implements OnInit {
         });
     }
 
-    gotoProductAddPage() {
-        this.eventBus.publish('system_provider_product_add_listener', this.shopData);
+    gotoProductPriceAddPage() {
+        console.log('----------------->', this.saveData);
+        this.ftConfitService.manageProductPriceConfig(this.saveData).subscribe(res => {
+            console.log('----------------->', res);
+            this.initProductPriceList();
+        });
+    }
+
+    gotoProductPriceDelPage(data) {
+        console.log('----------------->', data);
+        this.ftConfitService.manageProductPriceConfig(data).subscribe(res => {
+            console.log('------res----------->', res);
+            this.initProductPriceList();
+        });
     }
 
     goReturn() {
         this.eventBus.publish('system_provider', this.title);
     }
 
+
+    /**
+     * 向外发布异步事件，确保当前表格组件的引入者能够完成其目标动作
+     *
+     * @param currentTableElement   当前表格行中数据
+     * @param operation             目标操作类型（VIEW_DETAIL, MODIFY_DETAIL, DELETE_DETAIL）
+     */
+    tableNoPaginatorOperation(currentTableElement, operation) {
+        console.log('执行查询动作：  operation=' + operation, currentTableElement);
+        this.eventBus.publish(operation, currentTableElement);
+    }
+
+}
+
+
+export class ProviderProductPrice {
+    id;
+    productId;
+    productPrice;
+    operationType = 'PX_ADD';
+    productProvider;
+    gmtCreated;
+    gmtModified;
 }

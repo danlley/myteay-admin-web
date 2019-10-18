@@ -39,6 +39,14 @@ export class FatigeConfigService {
         return this._http.get(environment.SYSTEM_PROVIDER_PRODUCT_CONFIG_URL + shopId, this.getHeaderOptions());
     }
 
+    manageProductPriceConfig(data): any {
+        return this._http.post(environment.PROVIDER_PRODUCT_PRICE_URL , data, this.getHeaderOptions());
+    }
+
+    queryProductPriceConfigAll(productId): any {
+        return this._http.get(environment.PROVIDER_PRODUCT_PRICE_QRY_URL + productId, this.getHeaderOptions());
+    }
+
     getShopAllCampBaseConfig(shopId: string): any {
         return this._http.get(environment.CAMP_BASE_QUERY_CONFIG_URL  + '/' + shopId, this.getHeaderOptions());
     }
