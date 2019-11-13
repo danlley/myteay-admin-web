@@ -52,6 +52,7 @@ export class ProductAddComponent implements OnInit {
             this.shopId = this.shopData[0];
             console.log('原材料管理：', this.shopData[0]);
         }
+        this.product.muslimFlag = 'MUSLIM_PRODUCT';
     }
 
     /**

@@ -62,6 +62,10 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
         this.shopId = this.shopData[0];
         this.campPrizeModel.campId = this.campId;
         this.campPrizeModel.shopId = this.shopId;
+        this.campPrizeModel.prizeEffictive = this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss');
+        const dateEnd = new Date();
+        dateEnd.setMonth(dateEnd.getMonth() + 1);
+        this.campPrizeModel.prizeExpired = this.datePipe.transform(dateEnd, 'yyyy-MM-16 23:59:59');
 
         this.initCampStatusList();
 
@@ -70,6 +74,7 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
             elem: '#test1', // s为页面日期选择输入框的id
             type: 'datetime',
             theme: '#22787a',
+            value: this.datePipe.transform(new Date(), 'yyyy-MM-dd HH:mm:ss'),
             done: (value, date) => {
                 this.campPrizeModel.prizeEffictive = value;
                 console.log(value);
@@ -82,6 +87,7 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
             elem: '#test2', // s为页面日期选择输入框的id
             type: 'datetime',
             theme: '#22787a',
+            value: new Date(),
             done: (value, date) => {
                 this.campPrizeModel.prizeExpired = value;
                 console.log(value);
