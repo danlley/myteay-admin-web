@@ -39,6 +39,7 @@ export class ProductComponent implements OnInit {
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
         // 监听商品详情展示请求
         this.eventBus.registerySubject('system_provider_product_listener').subscribe(e => {
+            console.log('原材料产品列表收到的参数详情--->', e);
             this.eventBus.publish('system_provider_product', e);
         });
 
@@ -50,7 +51,7 @@ export class ProductComponent implements OnInit {
             this.eventBus.publish('system_provider_product_detail', arr);
         });
 
-        // 监听商品详情展示请求
+        // 监听商品修改请求
         this.eventBus.registerySubject('system_provider_product_modify_listener').subscribe(e => {
             const arr = [];
             arr.push(this.shopData);
@@ -58,7 +59,7 @@ export class ProductComponent implements OnInit {
             this.eventBus.publish('system_provider_product_modify', arr);
         });
 
-        // 监听商品详情展示请求
+        // 监听商品营养配比维护请求
         this.eventBus.registerySubject('system_provider_nutritional_listener').subscribe(e => {
             const arr = [];
             arr.push(this.shopData);
@@ -66,7 +67,7 @@ export class ProductComponent implements OnInit {
             this.eventBus.publish('system_provider_nutritional', arr);
         });
 
-        // 监听商品详情展示请求
+        // 监听商品帮助手册维护请求
         this.eventBus.registerySubject('system_provider_manual_listener').subscribe(e => {
             const arr = [];
             arr.push(this.shopData);
@@ -74,7 +75,7 @@ export class ProductComponent implements OnInit {
             this.eventBus.publish('system_provider_manual', arr);
         });
 
-        // 监听商品详情展示请求
+        // 监听商品询价维护请求
         this.eventBus.registerySubject('system_provider_price_listener').subscribe(e => {
             const arr = [];
             arr.push(this.shopData);
@@ -105,7 +106,13 @@ export class ProductComponent implements OnInit {
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['详情', 'system_provider_product_detail_listener'],['修改', 'system_provider_product_modify_listener'],['删除', 'system_provider_product_listener'],['配料维护', 'system_provider_nutritional_listener'],['询价维护', 'system_provider_price_listener'],['说明书维护', 'system_provider_manual_listener']],
+            'tableOp': [['详情', 'system_provider_product_detail_listener'],
+                ['修改', 'system_provider_product_modify_listener'],
+                ['删除', 'system_provider_product_listener'],
+                ['图片维护', 'system_provider_images_listener'],
+                ['配料维护', 'system_provider_nutritional_listener'],
+                ['询价维护', 'system_provider_price_listener'],
+                ['说明书维护', 'system_provider_manual_listener']],
             'tableContent': []
         };
         this.ftConfitService.getAllProductsConfig(this.shopId).subscribe(res => {

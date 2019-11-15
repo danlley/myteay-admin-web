@@ -21,6 +21,7 @@ export class PpPriceComponent implements OnInit {
     templateConfigList: any[];
     shopId;
     shopData;
+    param;
     saveData: ProviderProductPrice = new ProviderProductPrice();
 
     tableElement = {
@@ -41,6 +42,7 @@ export class PpPriceComponent implements OnInit {
         // 监听商品详情展示请求
         this.eventBus.registerySubject('system_provider_product_price_del_listener').subscribe(e => {
             console.log('e===---==->', e);
+            this.param = e;
 
             const data = new ProviderProductPrice();
             data.id = e[0];
@@ -101,6 +103,12 @@ export class PpPriceComponent implements OnInit {
 
     gotoProductPriceAddPage() {
         console.log('----------------->', this.saveData);
+
+        if (this.saveData.productProvider === undefined || this.saveData.productPrice === undefined) {
+            console.log('产品询价参数异常，无法保存--->', this.saveData);
+            return ;
+        }
+
         this.ftConfitService.manageProductPriceConfig(this.saveData).subscribe(res => {
             console.log('----------------->', res);
             this.initProductPriceList();
@@ -116,7 +124,15 @@ export class PpPriceComponent implements OnInit {
     }
 
     goReturn() {
-        this.eventBus.publish('system_provider', this.title);
+        const mydata = [];
+        mydata[0] = this.shopData[0];
+        mydata[1] = this.shopData[1];
+        mydata[2] = this.shopData[2];
+        mydata[3] = this.shopData[3];
+        mydata[4] = this.shopData[4];
+        mydata[5] = this.shopData[5];
+        mydata[6] = this.shopData[6];
+        this.eventBus.publish('system_provider_product_listener', mydata);
     }
 
 
