@@ -39,28 +39,30 @@ export class PpPriceComponent implements OnInit {
      */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private commonService: CommonServie,
                 public activeRoute: ActivatedRoute, private eventBus: EventService) {
-        // 监听商品详情展示请求
-        this.eventBus.registerySubject('system_provider_product_price_del_listener').subscribe(e => {
-            console.log('e===---==->', e);
-            this.param = e;
-
-            const data = new ProviderProductPrice();
-            data.id = e[0];
-            data.productId = e[1];
-            data.productPrice = e[2];
-            data.productProvider = e[3];
-            data.operationType = 'PX_DELETE';
-            this.gotoProductPriceDelPage(data);
-        });
-
 
         const data = this.activeRoute.snapshot.queryParams['data'];
         if (data !== undefined && data !== '') {
             this.shopData = data.split(',');
             this.shopId = this.shopData[0];
             this.saveData.productId = this.shopData[7];
+            this.saveData.shopId = this.shopId;
             console.log('原材料管理：', this.saveData);
         }
+
+        // 监听商品详情展示请求
+        this.eventBus.registerySubject('system_provider_product_price_del_listener').subscribe(e => {
+            console.log('e===---==->', e);
+            this.param = e;
+
+            const dataInner = new ProviderProductPrice();
+            dataInner.id = e[0];
+            dataInner.productId = e[1];
+            dataInner.productPrice = e[2];
+            dataInner.productProvider = e[3];
+            dataInner.operationType = 'PX_DELETE';
+            this.gotoProductPriceDelPage(data);
+        });
+
     }
 
     /**
@@ -153,6 +155,7 @@ export class PpPriceComponent implements OnInit {
 export class ProviderProductPrice {
     id;
     productId;
+    shopId;
     productPrice;
     operationType = 'PX_ADD';
     productProvider;

@@ -122,7 +122,7 @@ export class ProductComponent implements OnInit {
 
             if (this.templateConfigList !== null && this.templateConfigList !== undefined) {
                 this.templateConfigList.forEach(e => {
-                    this.tableElement.tableContent.push([e.id, e.productName, e.atomic, e.weight,
+                    this.tableElement.tableContent.push([e.id, e.productName, '￥' + e.productPrice + '元/' + e.atomic, e.weight,
                         e.company, e.producingArea, e.storegeType]);
                 });
             }
