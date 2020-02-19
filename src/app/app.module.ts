@@ -64,6 +64,8 @@ import {ProductModifyComponent} from './system/provider/product/productModify/pr
 import {NutritionalComponent} from './system/provider/nutritional/nutritional.component';
 import {ManualComponent} from './system/provider/manual/manual.component';
 import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
+import {DiscountComponent} from './system/discount/discount.component';
+import {DisGoodsConfComponent} from './system/discount/disGoodsConf/disGoodsConf.component';
 
 @NgModule({
     declarations: [
@@ -118,6 +120,8 @@ import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
         NutritionalComponent,
         ManualComponent,
         PpPriceComponent,
+        DiscountComponent,
+        DisGoodsConfComponent,
         BottomComponent
     ],
     imports: [
@@ -184,6 +188,8 @@ import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
         NutritionalComponent,
         ManualComponent,
         PpPriceComponent,
+        DiscountComponent,
+        DisGoodsConfComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })

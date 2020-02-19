@@ -39,6 +39,10 @@ export class FatigeConfigService {
         return this._http.get(environment.SYSTEM_PROVIDER_PRODUCT_CONFIG_URL + shopId, this.getHeaderOptions());
     }
 
+    getAllDiscountGoodsConfig(shopId: string): any {
+        return this._http.get(environment.SYSTEM_DISCOUNT_GOODS_CONFIG_URL + shopId, this.getHeaderOptions());
+    }
+
     manageProductPriceConfig(data): any {
         return this._http.post(environment.PROVIDER_PRODUCT_PRICE_URL , data, this.getHeaderOptions());
     }

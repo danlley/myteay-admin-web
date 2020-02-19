@@ -43,4 +43,5 @@ export const environment = {
     SYSTEM_CAMP_PRIZE_MNG_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/camp/manage/prize/manage',
     SYSTEM_PROVIDER_PRODUCT_MNG_CONFIG_URL: 'http://192.168.1.24:40009/tiancan/api/provider/manage/do/mng',
     SYSTEM_CAMP_PRIZE_REF_GOODS_MNG_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/goods/query/goods/condition/',
+    SYSTEM_DISCOUNT_GOODS_CONFIG_URL: 'http://192.168.1.6:40091/tiancan/api/discount/manage/query/shop/',
 };
