@@ -19,6 +19,11 @@ export class AppComponent implements OnInit {
         });
 
         // 原材料管理页面跳转事件监听
+        this.eventBus.registerySubject('system_discount_main_add').subscribe(e => {
+            this.router.navigate(['system/discount/main/add'], {queryParams: {data: e}});
+        });
+
+        // 原材料管理页面跳转事件监听
         this.eventBus.registerySubject('system_discount').subscribe(e => {
             this.router.navigate(['system/discount'], {queryParams: {data: e}});
         });

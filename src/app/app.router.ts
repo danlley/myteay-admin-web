@@ -37,6 +37,7 @@ import {ManualComponent} from './system/provider/manual/manual.component';
 import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
 import {DiscountComponent} from './system/discount/discount.component';
 import {DisGoodsConfComponent} from './system/discount/disGoodsConf/disGoodsConf.component';
+import {AddDisGoodsConfComponent} from './system/discount/disGoodsConf/addDisGoodsConf/addDisGoodsConf.component';
 
 export const appRouter: Routes = [
     {
@@ -59,6 +60,10 @@ export const appRouter: Routes = [
             {
                 path: 'system/discount/main',
                 component: DisGoodsConfComponent
+            },
+            {
+                path: 'system/discount/main/add',
+                component: AddDisGoodsConfComponent
             },
             {
                 path: 'system/provider',

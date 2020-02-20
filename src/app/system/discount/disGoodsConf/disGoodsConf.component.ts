@@ -95,8 +95,8 @@ export class DisGoodsConfComponent implements OnInit {
         });
     }
 
-    gotoProductAddPage() {
-        this.eventBus.publish('system_provider_product_add_listener', this.shopData);
+    gotoDiscountGoodsConfAddPage() {
+        this.eventBus.publish('system_discount_main_add_listener', this.shopData);
     }
 
     goReturn() {
