@@ -45,6 +45,11 @@ export class DisGoodsConfComponent implements OnInit {
             this.eventBus.publish('system_discount_main', e);
         });
 
+        // 原材料管理页面跳转事件监听
+        this.eventBus.registerySubject('system_discount_goods_conf_remove').subscribe(e => {
+            this.removeDiscountGoodsConf(e);
+        });
+
         const data = this.activeRoute.snapshot.queryParams['data'];
         if (data !== undefined && data !== '') {
             this.shopData = data.split(',');
@@ -62,15 +67,19 @@ export class DisGoodsConfComponent implements OnInit {
         this.initShopList();
     }
 
+    removeDiscountGoodsConf(e) {
+        //
+    }
+
     /**
      * 构建店铺信息列表，用于进入店铺进行相应的商品管理
      */
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['详情', 'system_provider_product_detail_listener'],
-                ['修改', 'system_provider_product_modify_listener'],
-                ['删除', 'system_provider_product_listener']],
+            'tableOp': [['上线', 'system_provider_product_detail_listener'],
+                ['下架', 'system_provider_product_detail_listener'],
+                ['删除', 'system_discount_goods_conf_remove']],
             'tableContent': []
         };
         this.ftConfitService.getAllDiscountGoodsConfig(this.shopId).subscribe(res => {
@@ -81,12 +90,22 @@ export class DisGoodsConfComponent implements OnInit {
             if (this.templateConfigList !== null && this.templateConfigList !== undefined) {
                 this.templateConfigList.forEach(e => {
                     const gmtExpired = this.datePipe.transform(e.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
-                    const gmtModified = this.datePipe.transform(e.gmtModified, 'yyyy-MM-dd HH:mm:ss');
                     this.tableElement.tableContent.push([e.goodsId, e.goodsTitle, e.discountType, e.discountValue, e.crowdType,
                         e.discountStatus, gmtExpired]);
                 });
             }
         });
+    }
+
+    /**
+     * 向外发布异步事件，确保当前表格组件的引入者能够完成其目标动作
+     *
+     * @param currentTableElement   当前表格行中数据
+     * @param operation             目标操作类型（VIEW_DETAIL, MODIFY_DETAIL, DELETE_DETAIL）
+     */
+    tableNoPaginatorOperation(currentTableElement, operation) {
+        console.log('执行查询动作：  operation=' + operation, currentTableElement);
+        this.eventBus.publish(operation, currentTableElement);
     }
 
     initShopStatusList() {
@@ -100,7 +119,7 @@ export class DisGoodsConfComponent implements OnInit {
     }
 
     goReturn() {
-        this.eventBus.publish('system_provider', this.title);
+        this.eventBus.publish('system_discount', this.title);
     }
 
 }
