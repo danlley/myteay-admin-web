@@ -45,5 +45,6 @@ export const environment = {
     SYSTEM_CAMP_PRIZE_REF_GOODS_MNG_CONFIG_URL: 'http://192.168.1.6:40009/myteay/api/phoenix/admin/manage/goods/query/goods/condition/',
     SYSTEM_DISCOUNT_GOODS_CONFIG_URL: 'http://192.168.1.6:40009/tiancan/api/discount/manage/query/shop/',
     SYSTEM_DISCOUNT_GOODS_RMV_URL: 'http://192.168.1.6:40009/tiancan/api/discount/manage/opt/del/',
+    SYSTEM_DISCOUNT_GOODS_UPD_URL: 'http://192.168.1.6:40009/tiancan/api/discount/manage/opt/modify/',
     SYSTEM_DISCOUNT_GOODS_ADD_URL: 'http://192.168.1.6:40009/tiancan/api/discount/manage/opt/save/',
 };

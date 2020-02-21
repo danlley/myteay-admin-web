@@ -47,6 +47,10 @@ export class FatigeConfigService {
         return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_RMV_URL, data, this.getHeaderOptions());
     }
 
+    changeDiscountStatus(data): any {
+        return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_UPD_URL, data, this.getHeaderOptions());
+    }
+
     manageProductPriceConfig(data): any {
         return this._http.post(environment.PROVIDER_PRODUCT_PRICE_URL, data, this.getHeaderOptions());
     }

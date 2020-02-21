@@ -51,6 +51,16 @@ export class DisGoodsConfComponent implements OnInit {
             this.removeDiscountGoodsConf(e);
         });
 
+        // 原材料管理页面跳转事件监听
+        this.eventBus.registerySubject('system_discount_goods_conf_online_listener').subscribe(e => {
+            this.changeDiscountStatus(e, 'TC_ONLINE');
+        });
+
+        // 原材料管理页面跳转事件监听
+        this.eventBus.registerySubject('system_discount_goods_conf_offline_listener').subscribe(e => {
+            this.changeDiscountStatus(e, 'TC_OFFLINE');
+        });
+
         const data = this.activeRoute.snapshot.queryParams['data'];
         if (data !== undefined && data !== '') {
             this.shopData = data.split(',');
@@ -68,6 +78,14 @@ export class DisGoodsConfComponent implements OnInit {
         this.initShopList();
     }
 
+    changeDiscountStatus(data: TcDiscountGoodsConfigModel, discountStatus: string) {
+        data.discountStatus = discountStatus;
+        this.ftConfitService.changeDiscountStatus(data).subscribe(res => {
+            console.log('----------------->', res);
+            this.initShopList();
+        });
+    }
+
     removeDiscountGoodsConf(e) {
         this.ftConfitService.removeDiscountGoodsConfigById(e).subscribe(res => {
             console.log('----------------->', res);
@@ -81,19 +99,18 @@ export class DisGoodsConfComponent implements OnInit {
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['上线', 'system_provider_product_detail_listener'],
-                ['下架', 'system_provider_product_detail_listener'],
+            'tableOp': [['上线', 'system_discount_goods_conf_online_listener'],
+                ['下架', 'system_discount_goods_conf_offline_listener'],
                 ['删除', 'system_discount_goods_conf_remove']],
             'tableContent': []
         };
         this.ftConfitService.getAllDiscountGoodsConfig(this.shopId).subscribe(res => {
             console.log('----------------->', res);
             this.templateConfigList = this.commonService.filterResult(res.json());
-            this.tableElement.tableHeaders = [ '折扣ID', '折扣名称', '商品ID', '折扣类型', '折扣值', '折扣人群类型', '配置状态', '起效时间', '过期时间', '备注'];
+            this.tableElement.tableHeaders = ['折扣ID', '折扣名称', '商品ID', '折扣类型', '折扣值', '折扣人群类型', '配置状态', '起效时间', '过期时间', '备注'];
 
             if (this.templateConfigList !== null && this.templateConfigList !== undefined) {
                 this.templateConfigList.forEach(e => {
-                    const gmtExpired = this.datePipe.transform(e.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
                     const tabEl = new TcDiscountGoodsConfigModel();
                     tabEl.discountId = e.discountId;
                     tabEl.comments = e.comments;
