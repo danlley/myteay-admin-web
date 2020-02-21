@@ -43,8 +43,12 @@ export class FatigeConfigService {
         return this._http.get(environment.SYSTEM_DISCOUNT_GOODS_CONFIG_URL + shopId, this.getHeaderOptions());
     }
 
+    removeDiscountGoodsConfigById(data): any {
+        return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_RMV_URL, data, this.getHeaderOptions());
+    }
+
     manageProductPriceConfig(data): any {
-        return this._http.post(environment.PROVIDER_PRODUCT_PRICE_URL , data, this.getHeaderOptions());
+        return this._http.post(environment.PROVIDER_PRODUCT_PRICE_URL, data, this.getHeaderOptions());
     }
 
     queryProductPriceConfigAll(productId): any {
@@ -52,21 +56,20 @@ export class FatigeConfigService {
     }
 
     getShopAllCampBaseConfig(shopId: string): any {
-        return this._http.get(environment.CAMP_BASE_QUERY_CONFIG_URL  + '/' + shopId, this.getHeaderOptions());
+        return this._http.get(environment.CAMP_BASE_QUERY_CONFIG_URL + '/' + shopId, this.getHeaderOptions());
     }
 
     getShopAllCampPrizeConfig(campId: string): any {
-        return this._http.get(environment.CAMP_PRIZE_QUERY_CONFIG_URL  + '/' + campId, this.getHeaderOptions());
+        return this._http.get(environment.CAMP_PRIZE_QUERY_CONFIG_URL + '/' + campId, this.getHeaderOptions());
     }
 
     manageShopCampPrizeRefGoodsListConfig(prizeId, data): any {
-        return this._http.post(environment.CAMP_PRIZE_GOODS_REF_MNG_CONFIG_URL  + '/' + prizeId , data, this.getHeaderOptions());
+        return this._http.post(environment.CAMP_PRIZE_GOODS_REF_MNG_CONFIG_URL + '/' + prizeId, data, this.getHeaderOptions());
     }
 
     getShopCampPrizeRefGoodsListConfig(prizeId: string): any {
-        return this._http.get(environment.CAMP_PRIZE_GOODS_REF_QUERY_CONFIG_URL  + '/' + prizeId, this.getHeaderOptions());
+        return this._http.get(environment.CAMP_PRIZE_GOODS_REF_QUERY_CONFIG_URL + '/' + prizeId, this.getHeaderOptions());
     }
-
 
     getSingleShopPrizeGoodsConfig(data): any {
         return this._http.post(environment.SYSTEM_CAMP_PRIZE_REF_GOODS_MNG_CONFIG_URL, data, this.getHeaderOptions());
@@ -106,11 +109,11 @@ export class FatigeConfigService {
     }
 
     managePackagesImage(file, goodsId): any {
-        return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId , file, this.getHeaderOptions());
+        return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId, file, this.getHeaderOptions());
     }
 
     removePackagesImage(imageId): any {
-        return this._http.post(environment.PKG_IMG_REMOVE_URL + imageId , this.getHeaderOptions());
+        return this._http.post(environment.PKG_IMG_REMOVE_URL + imageId, this.getHeaderOptions());
     }
 
     getAllPacakgesDetailByGoodsId(goodsId: string): any {

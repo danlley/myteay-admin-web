@@ -62,7 +62,7 @@ export class DisGoodsConfigItemComponent implements OnInit {
         this.discountGoodsConf.goodsId = this.goods.goodsId;
         this.discountGoodsConf.goodsImage = this.goods.goodsImage;
         this.discountGoodsConf.shopId = this.goods.shopId;
-        this.discountGoodsConf.goodsTitle = this.goods.goodsTitle;
+        // this.discountGoodsConf.discountName = this.goods.goodsTitle;
 
         this.ftConfitService.addDiscountGoodsConfig(this.discountGoodsConf).subscribe(res => {
             this.eventBus.publish('system_discount_main', this.shopData);
@@ -97,13 +97,16 @@ export class DisGoodsConfigItemComponent implements OnInit {
 
 export class TcDiscountGoodsConfigModel {
     goodsId;
+    discountId;
     goodsImage;
-    goodsTitle;
+    discountName;
     discountType;
     discountValue;
     shopId;
     crowdType;
     discountStatus = 'TC_DRAFT';
+    comments;
+    gmtEffictive;
     gmtExpired;
     gmtCreated;
     gmtModified;

@@ -69,6 +69,17 @@ export class AddDisGoodsConfComponent implements OnInit {
         this.doQueryOnlineGoodsList();
         // 初始化日期选择组件
         laydate.render({
+            elem: '#gmtEffictive',
+            type: 'datetime',
+            theme: '#195456',
+            done: (value, date) => {
+                this.discountGoodsConf.gmtEffictive = value;
+                console.log(value);
+                console.log(date);
+            }
+        });
+        // 初始化日期选择组件
+        laydate.render({
             elem: '#gmtExpired',
             type: 'datetime',
             theme: '#195456',
@@ -78,13 +89,13 @@ export class AddDisGoodsConfComponent implements OnInit {
                 console.log(date);
             }
         });
+
     }
 
     doAddDiscountGoodsConf() {
         this.discountGoodsConf.goodsId = this.goods.goodsId;
         this.discountGoodsConf.goodsImage = this.goods.goodsImage;
         this.discountGoodsConf.shopId = this.goods.shopId;
-        this.discountGoodsConf.goodsTitle = this.goods.goodsTitle;
 
         this.ftConfitService.addDiscountGoodsConfig(this.discountGoodsConf).subscribe(res => {
             this.eventBus.publish('system_discount_main', this.shopData);

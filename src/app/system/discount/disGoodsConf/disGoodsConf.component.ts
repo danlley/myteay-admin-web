@@ -4,6 +4,7 @@ import {DatePipe} from '@angular/common';
 import {CommonServie} from '../../../utils/common.servie';
 import {EventService} from '../../../asyncService/asyncService.service';
 import {ActivatedRoute} from '@angular/router';
+import {TcDiscountGoodsConfigModel} from './addDisGoodsConf/disGoodsConfigItem/disGoodsConfigItem.component';
 
 @Component({
     selector: 'app-system-discount-main',
@@ -68,7 +69,10 @@ export class DisGoodsConfComponent implements OnInit {
     }
 
     removeDiscountGoodsConf(e) {
-        //
+        this.ftConfitService.removeDiscountGoodsConfigById(e).subscribe(res => {
+            console.log('----------------->', res);
+            this.initShopList();
+        });
     }
 
     /**
@@ -85,13 +89,27 @@ export class DisGoodsConfComponent implements OnInit {
         this.ftConfitService.getAllDiscountGoodsConfig(this.shopId).subscribe(res => {
             console.log('----------------->', res);
             this.templateConfigList = this.commonService.filterResult(res.json());
-            this.tableElement.tableHeaders = ['商品ID', '商品名称', '折扣类型', '折扣值', '折扣人群类型', '配置状态', '最后修改时间'];
+            this.tableElement.tableHeaders = [ '折扣ID', '折扣名称', '商品ID', '折扣类型', '折扣值', '折扣人群类型', '配置状态', '起效时间', '过期时间', '备注'];
 
             if (this.templateConfigList !== null && this.templateConfigList !== undefined) {
                 this.templateConfigList.forEach(e => {
                     const gmtExpired = this.datePipe.transform(e.gmtExpired, 'yyyy-MM-dd HH:mm:ss');
-                    this.tableElement.tableContent.push([e.goodsId, e.goodsTitle, e.discountType, e.discountValue, e.crowdType,
-                        e.discountStatus, gmtExpired]);
+                    const tabEl = new TcDiscountGoodsConfigModel();
+                    tabEl.discountId = e.discountId;
+                    tabEl.comments = e.comments;
+                    tabEl.discountName = e.discountName;
+                    tabEl.shopId = e.shopId;
+                    tabEl.goodsImage = e.goodsImage;
+                    tabEl.goodsId = e.goodsId;
+                    tabEl.discountValue = e.discountValue;
+                    tabEl.crowdType = e.crowdType;
+                    tabEl.gmtExpired = e.gmtExpired;
+                    tabEl.discountStatus = e.discountStatus;
+                    tabEl.gmtCreated = e.gmtCreated;
+                    tabEl.gmtEffictive = e.gmtEffictive;
+                    tabEl.gmtModified = e.gmtModified;
+                    tabEl.discountType = e.discountType;
+                    this.tableElement.tableContent.push(tabEl);
                 });
             }
         });
