@@ -38,6 +38,7 @@ import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
 import {DiscountComponent} from './system/discount/discount.component';
 import {DisGoodsConfComponent} from './system/discount/disGoodsConf/disGoodsConf.component';
 import {AddDisGoodsConfComponent} from './system/discount/disGoodsConf/addDisGoodsConf/addDisGoodsConf.component';
+import {ProdtransComponent} from './system/prodtrans/prodtrans.component';
 
 export const appRouter: Routes = [
     {
@@ -52,6 +53,10 @@ export const appRouter: Routes = [
             {
                 path: 'customer/query',
                 component: MtFatigeIndicatorConfigQueryComponent
+            },
+            {
+                path: 'system/prodtrans',
+                component: ProdtransComponent
             },
             {
                 path: 'system/discount',

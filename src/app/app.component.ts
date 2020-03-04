@@ -28,6 +28,10 @@ export class AppComponent implements OnInit {
             this.router.navigate(['system/discount'], {queryParams: {data: e}});
         });
 
+        this.eventBus.registerySubject('system_prodtrans').subscribe(e => {
+            this.router.navigate(['system/prodtrans'], {queryParams: {data: e}});
+        });
+
         // 原材料管理页面跳转事件监听
         this.eventBus.registerySubject('system_provider').subscribe(e => {
             this.router.navigate(['system/provider'], {queryParams: {data: e}});

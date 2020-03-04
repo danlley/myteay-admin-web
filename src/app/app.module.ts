@@ -68,6 +68,7 @@ import {DiscountComponent} from './system/discount/discount.component';
 import {DisGoodsConfComponent} from './system/discount/disGoodsConf/disGoodsConf.component';
 import {AddDisGoodsConfComponent} from './system/discount/disGoodsConf/addDisGoodsConf/addDisGoodsConf.component';
 import {DisGoodsConfigItemComponent} from './system/discount/disGoodsConf/addDisGoodsConf/disGoodsConfigItem/disGoodsConfigItem.component';
+import {ProdtransComponent} from './system/prodtrans/prodtrans.component';
 
 @NgModule({
     declarations: [
@@ -124,8 +125,9 @@ import {DisGoodsConfigItemComponent} from './system/discount/disGoodsConf/addDis
         PpPriceComponent,
         DiscountComponent,
         DisGoodsConfComponent,
-        AddDisGoodsConfComponent,
         DisGoodsConfigItemComponent,
+        AddDisGoodsConfComponent,
+        ProdtransComponent,
         BottomComponent
     ],
     imports: [
@@ -194,8 +196,9 @@ import {DisGoodsConfigItemComponent} from './system/discount/disGoodsConf/addDis
         PpPriceComponent,
         DiscountComponent,
         DisGoodsConfComponent,
-        AddDisGoodsConfComponent,
         DisGoodsConfigItemComponent,
+        AddDisGoodsConfComponent,
+        ProdtransComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })
