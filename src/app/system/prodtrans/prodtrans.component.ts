@@ -50,7 +50,7 @@ export class ProdtransComponent implements OnInit {
     initShopList() {
         this.tableElement = {
             'tableHeaders': [],
-            'tableOp': [['店铺会员产品账管理', 'system_discount_main_listener']],
+            'tableOp': [['店铺会员产品账管理', 'system_prodtrans_usr_shop_prod_listener']],
             'tableContent': []
         };
         this.ftConfitService.getAllShopConfig().subscribe(res => {
