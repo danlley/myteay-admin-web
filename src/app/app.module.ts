@@ -70,6 +70,7 @@ import {AddDisGoodsConfComponent} from './system/discount/disGoodsConf/addDisGoo
 import {DisGoodsConfigItemComponent} from './system/discount/disGoodsConf/addDisGoodsConf/disGoodsConfigItem/disGoodsConfigItem.component';
 import {ProdtransComponent} from './system/prodtrans/prodtrans.component';
 import {ProdtransUserShopProdComponent} from './system/prodtrans/prodtransUserShopProd/prodtransUserShopProd.component';
+import {ProdtransUserShopProdAddComponent} from './system/prodtrans/prodtransUserShopProd/ProdtransUserShopProdAdd/prodtransUserShopProdAdd.component';
 
 @NgModule({
     declarations: [
@@ -130,6 +131,7 @@ import {ProdtransUserShopProdComponent} from './system/prodtrans/prodtransUserSh
         AddDisGoodsConfComponent,
         ProdtransComponent,
         ProdtransUserShopProdComponent,
+        ProdtransUserShopProdAddComponent,
         BottomComponent
     ],
     imports: [
@@ -202,6 +204,7 @@ import {ProdtransUserShopProdComponent} from './system/prodtrans/prodtransUserSh
         AddDisGoodsConfComponent,
         ProdtransComponent,
         ProdtransUserShopProdComponent,
+        ProdtransUserShopProdAddComponent,
         MtFatigeIndicatorConfigQueryComponent],
     bootstrap: [AppComponent]
 })

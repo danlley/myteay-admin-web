@@ -180,6 +180,10 @@ export class FatigeConfigService {
         return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_ADD_URL, data, this.getHeaderOptions());
     }
 
+    addShopUserProdConfig(data): any {
+        return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_ADD_URL, data, this.getHeaderOptions());
+    }
+
     manageMessageConfigByParam(data): any {
         return this._http.post(environment.MESSAGE_CONFIG_URL, data, this.getHeaderOptions());
     }

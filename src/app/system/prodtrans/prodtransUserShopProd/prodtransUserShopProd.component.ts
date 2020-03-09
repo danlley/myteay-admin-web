@@ -47,17 +47,17 @@ export class ProdtransUserShopProdComponent implements OnInit {
 
         // 店铺会员产品账管理页面跳转事件监听
         this.eventBus.registerySubject('system_prodtrans_usr_shop_prod_remove').subscribe(e => {
-            this.removeDiscountGoodsConf(e);
+            this.removeProdtransUserShopProd(e);
         });
 
         // 店铺会员产品账管理页面跳转事件监听
         this.eventBus.registerySubject('system_prodtrans_usr_shop_prod_online_listener').subscribe(e => {
-            this.changeDiscountStatus(e, 'TC_ONLINE');
+            this.changeProdtransUserShopProd(e, 'TC_ONLINE');
         });
 
         // 店铺会员产品账管理页面跳转事件监听
         this.eventBus.registerySubject('system_prodtrans_usr_shop_prod_offline_listener').subscribe(e => {
-            this.changeDiscountStatus(e, 'TC_OFFLINE');
+            this.changeProdtransUserShopProd(e, 'TC_OFFLINE');
         });
 
         const data = this.activeRoute.snapshot.queryParams['data'];
@@ -77,7 +77,7 @@ export class ProdtransUserShopProdComponent implements OnInit {
         this.initProdtransUsrShopProdList();
     }
 
-    changeDiscountStatus(data: TcPtsUserShopProdConfigModel, ptsStatus: string) {
+    changeProdtransUserShopProd(data: TcPtsUserShopProdConfigModel, ptsStatus: string) {
         data.ptsStatus = ptsStatus;
         this.ftConfitService.changeDiscountStatus(data).subscribe(res => {
             console.log('----------------->', res);
@@ -85,7 +85,7 @@ export class ProdtransUserShopProdComponent implements OnInit {
         });
     }
 
-    removeDiscountGoodsConf(e) {
+    removeProdtransUserShopProd(e) {
         this.ftConfitService.removeDiscountGoodsConfigById(e).subscribe(res => {
             console.log('----------------->', res);
             this.initProdtransUsrShopProdList();
@@ -145,7 +145,7 @@ export class ProdtransUserShopProdComponent implements OnInit {
         });
     }
 
-    gotoDiscountGoodsConfAddPage() {
+    gotoProdtransUserShopProdAddPage() {
         this.eventBus.publish('system_prodtrans_usr_shop_prod_add_listener', this.shopData);
     }
 

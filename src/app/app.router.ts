@@ -40,6 +40,7 @@ import {DisGoodsConfComponent} from './system/discount/disGoodsConf/disGoodsConf
 import {AddDisGoodsConfComponent} from './system/discount/disGoodsConf/addDisGoodsConf/addDisGoodsConf.component';
 import {ProdtransComponent} from './system/prodtrans/prodtrans.component';
 import {ProdtransUserShopProdComponent} from './system/prodtrans/prodtransUserShopProd/prodtransUserShopProd.component';
+import {ProdtransUserShopProdAddComponent} from './system/prodtrans/prodtransUserShopProd/ProdtransUserShopProdAdd/prodtransUserShopProdAdd.component';
 
 export const appRouter: Routes = [
     {
@@ -62,6 +63,10 @@ export const appRouter: Routes = [
             {
                 path: 'system/prodtrans/usr/shop/prod',
                 component: ProdtransUserShopProdComponent
+            },
+            {
+                path: 'system/prodtrans/usr/shop/prod/add',
+                component: ProdtransUserShopProdAddComponent
             },
             {
                 path: 'system/discount',
