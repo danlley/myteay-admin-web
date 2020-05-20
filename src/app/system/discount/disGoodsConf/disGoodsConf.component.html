@@ -26,8 +26,8 @@
 				        <td align="center" style="font-size: 0.4em;">{{e.discountValue}}</td>
 				        <td align="center" style="font-size: 0.4em;">{{e.crowdType}}</td>
 				        <td align="center" style="font-size: 0.4em;">{{e.discountStatus}}</td>
-				        <td align="center" style="font-size: 0.4em;">{{e.gmtEffictive}}</td>
-				        <td align="center" style="font-size: 0.4em;">{{e.gmtExpired}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.gmtEffictive | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.gmtExpired | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
 				        <td align="center" style="font-size: 0.4em;">{{e.comments}}</td>
 				        <td align="center" style="font-size: 0.4em;">
 					        <a *ngFor="let opElement of tableElement.tableOp" style="cursor: pointer; margin-left: 20px; color: #721c24;" (click)="tableNoPaginatorOperation(e, opElement[1])"> {{opElement[0]}} </a>

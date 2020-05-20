@@ -47,17 +47,18 @@ export class ProdtransUserShopProdComponent implements OnInit {
 
         // 店铺会员产品账管理页面跳转事件监听
         this.eventBus.registerySubject('system_prodtrans_usr_shop_prod_remove').subscribe(e => {
-            this.removeProdtransUserShopProd(e);
+            console.log('==============>', e)
+            this.removePtsShopUserProdById(e.prodtransId);
         });
 
         // 店铺会员产品账管理页面跳转事件监听
         this.eventBus.registerySubject('system_prodtrans_usr_shop_prod_online_listener').subscribe(e => {
-            this.changeProdtransUserShopProd(e, 'TC_ONLINE');
+            this.changePtsShopUserProdStatus(e, 'TC_ONLINE');
         });
 
         // 店铺会员产品账管理页面跳转事件监听
         this.eventBus.registerySubject('system_prodtrans_usr_shop_prod_offline_listener').subscribe(e => {
-            this.changeProdtransUserShopProd(e, 'TC_OFFLINE');
+            this.changePtsShopUserProdStatus(e, 'TC_OFFLINE');
         });
 
         const data = this.activeRoute.snapshot.queryParams['data'];
@@ -77,16 +78,16 @@ export class ProdtransUserShopProdComponent implements OnInit {
         this.initProdtransUsrShopProdList();
     }
 
-    changeProdtransUserShopProd(data: TcPtsUserShopProdConfigModel, ptsStatus: string) {
+    changePtsShopUserProdStatus(data: TcPtsUserShopProdConfigModel, ptsStatus: string) {
         data.ptsStatus = ptsStatus;
-        this.ftConfitService.changeDiscountStatus(data).subscribe(res => {
+        this.ftConfitService.changePtsShopUserProdStatus(data).subscribe(res => {
             console.log('----------------->', res);
             this.initProdtransUsrShopProdList();
         });
     }
 
-    removeProdtransUserShopProd(e) {
-        this.ftConfitService.removeDiscountGoodsConfigById(e).subscribe(res => {
+    removePtsShopUserProdById(prodtransId: string) {
+        this.ftConfitService.removePtsShopUserProdById(this.shopId, prodtransId).subscribe(res => {
             console.log('----------------->', res);
             this.initProdtransUsrShopProdList();
         });

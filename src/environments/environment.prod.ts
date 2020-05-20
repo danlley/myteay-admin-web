@@ -8,7 +8,7 @@ export const environment = {
     FATIGE_CONFIG_URL: 'http://192.168.1.6:40001/myteay/api/customer/admin/web/fatige_config/query_by_conditions',
 
     // 凤凰系统
-    DATA_DIC_URL: 'http://192.168.1.3:40009/myteay/api/phoenix/admin/manage/dic/',
+    DATA_DIC_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/dic/',
     SYSTEM_SHOP_MNG_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/shop/manage',
     SYSTEM_QUERY_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/shop/all',
     SYSTEM_PROVIDER_PRODUCT_CONFIG_URL: 'http://192.168.1.24:40009/tiancan/api/provider/manage/list/shop/',
@@ -47,6 +47,8 @@ export const environment = {
     SYSTEM_DISCOUNT_GOODS_RMV_URL: 'http://192.168.1.24:40009/tiancan/api/discount/manage/opt/del/',
     SYSTEM_DISCOUNT_GOODS_UPD_URL: 'http://192.168.1.24:40009/tiancan/api/discount/manage/opt/modify/',
     SYSTEM_DISCOUNT_GOODS_ADD_URL: 'http://192.168.1.24:40009/tiancan/api/discount/manage/opt/save/',
-    SYSTEM_PDS_SHOP_USR_PROD_ADD_URL: 'http://192.168.1.3:40009/tiancan/api/prodtrans/manage/save/',
+    SYSTEM_PDS_SHOP_USR_PROD_ADD_URL: 'http://192.168.1.24:40009/tiancan/api/prodtrans/manage/save/',
+    SYSTEM_PDS_SHOP_USR_PROD_RMV_URL: 'http://192.168.1.24:40009/tiancan/api/prodtrans/manage/remove/shop/',
+    SYSTEM_PDS_SHOP_USR_PROD_MDF_URL: 'http://192.168.1.24:40009/tiancan/api/prodtrans/manage/modify/',
     SYSTEM_USR_SHOP_PROD_ALL_URL: 'http://192.168.1.24:40009/tiancan/api/prodtrans/manage/query/shop/',
 };

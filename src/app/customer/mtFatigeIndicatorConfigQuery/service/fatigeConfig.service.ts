@@ -184,6 +184,15 @@ export class FatigeConfigService {
         return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_ADD_URL, data, this.getHeaderOptions());
     }
 
+    removePtsShopUserProdById(shopId: string, prodtransId: string): any {
+        return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_RMV_URL + shopId + '/prodtrans/' + prodtransId,
+            this.getHeaderOptions());
+    }
+
+    changePtsShopUserProdStatus(data): any {
+        return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_MDF_URL, data, this.getHeaderOptions());
+    }
+
     manageMessageConfigByParam(data): any {
         return this._http.post(environment.MESSAGE_CONFIG_URL, data, this.getHeaderOptions());
     }
