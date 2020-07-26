@@ -101,9 +101,10 @@ export class TcDiscountGoodsConfigModel {
     goodsImage;
     discountName;
     discountType;
+    discountPrice;
     discountValue;
     prodtransId;
-    distribution = '{DP:[0-11]},{D:[15,17]}';
+    distribution = '{DH:[0-11]},{HH:[15,17]}';
     shopId;
     crowdType;
     discountStatus = 'TC_DRAFT';

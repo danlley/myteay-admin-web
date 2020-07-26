@@ -144,7 +144,7 @@ export class CampPrizeModel {
     shopId: string;
     prizeLevel: string;
     prizePercent = '100';
-    distribution = 'GP:{P:1/30}';
+    distribution = 'GP:{P:5/30}';
     price = '2.00';
     prizeAmount = '999999';
     prizeStatus = 'CAMP_PRIZE_DRAFT';

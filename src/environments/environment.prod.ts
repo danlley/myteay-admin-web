@@ -7,11 +7,10 @@ export const environment = {
     // DATA_DIC_URL: 'http://192.168.1.6:40001/myteay/api/customer/admin/web/data/',
     FATIGE_CONFIG_URL: 'http://192.168.1.6:40001/myteay/api/customer/admin/web/fatige_config/query_by_conditions',
 
-    // 凤凰系统
+    // 后台管理
     DATA_DIC_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/dic/',
     SYSTEM_SHOP_MNG_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/shop/manage',
     SYSTEM_QUERY_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/shop/all',
-    SYSTEM_PROVIDER_PRODUCT_CONFIG_URL: 'http://192.168.1.24:40009/tiancan/api/provider/manage/list/shop/',
     GOODS_QUERY_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/goods/all',
     GOODS_COST_CFG_QUERY_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/goods/cost/all',
     GOODS_COST_CFG_MNG_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/goods/cost/manage',
@@ -30,6 +29,7 @@ export const environment = {
     GOODS_MNG_PACKAGES_NOTICE_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/pkgs/notice/manage',
     GOODS_QUERY_PACKAGES_SUB_NOTICE_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/pkgs/sub/notice/list/notice/',
     GOODS_MNG_PACKAGES_SUB_NOTICE_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/pkgs/sub/notice/manage',
+    SYSTEM_CAMP_PRIZE_REF_GOODS_MNG_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/goods/query/goods/condition/',
     GOODS_MNG_GOODS_STATUS_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/goods/status/',
 
     // 营销平台
@@ -37,16 +37,22 @@ export const environment = {
     CAMP_PRIZE_QUERY_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/camp/manage/prize/list/prize/',
     CAMP_PRIZE_GOODS_REF_QUERY_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/camp/manage/prize/ref/list',
     CAMP_PRIZE_GOODS_REF_MNG_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/camp/manage/prize/ref/manage',
-    PROVIDER_PRODUCT_PRICE_URL: 'http://192.168.1.24:40009/tiancan/api/provider/manage/do/price/mng',
-    PROVIDER_PRODUCT_PRICE_QRY_URL: 'http://192.168.1.24:40009/tiancan/api/provider/manage/list/price/',
     SYSTEM_CAMP_BASE_MNG_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/camp/manage/base/manage',
     SYSTEM_CAMP_PRIZE_MNG_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/camp/manage/prize/manage',
+
+    // 供货商
+    PROVIDER_PRODUCT_PRICE_URL: 'http://192.168.1.24:40009/tiancan/api/provider/manage/do/price/mng',
+    PROVIDER_PRODUCT_PRICE_QRY_URL: 'http://192.168.1.24:40009/tiancan/api/provider/manage/list/price/',
     SYSTEM_PROVIDER_PRODUCT_MNG_CONFIG_URL: 'http://192.168.1.24:40009/tiancan/api/provider/manage/do/mng',
-    SYSTEM_CAMP_PRIZE_REF_GOODS_MNG_CONFIG_URL: 'http://192.168.1.24:40009/myteay/api/phoenix/admin/manage/goods/query/goods/condition/',
+    SYSTEM_PROVIDER_PRODUCT_CONFIG_URL: 'http://192.168.1.24:40009/tiancan/api/provider/manage/list/shop/',
+
+    // 折扣系统
     SYSTEM_DISCOUNT_GOODS_CONFIG_URL: 'http://192.168.1.24:40009/tiancan/api/discount/manage/query/shop/',
     SYSTEM_DISCOUNT_GOODS_RMV_URL: 'http://192.168.1.24:40009/tiancan/api/discount/manage/opt/del/',
     SYSTEM_DISCOUNT_GOODS_UPD_URL: 'http://192.168.1.24:40009/tiancan/api/discount/manage/opt/modify/',
     SYSTEM_DISCOUNT_GOODS_ADD_URL: 'http://192.168.1.24:40009/tiancan/api/discount/manage/opt/save/',
+
+    // 产品账系统
     SYSTEM_PDS_SHOP_USR_PROD_ADD_URL: 'http://192.168.1.24:40009/tiancan/api/prodtrans/manage/save/',
     SYSTEM_PDS_SHOP_USR_PROD_RMV_URL: 'http://192.168.1.24:40009/tiancan/api/prodtrans/manage/remove/shop/',
     SYSTEM_PDS_SHOP_USR_PROD_MDF_URL: 'http://192.168.1.24:40009/tiancan/api/prodtrans/manage/modify/',
