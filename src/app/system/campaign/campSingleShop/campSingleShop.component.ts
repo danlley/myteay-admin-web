@@ -58,6 +58,11 @@ export class CampSingleShopComponent implements OnInit {
             this.gotoChangeCampBaseStatus(e[0], 'CAMP_ONLINE');
         });
 
+        // 监听店内营销活动启动请求
+        this.eventBus.registerySubject('camp_shop_single_setting').subscribe(e => {
+            this.gotoSetShopCampConfig(e[0], e[7]);
+        });
+
     }
 
     /**
@@ -65,7 +70,6 @@ export class CampSingleShopComponent implements OnInit {
      */
     ngOnInit(): void {
         console.log(this.title);
-
 
         // 初始化店铺信息
         this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
@@ -105,6 +109,45 @@ export class CampSingleShopComponent implements OnInit {
         });
     }
 
+    private gotoSetShopCampConfig(campId: string, campStatus: string): void {
+        this.isNeedShowErrMsg = false;
+        this.errMsg = '';
+        const shopId = this.shopData[0];
+        console.log('', shopId + '  ----  ' + campId);
+
+        const campConfigArray: string[] = ['CAMP_ONLINE', 'CAMP_OFFLINE', 'CAMP_EXPIRED'];
+
+        const tcShopCampConfigModel: TcShopCampConfigModel = new TcShopCampConfigModel();
+        tcShopCampConfigModel.shopId = shopId;
+        tcShopCampConfigModel.campId = campId;
+        tcShopCampConfigModel.operator = 'N/A';
+
+        let campConfigFlag = null;
+        campConfigArray.forEach(e => {
+            if (e === campStatus) {
+                campConfigFlag = e;
+            }
+        });
+
+        if (campConfigFlag === null) {
+            console.log('营销活动状态不可用，无法对指定店铺进行设置', campId);
+            this.isNeedShowErrMsg = true;
+            this.errMsg = '营销活动状态不可用，无法对指定店铺进行设置';
+            return;
+        }
+
+        tcShopCampConfigModel.campConfigFlag = campConfigFlag;
+        this.ftConfitService.manageShopCampConfig(tcShopCampConfigModel).subscribe(res => {
+            console.log('=======================>', res.json());
+            this.errMsg = '';
+            const data = res.json();
+            if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
+                this.isNeedShowErrMsg = true;
+                this.errMsg = '店内营销活动执行‘' + campStatus + '’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
+            }
+        });
+    }
+
     /**
      * 变更营销活动状态
      *
@@ -128,6 +171,7 @@ export class CampSingleShopComponent implements OnInit {
                 this.errMsg = '店内营销活动执行‘' + campStatus + '’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
             }
         });
+
     }
 
     /**
@@ -178,7 +222,9 @@ export class CampSingleShopComponent implements OnInit {
                 ['删除', 'single_shop_camp_delete'],
                 ['启动', 'single_shop_camp_start'],
                 ['查看', 'camp_shop_single_view'],
-                ['奖品管理', 'campaign_shop_prize_single_prize_mng']],
+                ['奖品管理', 'campaign_shop_prize_single_prize_mng'],
+                ['店铺活动', 'camp_shop_single_setting']
+            ],
             'tableContent': []
         };
         this.ftConfitService.getShopAllCampBaseConfig(this.shopData[0]).subscribe(res => {
@@ -191,7 +237,7 @@ export class CampSingleShopComponent implements OnInit {
                 const campEnd = this.datePipe.transform(e.campEnd, 'yyyy-MM-dd HH:mm:ss');
                 const campStatus = this.getCampSwitchShow(e.campStatus);
                 this.tableElement.tableContent.push([e.campId, e.campName, campStart, campEnd,
-                    campStatus, gmtCreated, gmtModified]);
+                    campStatus, gmtCreated, gmtModified, e.campStatus]);
             });
         });
     }
@@ -247,4 +293,11 @@ export class CampBaseModel {
     campStart: string;
     campEnd: string;
     operationType = 'PX_ADD';
+}
+
+export class TcShopCampConfigModel {
+    shopId: string;
+    campId: string;
+    campConfigFlag: string;
+    operator: string;
 }
