@@ -1,1 +1,19 @@
+.a-style-slide {
+  display: block;
+  text-decoration: none;
+  width: 290px;
+  height: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: white;
+  background: linear-gradient(to bottom, #378091, #2f3e45);
+}
 
+.a-style-slide:hover {
+  transform:rotate(360deg);
+  -webkit-transform:rotate(360deg);
+  -moz-transform:rotate(360deg);
+  -o-transform:rotate(360deg);
+  -ms-transform:rotate(360deg);
+  background: linear-gradient(to bottom, #3bd4d6, #339b9d);
+}

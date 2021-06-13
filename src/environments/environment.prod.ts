@@ -1,3 +1,7 @@
+/**
+ * GanguTianCan.com Inc.
+ * Copyright (c) 2015-2020 All Rights Reserved.
+ */
 export const environment = {
     production: true,
     MESSAGE_CONFIG_URL: 'http://localhost:41001/myteay/api/message/mng/msg_config',

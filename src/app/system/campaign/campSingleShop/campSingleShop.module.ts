@@ -1,4 +1,3 @@
-import {HttpModule} from '@angular/http';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
@@ -13,8 +12,7 @@ import {DatePipe} from '@angular/common';
     ],
     imports: [
         RouterModule.forChild(campSingleShopRouter),
-        FormsModule,
-        HttpModule
+        FormsModule
     ],
     providers: [FatigeConfigService, DatePipe],
     bootstrap: [CampSingleShopComponent]

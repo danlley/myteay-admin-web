@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {EventService} from './asyncService/asyncService.service';
+/**
+ * GanguTianCan.com Inc.
+ * Copyright (c) 2015-2020 All Rights Reserved.
+ */
+import { Component } from '@angular/core';
 import {Router} from '@angular/router';
+import {EventService} from './asyncService/asyncService.service';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: 'app.component.html',
-    styleUrls: ['./app.component.css']
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
-
-    title = 'app works!';
-
+export class AppComponent {
+  title = 'myteay-admin-web';
     constructor(private eventBus: EventService, private router: Router) {
 
         // 原材料管理页面跳转事件监听
@@ -218,8 +220,5 @@ export class AppComponent implements OnInit {
             console.log('------------->', e);
             this.router.navigate(['system/campaign/prize/ref'], {queryParams: {data: e}});
         });
-    }
-
-    ngOnInit(): void {
     }
 }

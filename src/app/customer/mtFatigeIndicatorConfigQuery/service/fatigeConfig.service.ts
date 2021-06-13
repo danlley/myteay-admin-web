@@ -1,203 +1,198 @@
 import {Injectable} from '@angular/core';
-import {Headers, Http, RequestOptions} from '@angular/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../../environments/environment.prod';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class FatigeConfigService {
 
-    constructor(private _http: Http) {
-    }
+  constructor(private _http: HttpClient) {
 
-    private getHeaderOptions() {
-        const headers = new Headers({
-            'language-options': 'zh',
-        });
+  }
 
-        return new RequestOptions({headers: headers});
-    }
+  private getHeaderOptions(): HttpHeaders {
+    return new HttpHeaders({
+      'language-options': 'zh',
+    });
+  }
 
-    private getHeaderMultiOptions() {
-        const headers = new Headers({
-            'language-options': 'zh',
-            'Content-Type': 'multipart/form-data'
-        });
+  private getHeaderMultiOptions() {
+    return new HttpHeaders({
+      'language-options': 'zh',
+      'Content-Type': 'multipart/form-data'
+    });
+  }
 
-        return new RequestOptions({headers: headers});
-    }
+  getAllFatigeIndicatorConfig(): any {
+    return this._http.get(environment.FATIGE_CONFIG_URL + '', {headers: this.getHeaderOptions()});
+  }
 
-    getAllFatigeIndicatorConfig(): any {
-        return this._http.get(environment.FATIGE_CONFIG_URL + '', this.getHeaderOptions());
-    }
+  getAllShopConfig(): any {
+    return this._http.get(environment.SYSTEM_QUERY_CONFIG_URL + '', {headers: this.getHeaderOptions()});
+  }
 
-    getAllShopConfig(): any {
-        return this._http.get(environment.SYSTEM_QUERY_CONFIG_URL + '', this.getHeaderOptions());
-    }
+  getAllProductsConfig(shopId: string): any {
+    return this._http.get(environment.SYSTEM_PROVIDER_PRODUCT_CONFIG_URL + shopId, {headers: this.getHeaderOptions()});
+  }
 
-    getAllProductsConfig(shopId: string): any {
-        return this._http.get(environment.SYSTEM_PROVIDER_PRODUCT_CONFIG_URL + shopId, this.getHeaderOptions());
-    }
+  getAllProdtransUsrShopProdConfig(shopId: string): any {
+    return this._http.post(environment.SYSTEM_USR_SHOP_PROD_ALL_URL + shopId, null, {headers: this.getHeaderOptions()});
+  }
 
-    getAllProdtransUsrShopProdConfig(shopId: string): any {
-        return this._http.post(environment.SYSTEM_USR_SHOP_PROD_ALL_URL + shopId, null, this.getHeaderOptions());
-    }
+  getAllDiscountGoodsConfig(shopId: string): any {
+    return this._http.get(environment.SYSTEM_DISCOUNT_GOODS_CONFIG_URL + shopId, {headers: this.getHeaderOptions()});
+  }
 
-    getAllDiscountGoodsConfig(shopId: string): any {
-        return this._http.get(environment.SYSTEM_DISCOUNT_GOODS_CONFIG_URL + shopId, this.getHeaderOptions());
-    }
+  removeDiscountGoodsConfigById(data): any {
+    return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_RMV_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    removeDiscountGoodsConfigById(data): any {
-        return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_RMV_URL, data, this.getHeaderOptions());
-    }
+  changeDiscountStatus(data): any {
+    return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_UPD_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    changeDiscountStatus(data): any {
-        return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_UPD_URL, data, this.getHeaderOptions());
-    }
+  manageProductPriceConfig(data): any {
+    return this._http.post(environment.PROVIDER_PRODUCT_PRICE_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    manageProductPriceConfig(data): any {
-        return this._http.post(environment.PROVIDER_PRODUCT_PRICE_URL, data, this.getHeaderOptions());
-    }
+  queryProductPriceConfigAll(productId): any {
+    return this._http.get(environment.PROVIDER_PRODUCT_PRICE_QRY_URL + productId, {headers: this.getHeaderOptions()});
+  }
 
-    queryProductPriceConfigAll(productId): any {
-        return this._http.get(environment.PROVIDER_PRODUCT_PRICE_QRY_URL + productId, this.getHeaderOptions());
-    }
+  getShopAllCampBaseConfig(shopId: string): any {
+    return this._http.get(environment.CAMP_BASE_QUERY_CONFIG_URL + '/' + shopId, {headers: this.getHeaderOptions()});
+  }
 
-    getShopAllCampBaseConfig(shopId: string): any {
-        return this._http.get(environment.CAMP_BASE_QUERY_CONFIG_URL + '/' + shopId, this.getHeaderOptions());
-    }
+  getShopAllCampPrizeConfig(campId: string): any {
+    return this._http.get(environment.CAMP_PRIZE_QUERY_CONFIG_URL + '/' + campId, {headers: this.getHeaderOptions()});
+  }
 
-    getShopAllCampPrizeConfig(campId: string): any {
-        return this._http.get(environment.CAMP_PRIZE_QUERY_CONFIG_URL + '/' + campId, this.getHeaderOptions());
-    }
+  manageShopCampPrizeRefGoodsListConfig(prizeId, data): any {
+    return this._http.post(environment.CAMP_PRIZE_GOODS_REF_MNG_CONFIG_URL + '/' + prizeId, data, {headers: this.getHeaderOptions()});
+  }
 
-    manageShopCampPrizeRefGoodsListConfig(prizeId, data): any {
-        return this._http.post(environment.CAMP_PRIZE_GOODS_REF_MNG_CONFIG_URL + '/' + prizeId, data, this.getHeaderOptions());
-    }
+  getShopCampPrizeRefGoodsListConfig(prizeId: string): any {
+    return this._http.get(environment.CAMP_PRIZE_GOODS_REF_QUERY_CONFIG_URL + '/' + prizeId, {headers: this.getHeaderOptions()});
+  }
 
-    getShopCampPrizeRefGoodsListConfig(prizeId: string): any {
-        return this._http.get(environment.CAMP_PRIZE_GOODS_REF_QUERY_CONFIG_URL + '/' + prizeId, this.getHeaderOptions());
-    }
+  getSingleShopPrizeGoodsConfig(data): any {
+    return this._http.post(environment.SYSTEM_CAMP_PRIZE_REF_GOODS_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    getSingleShopPrizeGoodsConfig(data): any {
-        return this._http.post(environment.SYSTEM_CAMP_PRIZE_REF_GOODS_MNG_CONFIG_URL, data, this.getHeaderOptions());
-    }
+  manageCampBaseConfig(data): any {
+    return this._http.post(environment.SYSTEM_CAMP_BASE_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    manageCampBaseConfig(data): any {
-        return this._http.post(environment.SYSTEM_CAMP_BASE_MNG_CONFIG_URL, data, this.getHeaderOptions());
-    }
+  manageShopCampConfig(data): any {
+    return this._http.post(environment.SHOP_CONFIG_APPLY_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    manageShopCampConfig(data): any {
-        return this._http.post(environment.SHOP_CONFIG_APPLY_URL, data, this.getHeaderOptions());
-    }
+  manageCampPrizeConfig(data): any {
+    return this._http.post(environment.SYSTEM_CAMP_PRIZE_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    manageCampPrizeConfig(data): any {
-        return this._http.post(environment.SYSTEM_CAMP_PRIZE_MNG_CONFIG_URL, data, this.getHeaderOptions());
-    }
+  addProviderProduct(data): any {
+    console.log('product------------------------->', data);
+    return this._http.post(environment.SYSTEM_PROVIDER_PRODUCT_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    addProviderProduct(data): any {
-        console.log('product------------------------->', data);
-        return this._http.post(environment.SYSTEM_PROVIDER_PRODUCT_MNG_CONFIG_URL, data, this.getHeaderOptions());
-    }
+  manageShopConfig(data): any {
+    return this._http.post(environment.SYSTEM_SHOP_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    manageShopConfig(data): any {
-        return this._http.post(environment.SYSTEM_SHOP_MNG_CONFIG_URL, data, this.getHeaderOptions());
-    }
+  getAllGoodsCostConfig(shopId): any {
+    return this._http.get(environment.GOODS_COST_CFG_QUERY_CONFIG_URL + '/' + shopId, {headers: this.getHeaderOptions()});
+  }
 
-    getAllGoodsCostConfig(shopId): any {
-        return this._http.get(environment.GOODS_COST_CFG_QUERY_CONFIG_URL + '/' + shopId, this.getHeaderOptions());
-    }
+  manageGoodsCostConfig(data): any {
+    return this._http.post(environment.GOODS_COST_CFG_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    manageGoodsCostConfig(data): any {
-        return this._http.post(environment.GOODS_COST_CFG_MNG_CONFIG_URL, data, this.getHeaderOptions());
-    }
+  getAllGoodsByShopId(shopId: string): any {
+    return this._http.get(environment.GOODS_QUERY_SHOP_URL + '/' + shopId, {headers: this.getHeaderOptions()});
+  }
 
-    getAllGoodsByShopId(shopId: string): any {
-        return this._http.get(environment.GOODS_QUERY_SHOP_URL + '/' + shopId, this.getHeaderOptions());
-    }
+  getAllPackagesImageByGoodsId(shopId: string): any {
+    return this._http.get(environment.PKG_IMG_QUERY_GOODS_URL + shopId, {headers: this.getHeaderOptions()});
+  }
 
-    getAllPackagesImageByGoodsId(shopId: string): any {
-        return this._http.get(environment.PKG_IMG_QUERY_GOODS_URL + shopId, this.getHeaderOptions());
-    }
+  managePackagesImage(file, goodsId): any {
+    return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId, file, {headers: this.getHeaderOptions()});
+  }
 
-    managePackagesImage(file, goodsId): any {
-        return this._http.post(environment.PKG_IMG_CONFIG_URL + goodsId, file, this.getHeaderOptions());
-    }
+  removePackagesImage(imageId): any {
+    return this._http.post(environment.PKG_IMG_REMOVE_URL + imageId, {headers: this.getHeaderOptions()});
+  }
 
-    removePackagesImage(imageId): any {
-        return this._http.post(environment.PKG_IMG_REMOVE_URL + imageId, this.getHeaderOptions());
-    }
+  getAllPacakgesDetailByGoodsId(goodsId: string): any {
+    return this._http.get(environment.GOODS_QUERY_PACKAGES_URL + '/' + goodsId, {headers: this.getHeaderOptions()});
+  }
 
-    getAllPacakgesDetailByGoodsId(goodsId: string): any {
-        return this._http.get(environment.GOODS_QUERY_PACKAGES_URL + '/' + goodsId, this.getHeaderOptions());
-    }
+  getAllPacakgesNoticeByGoodsId(goodsId: string): any {
+    return this._http.get(environment.GOODS_QUERY_PACKAGES_NOTICE_URL + '/' + goodsId, {headers: this.getHeaderOptions()});
+  }
 
-    getAllPacakgesNoticeByGoodsId(goodsId: string): any {
-        return this._http.get(environment.GOODS_QUERY_PACKAGES_NOTICE_URL + '/' + goodsId, this.getHeaderOptions());
-    }
+  managePackagesNotice(data): any {
+    return this._http.post(environment.GOODS_MNG_PACKAGES_NOTICE_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    managePackagesNotice(data): any {
-        return this._http.post(environment.GOODS_MNG_PACKAGES_NOTICE_URL, data, this.getHeaderOptions());
-    }
+  getPackagesSubNotice(subPackagesNoticeId): any {
+    return this._http.get(environment.GOODS_QUERY_PACKAGES_SUB_NOTICE_URL + '/' + subPackagesNoticeId, {headers: this.getHeaderOptions()});
+  }
 
-    getPackagesSubNotice(subPackagesNoticeId): any {
-        return this._http.get(environment.GOODS_QUERY_PACKAGES_SUB_NOTICE_URL + '/' + subPackagesNoticeId, this.getHeaderOptions());
-    }
+  managePackagesSubNotice(data): any {
+    return this._http.post(environment.GOODS_MNG_PACKAGES_SUB_NOTICE_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    managePackagesSubNotice(data): any {
-        return this._http.post(environment.GOODS_MNG_PACKAGES_SUB_NOTICE_URL, data, this.getHeaderOptions());
-    }
+  managePackagesDetail(data): any {
+    return this._http.post(environment.PKG_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    managePackagesDetail(data): any {
-        return this._http.post(environment.PKG_MNG_CONFIG_URL, data, this.getHeaderOptions());
-    }
+  manageSubPackages(data): any {
+    return this._http.post(environment.PKG_SUB_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    manageSubPackages(data): any {
-        return this._http.post(environment.PKG_SUB_MNG_CONFIG_URL, data, this.getHeaderOptions());
-    }
+  getAllSubPacakgesByGoodsId(subPackagesId: string): any {
+    return this._http.get(environment.GOODS_QUERY_SUB_PACKAGES_URL + '/' + subPackagesId, {headers: this.getHeaderOptions()});
+  }
 
-    getAllSubPacakgesByGoodsId(subPackagesId: string): any {
-        return this._http.get(environment.GOODS_QUERY_SUB_PACKAGES_URL + '/' + subPackagesId, this.getHeaderOptions());
-    }
+  manageGoodsConfig(data): any {
+    return this._http.post(environment.GOODS_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    manageGoodsConfig(data): any {
-        return this._http.post(environment.GOODS_MNG_CONFIG_URL, data, this.getHeaderOptions());
-    }
+  manageGoodsStatus(data): any {
+    return this._http.post(environment.GOODS_MNG_GOODS_STATUS_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    manageGoodsStatus(data): any {
-        return this._http.post(environment.GOODS_MNG_GOODS_STATUS_URL, data, this.getHeaderOptions());
-    }
+  getDataDictionaryByKey(key): any {
+    return this._http.get(environment.DATA_DIC_URL + key, {headers: this.getHeaderOptions()});
+  }
 
-    getDataDictionaryByKey(key): any {
-        return this._http.get(environment.DATA_DIC_URL + key, this.getHeaderOptions());
-    }
+  getMessageDataDictionaryByKey(key): any {
+    return this._http.get(environment.MESSAGE_DATA_DIC_URL + key, {headers: this.getHeaderOptions()});
+  }
 
-    getMessageDataDictionaryByKey(key): any {
-        return this._http.get(environment.MESSAGE_DATA_DIC_URL + key, this.getHeaderOptions());
-    }
+  queryAllMessageConfigByParam(data): any {
+    return this._http.post(environment.MESSAGE_CONFIG_QUERY_ALL_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    queryAllMessageConfigByParam(data): any {
-        return this._http.post(environment.MESSAGE_CONFIG_QUERY_ALL_URL, data, this.getHeaderOptions());
-    }
+  addDiscountGoodsConfig(data): any {
+    return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_ADD_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    addDiscountGoodsConfig(data): any {
-        return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_ADD_URL, data, this.getHeaderOptions());
-    }
+  addShopUserProdConfig(data): any {
+    return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_ADD_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    addShopUserProdConfig(data): any {
-        return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_ADD_URL, data, this.getHeaderOptions());
-    }
+  removePtsShopUserProdById(shopId: string, prodtransId: string): any {
+    return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_RMV_URL + shopId + '/prodtrans/' + prodtransId,
+      {headers: this.getHeaderOptions()});
+  }
 
-    removePtsShopUserProdById(shopId: string, prodtransId: string): any {
-        return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_RMV_URL + shopId + '/prodtrans/' + prodtransId,
-            this.getHeaderOptions());
-    }
+  changePtsShopUserProdStatus(data): any {
+    return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_MDF_URL, data, {headers: this.getHeaderOptions()});
+  }
 
-    changePtsShopUserProdStatus(data): any {
-        return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_MDF_URL, data, this.getHeaderOptions());
-    }
-
-    manageMessageConfigByParam(data): any {
-        return this._http.post(environment.MESSAGE_CONFIG_URL, data, this.getHeaderOptions());
-    }
+  manageMessageConfigByParam(data): any {
+    return this._http.post(environment.MESSAGE_CONFIG_URL, data, {headers: this.getHeaderOptions()});
+  }
 }

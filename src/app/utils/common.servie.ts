@@ -4,6 +4,9 @@ import {Injectable} from '@angular/core';
 export class CommonServie {
 
     public initShopData(urlQueryData: string): string[] {
+      if(urlQueryData === null || urlQueryData === undefined || urlQueryData === ''){
+        return null;
+      }
         return  urlQueryData.split(',');
     }
 

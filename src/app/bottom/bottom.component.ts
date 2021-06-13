@@ -11,7 +11,7 @@ export class BottomComponent implements OnInit {
 
     // @Input() currentStep: string;
     title = 'customer!';
-    currentYear = '2018';
+    currentYear = '2021';
 
 
     ngOnInit(): void {

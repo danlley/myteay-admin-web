@@ -69,10 +69,10 @@ export class CampSingleShopComponent implements OnInit {
      * 初始化组件
      */
     ngOnInit(): void {
-        console.log(this.title);
+        console.log('this.activeRoute.snapshot.queryParams.data', this.activeRoute.snapshot.queryParams['data']);
 
         // 初始化店铺信息
-        this.shopData = this.commonService.initShopData(this.activeRoute.snapshot.queryParams['data']);
+        this.shopData =this.activeRoute.snapshot.queryParams['data'];
 
         // 监听店内营销活动奖品上架请求
         this.eventBus.registerySubject('campaign_shop_prize_single_prize_mng').subscribe(e => {
@@ -138,9 +138,9 @@ export class CampSingleShopComponent implements OnInit {
 
         tcShopCampConfigModel.campConfigFlag = campConfigFlag;
         this.ftConfitService.manageShopCampConfig(tcShopCampConfigModel).subscribe(res => {
-            console.log('=======================>', res.json());
+            console.log('=======================>', res);
             this.errMsg = '';
-            const data = res.json();
+            const data = res;
             if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
                 this.isNeedShowErrMsg = true;
                 this.errMsg = '店内营销活动执行‘' + campStatus + '’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
@@ -162,10 +162,10 @@ export class CampSingleShopComponent implements OnInit {
         console.log('----------------------------------->', this.campBaseModel);
         campBaseModel.operationType = 'PX_MODIFY';
         this.ftConfitService.manageCampBaseConfig(campBaseModel).subscribe(res => {
-            console.log('=======================>', res.json());
+            console.log('=======================>', res);
             this.doQuery();
             this.errMsg = '';
-            const data = res.json();
+            const data = res;
             if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
                 this.isNeedShowErrMsg = true;
                 this.errMsg = '店内营销活动执行‘' + campStatus + '’出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
@@ -185,12 +185,13 @@ export class CampSingleShopComponent implements OnInit {
         campBaseModel.shopName = this.shopData[1];
         campBaseModel.campId = campId;
         console.log('----------------------------------->', this.campBaseModel);
+        console.log('----------------------------------->', this.shopData);
         campBaseModel.operationType = 'PX_DELETE';
         this.ftConfitService.manageCampBaseConfig(campBaseModel).subscribe(res => {
-            console.log('=======================>', res.json());
+            console.log('=======================>', res);
             this.doQuery();
             this.errMsg = '';
-            const data = res.json();
+            const data = res;
             if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
                 this.isNeedShowErrMsg = true;
                 this.errMsg = '店内营销活动执行‘删除’操作出错---------> 错误码:' + data.errorCode + '　　　　　　错误详情:' + data.errorDetail;
@@ -207,7 +208,7 @@ export class CampSingleShopComponent implements OnInit {
         console.log('----------------------------------->', this.campBaseModel);
         this.campBaseModel.operationType = 'PX_ADD';
         this.ftConfitService.manageCampBaseConfig(this.campBaseModel).subscribe(res => {
-            console.log('=======================>', res.json());
+            console.log('=======================>', res);
             this.doQuery();
         });
     }
@@ -228,7 +229,7 @@ export class CampSingleShopComponent implements OnInit {
             'tableContent': []
         };
         this.ftConfitService.getShopAllCampBaseConfig(this.shopData[0]).subscribe(res => {
-            this.templateConfigList = this.commonService.filterResult(res.json());
+            this.templateConfigList = this.commonService.filterResult(res);
             this.tableElement.tableHeaders = ['活动ID', '活动名称', '活动开始时间', '活动结束时间', '活动状态', '创建时间', '修改时间'];
             this.templateConfigList.forEach(e => {
                 const gmtCreated = this.datePipe.transform(e.gmtCreated, 'yyyy-MM-dd HH:mm:ss');
@@ -265,7 +266,7 @@ export class CampSingleShopComponent implements OnInit {
 
     initCampStatusList() {
         this.ftConfitService.getDataDictionaryByKey('CampStatusEnum').subscribe(res => {
-            this.campStatusList = this.commonService.filterResult(res.json());
+            this.campStatusList = this.commonService.filterResult(res);
         });
     }
 

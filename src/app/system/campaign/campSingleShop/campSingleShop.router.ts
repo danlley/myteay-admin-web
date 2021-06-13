@@ -3,7 +3,7 @@ import {CampSingleShopComponent} from './campSingleShop.component';
 
 export const campSingleShopRouter: Routes = [
     {
-        path: 'system/campaign',
+        path: 'system/campaign/single',
         component: CampSingleShopComponent
     }
 ];

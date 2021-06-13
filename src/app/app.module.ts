@@ -1,212 +1,64 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 
+import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {RouterModule} from '@angular/router';
-import {appRouter} from './app.router';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ModalModule} from 'ngx-bootstrap/modal';
 import {TitleComponent} from './titles/title.component';
 import {BottomComponent} from './bottom/bottom.component';
-import {MtFatigeIndicatorConfigQueryComponent} from './customer/mtFatigeIndicatorConfigQuery/mtFatigeIndicatorConfigQuery.component';
-import {DefaultPageComponent} from './defaultPage/defaultPage.component';
+import {DatePipe} from '@angular/common';
+import {NgxQRCodeModule} from '@techiediaries/ngx-qrcode';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 import {EventService} from './asyncService/asyncService.service';
-import {FatigeConfigService} from './customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
-import {MessageManagerComponent} from './message/mtMessageManager/messageManager.component';
-import {AddMessageConfigComponent} from './message/addMessageConfig/addMessageConfig.component';
-import {MessageSideLeftComponent} from './message/messageSideLeft/messageSideLeft.component';
-import {CustomerSideLeftComponent} from './customer/customerSideLeft/customerSideLeft.component';
-import {TableNoPaginatorComponent} from './tableNoPaginator/tableNoPaginator.component';
-import {ModifyMessageConfigComponent} from './message/modifyMessageConfig/modifyMessageConfig.component';
+import {DefaultPageComponent} from './defaultPage/defaultPage.component';
 import {SystemComponent} from './system/system.component';
 import {SystemSideLeftComponent} from './system/systemSideLeft/systemSideLeft.component';
-import {ShopComponent} from './system/shop/shop.component';
-import {DatePipe} from '@angular/common';
-import {AddShopComponent} from './system/shop/addShop/addShop.component';
-import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component';
-import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailShop.component';
-import {GoodsComponent} from './system/goods/goods.component';
-import {GoodsQueryComponent} from './system/goods/goodsQuery/goodsQuery.component';
-import {AddGoodsComponent} from './system/goods/addGoods/addGoods.component';
-import {SummaryTableComponent} from './summaryTable/summaryTable.component';
-import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.component';
-import {ViewDetailGoodsComponent} from './system/goods/viewDetailGoods/viewDetailGoods.component';
-import {GoodsPackagesComponent} from './system/goods/goodsQuery/goodsPackages/goodsPackages.component';
-import {PacakgesImageComponent} from './system/goods/goodsQuery/pacakgesImage/pacakgesImage.component';
-import {FileUploadModule} from 'ng2-file-upload';
-import {GoodsSummaryComponent} from './system/goods/viewDetailGoods/goodsSummary/goodsSummary.component';
-import {GoodsDetailComponent} from './system/goods/viewDetailGoods/goodsDetail/goodsDetail.component';
-import {GoodsDetailImageShowComponent} from './system/goods/viewDetailGoods/goodsDetailImageShow/goodsDetailImageShow.component';
-import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsNotice.component';
-import {GoodsSubNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsSubNotice/goodsSubNotice.component';
-import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoticeShow/goodsNoticeShow.component';
-import {CommonServie} from './utils/common.servie';
-import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
-import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
-import {AutoCommitGoodsNoticeService} from './utils/autoCommitGoodsNotice.service';
-import {AutoCommitGoodsPackagesService} from './utils/autoCommitGoodsPackages.service';
 import {CampShopComponent} from './system/campaign/campShop.component';
+import {CommonServie} from './utils/common.servie';
+import {FatigeConfigService} from './customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
+import {TableNoPaginatorComponent} from './tableNoPaginator/tableNoPaginator.component';
 import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSingleShop.component';
-import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/campSingleShopPrizeMng/campSingleShopPrizeMng.component';
-import {CampSummaryTableComponent} from './system/campaign/campSummaryTable/campSummaryTable.component';
-import {CampSingleShopPrizeAddComponent} from './system/campaign/campSingleShop/campSingleShopPrizeAdd/campSingleShopPrizeAdd.component';
-import {CampSingleShopPrizeViewDetailComponent} from './system/campaign/campSingleShop/campSingleShopPrizeViewDetail/campSingleShopPrizeViewDetail.component';
-import {CampSingleShopPrizeRefGoodsComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoods.component';
-import {CampSingleShopPrizeSummaryComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeSummary/campSingleShopPrizeSummary.component';
-import {CampSingleShopPrizeRefGoodsItemComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoodsItem/campSingleShopPrizeRefGoodsItem.component';
-import {GoodsCostComponent} from './system/cost/goodsCost.component';
-import {GoodsCostMngComponent} from './system/cost/goodsCostMng/goodsCostMng.component';
-import {ProviderComponent} from './system/provider/provider.component';
-import {ProductComponent} from './system/provider/product/product.component';
-import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
-import {ProductDetailComponent} from './system/provider/product/productDetail/productDetail.component';
-import {ProductModifyComponent} from './system/provider/product/productModify/productModify.component';
-import {NutritionalComponent} from './system/provider/nutritional/nutritional.component';
-import {ManualComponent} from './system/provider/manual/manual.component';
-import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
-import {DiscountComponent} from './system/discount/discount.component';
-import {DisGoodsConfComponent} from './system/discount/disGoodsConf/disGoodsConf.component';
-import {AddDisGoodsConfComponent} from './system/discount/disGoodsConf/addDisGoodsConf/addDisGoodsConf.component';
-import {DisGoodsConfigItemComponent} from './system/discount/disGoodsConf/addDisGoodsConf/disGoodsConfigItem/disGoodsConfigItem.component';
-import {ProdtransComponent} from './system/prodtrans/prodtrans.component';
-import {ProdtransUserShopProdComponent} from './system/prodtrans/prodtransUserShopProd/prodtransUserShopProd.component';
-import {ProdtransUserShopProdAddComponent} from './system/prodtrans/prodtransUserShopProd/ProdtransUserShopProdAdd/prodtransUserShopProdAdd.component';
+
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        TitleComponent,
-        MtFatigeIndicatorConfigQueryComponent,
-        MessageManagerComponent,
-        AddMessageConfigComponent,
-        ModifyMessageConfigComponent,
-        MessageSideLeftComponent,
-        CustomerSideLeftComponent,
-        SystemSideLeftComponent,
-        TableNoPaginatorComponent,
-        SummaryTableComponent,
-        DefaultPageComponent,
-        SystemComponent,
-        ShopComponent,
-        AddShopComponent,
-        ModifyShopComponent,
-        ViewDetailShopComponent,
-        GoodsComponent,
-        GoodsQueryComponent,
-        AddGoodsComponent,
-        ModifyGoodsComponent,
-        ViewDetailGoodsComponent,
-        GoodsPackagesComponent,
-        PacakgesImageComponent,
-        GoodsSummaryComponent,
-        GoodsDetailComponent,
-        GoodsNoticeComponent,
-        GoodsSubNoticeComponent,
-        GoodsNoticeShowComponent,
-        GoodsDetailImageShowComponent,
-        ActiveGoodsComponent,
-        CampShopComponent,
-        CampSingleShopComponent,
-        CampSingleShopPrizeMngComponent,
-        CampSummaryTableComponent,
-        CampSingleShopPrizeAddComponent,
-        CampSingleShopPrizeViewDetailComponent,
-        CampSingleShopPrizeRefGoodsComponent,
-        CampSingleShopPrizeSummaryComponent,
-        CampSingleShopPrizeRefGoodsItemComponent,
-        InactiveGoodsComponent,
-        GoodsCostComponent,
-        GoodsCostMngComponent,
-        ProviderComponent,
-        ProductComponent,
-        ProductAddComponent,
-        ProductDetailComponent,
-        ProductModifyComponent,
-        NutritionalComponent,
-        ManualComponent,
-        PpPriceComponent,
-        DiscountComponent,
-        DisGoodsConfComponent,
-        DisGoodsConfigItemComponent,
-        AddDisGoodsConfComponent,
-        ProdtransComponent,
-        ProdtransUserShopProdComponent,
-        ProdtransUserShopProdAddComponent,
-        BottomComponent
-    ],
-    imports: [
-        BrowserModule,
-        RouterModule.forRoot(appRouter),
-        FormsModule,
-        FileUploadModule,
-        HttpModule
-    ],
-    providers: [
-        BottomComponent,
-        TitleComponent,
-        DatePipe,
-        EventService,
-        CommonServie,
-        FatigeConfigService,
-        AutoCommitGoodsNoticeService,
-        AutoCommitGoodsPackagesService,
-        DefaultPageComponent,
-        MessageManagerComponent,
-        AddMessageConfigComponent,
-        ModifyMessageConfigComponent,
-        CustomerSideLeftComponent,
-        TableNoPaginatorComponent,
-        SummaryTableComponent,
-        MessageSideLeftComponent,
-        SystemSideLeftComponent,
-        SystemComponent,
-        ShopComponent,
-        AddShopComponent,
-        ModifyShopComponent,
-        ViewDetailShopComponent,
-        GoodsComponent,
-        GoodsQueryComponent,
-        AddGoodsComponent,
-        ModifyGoodsComponent,
-        ViewDetailGoodsComponent,
-        GoodsPackagesComponent,
-        PacakgesImageComponent,
-        GoodsSummaryComponent,
-        GoodsDetailComponent,
-        GoodsDetailImageShowComponent,
-        GoodsNoticeComponent,
-        GoodsSubNoticeComponent,
-        GoodsNoticeShowComponent,
-        ActiveGoodsComponent,
-        CampShopComponent,
-        CampSingleShopComponent,
-        CampSingleShopPrizeMngComponent,
-        CampSummaryTableComponent,
-        CampSingleShopPrizeAddComponent,
-        CampSingleShopPrizeViewDetailComponent,
-        CampSingleShopPrizeRefGoodsComponent,
-        CampSingleShopPrizeSummaryComponent,
-        CampSingleShopPrizeRefGoodsItemComponent,
-        InactiveGoodsComponent,
-        GoodsCostComponent,
-        GoodsCostMngComponent,
-        ProviderComponent,
-        ProductComponent,
-        ProductAddComponent,
-        ProductDetailComponent,
-        ProductModifyComponent,
-        NutritionalComponent,
-        ManualComponent,
-        PpPriceComponent,
-        DiscountComponent,
-        DisGoodsConfComponent,
-        DisGoodsConfigItemComponent,
-        AddDisGoodsConfComponent,
-        ProdtransComponent,
-        ProdtransUserShopProdComponent,
-        ProdtransUserShopProdAddComponent,
-        MtFatigeIndicatorConfigQueryComponent],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    TitleComponent,
+    SystemSideLeftComponent,
+    TableNoPaginatorComponent,
+    DefaultPageComponent,
+    SystemComponent,
+    CampShopComponent,
+    CampSingleShopComponent,
+    BottomComponent
+  ],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    NgxQRCodeModule,
+    BrowserAnimationsModule,
+    ModalModule.forRoot()
+  ],
+  providers: [
+    BottomComponent,
+    TitleComponent,
+    DatePipe,
+    EventService,
+    CommonServie,
+    FatigeConfigService,
+    DefaultPageComponent,
+    TableNoPaginatorComponent,
+    SystemSideLeftComponent,
+    SystemComponent,
+    CampShopComponent,
+    CampSingleShopComponent,
+  ],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }
