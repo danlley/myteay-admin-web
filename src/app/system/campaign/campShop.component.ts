@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FatigeConfigService} from '../../customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {DatePipe} from '@angular/common';
 import {CommonServie} from '../../utils/common.servie';
+import {PxShopStatusEnum} from '../../commons/enums/PxShopStatusEnum';
 
 @Component({
   selector: 'app-camp-shop',
@@ -14,7 +15,6 @@ import {CommonServie} from '../../utils/common.servie';
  */
 export class CampShopComponent implements OnInit {
   title = '店铺内营销活动管理!';
-  shopStatusList: any[];
   contactKey: string;
   templateConfigList: any[];
 
@@ -31,7 +31,7 @@ export class CampShopComponent implements OnInit {
    * @param {DatePipe} datePipe
    * @param {CommonServie} commonService
    */
-  constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+  constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, public pxShopStatusEnum: PxShopStatusEnum,
               private commonService: CommonServie) {
   }
 
@@ -40,7 +40,6 @@ export class CampShopComponent implements OnInit {
    */
   ngOnInit(): void {
     console.log(this.title);
-    this.initShopStatusList();
     this.initShopList();
   }
 
@@ -73,27 +72,13 @@ export class CampShopComponent implements OnInit {
    * @returns {string}
    */
   private getShopSwitchShow(shopStatus: string): string {
-    if (this.shopStatusList === null) {
-      return '';
-    }
-
     let shopStatusActural = '';
-
-    if (this.shopStatusList !== null && this.shopStatusList !== undefined && this.shopStatusList.length !== 0) {
-      this.shopStatusList.forEach(e => {
-        if (e.bizKey === shopStatus) {
-          shopStatusActural = e.value;
+      this.pxShopStatusEnum.values.forEach(e => {
+        if (e[0] === shopStatus) {
+          shopStatusActural = e[1];
         }
       });
-    }
-
     return shopStatusActural;
-  }
-
-  initShopStatusList() {
-    this.ftConfitService.getDataDictionaryByKey('PxShopStatusEnum').subscribe(res => {
-      this.shopStatusList = this.commonService.filterResult(res);
-    });
   }
 
 }

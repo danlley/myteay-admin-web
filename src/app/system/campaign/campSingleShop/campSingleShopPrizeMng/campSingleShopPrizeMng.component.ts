@@ -4,6 +4,7 @@ import {DatePipe} from '@angular/common';
 import {CommonServie} from '../../../../utils/common.servie';
 import {ActivatedRoute} from '@angular/router';
 import {EventService} from '../../../../asyncService/asyncService.service';
+import {CampPrizeStatusEnum} from '../../../../commons/enums/CampPrizeStatusEnum';
 
 @Component({
   selector: 'app-camp-shop-single-prize-mng',
@@ -16,7 +17,6 @@ import {EventService} from '../../../../asyncService/asyncService.service';
  */
 export class CampSingleShopPrizeMngComponent implements OnInit {
   title = '店内营销活动奖品管理!';
-  campStatusList: any[];
   templateConfigList: any[];
 
   // 店铺信息，用于构建页面店铺信息展示
@@ -43,7 +43,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
    * @param {DatePipe} datePipe
    * @param {CommonServie} commonService
    */
-  constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+  constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private campPrizeStatusEnum: CampPrizeStatusEnum,
               private commonService: CommonServie, private activeRoute: ActivatedRoute, private eventBus: EventService) {
     // 监听店内营销活动奖品删除请求
     this.eventBus.registerySubject('single_shop_camp_prize_delete').subscribe(e => {
@@ -87,7 +87,6 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
     this.campId = this.campData[0];
     this.shopId = this.shopData[0];
 
-    this.initCampStatusList();
     this.initCampPrizeList();
   }
 
@@ -111,7 +110,7 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
       this.tableElement.tableHeaders = ['奖品ID', '奖品名称', '奖品等级', '奖品比率', '奖品单位价值', '奖位分布', '奖品状态', '出奖限制'];
       if (this.templateConfigList !== null && this.templateConfigList !== undefined && this.templateConfigList.length !== 0) {
         this.templateConfigList.forEach(e => {
-          const campPrizeStatus = this.getCampSwitchShow(e.prizeStatus);
+          const campPrizeStatus = this.getPrizeStatusSwitchShow(e.prizeStatus);
           e.prizeStatusShow = campPrizeStatus;
           e.showStatus = false;
         });
@@ -155,29 +154,21 @@ export class CampSingleShopPrizeMngComponent implements OnInit {
   /**
    * 转换店内营销活动状态码为对应的店内营销活动状态值
    *
-   * @param {string} campStatus
+   * @param {string} campPrizeStatus
    * @returns {string}
    */
-  private getCampSwitchShow(campStatus: string): string {
-    if (this.campStatusList === null) {
-      return '';
-    }
+  private getPrizeStatusSwitchShow(campPrizeStatus: string): string {
 
-    let campStatusActural = '';
-    this.campStatusList.forEach(e => {
-      if (e.bizKey === campStatus) {
-        campStatusActural = e.value;
+    let prizeStatusShow = '';
+    this.campPrizeStatusEnum.values.forEach(e => {
+      if (e[0] === campPrizeStatus) {
+        prizeStatusShow = e[1];
       }
     });
 
-    return campStatusActural;
+    return prizeStatusShow;
   }
 
-  initCampStatusList() {
-    this.ftConfitService.getDataDictionaryByKey('CampPrizeStatusEnum').subscribe(res => {
-      this.campStatusList = this.commonService.filterResult(res);
-    });
-  }
 
   /**
    * 刷新当前营销活动列表

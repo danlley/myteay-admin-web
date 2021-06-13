@@ -4,6 +4,7 @@ import {DatePipe} from '@angular/common';
 import {CommonServie} from '../../../utils/common.servie';
 import {ActivatedRoute} from '@angular/router';
 import {EventService} from '../../../asyncService/asyncService.service';
+import {CampStatusEnum} from '../../../commons/enums/CampStatusEnum';
 
 declare let laydate;
 
@@ -18,7 +19,6 @@ declare let laydate;
  */
 export class CampSingleShopComponent implements OnInit {
   title = '店内营销活动管理!';
-  campStatusList: any[];
   templateConfigList: any[];
 
   // 店铺信息，用于构建页面店铺信息展示
@@ -41,7 +41,7 @@ export class CampSingleShopComponent implements OnInit {
    * @param {DatePipe} datePipe
    * @param {CommonServie} commonService
    */
-  constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+  constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe, private campStatusEnum: CampStatusEnum,
               private commonService: CommonServie, private activeRoute: ActivatedRoute, private eventBus: EventService) {
     // 监听店内营销活动删除请求
     this.eventBus.registerySubject('single_shop_camp_delete').subscribe(e => {
@@ -81,7 +81,6 @@ export class CampSingleShopComponent implements OnInit {
       this.eventBus.publish('campaign_shop_single_prize_mng', sendData);
     });
 
-    this.initCampStatusList();
     this.initCampBaseList();
 
     // 初始化日期选择组件
@@ -252,24 +251,15 @@ export class CampSingleShopComponent implements OnInit {
    * @returns {string}
    */
   private getCampSwitchShow(campStatus: string): string {
-    if (this.campStatusList === null) {
-      return '';
-    }
 
     let campStatusActural = '';
-    this.campStatusList.forEach(e => {
-      if (e.bizKey === campStatus) {
-        campStatusActural = e.value;
+    this.campStatusEnum.values.forEach(e => {
+      if (e[0] === campStatus) {
+        campStatusActural = e[1];
       }
     });
 
     return campStatusActural;
-  }
-
-  initCampStatusList() {
-    this.ftConfitService.getDataDictionaryByKey('CampStatusEnum').subscribe(res => {
-      this.campStatusList = this.commonService.filterResult(res);
-    });
   }
 
   /**

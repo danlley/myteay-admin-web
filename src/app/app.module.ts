@@ -26,6 +26,9 @@ import {CampSummaryTableComponent} from './system/campaign/campSummaryTable/camp
 import {CampSingleShopPrizeRefGoodsComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoods.component';
 import {CampSingleShopPrizeSummaryComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeSummary/campSingleShopPrizeSummary.component';
 import {CampSingleShopPrizeRefGoodsItemComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoodsItem/campSingleShopPrizeRefGoodsItem.component';
+import {PxShopStatusEnum} from './commons/enums/PxShopStatusEnum';
+import {CampStatusEnum} from './commons/enums/CampStatusEnum';
+import {CampPrizeStatusEnum} from './commons/enums/CampPrizeStatusEnum';
 
 
 @NgModule({
@@ -56,6 +59,9 @@ import {CampSingleShopPrizeRefGoodsItemComponent} from './system/campaign/campSi
     ModalModule.forRoot()
   ],
   providers: [
+    PxShopStatusEnum,
+    CampStatusEnum,
+    CampPrizeStatusEnum,
     BottomComponent,
     TitleComponent,
     DatePipe,
