@@ -29,6 +29,9 @@ import {CampSingleShopPrizeRefGoodsItemComponent} from './system/campaign/campSi
 import {PxShopStatusEnum} from './commons/enums/PxShopStatusEnum';
 import {CampStatusEnum} from './commons/enums/CampStatusEnum';
 import {CampPrizeStatusEnum} from './commons/enums/CampPrizeStatusEnum';
+import {CampSingleShopPrizeViewDetailComponent} from './system/campaign/campSingleShop/campSingleShopPrizeViewDetail/campSingleShopPrizeViewDetail.component';
+import {CampPrizeLimitEnum} from './commons/enums/CampPrizeLimitEnum';
+import {CampPrizeTypeEnum} from './commons/enums/CampPrizeTypeEnum';
 
 
 @NgModule({
@@ -44,6 +47,7 @@ import {CampPrizeStatusEnum} from './commons/enums/CampPrizeStatusEnum';
     CampSingleShopPrizeMngComponent,
     CampSummaryTableComponent,
     CampSingleShopPrizeAddComponent,
+    CampSingleShopPrizeViewDetailComponent,
     CampSingleShopPrizeRefGoodsComponent,
     CampSingleShopPrizeSummaryComponent,
     CampSingleShopPrizeRefGoodsItemComponent,
@@ -62,6 +66,8 @@ import {CampPrizeStatusEnum} from './commons/enums/CampPrizeStatusEnum';
     PxShopStatusEnum,
     CampStatusEnum,
     CampPrizeStatusEnum,
+    CampPrizeLimitEnum,
+    CampPrizeTypeEnum,
     BottomComponent,
     TitleComponent,
     DatePipe,
@@ -77,6 +83,7 @@ import {CampPrizeStatusEnum} from './commons/enums/CampPrizeStatusEnum';
     CampSingleShopPrizeMngComponent,
     CampSummaryTableComponent,
     CampSingleShopPrizeAddComponent,
+    CampSingleShopPrizeViewDetailComponent,
     CampSingleShopPrizeRefGoodsComponent,
     CampSingleShopPrizeSummaryComponent,
     CampSingleShopPrizeRefGoodsItemComponent,
