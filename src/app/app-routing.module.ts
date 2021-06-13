@@ -11,6 +11,7 @@ import {CampSingleShopPrizeViewDetailComponent} from './system/campaign/campSing
 import {ShopComponent} from './system/shop/shop.component';
 import {AddShopComponent} from './system/shop/addShop/addShop.component';
 import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component';
+import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailShop.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,10 @@ const routes: Routes = [
       {
         path: 'system/shop/modify',
         component: ModifyShopComponent
+      },
+      {
+        path: 'system/shop/view/single',
+        component: ViewDetailShopComponent
       },
     ]
   }

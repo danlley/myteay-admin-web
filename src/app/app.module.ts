@@ -35,6 +35,7 @@ import {CampPrizeTypeEnum} from './commons/enums/CampPrizeTypeEnum';
 import {ShopComponent} from './system/shop/shop.component';
 import {AddShopComponent} from './system/shop/addShop/addShop.component';
 import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component';
+import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailShop.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component
     ShopComponent,
     AddShopComponent,
     ModifyShopComponent,
+    ViewDetailShopComponent,
     CampShopComponent,
     CampSingleShopComponent,
     CampSingleShopPrizeMngComponent,
@@ -87,6 +89,7 @@ import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component
     ShopComponent,
     AddShopComponent,
     ModifyShopComponent,
+    ViewDetailShopComponent,
     CampShopComponent,
     CampSingleShopComponent,
     CampSingleShopPrizeMngComponent,
