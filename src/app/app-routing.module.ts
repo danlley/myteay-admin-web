@@ -10,6 +10,7 @@ import {CampSingleShopPrizeRefGoodsComponent} from './system/campaign/campSingle
 import {CampSingleShopPrizeViewDetailComponent} from './system/campaign/campSingleShop/campSingleShopPrizeViewDetail/campSingleShopPrizeViewDetail.component';
 import {ShopComponent} from './system/shop/shop.component';
 import {AddShopComponent} from './system/shop/addShop/addShop.component';
+import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component';
 
 const routes: Routes = [
   {
@@ -62,6 +63,10 @@ const routes: Routes = [
       {
         path: 'system/shop/add',
         component: AddShopComponent
+      },
+      {
+        path: 'system/shop/modify',
+        component: ModifyShopComponent
       },
     ]
   }
