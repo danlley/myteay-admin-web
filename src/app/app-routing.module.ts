@@ -4,6 +4,7 @@ import {DefaultPageComponent} from './defaultPage/defaultPage.component';
 import {SystemComponent} from './system/system.component';
 import {CampShopComponent} from './system/campaign/campShop.component';
 import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSingleShop.component';
+import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/campSingleShopPrizeMng/campSingleShopPrizeMng.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path: 'system/campaign/single',
         component: CampSingleShopComponent
+      },
+      {
+        path: 'system/campaign/prize',
+        component: CampSingleShopPrizeMngComponent
       },
     ]
   }

@@ -20,6 +20,7 @@ import {CommonServie} from './utils/common.servie';
 import {FatigeConfigService} from './customer/mtFatigeIndicatorConfigQuery/service/fatigeConfig.service';
 import {TableNoPaginatorComponent} from './tableNoPaginator/tableNoPaginator.component';
 import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSingleShop.component';
+import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/campSingleShopPrizeMng/campSingleShopPrizeMng.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSing
     SystemComponent,
     CampShopComponent,
     CampSingleShopComponent,
+    CampSingleShopPrizeMngComponent,
     BottomComponent
   ],
   imports: [
@@ -56,6 +58,7 @@ import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSing
     SystemComponent,
     CampShopComponent,
     CampSingleShopComponent,
+    CampSingleShopPrizeMngComponent,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
