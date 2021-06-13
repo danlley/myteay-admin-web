@@ -4,7 +4,7 @@
         <div style="align-items: left; left: 15px !important;">
 
             <!-- 当前店铺汇总信息 -->
-            <app-camp-summary-table [shopData]="shopData" [tableTitle]="shopData[8]" [tableTitleFace]="'当前活动'"></app-camp-summary-table>
+            <app-camp-summary-table [shopData]="shopData" [campData]="campData" [tableTitle]="shopData[8]" [tableTitleFace]="'当前活动'"></app-camp-summary-table>
             <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
                 <p class="contact-submit">
                     <input type="button" class="button" value="   返回   " (click)="goReturn()">

@@ -5,6 +5,8 @@ import {SystemComponent} from './system/system.component';
 import {CampShopComponent} from './system/campaign/campShop.component';
 import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSingleShop.component';
 import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/campSingleShopPrizeMng/campSingleShopPrizeMng.component';
+import {CampSingleShopPrizeAddComponent} from './system/campaign/campSingleShop/campSingleShopPrizeAdd/campSingleShopPrizeAdd.component';
+import {CampSingleShopPrizeRefGoodsComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoods.component';
 
 const routes: Routes = [
   {
@@ -36,6 +38,14 @@ const routes: Routes = [
       {
         path: 'system/campaign/prize',
         component: CampSingleShopPrizeMngComponent
+      },
+      {
+        path: 'system/campaign/prize/add',
+        component: CampSingleShopPrizeAddComponent
+      },
+      {
+        path: 'system/campaign/prize/ref',
+        component: CampSingleShopPrizeRefGoodsComponent
       },
     ]
   }

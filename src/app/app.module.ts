@@ -21,6 +21,11 @@ import {FatigeConfigService} from './customer/mtFatigeIndicatorConfigQuery/servi
 import {TableNoPaginatorComponent} from './tableNoPaginator/tableNoPaginator.component';
 import {CampSingleShopComponent} from './system/campaign/campSingleShop/campSingleShop.component';
 import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/campSingleShopPrizeMng/campSingleShopPrizeMng.component';
+import {CampSingleShopPrizeAddComponent} from './system/campaign/campSingleShop/campSingleShopPrizeAdd/campSingleShopPrizeAdd.component';
+import {CampSummaryTableComponent} from './system/campaign/campSummaryTable/campSummaryTable.component';
+import {CampSingleShopPrizeRefGoodsComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoods.component';
+import {CampSingleShopPrizeSummaryComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeSummary/campSingleShopPrizeSummary.component';
+import {CampSingleShopPrizeRefGoodsItemComponent} from './system/campaign/campSingleShop/campSingleShopPrizeRefGoods/campSingleShopPrizeRefGoodsItem/campSingleShopPrizeRefGoodsItem.component';
 
 
 @NgModule({
@@ -34,6 +39,11 @@ import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/
     CampShopComponent,
     CampSingleShopComponent,
     CampSingleShopPrizeMngComponent,
+    CampSummaryTableComponent,
+    CampSingleShopPrizeAddComponent,
+    CampSingleShopPrizeRefGoodsComponent,
+    CampSingleShopPrizeSummaryComponent,
+    CampSingleShopPrizeRefGoodsItemComponent,
     BottomComponent
   ],
   imports: [
@@ -59,6 +69,11 @@ import {CampSingleShopPrizeMngComponent} from './system/campaign/campSingleShop/
     CampShopComponent,
     CampSingleShopComponent,
     CampSingleShopPrizeMngComponent,
+    CampSummaryTableComponent,
+    CampSingleShopPrizeAddComponent,
+    CampSingleShopPrizeRefGoodsComponent,
+    CampSingleShopPrizeSummaryComponent,
+    CampSingleShopPrizeRefGoodsItemComponent,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

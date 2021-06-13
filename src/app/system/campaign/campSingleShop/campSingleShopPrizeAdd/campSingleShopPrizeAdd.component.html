@@ -1,0 +1,115 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div style="align-items: left; left: 15px !important; width: 100%;">
+
+            <!-- 当前店铺汇总信息 -->
+            <app-camp-summary-table [shopData]="shopData" [campData]="campData" [tableTitle]="shopData[8]" [tableTitleFace]="'当前奖品添加活动'"></app-camp-summary-table>
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+                <p class="contact-submit">
+                    <input type="button" class="button" value="   返回   " (click)="goReturn()">
+                    <input type="button" class="button" value="   添加奖品   " (click)="doAddSingleShopCampPrize()">
+                </p>
+            </div>
+        </div>
+        <div *ngIf="isNeedShowErrMsg" style="height: 35px; width: 100%;">
+            <span style="color: #721c24">{{errMsg}}</span>
+        </div>
+
+        <!-- 表单内容 -->
+        <table align="center" width="95%" cellpadding="0" cellspacing="0">
+            <th colspan="4" align="center" valign="middle">添加奖品</th>
+            <tr>
+                <td align="right" width="10%">奖品名称：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="奖品名称" [(ngModel)]="campPrizeModel.prizeName">
+                    </p>
+                </td>
+                <td align="right" width="10%">奖品等级：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="奖品等级" [(ngModel)]="campPrizeModel.prizeLevel">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">中奖几率：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="中奖几率" [(ngModel)]="campPrizeModel.prizePercent">
+                    </p>
+                </td>
+                <td align="right" width="10%">奖位分布：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="奖位分布" [(ngModel)]="campPrizeModel.distribution">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">奖品价值：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="奖品价值" [(ngModel)]="campPrizeModel.price">
+                    </p>
+                </td>
+                <td align="right" width="10%">奖品数量：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" placeholder="奖品数量" [(ngModel)]="campPrizeModel.prizeAmount">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">奖品受众：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" id="templateFlag" [(ngModel)]="campPrizeModel.prizeLimit">
+                                <option *ngFor="let templateFlag of campPrizeLimitList"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+                <td align="right" width="10%">订单金额限制：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <label for="templateFlag" class="select">
+                            <select name="templateFlag" id="templateFlag1" [(ngModel)]="campPrizeModel.prizeType">
+                                <option *ngFor="let templateFlag of campPrizeTypeList"
+                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                </option>
+                            </select>
+                        </label>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">订单金额限制：</td>
+                <td align="left" width="40%" colspan="3">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="orderTotalAmount" placeholder="订单金额限制" [(ngModel)]="campPrizeModel.orderTotalAmount">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" width="10%">起效时间：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" id="test1" placeholder="起效时间" [(ngModel)]="campPrizeModel.prizeEffictive">
+                    </p>
+                </td>
+                <td align="right" width="10%">过期时间：</td>
+                <td align="left" width="40%">
+                    <p class="contact-input contact-absolute-width">
+                        <input type="text" name="expireTime" id="test2" placeholder="过期时间" [(ngModel)]="campPrizeModel.prizeExpired">
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</div>
