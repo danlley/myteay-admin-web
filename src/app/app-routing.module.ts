@@ -20,6 +20,8 @@ import {PacakgesImageComponent} from './system/goods/goodsQuery/pacakgesImage/pa
 import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsNotice.component';
 import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
 import {ViewDetailGoodsComponent} from './system/goods/viewDetailGoods/viewDetailGoods.component';
+import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
+import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.component';
 
 const routes: Routes = [
   {
@@ -90,12 +92,20 @@ const routes: Routes = [
         component: AddGoodsComponent
       },
       {
+        path: 'system/goods/modify',
+        component: ModifyGoodsComponent
+      },
+      {
         path: 'system/goods/view/detail',
         component: ViewDetailGoodsComponent
       },
       {
         path: 'system/goods/view/active',
         component: ActiveGoodsComponent
+      },
+      {
+        path: 'system/goods/view/inactive',
+        component: InactiveGoodsComponent
       },
       {
         path: 'system/shop',

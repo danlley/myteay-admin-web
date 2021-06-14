@@ -59,6 +59,8 @@ import {GoodsSummaryComponent} from './system/goods/viewDetailGoods/goodsSummary
 import {GoodsDetailImageShowComponent} from './system/goods/viewDetailGoods/goodsDetailImageShow/goodsDetailImageShow.component';
 import {GoodsDetailComponent} from './system/goods/viewDetailGoods/goodsDetail/goodsDetail.component';
 import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoticeShow/goodsNoticeShow.component';
+import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
+import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.component';
 
 
 @NgModule({
@@ -77,6 +79,7 @@ import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoti
     GoodsComponent,
     GoodsQueryComponent,
     AddGoodsComponent,
+    ModifyGoodsComponent,
     ViewDetailGoodsComponent,
     GoodsPackagesComponent,
     PacakgesImageComponent,
@@ -96,6 +99,7 @@ import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoti
     CampSingleShopPrizeRefGoodsComponent,
     CampSingleShopPrizeSummaryComponent,
     CampSingleShopPrizeRefGoodsItemComponent,
+    InactiveGoodsComponent,
     BottomComponent
   ],
   imports: [
@@ -140,6 +144,7 @@ import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoti
     GoodsComponent,
     GoodsQueryComponent,
     AddGoodsComponent,
+    ModifyGoodsComponent,
     ViewDetailGoodsComponent,
     GoodsPackagesComponent,
     PacakgesImageComponent,
@@ -159,6 +164,7 @@ import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoti
     CampSingleShopPrizeRefGoodsComponent,
     CampSingleShopPrizeSummaryComponent,
     CampSingleShopPrizeRefGoodsItemComponent,
+    InactiveGoodsComponent,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
