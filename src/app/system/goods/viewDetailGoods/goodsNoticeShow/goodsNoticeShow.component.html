@@ -1,0 +1,33 @@
+<div *ngFor="let elements of packagesNoticeList"
+     style="align-content: center; width: 100%; margin: auto; left: 0; right: 0; background-color: #3bd4d6;border: #0a6079 1px solid;">
+    <div style="width: 100%; height: 40px; line-height: 40px; color: #0a6079; font-weight: 900; background: linear-gradient(to bottom, #43f4f6, #40bdbc);">
+        <div style="float: left; width: 7%; height: 100%; border: #0a6079 1px solid;">
+            <span>提醒分类</span>
+        </div>
+        <div style="float: left; width: 13%; height: 100%; border: #0a6079 1px solid;">
+            <span>创建时间</span>
+        </div>
+        <div style="float: left; width: 13%; height: 100%; border: #0a6079 1px solid;">
+            <span>修改时间</span>
+        </div>
+        <div style="width: 67%; height: 100%; float: right; border: #0a6079 1px solid;">
+            <span>温馨提醒子项详情</span>
+        </div>
+    </div>
+    <div style="width: 100%; height: 300px; line-height: 300px;">
+        <div style="float: left; width: 7%; height: 100%; border: #0a6079 1px solid;">
+            <span style="font-size: 0.8em; color: rgba(155,32,49,0.76)">{{elements.packagesNoticeName}}</span>
+        </div>
+        <div style="float: left; width: 13%; height: 100%; border: #0a6079 1px solid;">
+            <span>{{ elements.gmtCreated | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+        </div>
+        <div style="float: left; width: 13%; height: 100%; border: #0a6079 1px solid;">
+            <span>{{ elements.gmtModified | date:'yyyy-MM-dd HH:mm:ss' }}</span>
+        </div>
+        <div style="width: 67%; height: 100%; float: left; font-size: 0.6em;">
+            <app-query-goods-packages-sub-notice [noticeData]="elements" [isShowOperation]="false"></app-query-goods-packages-sub-notice>
+        </div>
+    </div>
+
+
+</div>

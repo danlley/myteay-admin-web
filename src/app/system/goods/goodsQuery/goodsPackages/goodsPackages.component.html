@@ -1,0 +1,144 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+
+        <!-- 当前店铺及商品汇总信息 -->
+        <div style="align-items: left; left: 15px !important;">
+            <app-summary-table [shopData]="shopData" [tableTitle]="goodsData[0]" [tableTitleFace]="'当前商品ID'"></app-summary-table>
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+                <table width="100%">
+                    <tr>
+                        <td align="right" width="80%">
+                            <p class="contact-input contact-absolute-width">
+                                <input type="text" name="goodsPackagesDetailName" placeholder="套餐包名称" [(ngModel)]="goodsPackagesDetailName">
+                            </p>
+                        </td>
+
+                        <!-- 套餐包添加按钮 -->
+                        <td align="right">
+                            <p class="contact-submit">
+                                <input type="button" class="button" value="   添加套餐包   " (click)="gotoAddPackageDetail()">
+                                <input type="button" class="button" value="   返回   " (click)="goReturn()">
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div *ngIf="isNeedShowErrMsg" style="height: 35px; width: 100%;">
+            <span style="color: #721c24">{{errMsg}}</span>
+        </div>
+        <!-- 表单及套餐包、子套餐数据展示 -->
+        <div style="overflow:scroll; width:100%; height:600px; font-size: 1.0em;">
+            <div *ngFor="let elements of packagesDetailsList"
+                 style="align-content: center; width: 95%; margin: auto; left: 0; right: 0; background-color: #339b9d; height: {{elements.height}};">
+                <div style="width: 100%; height: 40px; line-height: 40px; background: linear-gradient(to bottom, #378091, #2f3e45);">
+                    <div style="float: left; width: 15%; height: 100%; border-right: #b5ccda 1px solid;">
+                        <span>套餐包名称</span>
+                    </div>
+                    <div style="float: left; width: 15%; height: 100%; border-right: #b5ccda 1px solid;">
+                        <span>最后修改时间</span>
+                    </div>
+                    <div style="width: 70%; height: 100%; float: right;">
+                        <span>套餐包操作</span>
+                    </div>
+                </div>
+                <div style="width: 100%; height: 50px; line-height: 50px; border-bottom: #b5ccda 1px solid; border-top: #b5ccda 1px solid;">
+                    <div style="float: left; width: 15%; height: 100%; border-right: #b5ccda 1px solid;">
+                        <span style="font-size: 1.8em; color: rgba(155,32,49,0.76)">{{elements.packageDetailName}}</span>
+                    </div>
+                    <div style="float: left; width: 15%; height: 100%; border-right: #b5ccda 1px solid;">
+                        <span>{{elements.gmtModified}}</span>
+                    </div>
+                    <div style="width: 70%; height: 100%; float: right;">
+                        <table width="100%">
+                            <tr>
+                                <td width="45%">
+                                    <p class="contact-input contact-absolute-width" style="margin-left: 15px;">
+                                        <input type="text" name="expireTime" [(ngModel)]="elements.goodsPackagesDetailNameModified">
+                                    </p>
+                                </td>
+                                <td width="55%">
+                                    <p class="contact-submit" style="margin-right: 5px; margin-top: 2px;">
+                                        <input type="button" class="button" value="   修改套餐包   " (click)="modifyPackagesDetail(elements)">
+                                        <input type="button" class="button" value="   删除套餐包   " (click)="deletePackagesDetail(elements)">
+                                        <input type="button" class="button" value="   添加子套餐   " (click)="addSubPackages(elements)">
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 子套餐保存添加表单 -->
+                <table *ngIf="elements.isNeedShowSubPackagesAdd" style="width: 100%; height: 100px;border-bottom: #b5ccda 1px solid; border-top: #b5ccda 1px solid;">
+                    <tr style="width: 100%; height: 50px; line-height: 50px; background: linear-gradient(to bottom, #3bd4d6, #339b9d);">
+                        <td style="float: left; width: 20%;">
+                            <span>子包名称</span>
+                        </td>
+                        <td style="float: left; width: 20%;">
+                            <span>数量</span>
+                        </td>
+                        <td style="float: left; width: 20%;">
+                            <span>子包类型</span>
+                        </td>
+                        <td style="float: left; width: 20%;">
+                            <span>单价</span>
+                        </td>
+                        <td style="float: left; width: 20%;">
+                            <span>操作</span>
+                        </td>
+                    </tr>
+                    <tr style="width: 100%; height: 50px; line-height: 50px;">
+                        <td style="float: left; width: 20%;">
+                            <p class="contact-input contact-absolute-width" style="margin-left: 15px; margin-top: 15px;">
+                                <input type="text" name="subPackagesName" [(ngModel)]="subPackageData.subPackagesName">
+                            <p>
+                        </td>
+                        <td style="float: left; width: 20%;">
+                            <p class="contact-input contact-absolute-width" style="margin-left: 15px; margin-top: 15px;">
+                                <input type="text" name="subPackagesAmount" [(ngModel)]="subPackageData.subPackagesAmount">
+                            </p>
+                        </td>
+                        <td style="float: left; width: 20%;">
+                            <p class="contact-input contact-absolute-width" style="margin-left: 15px; margin-top: 15px; height: 40px;">
+                                <!--suppress XmlInvalidId -->
+                                <label for="subPackagesType" class="select">
+                                    <select name="subPackagesType" [(ngModel)]="subPackageData.subPackagesType">
+                                        <option *ngFor="let subPackagesType of pxSubPackagesTypeEnum.values" value="{{subPackagesType[0]}}">{{subPackagesType[1]}}</option>
+                                    </select>
+                                </label>
+                            </p>
+                        </td>
+                        <td style="float: left; width: 20%;">
+                            <p class="contact-input contact-absolute-width" style="margin-left: 15px; margin-top: 15px;">
+                                <input type="text" name="subPackagePrice" [(ngModel)]="subPackageData.subPackagePrice">
+                            </p>
+                        </td>
+                        <td style="float: left; width: 20%;">
+                            <p class="contact-submit" style="margin-right: 5px; margin-top: 2px; margin-top: 15px;">
+                                <input type="button" class="button" value="   保存子套餐   " (click)="doAddSubPackages(elements)">
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- 子套餐内容展示 -->
+                <app-table-no-paginator [tableElement]="elements.tableElement" [tableTitle]="title" [isNeedShow]="false"></app-table-no-paginator>
+            </div>
+
+            <!-- 页面底边距控制 -->
+            <div style="width: 100%; height: 70px;"></div>
+            <div style="width: 97%; margin: auto; left: 0; right: 0;">
+                <table width="100%"><tr><td align="right">
+                    <p class="contact-submit">
+                        <input type="button" class="button" value="   一键添加套餐包模板   " (click)="gotoAutoAddPackages()">
+                    </p>
+                </td></tr></table>
+            </div>
+
+            <!-- 页面底边距控制 -->
+            <div style="width: 100%; height: 170px;"></div>
+        </div>
+    </div>
+</div>

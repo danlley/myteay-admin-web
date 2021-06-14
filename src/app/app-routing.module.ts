@@ -15,6 +15,11 @@ import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailSh
 import {GoodsComponent} from './system/goods/goods.component';
 import {GoodsQueryComponent} from './system/goods/goodsQuery/goodsQuery.component';
 import {AddGoodsComponent} from './system/goods/addGoods/addGoods.component';
+import {GoodsPackagesComponent} from './system/goods/goodsQuery/goodsPackages/goodsPackages.component';
+import {PacakgesImageComponent} from './system/goods/goodsQuery/pacakgesImage/pacakgesImage.component';
+import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsNotice.component';
+import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
+import {ViewDetailGoodsComponent} from './system/goods/viewDetailGoods/viewDetailGoods.component';
 
 const routes: Routes = [
   {
@@ -59,6 +64,18 @@ const routes: Routes = [
         path: 'system/campaign/prize/ref',
         component: CampSingleShopPrizeRefGoodsComponent
       },
+      {
+        path: 'system/goods/packages/all',
+        component: GoodsPackagesComponent
+      },
+      {
+        path: 'system/goods/packages/notice/all',
+        component: GoodsNoticeComponent
+      },
+      {
+        path: 'system/goods/packages/image/all',
+        component: PacakgesImageComponent
+      },
 
       {
         path: 'system/goods',
@@ -72,7 +89,14 @@ const routes: Routes = [
         path: 'system/goods/add',
         component: AddGoodsComponent
       },
-
+      {
+        path: 'system/goods/view/detail',
+        component: ViewDetailGoodsComponent
+      },
+      {
+        path: 'system/goods/view/active',
+        component: ActiveGoodsComponent
+      },
       {
         path: 'system/shop',
         component: ShopComponent

@@ -46,6 +46,19 @@ import {PxGoodsTuanEnum} from './commons/enums/PxGoodsTuanEnum';
 import {PxGoodsQuanEnum} from './commons/enums/PxGoodsQuanEnum';
 import {PxGoodsHuiyuanEnum} from './commons/enums/PxGoodsHuiyuanEnum';
 import {PxGoodsOrderTypeEnum} from './commons/enums/PxGoodsOrderTypeEnum';
+import {GoodsPackagesComponent} from './system/goods/goodsQuery/goodsPackages/goodsPackages.component';
+import {AutoCommitGoodsPackagesService} from './utils/autoCommitGoodsPackages.service';
+import {PxSubPackagesTypeEnum} from './commons/enums/PxSubPackagesTypeEnum';
+import {PacakgesImageComponent} from './system/goods/goodsQuery/pacakgesImage/pacakgesImage.component';
+import {GoodsNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsNotice.component';
+import {AutoCommitGoodsNoticeService} from './utils/autoCommitGoodsNotice.service';
+import {GoodsSubNoticeComponent} from './system/goods/goodsQuery/goodsNotice/goodsSubNotice/goodsSubNotice.component';
+import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.component';
+import {ViewDetailGoodsComponent} from './system/goods/viewDetailGoods/viewDetailGoods.component';
+import {GoodsSummaryComponent} from './system/goods/viewDetailGoods/goodsSummary/goodsSummary.component';
+import {GoodsDetailImageShowComponent} from './system/goods/viewDetailGoods/goodsDetailImageShow/goodsDetailImageShow.component';
+import {GoodsDetailComponent} from './system/goods/viewDetailGoods/goodsDetail/goodsDetail.component';
+import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoticeShow/goodsNoticeShow.component';
 
 
 @NgModule({
@@ -64,6 +77,16 @@ import {PxGoodsOrderTypeEnum} from './commons/enums/PxGoodsOrderTypeEnum';
     GoodsComponent,
     GoodsQueryComponent,
     AddGoodsComponent,
+    ViewDetailGoodsComponent,
+    GoodsPackagesComponent,
+    PacakgesImageComponent,
+    GoodsSummaryComponent,
+    GoodsDetailComponent,
+    GoodsNoticeComponent,
+    GoodsSubNoticeComponent,
+    GoodsNoticeShowComponent,
+    GoodsDetailImageShowComponent,
+    ActiveGoodsComponent,
     CampShopComponent,
     CampSingleShopComponent,
     CampSingleShopPrizeMngComponent,
@@ -96,12 +119,15 @@ import {PxGoodsOrderTypeEnum} from './commons/enums/PxGoodsOrderTypeEnum';
     PxGoodsQuanEnum,
     PxGoodsHuiyuanEnum,
     PxGoodsOrderTypeEnum,
+    PxSubPackagesTypeEnum,
     BottomComponent,
     TitleComponent,
     DatePipe,
     EventService,
     CommonServie,
     FatigeConfigService,
+    AutoCommitGoodsNoticeService,
+    AutoCommitGoodsPackagesService,
     DefaultPageComponent,
     TableNoPaginatorComponent,
     SummaryTableComponent,
@@ -114,6 +140,16 @@ import {PxGoodsOrderTypeEnum} from './commons/enums/PxGoodsOrderTypeEnum';
     GoodsComponent,
     GoodsQueryComponent,
     AddGoodsComponent,
+    ViewDetailGoodsComponent,
+    GoodsPackagesComponent,
+    PacakgesImageComponent,
+    GoodsSummaryComponent,
+    GoodsDetailComponent,
+    GoodsDetailImageShowComponent,
+    GoodsNoticeComponent,
+    GoodsSubNoticeComponent,
+    GoodsNoticeShowComponent,
+    ActiveGoodsComponent,
     CampShopComponent,
     CampSingleShopComponent,
     CampSingleShopPrizeMngComponent,
