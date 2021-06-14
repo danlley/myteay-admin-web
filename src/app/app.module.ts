@@ -61,6 +61,10 @@ import {GoodsDetailComponent} from './system/goods/viewDetailGoods/goodsDetail/g
 import {GoodsNoticeShowComponent} from './system/goods/viewDetailGoods/goodsNoticeShow/goodsNoticeShow.component';
 import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
 import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.component';
+import {ProdtransComponent} from './system/prodtrans/prodtrans.component';
+import {ProdtransUserShopProdComponent} from './system/prodtrans/prodtransUserShopProd/prodtransUserShopProd.component';
+import {ProdtransUserShopProdAddComponent} from './system/prodtrans/prodtransUserShopProd/ProdtransUserShopProdAdd/prodtransUserShopProdAdd.component';
+import {TcProdtransTypeEnum} from './commons/enums/TcProdtransTypeEnum';
 
 
 @NgModule({
@@ -100,6 +104,9 @@ import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.compo
     CampSingleShopPrizeSummaryComponent,
     CampSingleShopPrizeRefGoodsItemComponent,
     InactiveGoodsComponent,
+    ProdtransComponent,
+    ProdtransUserShopProdComponent,
+    ProdtransUserShopProdAddComponent,
     BottomComponent
   ],
   imports: [
@@ -124,6 +131,7 @@ import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.compo
     PxGoodsHuiyuanEnum,
     PxGoodsOrderTypeEnum,
     PxSubPackagesTypeEnum,
+    TcProdtransTypeEnum,
     BottomComponent,
     TitleComponent,
     DatePipe,
@@ -165,6 +173,9 @@ import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.compo
     CampSingleShopPrizeSummaryComponent,
     CampSingleShopPrizeRefGoodsItemComponent,
     InactiveGoodsComponent,
+    ProdtransComponent,
+    ProdtransUserShopProdComponent,
+    ProdtransUserShopProdAddComponent,
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

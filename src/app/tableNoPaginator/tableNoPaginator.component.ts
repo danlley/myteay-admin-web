@@ -23,15 +23,13 @@ export class TableNoPaginatorComponent implements OnInit {
 
     @Input() isNeedShow = true;
 
-    eventBus: EventService;
 
     /**
      * 构造方法，用于发送异步事件。当前表格的引入者需要监听异步事件，通过监听到的异步事件完成相应的目标动作
      *
      * @param {EventService} eventBus
      */
-    constructor(eventBus: EventService) {
-        this.eventBus = eventBus;
+    constructor(private eventBus: EventService) {
     }
 
     ngOnInit(): void {

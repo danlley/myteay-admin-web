@@ -22,6 +22,9 @@ import {ActiveGoodsComponent} from './system/goods/activeGoods/activeGoods.compo
 import {ViewDetailGoodsComponent} from './system/goods/viewDetailGoods/viewDetailGoods.component';
 import {InactiveGoodsComponent} from './system/goods/inactiveGoods/inactiveGoods.component';
 import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.component';
+import {ProdtransComponent} from './system/prodtrans/prodtrans.component';
+import {ProdtransUserShopProdComponent} from './system/prodtrans/prodtransUserShopProd/prodtransUserShopProd.component';
+import {ProdtransUserShopProdAddComponent} from './system/prodtrans/prodtransUserShopProd/ProdtransUserShopProdAdd/prodtransUserShopProdAdd.component';
 
 const routes: Routes = [
   {
@@ -33,7 +36,18 @@ const routes: Routes = [
         redirectTo: 'default',
         pathMatch: 'full'
       },
-
+      {
+        path: 'system/prodtrans',
+        component: ProdtransComponent
+      },
+      {
+        path: 'system/prodtrans/usr/shop/prod',
+        component: ProdtransUserShopProdComponent
+      },
+      {
+        path: 'system/prodtrans/usr/shop/prod/add',
+        component: ProdtransUserShopProdAddComponent
+      },
       {
         path: 'default',
         component: DefaultPageComponent
