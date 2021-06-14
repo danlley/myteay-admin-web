@@ -12,6 +12,9 @@ import {ShopComponent} from './system/shop/shop.component';
 import {AddShopComponent} from './system/shop/addShop/addShop.component';
 import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component';
 import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailShop.component';
+import {GoodsComponent} from './system/goods/goods.component';
+import {GoodsQueryComponent} from './system/goods/goodsQuery/goodsQuery.component';
+import {AddGoodsComponent} from './system/goods/addGoods/addGoods.component';
 
 const routes: Routes = [
   {
@@ -55,6 +58,19 @@ const routes: Routes = [
       {
         path: 'system/campaign/prize/ref',
         component: CampSingleShopPrizeRefGoodsComponent
+      },
+
+      {
+        path: 'system/goods',
+        component: GoodsComponent
+      },
+      {
+        path: 'system/goods/all',
+        component: GoodsQueryComponent
+      },
+      {
+        path: 'system/goods/add',
+        component: AddGoodsComponent
       },
 
       {

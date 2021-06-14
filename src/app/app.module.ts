@@ -36,6 +36,16 @@ import {ShopComponent} from './system/shop/shop.component';
 import {AddShopComponent} from './system/shop/addShop/addShop.component';
 import {ModifyShopComponent} from './system/shop/modifyShop/modifyShop.component';
 import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailShop.component';
+import {GoodsComponent} from './system/goods/goods.component';
+import {GoodsQueryComponent} from './system/goods/goodsQuery/goodsQuery.component';
+import {PxGoodsStatusEnum} from './commons/enums/PxGoodsStatusEnum';
+import {SummaryTableComponent} from './summaryTable/summaryTable.component';
+import {AddGoodsComponent} from './system/goods/addGoods/addGoods.component';
+import {PxGoodsTypeEnum} from './commons/enums/PxGoodsTypeEnum';
+import {PxGoodsTuanEnum} from './commons/enums/PxGoodsTuanEnum';
+import {PxGoodsQuanEnum} from './commons/enums/PxGoodsQuanEnum';
+import {PxGoodsHuiyuanEnum} from './commons/enums/PxGoodsHuiyuanEnum';
+import {PxGoodsOrderTypeEnum} from './commons/enums/PxGoodsOrderTypeEnum';
 
 
 @NgModule({
@@ -44,12 +54,16 @@ import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailSh
     TitleComponent,
     SystemSideLeftComponent,
     TableNoPaginatorComponent,
+    SummaryTableComponent,
     DefaultPageComponent,
     SystemComponent,
     ShopComponent,
     AddShopComponent,
     ModifyShopComponent,
     ViewDetailShopComponent,
+    GoodsComponent,
+    GoodsQueryComponent,
+    AddGoodsComponent,
     CampShopComponent,
     CampSingleShopComponent,
     CampSingleShopPrizeMngComponent,
@@ -76,6 +90,12 @@ import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailSh
     CampPrizeStatusEnum,
     CampPrizeLimitEnum,
     CampPrizeTypeEnum,
+    PxGoodsStatusEnum,
+    PxGoodsTypeEnum,
+    PxGoodsTuanEnum,
+    PxGoodsQuanEnum,
+    PxGoodsHuiyuanEnum,
+    PxGoodsOrderTypeEnum,
     BottomComponent,
     TitleComponent,
     DatePipe,
@@ -84,12 +104,16 @@ import {ViewDetailShopComponent} from './system/shop/viewDetailShop/viewDetailSh
     FatigeConfigService,
     DefaultPageComponent,
     TableNoPaginatorComponent,
+    SummaryTableComponent,
     SystemSideLeftComponent,
     SystemComponent,
     ShopComponent,
     AddShopComponent,
     ModifyShopComponent,
     ViewDetailShopComponent,
+    GoodsComponent,
+    GoodsQueryComponent,
+    AddGoodsComponent,
     CampShopComponent,
     CampSingleShopComponent,
     CampSingleShopPrizeMngComponent,

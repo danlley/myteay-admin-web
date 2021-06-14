@@ -1,0 +1,26 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div style="align-items: left; left: 15px !important;">
+
+            <!-- 当前店铺汇总信息 -->
+            <app-summary-table [shopData]="shopData" [tableTitle]="shopData[1]" [tableTitleFace]="'当前店铺'"></app-summary-table>
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+                <p class="contact-submit">
+                    <input type="button" class="button" value="   返回   " (click)="goReturn()">
+                    <input type="button" class="button" value="   查   询   " (click)="doQuery()">
+                    <input type="button" class="button" value="   添加商品概要   " (click)="gotoAddGoods()">
+                </p>
+            </div>
+        </div>
+        <div *ngIf="isNeedShowErrMsg" style="height: 35px; width: 100%;">
+            <span style="color: #721c24">{{errMsg}}</span>
+        </div>
+        <div style="align-content: center; width: 95%; margin: auto; left: 0; right: 0;">
+            <div style="height: 500px; width: 100%; overflow: scroll;">
+                <app-table-no-paginator [tableElement]="tableElement" [tableTitle]="title"></app-table-no-paginator>
+                <div style="height: 270px; width: 100px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
