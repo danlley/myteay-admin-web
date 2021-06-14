@@ -69,6 +69,8 @@ import {ProviderComponent} from './system/provider/provider.component';
 import {ProductComponent} from './system/provider/product/product.component';
 import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
 import {ProductDetailComponent} from './system/provider/product/productDetail/productDetail.component';
+import {ProductModifyComponent} from './system/provider/product/productModify/productModify.component';
+import {ManualComponent} from './system/provider/manual/manual.component';
 
 
 @NgModule({
@@ -112,6 +114,8 @@ import {ProductDetailComponent} from './system/provider/product/productDetail/pr
     ProductComponent,
     ProductAddComponent,
     ProductDetailComponent,
+    ProductModifyComponent,
+    ManualComponent,
     ProdtransComponent,
     ProdtransUserShopProdComponent,
     ProdtransUserShopProdAddComponent,
@@ -185,6 +189,8 @@ import {ProductDetailComponent} from './system/provider/product/productDetail/pr
     ProductComponent,
     ProductAddComponent,
     ProductDetailComponent,
+    ProductModifyComponent,
+    ManualComponent,
     ProdtransComponent,
     ProdtransUserShopProdComponent,
     ProdtransUserShopProdAddComponent,

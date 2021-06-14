@@ -29,6 +29,8 @@ import {ProviderComponent} from './system/provider/provider.component';
 import {ProductComponent} from './system/provider/product/product.component';
 import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
 import {ProductDetailComponent} from './system/provider/product/productDetail/productDetail.component';
+import {ProductModifyComponent} from './system/provider/product/productModify/productModify.component';
+import {ManualComponent} from './system/provider/manual/manual.component';
 
 const routes: Routes = [
   {
@@ -65,6 +67,12 @@ const routes: Routes = [
         path: 'system/provider/product',
         component: ProductComponent
       },
+
+      {
+        path: 'system/provider/manual',
+        component: ManualComponent
+      },
+
       {
         path: 'system/provider/product/add',
         component: ProductAddComponent
@@ -72,6 +80,10 @@ const routes: Routes = [
       {
         path: 'system/provider/product/detail',
         component: ProductDetailComponent
+      },
+      {
+        path: 'system/provider/product/modify',
+        component: ProductModifyComponent
       },
 
       {

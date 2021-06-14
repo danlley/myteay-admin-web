@@ -63,14 +63,6 @@ export class ProductComponent implements OnInit {
       this.eventBus.publish('system_provider_nutritional', arr);
     });
 
-    // 监听商品帮助手册维护请求
-    this.eventBus.registerySubject('system_provider_manual_listener').subscribe(e => {
-      const arr = [];
-      arr.push(this.shopData);
-      arr.push(e);
-      this.eventBus.publish('system_provider_manual', arr);
-    });
-
     // 监听商品询价维护请求
     this.eventBus.registerySubject('system_provider_price_listener').subscribe(e => {
       const arr = [];
@@ -105,7 +97,7 @@ export class ProductComponent implements OnInit {
         ['图片维护', 'system_provider_images_listener'],
         ['配料维护', 'system_provider_nutritional_listener'],
         ['询价维护', 'system_provider_price_listener'],
-        ['说明书维护', 'system_provider_manual_listener']],
+        ['说明书维护', 'system_provider_manual']],
       'tableContent': []
     };
     this.ftConfitService.getAllProductsConfig(this.shopId).subscribe(res => {
