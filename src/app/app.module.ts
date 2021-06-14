@@ -65,6 +65,10 @@ import {ProdtransComponent} from './system/prodtrans/prodtrans.component';
 import {ProdtransUserShopProdComponent} from './system/prodtrans/prodtransUserShopProd/prodtransUserShopProd.component';
 import {ProdtransUserShopProdAddComponent} from './system/prodtrans/prodtransUserShopProd/ProdtransUserShopProdAdd/prodtransUserShopProdAdd.component';
 import {TcProdtransTypeEnum} from './commons/enums/TcProdtransTypeEnum';
+import {ProviderComponent} from './system/provider/provider.component';
+import {ProductComponent} from './system/provider/product/product.component';
+import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
+import {ProductDetailComponent} from './system/provider/product/productDetail/productDetail.component';
 
 
 @NgModule({
@@ -104,6 +108,10 @@ import {TcProdtransTypeEnum} from './commons/enums/TcProdtransTypeEnum';
     CampSingleShopPrizeSummaryComponent,
     CampSingleShopPrizeRefGoodsItemComponent,
     InactiveGoodsComponent,
+    ProviderComponent,
+    ProductComponent,
+    ProductAddComponent,
+    ProductDetailComponent,
     ProdtransComponent,
     ProdtransUserShopProdComponent,
     ProdtransUserShopProdAddComponent,
@@ -173,6 +181,10 @@ import {TcProdtransTypeEnum} from './commons/enums/TcProdtransTypeEnum';
     CampSingleShopPrizeSummaryComponent,
     CampSingleShopPrizeRefGoodsItemComponent,
     InactiveGoodsComponent,
+    ProviderComponent,
+    ProductComponent,
+    ProductAddComponent,
+    ProductDetailComponent,
     ProdtransComponent,
     ProdtransUserShopProdComponent,
     ProdtransUserShopProdAddComponent,

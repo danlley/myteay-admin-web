@@ -25,6 +25,10 @@ import {ModifyGoodsComponent} from './system/goods/modifyGoods/modifyGoods.compo
 import {ProdtransComponent} from './system/prodtrans/prodtrans.component';
 import {ProdtransUserShopProdComponent} from './system/prodtrans/prodtransUserShopProd/prodtransUserShopProd.component';
 import {ProdtransUserShopProdAddComponent} from './system/prodtrans/prodtransUserShopProd/ProdtransUserShopProdAdd/prodtransUserShopProdAdd.component';
+import {ProviderComponent} from './system/provider/provider.component';
+import {ProductComponent} from './system/provider/product/product.component';
+import {ProductAddComponent} from './system/provider/product/productAdd/productAdd.component';
+import {ProductDetailComponent} from './system/provider/product/productDetail/productDetail.component';
 
 const routes: Routes = [
   {
@@ -52,6 +56,24 @@ const routes: Routes = [
         path: 'default',
         component: DefaultPageComponent
       },
+
+      {
+        path: 'system/provider',
+        component: ProviderComponent
+      },
+      {
+        path: 'system/provider/product',
+        component: ProductComponent
+      },
+      {
+        path: 'system/provider/product/add',
+        component: ProductAddComponent
+      },
+      {
+        path: 'system/provider/product/detail',
+        component: ProductDetailComponent
+      },
+
       {
         path: 'system',
         component: SystemComponent

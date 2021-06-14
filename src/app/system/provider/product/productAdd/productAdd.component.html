@@ -1,0 +1,131 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div style="align-items: left; left: 15px !important;">
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+                <p class="contact-submit">
+                    <input type="button" class="button" value="   返回   " (click)="goReturn()">
+                    <input type="button" class="button" value="   添加原材料   " (click)="doAddShopProduct()">
+                </p>
+            </div>
+        </div>
+        <div style="overflow: scroll; align-content: center; width: 95%; margin: auto; left: 0; right: 0;">
+            <!-- 表单内容 -->
+            <table align="center" width="95%" cellpadding="0" cellspacing="0">
+                <th colspan="4" align="center" valign="middle">添加原材料</th>
+                <tr>
+                    <td align="right" width="10%">产品名称：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="产品名称" [(ngModel)]="product.productName">
+                        </p>
+                    </td>
+                    <td align="right" width="10%">条形码：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="条形码" [(ngModel)]="product.tiaoCode">
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">进货单位：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="进货单位" [(ngModel)]="product.atomic">
+                        </p>
+                    </td>
+                    <td align="right" width="10%">单位重量：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="单位重量" [(ngModel)]="product.weight">
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">产品标准号：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="产品标准号" [(ngModel)]="product.procotolCode">
+                        </p>
+                    </td>
+                    <td align="right" width="10%">规格：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="规格" [(ngModel)]="product.specification">
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">许可证编号：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="许可证编号" [(ngModel)]="product.license">
+                        </p>
+                    </td>
+                    <td align="right" width="10%">保质期：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="保质期" [(ngModel)]="product.expiration">
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">保存环境：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="orderTotalAmount" placeholder="保存环境" [(ngModel)]="product.storegeType">
+                        </p>
+                    </td>
+                    <td align="right" width="10%">保存温度( ℃ )：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="保存温度(℃)" [(ngModel)]="product.storegeTemp">
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">是否清真：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="是否清真" [(ngModel)]="product.muslimFlag">
+                        </p>
+                    </td>
+                    <td align="right" width="10%">产地：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="产地" [(ngModel)]="product.producingArea" >
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">公司：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="公司" [(ngModel)]="product.company">
+                        </p>
+                    </td>
+                    <td align="right" width="10%">公司地址：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="公司地址" [(ngModel)]="product.address">
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" width="10%">传真：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="传真" [(ngModel)]="product.fax">
+                        </p>
+                    </td>
+                    <td align="right" width="10%">联系电话：</td>
+                    <td align="left" width="40%">
+                        <p class="contact-input contact-absolute-width">
+                            <input type="text" name="expireTime" placeholder="联系电话" [(ngModel)]="product.tel">
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

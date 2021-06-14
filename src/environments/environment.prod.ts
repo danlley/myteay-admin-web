@@ -48,10 +48,10 @@ export const environment = {
     SYSTEM_CAMP_PRIZE_MNG_CONFIG_URL: 'http://192.168.1.24:40008/myteay/api/phoenix/camp/manage/prize/manage',
 
     // 供货商
-    PROVIDER_PRODUCT_PRICE_URL: 'http://192.168.1.24:40008/tiancan/api/provider/manage/do/price/mng',
-    PROVIDER_PRODUCT_PRICE_QRY_URL: 'http://192.168.1.24:40008/tiancan/api/provider/manage/list/price/',
-    SYSTEM_PROVIDER_PRODUCT_MNG_CONFIG_URL: 'http://192.168.1.24:40008/tiancan/api/provider/manage/do/mng',
-    SYSTEM_PROVIDER_PRODUCT_CONFIG_URL: 'http://192.168.1.24:40008/tiancan/api/provider/manage/list/shop/',
+    PROVIDER_PRODUCT_PRICE_URL: 'http://192.168.1.24:40071/tiancan/api/provider/manage/do/price/mng',
+    PROVIDER_PRODUCT_PRICE_QRY_URL: 'http://192.168.1.24:40071/tiancan/api/provider/manage/list/price/',
+    SYSTEM_PROVIDER_PRODUCT_MNG_CONFIG_URL: 'http://192.168.1.24:40071/tiancan/api/provider/manage/do/mng',
+    SYSTEM_PROVIDER_PRODUCT_CONFIG_URL: 'http://192.168.1.24:40071/tiancan/api/provider/manage/list/shop/',
 
     // 折扣系统
     SYSTEM_DISCOUNT_GOODS_CONFIG_URL: 'http://192.168.1.24:40008/tiancan/api/discount/manage/query/shop/',

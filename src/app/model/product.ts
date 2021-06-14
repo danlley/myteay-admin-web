@@ -1,0 +1,23 @@
+export class Product {
+    id;
+    tiaoCode;
+    productName;
+    atomic;
+    weight;
+    procotolCode;
+    specification;
+    license;
+    expiration;
+    storegeType;
+    storegeTemp;
+    company;
+    producingArea;
+    address;
+    muslimFlag;
+    tel;
+    fax;
+    gmtCreated;
+    gmtModified;
+    shopId;
+    operationType;
+}

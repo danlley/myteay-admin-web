@@ -1,0 +1,18 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div style="align-items: left; left: 15px !important;">
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+                <p class="contact-submit">
+                    <input type="button" class="button" value="   返回   " (click)="goReturn()">
+                    <input type="button" class="button" value="   查  询   " (click)="initShopList()">
+                    <input type="button" class="button" value="   新增原材料   " (click)="gotoProductAddPage()">
+                </p>
+            </div>
+        </div>
+        <div style="overflow: scroll; align-content: center; width: 95%; margin: auto; left: 0; right: 0;">
+            <app-table-no-paginator [tableElement]="tableElement" [tableTitle]="title"></app-table-no-paginator>
+        </div>
+        <div style="height: 370px; width: 100px;"></div>
+    </div>
+</div>
