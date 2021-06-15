@@ -67,8 +67,8 @@
                     <p class="contact-input contact-absolute-width">
                         <label for="templateFlag" class="select">
                             <select name="templateFlag" id="templateFlag" [(ngModel)]="campPrizeModel.prizeLimit">
-                                <option *ngFor="let templateFlag of campPrizeLimitList"
-                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                <option *ngFor="let templateFlag of campPrizeLimitEnum.values"
+                                        value="{{templateFlag[0]}}">{{templateFlag[1]}}
                                 </option>
                             </select>
                         </label>
@@ -79,8 +79,8 @@
                     <p class="contact-input contact-absolute-width">
                         <label for="templateFlag" class="select">
                             <select name="templateFlag" id="templateFlag1" [(ngModel)]="campPrizeModel.prizeType">
-                                <option *ngFor="let templateFlag of campPrizeTypeList"
-                                        value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                                <option *ngFor="let templateFlag of campPrizeTypeEnum.values"
+                                        value="{{templateFlag[0]}}">{{templateFlag[1]}}
                                 </option>
                             </select>
                         </label>

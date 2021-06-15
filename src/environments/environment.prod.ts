@@ -4,15 +4,8 @@
  */
 export const environment = {
     production: true,
-    MESSAGE_CONFIG_URL: 'http://localhost:41001/myteay/api/message/mng/msg_config',
-    MESSAGE_CONFIG_QUERY_ALL_URL: 'http://localhost:41001/myteay/api/message/mng/msg_config/all/condition',
-    MESSAGE_CONFIG_QUERY_SINGLE_URL: 'http://localhost:41001/myteay/api/message/mng/msg_config/single/',
-    MESSAGE_DATA_DIC_URL: 'http://localhost:41001/myteay/api/message/admin/web/data/',
-    // DATA_DIC_URL: 'http://192.168.1.6:40001/myteay/api/customer/admin/web/data/',
-    FATIGE_CONFIG_URL: 'http://192.168.1.6:40001/myteay/api/customer/admin/web/fatige_config/query_by_conditions',
 
     // 后台管理
-    DATA_DIC_URL: 'http://192.168.1.24:40008/myteay/api/phoenix/admin/manage/dic/',
     GOODS_QUERY_CONFIG_URL: 'http://192.168.1.24:40008/myteay/api/phoenix/admin/manage/goods/all',
     GOODS_COST_CFG_QUERY_CONFIG_URL: 'http://192.168.1.24:40008/myteay/api/phoenix/admin/manage/goods/cost/all',
     GOODS_COST_CFG_MNG_CONFIG_URL: 'http://192.168.1.24:40008/myteay/api/phoenix/admin/manage/goods/cost/manage',

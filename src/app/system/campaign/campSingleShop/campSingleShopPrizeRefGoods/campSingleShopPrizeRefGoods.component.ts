@@ -5,6 +5,7 @@ import {CommonServie} from '../../../../utils/common.servie';
 import {ActivatedRoute} from '@angular/router';
 import {EventService} from '../../../../asyncService/asyncService.service';
 import {PxGoodsConfigModel} from '../../../../model/goods';
+import {PxGoodsTypeEnum} from '../../../../commons/enums/PxGoodsTypeEnum';
 
 @Component({
   selector: 'app-camp-shop-single-prize-ref',
@@ -18,7 +19,6 @@ import {PxGoodsConfigModel} from '../../../../model/goods';
 export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
   title = '店内营销活动奖品管理!';
   templateConfigList: any[];
-  goodsTypeOption;
 
   goodsType = '';
   shopId;
@@ -57,6 +57,7 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
    * @param {CommonServie} commonService
    */
   constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+              public pxGoodsTypeEnum: PxGoodsTypeEnum,
               private commonService: CommonServie, private activeRoute: ActivatedRoute, private eventBus: EventService) {
   }
 
@@ -76,7 +77,6 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     this.shopId = this.shopData[0];
 
     this.doQuerySingleShopCampPrize(this.prizeId);
-    this.initSelectList();
     this.initGoodsPackagesList();
     this.initPrizeRefGoodsEndSideList();
   }
@@ -218,16 +218,6 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
    */
   doQueryOnlineGoodsList() {
     this.initGoodsPackagesList();
-  }
-
-  /**
-   * 下拉菜单初始化
-   */
-  initSelectList() {
-
-    this.ftConfitService.getDataDictionaryByKey('PxGoodsTypeEnum').subscribe(res => {
-      this.goodsTypeOption = this.commonService.filterResult(res);
-    });
   }
 
   /**

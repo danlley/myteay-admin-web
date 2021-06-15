@@ -4,6 +4,8 @@ import {DatePipe} from '@angular/common';
 import {CommonServie} from '../../../../utils/common.servie';
 import {ActivatedRoute} from '@angular/router';
 import {EventService} from '../../../../asyncService/asyncService.service';
+import {CampPrizeLimitEnum} from '../../../../commons/enums/CampPrizeLimitEnum';
+import {CampPrizeTypeEnum} from '../../../../commons/enums/CampPrizeTypeEnum';
 
 declare let laydate;
 
@@ -18,9 +20,6 @@ declare let laydate;
  */
 export class CampSingleShopPrizeAddComponent implements OnInit {
     title = '店内营销活动奖品管理!';
-    campStatusList: any[];
-    campPrizeLimitList: any[];
-    campPrizeTypeList: any[];
     templateConfigList: any[];
 
     // 店铺信息，用于构建页面店铺信息展示
@@ -49,6 +48,7 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
      * @param {CommonServie} commonService
      */
     constructor(private ftConfitService: FatigeConfigService, private datePipe: DatePipe,
+                public campPrizeLimitEnum: CampPrizeLimitEnum, public campPrizeTypeEnum: CampPrizeTypeEnum,
                 private commonService: CommonServie, private activeRoute: ActivatedRoute, private eventBus: EventService) {
     }
 
@@ -70,8 +70,6 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
         const dateEnd = new Date();
         dateEnd.setMonth(dateEnd.getMonth() + 1);
         this.campPrizeModel.prizeExpired = this.datePipe.transform(dateEnd, 'yyyy-MM-16 23:59:59');
-
-        this.initCampStatusList();
 
         // 初始化日期选择组件
         laydate.render({
@@ -113,20 +111,6 @@ export class CampSingleShopPrizeAddComponent implements OnInit {
             } else {
                 this.eventBus.publish('campaign_shop_single_prize_mng', [this.shopData, this.campData]);
             }
-        });
-    }
-
-
-
-    initCampStatusList() {
-        this.ftConfitService.getDataDictionaryByKey('CampPrizeStatusEnum').subscribe(res => {
-            this.campStatusList = this.commonService.filterResult(res);
-        });
-        this.ftConfitService.getDataDictionaryByKey('CampPrizeLimitEnum').subscribe(res => {
-            this.campPrizeLimitList = this.commonService.filterResult(res);
-        });
-        this.ftConfitService.getDataDictionaryByKey('CampPrizeTypeEnum').subscribe(res => {
-            this.campPrizeTypeList = this.commonService.filterResult(res);
         });
     }
 

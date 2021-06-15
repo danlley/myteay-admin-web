@@ -22,10 +22,6 @@ export class FatigeConfigService {
     });
   }
 
-  getAllFatigeIndicatorConfig(): any {
-    return this._http.get(environment.FATIGE_CONFIG_URL + '', {headers: this.getHeaderOptions()});
-  }
-
   getAllShopConfig(): any {
     return this._http.get(environment.SYSTEM_QUERY_CONFIG_URL + '', {headers: this.getHeaderOptions()});
   }
@@ -163,18 +159,6 @@ export class FatigeConfigService {
     return this._http.post(environment.GOODS_MNG_GOODS_STATUS_URL, data, {headers: this.getHeaderOptions()});
   }
 
-  getDataDictionaryByKey(key): any {
-    return this._http.get(environment.DATA_DIC_URL + key, {headers: this.getHeaderOptions()});
-  }
-
-  getMessageDataDictionaryByKey(key): any {
-    return this._http.get(environment.MESSAGE_DATA_DIC_URL + key, {headers: this.getHeaderOptions()});
-  }
-
-  queryAllMessageConfigByParam(data): any {
-    return this._http.post(environment.MESSAGE_CONFIG_QUERY_ALL_URL, data, {headers: this.getHeaderOptions()});
-  }
-
   addDiscountGoodsConfig(data): any {
     return this._http.post(environment.SYSTEM_DISCOUNT_GOODS_ADD_URL, data, {headers: this.getHeaderOptions()});
   }
@@ -190,9 +174,5 @@ export class FatigeConfigService {
 
   changePtsShopUserProdStatus(data): any {
     return this._http.post(environment.SYSTEM_PDS_SHOP_USR_PROD_MDF_URL, data, {headers: this.getHeaderOptions()});
-  }
-
-  manageMessageConfigByParam(data): any {
-    return this._http.post(environment.MESSAGE_CONFIG_URL, data, {headers: this.getHeaderOptions()});
   }
 }

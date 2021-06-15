@@ -13,8 +13,8 @@
                 <p class="contact-input contact-absolute-width" style="margin-left: 280px; margin-top: -60px;">
                     <label for="templateFlag" id="templateFlag" class="select">
                         <select name="goodsType" id="goodsType" [(ngModel)]="goodsType">
-                            <option *ngFor="let templateFlag of goodsTypeOption"
-                                    value="{{templateFlag.bizKey}}">{{templateFlag.value}}
+                            <option *ngFor="let templateFlag of pxGoodsTypeEnum.values"
+                                    value="{{templateFlag[0]}}">{{templateFlag[1]}}
                             </option>
                         </select>
                     </label>
