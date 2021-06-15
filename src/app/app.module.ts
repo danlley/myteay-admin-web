@@ -71,6 +71,8 @@ import {ProductAddComponent} from './system/provider/product/productAdd/productA
 import {ProductDetailComponent} from './system/provider/product/productDetail/productDetail.component';
 import {ProductModifyComponent} from './system/provider/product/productModify/productModify.component';
 import {ManualComponent} from './system/provider/manual/manual.component';
+import {NutritionalComponent} from './system/provider/nutritional/nutritional.component';
+import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
 
 
 @NgModule({
@@ -115,7 +117,9 @@ import {ManualComponent} from './system/provider/manual/manual.component';
     ProductAddComponent,
     ProductDetailComponent,
     ProductModifyComponent,
+    NutritionalComponent,
     ManualComponent,
+    PpPriceComponent,
     ProdtransComponent,
     ProdtransUserShopProdComponent,
     ProdtransUserShopProdAddComponent,
@@ -190,7 +194,9 @@ import {ManualComponent} from './system/provider/manual/manual.component';
     ProductAddComponent,
     ProductDetailComponent,
     ProductModifyComponent,
+    NutritionalComponent,
     ManualComponent,
+    PpPriceComponent,
     ProdtransComponent,
     ProdtransUserShopProdComponent,
     ProdtransUserShopProdAddComponent,
