@@ -1,0 +1,87 @@
+<div style="width: 100%;">
+	<p class="contact-submit" style="margin-top: -70px;">
+		<input type="button" class="button" value="   添加折扣信息   " (click)="doAddDiscountGoodsConf()">
+	</p>
+</div>
+<div *ngIf="goods" class="dis-goods-item-style">
+	<div style="width: 100px; height: 100px; float: left;">
+		<img style="border-radius: 5px; border: #2f3e45 1px solid; height: 100px; width: 100px;" src="{{imgPath}}{{goods.goodsImage}}">
+	</div>
+	<div style="width: 280px; height: 100px; margin-top: 0px; float: left; margin-left: 10px;">
+		<div style="height: 30px;">
+			<span style="float: left; line-height: 30px;">{{goods.goodsTitle}}</span>
+		</div>
+		<div style="height: 30px;">
+            <span style="float: left;line-height: 30px;">
+                ￥ <span style="color: #f3384b; font-weight: 900;">{{goods.goodsPrice}}</span> 元
+            </span>
+		</div>
+		<div style="height: 30px;">
+			<span style="float: left; line-height: 30px;">{{goods.goodsOnlineTime}}</span>
+		</div>
+	</div>
+</div>
+<div style="background: linear-gradient(to bottom, #378091, #445a61); width: 800px; height: 400px;">
+	<table width="100%">
+		<tr style="height: 30px; width: 100%;">
+			<td align="right" width="30%" style="margin-right: 30px;">
+				<span>折扣类型</span>
+			</td>
+			<td align="left">
+				<div style="margin-top: 30px; margin-left: 20px;">
+					<p class="contact-input contact-absolute-width">
+						<label for="templateFlag" id="templateFlag" class="select">
+							<select name="discountGoodsType" id="discountGoodsType" [(ngModel)]="discountGoodsConf.discountType">
+								<option *ngFor="let templateFlag of tcDiscountGoodsTypeEnum.values"
+								        value="{{templateFlag[0]}}">{{templateFlag[1]}}
+								</option>
+							</select>
+						</label>
+					</p>
+				</div>
+			</td>
+		</tr>
+		<tr style="height: 50px; width: 100%;">
+			<td height="50" align="right" style="width: 30%; height: 50px; margin-right: 30px;">
+				<span>折扣值</span>
+			</td>
+			<td height="50" align="left">
+				<div style="margin-top: 30px; margin-left: 20px;">
+					<p class="contact-input contact-absolute-width">
+						<input type="text" name="goodsName" placeholder="折扣值" [(ngModel)]="discountGoodsConf.discountValue">
+					</p>
+				</div>
+			</td>
+		</tr>
+		<tr style="height: 50px; width: 100%;">
+			<td height="50" align="right" style="width: 30%; height: 50px; margin-right: 30px;">
+				<span>折扣人群</span>
+			</td>
+			<td height="50" align="left">
+				<div style="margin-top: 30px; margin-left: 20px;">
+					<p class="contact-input contact-absolute-width">
+						<label for="templateFlag" id="templateFlag" class="select">
+							<select name="discountCrowdType" id="discountCrowdType" [(ngModel)]="discountGoodsConf.crowdType">
+								<option *ngFor="let templateFlag of tcDiscountCrowdTypeEnum.values"
+								        value="{{templateFlag[0]}}">{{templateFlag[1]}}
+								</option>
+							</select>
+						</label>
+					</p>
+				</div>
+			</td>
+		</tr>
+		<tr style="height: 50px; width: 100%;">
+			<td height="50" align="right" width="30%" style="height: 50px; margin-right: 30px;">
+				<span>过期时间</span>
+			</td>
+			<td height="50" align="left">
+				<div style="margin-top: 30px; margin-left: 20px;">
+					<p class="contact-input contact-absolute-width">
+						<input type="text" id="gmtExpired" placeholder="过期时间" [(ngModel)]="discountGoodsConf.gmtExpired">
+					</p>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>

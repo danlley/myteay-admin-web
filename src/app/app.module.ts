@@ -73,6 +73,12 @@ import {ProductModifyComponent} from './system/provider/product/productModify/pr
 import {ManualComponent} from './system/provider/manual/manual.component';
 import {NutritionalComponent} from './system/provider/nutritional/nutritional.component';
 import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
+import {DiscountComponent} from './system/discount/discount.component';
+import {DisGoodsConfComponent} from './system/discount/disGoodsConf/disGoodsConf.component';
+import {DisGoodsConfigItemComponent} from './system/discount/disGoodsConf/addDisGoodsConf/disGoodsConfigItem/disGoodsConfigItem.component';
+import {AddDisGoodsConfComponent} from './system/discount/disGoodsConf/addDisGoodsConf/addDisGoodsConf.component';
+import {TcDiscountGoodsTypeEnum} from './commons/enums/TcDiscountGoodsTypeEnum';
+import {TcDiscountCrowdTypeEnum} from './commons/enums/TcDiscountCrowdTypeEnum';
 
 
 @NgModule({
@@ -120,6 +126,10 @@ import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
     NutritionalComponent,
     ManualComponent,
     PpPriceComponent,
+    DiscountComponent,
+    DisGoodsConfComponent,
+    DisGoodsConfigItemComponent,
+    AddDisGoodsConfComponent,
     ProdtransComponent,
     ProdtransUserShopProdComponent,
     ProdtransUserShopProdAddComponent,
@@ -148,6 +158,8 @@ import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
     PxGoodsOrderTypeEnum,
     PxSubPackagesTypeEnum,
     TcProdtransTypeEnum,
+    TcDiscountGoodsTypeEnum,
+    TcDiscountCrowdTypeEnum,
     BottomComponent,
     TitleComponent,
     DatePipe,
@@ -197,6 +209,10 @@ import {PpPriceComponent} from './system/provider/ppPrice/ppPrice.component';
     NutritionalComponent,
     ManualComponent,
     PpPriceComponent,
+    DiscountComponent,
+    DisGoodsConfComponent,
+    DisGoodsConfigItemComponent,
+    AddDisGoodsConfComponent,
     ProdtransComponent,
     ProdtransUserShopProdComponent,
     ProdtransUserShopProdAddComponent,

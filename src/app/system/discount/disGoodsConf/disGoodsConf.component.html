@@ -1,0 +1,46 @@
+<div style="background: linear-gradient(to bottom, #378091, #2f3e45); height: 800px;display: table">
+    <app-system-side-left></app-system-side-left>
+    <div class="title-content">
+        <div style="align-items: left; left: 15px !important;">
+            <div style="width: 95%; margin: auto; left: 0; right: 0; margin-top: 20px;">
+                <p class="contact-submit">
+                    <input type="button" class="button" value="   返回   " (click)="goReturn()">
+                    <input type="button" class="button" value="   查  询   " (click)="initShopList()">
+                    <input type="button" class="button" value="   新增商品折扣配置   " (click)="gotoDiscountGoodsConfAddPage()">
+                </p>
+            </div>
+        </div>
+        <div style="overflow: scroll; align-content: center; width: 95%; margin: auto; left: 0; right: 0;">
+	        <!-- 表单内容 -->
+	        <div *ngIf="tableElement.tableContent.length > 0">
+		        <label class="table-summary-top">>>表格记录条数：<span
+				        style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
+		        <table align="center" class="table-operation-style">
+			        <th *ngFor="let tableColumn of tableElement.tableHeaders" style="font-size: 0.8em;">{{tableColumn}}</th>
+			        <th style="font-size: 0.8em;">操作</th>
+			        <tr class="table-no-paginator-tr-style" *ngFor="let e of tableElement.tableContent">
+				        <td align="center" style="font-size: 0.4em;">{{e.discountId}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.discountName}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.goodsId}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.discountType}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.discountValue}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.crowdType}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.discountStatus}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.gmtEffictive | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.gmtExpired | date: 'yyyy-MM-dd HH:mm:ss'}}</td>
+				        <td align="center" style="font-size: 0.4em;">{{e.comments}}</td>
+				        <td align="center" style="font-size: 0.4em;">
+					        <a *ngFor="let opElement of tableElement.tableOp" style="cursor: pointer; margin-left: 20px; color: #721c24;" (click)="tableNoPaginatorOperation(e, opElement[1])"> {{opElement[0]}} </a>
+				        </td>
+			        </tr>
+			        <th colspan="11"></th>
+		        </table>
+		        <label class="table-summary-bottom">>>表格记录条数：<span style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
+	        </div>
+	        <div *ngIf="tableElement.tableContent.length <= 0">
+		        <label class="table-summary-top" style="color: #ffffff">>>当前没有记录！<<</label>
+	        </div>
+        </div>
+        <div style="height: 370px; width: 100px;"></div>
+    </div>
+</div>
