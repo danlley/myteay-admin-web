@@ -98,6 +98,7 @@ export class CampSingleShopPrizeRefGoodsComponent implements OnInit {
     this.goodsListEndSide = [];
     this.ftConfitService.manageShopCampPrizeRefGoodsListConfig(this.prizeId, this.goodsRefList).subscribe(res => {
       const list = this.commonService.filterResult(res);
+      console.log('manageShopCampPrizeRefGoodsListConfig-------->', res);
       this.errMsg = '';
       const data = res;
       if (data.operateResult !== 'CAMP_OPERATE_SUCCESS') {
