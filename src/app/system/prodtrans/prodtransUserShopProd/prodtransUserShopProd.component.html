@@ -16,19 +16,19 @@
 		        <label class="table-summary-top">>>表格记录条数：<span
 				        style="color: #da6072">  {{tableElement.tableContent.length}}   </span>条<<</label>
 		        <table align="center" class="table-operation-style">
-			        <th *ngFor="let tableColumn of tableElement.tableHeaders" style="font-size: 0.8em;">{{tableColumn}}</th>
-			        <th style="font-size: 0.8em;">操作</th>
+			        <th *ngFor="let tableColumn of tableElement.tableHeaders" style="font-size: 1.0em;">{{tableColumn}}</th>
+			        <th style="font-size: 1.0em;">操作</th>
 			        <tr class="table-no-paginator-tr-style" *ngFor="let e of tableElement.tableContent">
-				        <td align="center" style="font-size: 0.4em;">{{e.prodtransId}}</td>
-				        <td align="center" style="font-size: 0.4em;">{{e.prodtransName}}</td>
-				        <td align="center" style="font-size: 0.4em;">{{e.bizSource}}</td>
-				        <td align="center" style="font-size: 0.4em;">{{e.prodtransType}}</td>
-				        <td align="center" style="font-size: 0.4em;">{{e.overdrawn}}</td>
-				        <td align="center" style="font-size: 0.4em;">{{e.ptsStatus}}</td>
-				        <td align="center" style="font-size: 0.4em;">{{e.gmtExpired}}</td>
-				        <td align="center" style="font-size: 0.4em;">{{e.gmtEffictive}}</td>
-				        <td align="center" style="font-size: 0.4em;">{{e.gmtModified}}</td>
-				        <td align="center" style="font-size: 0.4em;">
+				        <td align="center" style="font-size: 1.0em;">{{e.prodtransId}}</td>
+				        <td align="center" style="font-size: 1.0em;">{{e.prodtransName}}</td>
+				        <td align="center" style="font-size: 1.0em;">{{e.bizSource}}</td>
+				        <td align="center" style="font-size: 1.0em;">{{e.prodtransType}}</td>
+				        <td align="center" style="font-size: 1.0em;">{{e.overdrawn}}</td>
+				        <td align="center" style="font-size: 1.0em;">{{e.ptsStatus}}</td>
+				        <td align="center" style="font-size: 1.0em;">{{e.gmtExpired}}</td>
+				        <td align="center" style="font-size: 1.0em;">{{e.gmtEffictive}}</td>
+				        <td align="center" style="font-size: 1.0em;">{{e.gmtModified}}</td>
+				        <td align="center" style="font-size: 1.0em;">
 					        <a *ngFor="let opElement of tableElement.tableOp" style="cursor: pointer; margin-left: 20px; color: #721c24;" (click)="tableNoPaginatorOperation(e, opElement[1])"> {{opElement[0]}} </a>
 				        </td>
 			        </tr>

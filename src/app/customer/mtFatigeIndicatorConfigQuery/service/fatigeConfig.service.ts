@@ -95,14 +95,6 @@ export class FatigeConfigService {
     return this._http.post(environment.SYSTEM_SHOP_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
   }
 
-  getAllGoodsCostConfig(shopId): any {
-    return this._http.get(environment.GOODS_COST_CFG_QUERY_CONFIG_URL + '/' + shopId, {headers: this.getHeaderOptions()});
-  }
-
-  manageGoodsCostConfig(data): any {
-    return this._http.post(environment.GOODS_COST_CFG_MNG_CONFIG_URL, data, {headers: this.getHeaderOptions()});
-  }
-
   getAllGoodsByShopId(shopId: string): any {
     return this._http.get(environment.GOODS_QUERY_SHOP_URL + '/' + shopId, {headers: this.getHeaderOptions()});
   }

@@ -154,7 +154,8 @@ export class ModifyGoodsComponent implements OnInit {
         formData.append('isTuan', this.goodsConfigModel.isTuan);
         formData.append('operationType', 'PX_MODIFY');
         formData.append('gmtExpired', this.goodsConfigModel.gmtExpired);
-        console.log('----------------------------------->', formData);
+        console.log('修改商品信息------------------------>formData', formData);
+        console.log('修改商品信息------------------------>this.goodsConfigModel', this.goodsConfigModel);
         this.ftConfitService.manageGoodsConfig(formData).subscribe(res => {
             console.log('=======================>', res);
             this.eventBus.publish('system_goods_manage_all', this.shopData);

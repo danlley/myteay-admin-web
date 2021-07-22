@@ -61,7 +61,7 @@ export class AddDisGoodsConfComponent implements OnInit {
    */
   ngOnInit(): void {
     console.log(this.title);
-    this.doQueryOnlineGoodsList();
+    this.initGoodsPackagesList();
     // 初始化日期选择组件
     laydate.render({
       elem: '#gmtEffictive',
@@ -118,6 +118,9 @@ export class AddDisGoodsConfComponent implements OnInit {
     formData.append('shopId', this.shopId);
     formData.append('goodsTitle', this.goodsName);
     formData.append('goodsType', this.goodsType);
+    console.log('左侧数据 this.shopId---------------->', this.shopId);
+    console.log('左侧数据 this.goodsName---------------->', this.goodsName);
+    console.log('左侧数据 this.goodsType---------------->', this.goodsType);
     this.ftConfitService.getSingleShopPrizeGoodsConfig(formData).subscribe(res => {
       this.goodsList = this.commonService.filterResult(res);
       console.log('左侧数据 this.goodsList---------------->', this.goodsList);
